@@ -66,7 +66,7 @@ for shops in unorganized_shops:
     if ('G' in shops and '0' in shops):
         ramen_shop_raw.append(shops[:shops.index('%')])
         ramen_name_raw.append(shops[shops.index('G')+1:shops.index('G')+30])
-        ramen_review_raw.append(shops[shops.index('G')+26:shops.index('G')+292]+'...')
+        ramen_review_raw.append(shops[shops.index('G')+25:shops.index('G')+292]+'...')
 
     else:
         unorganized_unorganized_shops.append(shops)
