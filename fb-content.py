@@ -124,10 +124,10 @@ for reviews in ramen_review_raw:
 #### debug
 # print(len(unorganized_unorganized_shops))
 # print(unorganized_unorganized_shops)
-print(len(ramen_shop_list))
+# print(len(ramen_shop_list))
 # print(len(ramen_name_list))
 # print(len(ramen_review_list))
-print(ramen_shop_list)
+# print(ramen_shop_list)
 # print(ramen_name_list)
 # print(ramen_review_list)#cut the last 2 words and add ...
 
@@ -141,7 +141,7 @@ print(ramen_shop_list)
 
 ####csv
 # https://stackoverflow.com/questions/17704244/writing-python-lists-to-columns-in-csv
-# df = pd.DataFrame(list(zip(*[ramen_shop_list, ramen_name_list, ramen_review_list])))
-# col_names = ['stores', 'ramens', 'reviews']
-# df.columns = col_names
-# df.to_csv('fb_crawling.csv', index=True)
+df = pd.DataFrame(list(zip(*[ramen_shop_list, ramen_name_list, ramen_review_list])))
+col_names = ['stores', 'ramens', 'reviews']
+df.columns = col_names
+df.to_csv('fb_crawling.csv', index=True)
