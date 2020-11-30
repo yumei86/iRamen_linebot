@@ -4,7 +4,9 @@ shop_count = 0
 ramen_list = []
 ramen_shop_list = []
 ramen_name_list = []
-ramen_name_list_organized = []
+ramen_name_raw = []
+ramen_name_concation = []
+ramen_review_raw = []
 ramen_review_list = []
 unorganized_shops = []
 unorganized_unorganized_shops = []
@@ -51,8 +53,8 @@ for shops in ramen_list:
         unorganized_shops.append(shops)
     else:
         ramen_shop_list.append(shops[:shops.index('%')])
-        ramen_name_list.append(shops[shops.index('G')+1:shops.index('Z')])
-        ramen_review_list.append(shops[shops.index('Z')+1:shops.index('Z')+265]+'...')
+        ramen_name_raw.append(shops[shops.index('G')+1:shops.index('Z')])
+        ramen_review_raw.append(shops[shops.index('Z')+1:shops.index('Z')+265]+'...')
 # print(ramen_shop_list)
 # print(ramen_name_list)
 # print(ramen_review_list)
@@ -62,8 +64,8 @@ for shops in ramen_list:
 for shops in unorganized_shops:
     if ('G' in shops and '0' in shops):
         ramen_shop_list.append(shops[:shops.index('%')])
-        ramen_name_list.append(shops[shops.index('G')+1:shops.index('G')+21])
-        ramen_review_list.append(shops[shops.index('G')+19:shops.index('G')+285]+'...')
+        ramen_name_raw.append(shops[shops.index('G')+1:shops.index('G')+21])
+        ramen_review_raw.append(shops[shops.index('G')+19:shops.index('G')+285]+'...')
 
     else:
         unorganized_unorganized_shops.append(shops)
@@ -82,16 +84,20 @@ for shops in unorganized_shops:
 # print(ramen_shop_list.index('店家:樂趣Lovecheers'))
 
 
-for names in ramen_name_list:
-    new_name = names.replace('拉麵%.G','')
-    ramen_name_list_organized.append(new_name)
+for names in ramen_name_raw:
+    new_name = names.replace('拉麵%.G','').replace('%.G','')
+    # print(new_name)
+    ramen_name_list.append(new_name)
 
+for reviews in ramen_review_raw:
+    new_reviews = reviews.replace('拉麵%.G','').replace('%.G','')
+    ramen_review_list.append(new_reviews)
 
 
 
 ####csv
 # https://stackoverflow.com/questions/17704244/writing-python-lists-to-columns-in-csv
-df = pd.DataFrame(list(zip(*[ramen_shop_list, ramen_name_list_organized, ramen_review_list])))
+df = pd.DataFrame(list(zip(*[ramen_shop_list, ramen_name_list, ramen_review_list])))
 col_names = ['stores', 'ramens', 'reviews']
 df.columns = col_names
 df.to_csv('fb_crawling.csv', index=True)
