@@ -5,7 +5,8 @@ ramen_list = []
 ramen_shop_list = []
 ramen_name_list = []
 ramen_name_raw = []
-ramen_name_concation = []
+ramen_name_raw_zero = []
+ramen_name_M = []
 ramen_review_raw = []
 ramen_review_list = []
 unorganized_shops = []
@@ -26,11 +27,11 @@ for line in f:
                     .replace('■店家資訊:','$店家:')\
                     .replace('鄰近地點','%鄰近地點').replace('臨近地點:','%鄰近地點:')\
                     .replace('鄰近地區','%鄰近地點').replace('鄰近:','%鄰近地點:')\
-                    .replace('拉麵名稱','%.G拉麵名稱').replace('餐點名稱:','%.G拉麵名稱')\
-                    .replace('餐點:','%.G拉麵名稱').replace('拉麵品項:','%.G拉麵名稱')\
-                    .replace('品項:','%.G拉麵名稱').replace('品名:','%.G拉麵名稱')\
-                    .replace('名稱:','%.G拉麵名稱').replace('品項價格:','%.G拉麵名稱')\
-                    .replace('配置:','Z配置').replace('配　　置','Z配置')\
+                    .replace('拉麵名稱','%.G拉麵名稱').replace('餐點名稱:','%.G拉麵名稱:')\
+                    .replace('餐點:','%.G拉麵名稱:').replace('拉麵品項:','%.G拉麵名稱')\
+                    .replace('品項:','%.G拉麵名稱:').replace('品名:','%.G拉麵名稱:')\
+                    .replace('名稱:','%.G拉麵名稱:').replace('品項價格:','%.G拉麵名稱:')\
+                    .replace('配置:','Z配置').replace('配　　置','Z配置').replace('配置(','Z配置')\
                     .replace('\'','').replace('Description','')\
                     .replace('_','').replace('分隔線','')\
                     .replace('▎','').replace('🁢',' ').replace('-','').replace('◎','')\
@@ -64,7 +65,7 @@ for shops in ramen_list:
 for shops in unorganized_shops:
     if ('G' in shops and '0' in shops):
         ramen_shop_list.append(shops[:shops.index('%')])
-        ramen_name_raw.append(shops[shops.index('G')+1:shops.index('G')+21])
+        ramen_name_raw.append(shops[shops.index('G')+1:shops.index('G')+25])
         ramen_review_raw.append(shops[shops.index('G')+19:shops.index('G')+285]+'...')
 
     else:
@@ -83,11 +84,40 @@ for shops in unorganized_shops:
 # print(ramen_name_list.index("拉麵名稱價格:濃厚雞白湯拉麵雞腿捲230"))
 # print(ramen_shop_list.index('店家:樂趣Lovecheers'))
 
+# for names in ramen_name_raw:
+#     new_name = names.replace('拉麵%.G','').replace('%.G','')
+#     # print(new_name)
+#     ramen_name_raw_zero.append(new_name)
 
 for names in ramen_name_raw:
+    # print(f'original name{names}')
     new_name = names.replace('拉麵%.G','').replace('%.G','')
-    # print(new_name)
-    ramen_name_list.append(new_name)
+    last_ch = new_name[-1]
+    # ramen_name_M = []
+    if '0' in new_name and '00' not in new_name and '2020' not in new_name\
+        and last_ch != '）' and last_ch != ')'and '+' not in new_name:
+        ramen_name_M.append(new_name[:new_name.index('0')+1])
+    elif '00' in new_name and '2020' not in new_name:
+        ramen_name_M.append(new_name[:new_name.index('00')+2])
+    elif '0' not in new_name and '00' not in new_name and '/' not in new_name\
+        and last_ch.isdigit() == False and last_ch != '麵' and last_ch != '麺'\
+        and '+' not in new_name:
+        new_point =  new_name.replace('麵','麵M').replace('麺','麵M').replace('拉麵M名稱','拉麵名稱')
+        ramen_name_M.append(new_point)
+    else:
+        ramen_name_M.append(new_name)
+
+
+for names in ramen_name_M:
+    if 'M' in  ramen_name_M:
+        ramen_name_list.append(names[:names.index('M')])
+    else:
+        ramen_name_list.append(names)
+    
+# print(len(ramen_name_list))
+# print(ramen_name_list)       
+        
+
 
 for reviews in ramen_review_raw:
     new_reviews = reviews.replace('拉麵%.G','').replace('%.G','')
