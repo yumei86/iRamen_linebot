@@ -4,6 +4,7 @@ shop_count = 0
 ramen_list = []
 ramen_shop_list = []
 ramen_name_list = []
+ramen_name_list_organized = []
 ramen_review_list = []
 unorganized_shops = []
 unorganized_unorganized_shops = []
@@ -73,15 +74,24 @@ for shops in unorganized_shops:
 # print(len(ramen_shop_list))
 # print(len(ramen_name_list))
 # print(len(ramen_review_list))
-print(ramen_shop_list)
-print(ramen_name_list)
-print(ramen_review_list)#cut the last 2 words and add ...
+# print(ramen_shop_list)
+# print(ramen_name_list)
+# print(ramen_review_list)#cut the last 2 words and add ...
 
 # print(ramen_name_list.index("拉麵名稱價格:濃厚雞白湯拉麵雞腿捲230"))
 # print(ramen_shop_list.index('店家:樂趣Lovecheers'))
 
+
+for names in ramen_name_list:
+    new_name = names.replace('拉麵%.G','')
+    ramen_name_list_organized.append(new_name)
+
+
+
+
 ####csv
-df = pd.DataFrame(list(zip(*[ramen_shop_list, ramen_name_list, ramen_review_list])))
+# https://stackoverflow.com/questions/17704244/writing-python-lists-to-columns-in-csv
+df = pd.DataFrame(list(zip(*[ramen_shop_list, ramen_name_list_organized, ramen_review_list])))
 col_names = ['stores', 'ramens', 'reviews']
 df.columns = col_names
 df.to_csv('fb_crawling.csv', index=True)
