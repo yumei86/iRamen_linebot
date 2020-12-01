@@ -1,4 +1,5 @@
 import pandas as pd
+import re
 f = open('1_fb_crawling.txt', 'r', encoding='utf8')
 shop_count = 0
 ramen_list = []
@@ -117,16 +118,25 @@ for names in ramen_name_raw:
 
 # print(len(ramen_name_list))
 
+#https://www.cnblogs.com/qmfsun/p/11811990.html
 for reviews in ramen_review_raw:
     new_reviews = reviews.replace('拉麵%.G','').replace('%.G','').replace('%','').replace('$','')
-    if '配置'not in new_reviews and '0' in new_reviews \
-        and '）' not in new_reviews and ')' not in new_reviews\
-        and '.' not in new_reviews and '/' not in new_reviews:
-        ramen_review_list.append(new_reviews[new_reviews.index('0')+1:])
+    first_few_words = new_reviews[0:6]
+    if '配置'not in first_few_words:
+        pattern="[\u4e00-\u9fa5]+" 
+        regex = re.compile(pattern)
+        results =  regex.findall(new_reviews)
+        # print(results_to_str)
+        results_to_str =' '.join([str(elem) for elem in results]) 
+        ramen_review_list.append(results_to_str)
+        # print(results_to_str)
+
     else:
         ramen_review_list.append(new_reviews)
+        
 
-    
+#coding=utf-8
+
     
 #### debug
 # print(len(unorganized_unorganized_shops))
