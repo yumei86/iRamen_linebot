@@ -115,11 +115,18 @@ for names in ramen_name_raw:
     else:
         ramen_name_list.append(new_name)
 
-# print(ramen_name_list)
+# print(len(ramen_name_list))
 
 for reviews in ramen_review_raw:
-    new_reviews = reviews.replace('拉麵%.G','').replace('%.G','')
-    ramen_review_list.append(new_reviews)
+    new_reviews = reviews.replace('拉麵%.G','').replace('%.G','').replace('%','').replace('$','')
+    if '配置'not in new_reviews and '0' in new_reviews \
+        and '）' not in new_reviews and ')' not in new_reviews\
+        and '.' not in new_reviews and '/' not in new_reviews:
+        ramen_review_list.append(new_reviews[new_reviews.index('0')+1:])
+    else:
+        ramen_review_list.append(new_reviews)
+
+    
     
 #### debug
 # print(len(unorganized_unorganized_shops))
@@ -129,7 +136,7 @@ for reviews in ramen_review_raw:
 # print(len(ramen_review_list))
 # print(ramen_shop_list)
 # print(ramen_name_list)
-# print(ramen_review_list)#cut the last 2 words and add ...
+# print(ramen_review_list)
 
 # print(ramen_name_list.index("拉麵名稱價格:濃厚雞白湯拉麵雞腿捲230"))
 # print(ramen_shop_list.index('店家:樂趣Lovecheers'))
