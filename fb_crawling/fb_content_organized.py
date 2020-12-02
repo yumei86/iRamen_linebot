@@ -1,6 +1,6 @@
 import pandas as pd
 import re
-f = open('1_fb_crawling.txt', 'r', encoding='utf8')
+f = open('./data/1_fb_crawling.txt', 'r', encoding='utf8')
 shop_count = 0
 ramen_list = []
 ramen_shop_raw = []
