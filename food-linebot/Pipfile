@@ -1,0 +1,17 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+autopep8 = "*"
+
+[packages]
+django = "*"
+pylint = "*"
+beautifulsoup4 = "*"
+requests = "*"
+line-bot-sdk = "*"
+
+[requires]
+python_version = "3.8"
