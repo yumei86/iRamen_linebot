@@ -145,13 +145,8 @@ def handle_message(event):
 
 
     elif event.message.text == "最愛清單":
-        emoji = FlexSendMessage(
-        alt_text='清單',
-        contents= {
-  "type": "text",
-  "text": "\uDBC0\uDC84 LINE original emoji"
-}
-        line_bot_api.reply_message(event.reply_token,emoji) 
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text = "目前清單是空的，\n快來加入喜歡的拉麵吧！\u{100005}"))
+
 
         
         
