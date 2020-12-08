@@ -143,6 +143,16 @@ def handle_message(event):
     elif event.message.text == "錯誤回報":
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "請點選以下連結：https://reurl.cc/14RmVW"))
 
+
+    elif event.message.text == "最愛清單":
+        emoji = FlexSendMessage(
+        alt_text='清單',
+        contents= {
+  "type": "text",
+  "text": "\uDBC0\uDC84 LINE original emoji"
+}
+        line_bot_api.reply_message(event.reply_token,emoji) 
+
         
         
     elif event.message.text == "北部":
