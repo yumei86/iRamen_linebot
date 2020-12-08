@@ -539,7 +539,7 @@ def handle_message(event):
 
     elif event.message.text == "東部":
         flex_message4 = FlexSendMessage(
-        alt_text='東部的縣市',
+        alt_text='東部的縣市測試',
         contents={
   "type": "bubble",
   "hero": {
