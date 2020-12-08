@@ -133,27 +133,6 @@ def handle_message(event):
       }
     ]
   },
-  "footer": {
-    "type": "box",
-    "layout": "vertical",
-    "contents": [
-      {
-        "type": "button",
-        "action": {
-          "type": "message",
-          "label": "我要開定位",
-          "text": "我要開定位"
-        },
-        "style": "secondary",
-        "height": "sm",
-        "margin": "none",
-        "position": "relative",
-        "color": "#D9AE94"
-      }
-    ],
-    "spacing": "sm",
-    "margin": "none"
-  }
 }
         )
 
