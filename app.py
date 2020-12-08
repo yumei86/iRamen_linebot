@@ -141,11 +141,7 @@ def handle_message(event):
 
 
     elif event.message.text == "錯誤回報":
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "請點選以下連結：https://reurl.cc/14RmVW"))
-
-
-    elif event.message.text == "最愛清單":
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text = "目前清單是空的，\n快來加入喜歡的拉麵吧！\u{100005}"))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "請點選以下連結：https://reurl.cc/14RmVW")
 
 
         
