@@ -132,7 +132,7 @@ def handle_message(event):
         "margin": "md"
       }
     ]
-  },
+  }
 }
         )
 
