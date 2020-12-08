@@ -132,27 +132,6 @@ def handle_message(event):
         "margin": "md"
       }
     ]
-  },
-  "footer": {
-    "type": "box",
-    "layout": "vertical",
-    "contents": [
-      {
-        "type": "button",
-        "action": {
-          "type": "message",
-          "label": "我要開定位",
-          "text": "我要開定位"
-        },
-        "style": "secondary",
-        "height": "sm",
-        "margin": "none",
-        "position": "relative",
-        "color": "#D9AE94"
-      }
-    ],
-    "spacing": "sm",
-    "margin": "none"
   }
 }
         )
@@ -164,7 +143,9 @@ def handle_message(event):
     elif event.message.text == "錯誤回報":
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "請點選以下連結：https://reurl.cc/14RmVW"))
 
-        
+    elif event.message.text == "最愛清單":
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "尚未有最愛清單，快去加入你喜歡的拉麵吧！\u{100078}"))
+       
         
     elif event.message.text == "北部":
         flex_message1 = FlexSendMessage(
@@ -173,7 +154,7 @@ def handle_message(event):
   "type": "bubble",
   "hero": {
     "type": "image",
-    "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
+    "url": "https://github.com/yumei86/iRamen_linebot/blob/master/image/northtw.png?raw=true",
     "size": "full",
     "aspectRatio": "20:13",
     "aspectMode": "cover",
@@ -324,7 +305,7 @@ def handle_message(event):
   "type": "bubble",
   "hero": {
     "type": "image",
-    "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
+    "url": "https://github.com/yumei86/iRamen_linebot/blob/master/image/centraltw.png?raw=true",
     "size": "full",
     "aspectRatio": "20:13",
     "aspectMode": "cover",
@@ -423,7 +404,7 @@ def handle_message(event):
   "type": "bubble",
   "hero": {
     "type": "image",
-    "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
+    "url": "https://github.com/yumei86/iRamen_linebot/blob/master/image/southtw.png?raw=true",
     "size": "full",
     "aspectRatio": "20:13",
     "aspectMode": "cover",
@@ -544,7 +525,7 @@ def handle_message(event):
   "type": "bubble",
   "hero": {
     "type": "image",
-    "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
+    "url": "https://github.com/yumei86/iRamen_linebot/blob/master/image/easttw.png?raw=true",
     "size": "full",
     "aspectRatio": "20:13",
     "aspectMode": "cover",
