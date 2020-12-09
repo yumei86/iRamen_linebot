@@ -48,7 +48,8 @@ def handle_message(event):
     f = open('json_for_app.json') 
     data = json.load(f) 
 
-    elif event.message.text == "拉麵推薦":
+    if event.message.text == "拉麵推薦":
+
         flex_message = FlexSendMessage(
                         alt_text='拉麵推薦',
                         contents= data[0]
