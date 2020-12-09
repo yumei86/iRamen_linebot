@@ -246,7 +246,7 @@
                 {
                     "type": "text",
                     "text": "你在哪個縣市？",
-                    "weight": "regular",
+                    "weight": "bold",
                     "size": "xl",
                     "color": "#997B66"
                 },
