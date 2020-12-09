@@ -39,7 +39,7 @@ store_refs = []
 store_tags = []
 store_number = [167,47,59,68,37,50,12]
 #-------把剩下項目打開--------
-item = 2
+item = 2  #0,1,2,3,4,5,6 對應到store_number中的index 也就是map中不同的選單
 #for item in range():
 num_1 = str(item + 2)
 start_search_btn = driver.find_element_by_xpath("//div["+ num_1 +"]/div/div[3]/div[2]/div/div")
@@ -49,7 +49,7 @@ n = store_number[item]
 
 
 #-------打開評論爬資訊(要記得關掉)-------
-for items in range(59):
+for items in range(59):  #這邊根據縣市，來改store_number的數字
     num = str(items + 3)
     driver.find_element_by_xpath("//div["+ num_1 +"]/div/div[3]/div["+ num +"]/div[2]/div").click()
     time.sleep(1)
