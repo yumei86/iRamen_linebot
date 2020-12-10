@@ -77,6 +77,10 @@ class Post(db.Model):
     self.ramen_name = ramen_name
     self.fb_review = fb_review
 
+# Python3 #打開cmd輸入以下code
+# from app import db (app is the file name)
+# db.create_all() #https://flask-sqlalchemy.palletsprojects.com/en/2.x/quickstart/
+# exit()
 
 #query
 soup_q = Store.query.all()
