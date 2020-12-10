@@ -38,7 +38,7 @@ def handle_message(event):
     msg = event.message.text
     msg = msg.encode('utf-8')  
 
-    if msg == "問題回報":
+    if event.message.text == "問題回報":
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "ooops...\uDBC0\uDC17 \n請點選以下連結回報問題：https://reurl.cc/14RmVW"))
 
     elif event.message.text == "最愛清單":
