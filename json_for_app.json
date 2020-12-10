@@ -3,7 +3,7 @@
         "type": "bubble",
         "hero": {
             "type": "image",
-            "url": "https://media.timeout.com/images/105665255/630/472/image.jpg",
+            "url": "https://github.com/yumei86/iRamen_linebot/blob/master/image/TWmap.png?raw=true",
             "size": "full",
             "aspectRatio": "20:13",
             "aspectMode": "cover",
