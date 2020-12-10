@@ -45,6 +45,9 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "尚未有最愛清單，快去加入你喜歡的拉麵吧！\uDBC0\uDC5e"))
 
 
+#----------------拉麵推薦介面-----------------
+
+    #讀需要的json資料
     f = open('json_for_app.json') 
     data = json.load(f) 
 
@@ -56,6 +59,9 @@ def handle_message(event):
         )
 
         line_bot_api.reply_message(event.reply_token,flex_message)
+
+
+#----------------不同區域的介面設定-----------------
         
     elif event.message.text == "北部":
         flex_message1 = FlexSendMessage(
@@ -90,4 +96,13 @@ def handle_message(event):
         
         line_bot_api.reply_message(event.reply_token,flex_message4) 
 
-    
+#----------------湯頭/直接推薦介面-----------------
+
+    elif event.message.text == "台北市":
+        flex_message5 = FlexSendMessage(
+                        alt_text='依據你的喜好選擇吧！',
+                        contents= data[5]
+        )
+        
+        line_bot_api.reply_message(event.reply_token,flex_message5) 
+
