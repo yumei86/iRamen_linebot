@@ -538,12 +538,12 @@
               "contents": [
                 {
                   "type": "text",
-                  "text": "\uDBC0\uDC54我有口味偏好 -> 請選湯頭推薦",
+                  "text": "\uDBC0\uDC7a 我有口味偏好 -> 請選湯頭推薦",
                   "size": "sm"
                 },
                 {
                   "type": "text",
-                  "text": "\uDBC0\uDC54我想來點驚喜 -> 請選直接推薦",
+                  "text": "\uDBC0\uDC8c 我想來點驚喜 -> 請選直接推薦",
                   "size": "sm"
                 },
                 {
