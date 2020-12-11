@@ -34,7 +34,7 @@ class Main_store(db.Model):
 
 class Store(db.Model):
   __tablename__ = 'store'
-  detail_store_id = db.Column (db.String(5), primary_key = True)
+  detail_store_id = db.Column (db.String(10), primary_key = True)
   store_id = db.Column (db.Integer, db.ForeignKey('main_store.store_id'), onupdate ='CASCADE')
   store = db.Column (db.String(50), nullable=False, unique = True)
   address = db.Column (db.String(200))
@@ -65,7 +65,7 @@ class Store(db.Model):
 
 class Post(db.Model):
   __tablename__ = 'post'
-  post_id = db.Column (db.Integer, primary_key = True)
+  post_id = db.Column (db.String(10), primary_key = True)
   store_id = db.Column (db.Integer, db.ForeignKey('main_store.store_id', onupdate ='CASCADE'))
   create_on = db.Column (db.String(50))
   ramen_name = db.Column (db.String(50))
@@ -83,51 +83,52 @@ class Post(db.Model):
 # exit()
 
 #query
-soup_q = Store.query.all()
-raw_soup = [{soup.province:soup.soup} for soup in soup_q]
-# print(raw_soup)
+# #soup query
+# soup_q = Store.query.all()
+# raw_soup = [{soup.province:soup.soup} for soup in soup_q]
+# # print(raw_soup)
 
-#https://www.geeksforgeeks.org/python-concatenate-values-with-same-keys-in-a-list-of-dictionaries/
-#Concatenate values with same keys in a list of dictionaries
-soup_data = dict()
+# #https://www.geeksforgeeks.org/python-concatenate-values-with-same-keys-in-a-list-of-dictionaries/
+# #Concatenate values with same keys in a list of dictionaries
+# soup_data = dict()
 
-def concate_dicts(l, lst):
-  for dict in l:
-    for list in dict:
-      if list in lst:
-        lst[list] += (dict[list])
-      else:
-        lst[list] = dict[list]
-  return lst
+# def concate_dicts(l, lst):
+#   for dict in l:
+#     for list in dict:
+#       if list in lst:
+#         lst[list] += (dict[list])
+#       else:
+#         lst[list] = dict[list]
+#   return lst
 
-def remove_duplicate(l):
-  return list(dict.fromkeys(l))
-#remove tags:
-#ramentw
-#台灣拉麵愛好會
-#拉麵
-#(u'\xa0', u' ')
-concate_dicts(raw_soup, soup_data)
-# print(soup_data)
-for k, v in soup_data.items():
-  organized_v = v.replace('#ramentw','').replace('#台灣拉麵愛好會','').replace('#拉麵','')\
-            .replace(u'\xa0', u' ').replace(' ','').split('#')
-  soup_data[k] = organized_v
+# def remove_duplicate(l):
+#   return list(dict.fromkeys(l))
+# #remove tags:
+# #ramentw
+# #台灣拉麵愛好會
+# #拉麵
+# #(u'\xa0', u' ')
+# concate_dicts(raw_soup, soup_data)
+# # print(soup_data)
+# for k, v in soup_data.items():
+#   organized_v = v.replace('#ramentw','').replace('#台灣拉麵愛好會','').replace('#拉麵','')\
+#             .replace(u'\xa0', u' ').replace(' ','').split('#')
+#   soup_data[k] = organized_v
 
-for k, v in soup_data.items():
-  no_duplicate_v  = remove_duplicate(v)
-  no_duplicate_v.pop(0)
-  soup_data[k] = no_duplicate_v
+# for k, v in soup_data.items():
+#   no_duplicate_v  = remove_duplicate(v)
+#   no_duplicate_v.pop(0)
+#   soup_data[k] = no_duplicate_v
 
-for k, v in soup_data.items():
-  v_string = ' '.join([str(elem) for elem in v])
-  soup_data[k] = v_string 
-  print(k, v_string)
-# print(soup_data)
+# for k, v in soup_data.items():
+#   v_string = ' '.join([str(elem) for elem in v])
+#   soup_data[k] = v_string 
+#   print(k, v_string)
+# # print(soup_data)
 
-with open('soup.csv', 'w', encoding='UTF-8') as f:
-    for key in soup_data.keys():
-        f.write("%s,%s\n"%(key,soup_data[key]))
+# with open('soup.csv', 'w', encoding='UTF-8') as f:
+#     for key in soup_data.keys():
+#         f.write("%s,%s\n"%(key,soup_data[key]))
 
 if __name__ == 'main':
   app.run(debug=True)
