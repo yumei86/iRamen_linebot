@@ -98,7 +98,11 @@ def handle_message(event):
 
 #----------------湯頭/直接推薦介面-----------------
 
-    elif event.message.text == "台北市":
+    cityname = ["台北市","新北市","基隆市","桃園市","苗栗縣","新竹縣","新竹市",\
+                "台中市","彰化市","南投縣","雲林縣","嘉義市","台南市","高雄市",\
+                "屏東縣","宜蘭縣","花蓮縣","台東縣"]
+
+    elif event.message.text in cityname :
         flex_message5 = FlexSendMessage(
                         alt_text='依據你的喜好選擇吧！',
                         contents= data[5]
