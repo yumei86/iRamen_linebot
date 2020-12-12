@@ -393,8 +393,8 @@
                 "type": "button",
                 "action": {
                   "type": "message",
-                  "label": "嘉義縣",
-                  "text": "嘉義縣"
+                  "label": "台南市",
+                  "text": "台南市"
                 },
                 "style": "primary",
                 "height": "sm",
@@ -413,8 +413,8 @@
                 "type": "button",
                 "action": {
                   "type": "message",
-                  "text": "台南市",
-                  "label": "台南市"
+                  "text": "高雄市",
+                  "label": "高雄市"
                 },
                 "style": "primary",
                 "height": "sm",
@@ -424,8 +424,8 @@
                 "type": "button",
                 "action": {
                   "type": "message",
-                  "label": "高雄市",
-                  "text": "高雄市"
+                  "label": "屏東縣",
+                  "text": "屏東縣"
                 },
                 "style": "primary",
                 "height": "sm",
@@ -433,30 +433,6 @@
                 "color": "#797D62"
               }
             ]
-          },
-          {
-            "type": "box",
-            "layout": "horizontal",
-            "spacing": "sm",
-            "contents": [
-              {
-                "type": "button",
-                "action": {
-                  "type": "message",
-                  "text": "屏東縣",
-                  "label": "屏東縣"
-                },
-                "style": "primary",
-                "height": "sm",
-                "color": "#797D62"
-              },
-              {
-                "type": "text",
-                "text": " ",
-                "margin": "xxl"
-              }
-            ],
-            "margin": "md"
           }
         ]
       }
