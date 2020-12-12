@@ -2,6 +2,7 @@ from flask import Flask, request, abort
 from linebot import (LineBotApi, WebhookHandler)
 from linebot.exceptions import (InvalidSignatureError)
 from linebot.models import *
+from os.path import join, dirname
 from dotenv import load_dotenv
 import os
 import json
@@ -9,9 +10,12 @@ import json
 
 app = Flask(__name__)
 
-load_dotenv()
-USERNAME = os.getenv("accont")
-PASSWORD = os.getenv("password")
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
+
+USERNAME = os.getenv('line_bot_channel_token')
+PASSWORD = os.getenv('line_bot_channel_secret')
+
 line_bot_api = LineBotApi(USERNAME)
 handler = WebhookHandler(PASSWORD)
 
