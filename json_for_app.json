@@ -248,92 +248,99 @@
 
 
     {
-        "type": "bubble",
-        "hero": {
-            "type": "image",
-            "url": "https://github.com/yumei86/iRamen_linebot/blob/master/image/centraltw.png?raw=true",
-            "size": "full",
-            "aspectRatio": "20:13",
-            "aspectMode": "cover"
-        },
-        "body": {
+      "type": "bubble",
+      "hero": {
+        "type": "image",
+        "url": "https://github.com/yumei86/iRamen_linebot/blob/master/image/centraltw.png?raw=true",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "你在哪個縣市？",
+            "weight": "bold",
+            "size": "xl",
+            "color": "#876C5A"
+          },
+          {
+            "type": "text",
+            "text": "請幫助我選擇縣市讓你更快得到推薦喔！",
+            "size": "xs",
+            "margin": "sm"
+          },
+          {
+            "type": "separator",
+            "margin": "lg"
+          },
+          {
             "type": "box",
-            "layout": "vertical",
+            "layout": "horizontal",
+            "margin": "lg",
+            "spacing": "sm",
             "contents": [
-                {
-                    "type": "text",
-                    "text": "你在哪個縣市？",
-                    "weight": "bold",
-                    "size": "xl",
-                    "color": "#997B66"
+              {
+                "type": "button",
+                "action": {
+                  "type": "message",
+                  "text": "台中市",
+                  "label": "台中市"
                 },
-                {
-                    "type": "text",
-                    "text": "請幫助我選擇縣市讓你更快得到推薦喔！",
-                    "size": "xs",
-                    "margin": "sm",
-                    "color": "#D9AE94"
+                "style": "primary",
+                "height": "sm",
+                "color": "#797D62"
+              },
+              {
+                "type": "button",
+                "action": {
+                  "type": "message",
+                  "label": "彰化縣",
+                  "text": "彰化縣"
                 },
-                {
-                    "type": "box",
-                    "layout": "horizontal",
-                    "margin": "lg",
-                    "spacing": "sm",
-                    "contents": [
-                        {
-                            "type": "button",
-                            "action": {
-                                "type": "message",
-                                "text": "台中市",
-                                "label": "台中市"
-                            },
-                            "style": "secondary",
-                            "height": "sm"
-                        },
-                        {
-                            "type": "button",
-                            "action": {
-                                "type": "message",
-                                "label": "彰化縣",
-                                "text": "彰化縣"
-                            },
-                            "style": "secondary",
-                            "height": "sm",
-                            "margin": "xxl"
-                        }
-                    ]
-                },
-                {
-                    "type": "box",
-                    "layout": "horizontal",
-                    "margin": "md",
-                    "spacing": "sm",
-                    "contents": [
-                        {
-                            "type": "button",
-                            "action": {
-                                "type": "message",
-                                "label": "南投縣",
-                                "text": "南投縣"
-                            },
-                            "style": "secondary",
-                            "height": "sm"
-                        },
-                        {
-                            "type": "button",
-                            "action": {
-                                "type": "message",
-                                "label": "雲林縣",
-                                "text": "雲林縣"
-                            },
-                            "style": "secondary",
-                            "height": "sm",
-                            "margin": "xxl"
-                        }
-                    ]
-                }
+                "style": "primary",
+                "height": "sm",
+                "margin": "xxl",
+                "color": "#797D62"
+              }
             ]
-        }
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "margin": "md",
+            "spacing": "sm",
+            "contents": [
+              {
+                "type": "button",
+                "action": {
+                  "type": "message",
+                  "label": "南投縣",
+                  "text": "南投縣"
+                },
+                "style": "primary",
+                "height": "sm",
+                "color": "#797D62"
+              },
+              {
+                "type": "button",
+                "action": {
+                  "type": "message",
+                  "label": "雲林縣",
+                  "text": "雲林縣"
+                },
+                "style": "primary",
+                "height": "sm",
+                "margin": "xxl",
+                "color": "#797D62"
+              }
+            ]
+          }
+        ]
+      }
     },
     {
         "type": "bubble",
