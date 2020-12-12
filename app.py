@@ -10,8 +10,8 @@ import os
 app = Flask(__name__)
 
 
-USERNAME = os.getenv('CHANNEL_ACCESS_TOKEN')
-PASSWORD = os.getenv('CHANNEL_SECRET')
+USERNAME = S3Connection(os.environ['CHANNEL_ACCESS_TOKEN'])
+PASSWORD = S3Connection(os.environ['CHANNEL_SECRET'])
 
 line_bot_api = LineBotApi(USERNAME)
 handler = WebhookHandler(PASSWORD)
