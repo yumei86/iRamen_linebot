@@ -10,17 +10,6 @@ import json
 
 app = Flask(__name__)
 
-'''
-dotenv_path = join(dirname(__file__), '.env')
-load_dotenv(dotenv_path)
-
-USERNAME = os.getenv('line_bot_channel_token')
-PASSWORD = os.getenv('line_bot_channel_secret')
-
-line_bot_api = LineBotApi(USERNAME)
-handler = WebhookHandler(PASSWORD)
-'''
-
 line_bot_api = LineBotApi('Zt18oeL1jEzB9bbOw3BjRbMC9u8q4FwJkV2J7wlRd9G+GY5D8HHrShTSGZRK7uIKTAbqmImphpl3/U2G2B3wFLshfMnvqVCsZW+lWZrxUT3XOMma0KcbeLxwc9v7DdTbtRyi/UedtsR7jJE3NSquLQdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('18a7d98e70f62d369081d4d82c88a1e3')
 
