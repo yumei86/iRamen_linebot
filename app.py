@@ -2,9 +2,6 @@ from flask import Flask, request, abort
 from linebot import (LineBotApi, WebhookHandler)
 from linebot.exceptions import (InvalidSignatureError)
 from linebot.models import *
-from os.path import join, dirname
-from dotenv import load_dotenv
-import os
 import json
 
 
