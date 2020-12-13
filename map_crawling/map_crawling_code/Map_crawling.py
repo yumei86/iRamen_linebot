@@ -152,8 +152,7 @@ for items in range(59):  #這邊根據縣市，來改store_number的數字
     time.sleep(1)
 
 
-
-
+#---------------create new csv file------------------
 ans = ['','','','','','','']
 with open('Ramen_map_TY.csv', 'w', newline='') as csvfile:
     

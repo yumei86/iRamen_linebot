@@ -23,10 +23,11 @@ def mo(csv_file):
             final.append(add)
     return final
 
-inp = mo("/Users/linyumei/Ramen_May_git/map_crawling/csv_file/Map_Ramen_data_new_version.csv")
+inp = mo("/Users/linyumei/Ramen_May_git/map_crawling/csv_file/Map_Ramen_data_with_city_new_version.csv")
 
 for item in inp:
     print(item)
+   
 
 #---------------create new csv file------------------
 
