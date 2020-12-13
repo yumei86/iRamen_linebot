@@ -34,7 +34,8 @@
                   "backgroundColor": "#FFCB69",
                   "cornerRadius": "20px",
                   "position": "absolute",
-                  "offsetEnd": "xxl"
+                  "offsetEnd": "xxl",
+                  "offsetTop": "lg"
                 }
               ],
               "paddingTop": "15px",
@@ -244,12 +245,7 @@
                       "text": "+到最愛",
                       "size": "sm",
                       "align": "center",
-                      "offsetTop": "3px",
-                      "action": {
-                        "type": "message",
-                        "label": "加到最愛",
-                        "text": "加到最愛"
-                      }
+                      "offsetTop": "3px"
                     }
                   ],
                   "width": "60px",
