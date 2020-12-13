@@ -105,7 +105,7 @@ def handle_message(event):
 
 #----------------選擇湯頭/直接推薦介面-----------------
 
-    cityname = ["台北市","新北市","基隆市","桃園市","苗栗縣","新竹縣","新竹市","台中市","彰化市","南投縣","雲林縣","嘉義市","嘉義縣","台南市","高雄市","屏東縣","宜蘭縣","花蓮縣","台東縣"]
+    cityname = ["台北市","新北市","基隆市","桃園市","苗栗縣","新竹縣","新竹市","台中市","彰化市","南投縣","雲林縣","嘉義市","台南市","高雄市","屏東縣","宜蘭縣","花蓮縣","台東縣"]
 
     if event.message.text in cityname:
         flex_message5 = FlexSendMessage(
@@ -114,6 +114,10 @@ def handle_message(event):
         )
         
         line_bot_api.reply_message(event.reply_token,flex_message5) 
+    
+    elif event.message.text == "嘉義縣":
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "抱歉！\uDBC0\uDC7c這邊尚未有拉麵店，請至附近其他縣市看看!"))
+
 
 #----------------直接推薦or選完湯頭介面-----------------
 
