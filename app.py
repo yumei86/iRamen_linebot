@@ -133,7 +133,7 @@ def handle_message(event):
                         contents= datar[0]
         )
        
-       line_bot_api.reply_message(event.reply_token,flex_message6)
+        line_bot_api.reply_message(event.reply_token,flex_message6)
 
 
     fr.close()
