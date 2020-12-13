@@ -5,6 +5,7 @@ from linebot.models import *
 import json
 import os
 
+#----------------互叫我們的line bot(這邊直接取用herohu的環境變數)-----------------
 
 app = Flask(__name__)
 
@@ -102,9 +103,9 @@ def handle_message(event):
         
         line_bot_api.reply_message(event.reply_token,flex_message4) 
 
-#----------------湯頭/直接推薦介面-----------------
+#----------------選擇湯頭/直接推薦介面-----------------
 
-    cityname = ["台北市","新北市","基隆市","桃園市","苗栗縣","新竹縣","新竹市","台中市","彰化市","南投縣","雲林縣","嘉義市","台南市","高雄市","屏東縣","宜蘭縣","花蓮縣","台東縣"]
+    cityname = ["台北市","新北市","基隆市","桃園市","苗栗縣","新竹縣","新竹市","台中市","彰化市","南投縣","雲林縣","嘉義市","嘉義縣","台南市","高雄市","屏東縣","宜蘭縣","花蓮縣","台東縣"]
 
     if event.message.text in cityname:
         flex_message5 = FlexSendMessage(
@@ -113,4 +114,6 @@ def handle_message(event):
         )
         
         line_bot_api.reply_message(event.reply_token,flex_message5) 
+
+#----------------直接推薦or選完湯頭介面-----------------
 
