@@ -128,10 +128,12 @@ def handle_message(event):
     datar = json.load(fr) 
 
     if event.message.text == "直接推薦":
-        flex_message5 = FlexSendMessage(
+        flex_message6 = FlexSendMessage(
                         alt_text='快回來看看我幫你找到的店家！',
                         contents= datar[0]
         )
+       
+       line_bot_api.reply_message(event.reply_token,flex_message6)
 
 
     fr.close()
