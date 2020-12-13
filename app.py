@@ -57,6 +57,7 @@ def handle_message(event):
     #讀需要的json資料
     f = open('json_for_app.json') 
     data = json.load(f) 
+    
 
     if event.message.text == "拉麵推薦":
 
@@ -116,8 +117,28 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,flex_message5) 
     
     elif event.message.text == "嘉義縣":
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "抱歉！\uDBC0\uDC7c這邊尚未有拉麵店，請至附近其他縣市看看!"))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "抱歉！\uDBC0\uDC7c 這邊尚未有拉麵店，請至附近其他縣市看看!"))
 
+    f.close()
 
 #----------------直接推薦or選完湯頭介面-----------------
+
+    #讀需要的推薦介面json資料
+    fr = open('recommand.json') 
+    datar = json.load(fr) 
+
+    if event.message.text == "直接推薦":
+        flex_message5 = FlexSendMessage(
+                        alt_text='快回來看看我幫你找到的店家！',
+                        contents= datar[0]
+        )
+
+
+    fr.close()
+
+
+
+
+
+
 
