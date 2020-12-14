@@ -108,7 +108,7 @@ def handle_message(event):
 
 #----------------選擇湯頭/直接推薦介面-----------------
 
-    cityname = ["台北市","新北市","基隆市","桃園市","苗栗縣","新竹縣","新竹市","台中市","彰化市","南投縣","雲林縣","嘉義市","台南市","高雄市","屏東縣","宜蘭縣","花蓮縣","台東縣"]
+    cityname = ["台北市","新北市","基隆市","桃園市","苗栗縣","新竹縣","新竹市","台中市","彰化縣","南投縣","雲林縣","嘉義市","台南市","高雄市","屏東縣","宜蘭縣","花蓮縣","台東縣"]
 
     for city in cityname:
         if event.message.text == city:
@@ -207,19 +207,19 @@ def handle_message(event):
 #----------------湯頭推薦-----------------
 
     #分成四區去叫不同的json檔（為了整理方便分成四區）
-    #n_city = ["台北市","新北市","基隆市","桃園市","苗栗縣","新竹縣","新竹市"]
-    c_city = ["台中市","彰化市","南投縣","雲林縣"]
+    n_city = ["台北市","新北市","基隆市","桃園市","苗栗縣","新竹縣","新竹市"]
+    c_city = ["台中市","彰化縣","南投縣","雲林縣"]
     #s_city = ["嘉義市","台南市","高雄市","屏東縣"]
     e_city = ["宜蘭縣","花蓮縣","台東縣"]
 
 
-    #中部湯頭選單
+    #北部湯頭選單
     #讀需要的推薦介面json資料
-    fe = open('json_files_for_robot/soup_center_city.json') 
+    fe = open('json_files_for_robot/soup_north_city.json') 
     datae = json.load(fe) 
     count = 0
 
-    for name in c_city:
+    for name in n_city:
         cond = "湯頭推薦:"+name
         if event.message.text == cond :
             flex_message7 = FlexSendMessage(
@@ -232,6 +232,27 @@ def handle_message(event):
 
     fe.close()
 
+
+    #中部湯頭選單
+    #讀需要的推薦介面json資料
+    fe = open('json_files_for_robot/soup_center_city.json') 
+    datae = json.load(fe) 
+    count = 0
+
+    for name in c_city:
+        cond = "湯頭推薦:"+name
+        if event.message.text == cond :
+            flex_message8 = FlexSendMessage(
+                        alt_text='快回來看看我幫你找到的湯頭！',
+                        contents= datae[count]
+            )
+    
+            line_bot_api.reply_message(event.reply_token,flex_message8)
+        count += 1
+
+    fe.close()
+
+
     #東部湯頭選單
     #讀需要的推薦介面json資料
     fe = open('json_files_for_robot/soup_east_city.json') 
@@ -241,12 +262,12 @@ def handle_message(event):
     for name in e_city:
         cond = "湯頭推薦:"+name
         if event.message.text == cond :
-            flex_message8 = FlexSendMessage(
+            flex_message9 = FlexSendMessage(
                         alt_text='快回來看看我幫你找到的湯頭！',
                         contents= datae[count]
             )
     
-            line_bot_api.reply_message(event.reply_token,flex_message8)
+            line_bot_api.reply_message(event.reply_token,flex_message9)
         count += 1
 
     fe.close()
