@@ -209,7 +209,7 @@ def handle_message(event):
     #分成四區去叫不同的json檔（為了整理方便分成四區）
     n_city = ["台北市","新北市","基隆市","桃園市","苗栗縣","新竹縣","新竹市"]
     c_city = ["台中市","彰化縣","南投縣","雲林縣"]
-    #s_city = ["嘉義市","台南市","高雄市","屏東縣"]
+    s_city = ["嘉義市","台南市","高雄市","屏東縣"]
     e_city = ["宜蘭縣","花蓮縣","台東縣"]
 
 
@@ -240,6 +240,25 @@ def handle_message(event):
     count = 0
 
     for name in c_city:
+        cond = "湯頭推薦:"+name
+        if event.message.text == cond :
+            flex_message8 = FlexSendMessage(
+                        alt_text='快回來看看我幫你找到的湯頭！',
+                        contents= datae[count]
+            )
+    
+            line_bot_api.reply_message(event.reply_token,flex_message8)
+        count += 1
+
+    fe.close()
+
+    #南部湯頭選單
+    #讀需要的推薦介面json資料
+    fe = open('json_files_for_robot/soup_south_city.json') 
+    datae = json.load(fe) 
+    count = 0
+
+    for name in s_city:
         cond = "湯頭推薦:"+name
         if event.message.text == cond :
             flex_message8 = FlexSendMessage(
