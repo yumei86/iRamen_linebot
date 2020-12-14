@@ -226,7 +226,7 @@ def handle_message(event):
                         contents= datae[count]
             )
     
-        line_bot_api.reply_message(event.reply_token,flex_message7)
+            line_bot_api.reply_message(event.reply_token,flex_message7)
         count += 1
 
     fe.close()
