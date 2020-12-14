@@ -261,12 +261,12 @@ def handle_message(event):
     for name in s_city:
         cond = "湯頭推薦:"+name
         if event.message.text == cond :
-            flex_message8 = FlexSendMessage(
+            flex_message9 = FlexSendMessage(
                         alt_text='快回來看看我幫你找到的湯頭！',
                         contents= datae[count]
             )
     
-            line_bot_api.reply_message(event.reply_token,flex_message8)
+            line_bot_api.reply_message(event.reply_token,flex_message9)
         count += 1
 
     fe.close()
@@ -281,12 +281,12 @@ def handle_message(event):
     for name in e_city:
         cond = "湯頭推薦:"+name
         if event.message.text == cond :
-            flex_message9 = FlexSendMessage(
+            flex_message10 = FlexSendMessage(
                         alt_text='快回來看看我幫你找到的湯頭！',
                         contents= datae[count]
             )
     
-            line_bot_api.reply_message(event.reply_token,flex_message9)
+            line_bot_api.reply_message(event.reply_token,flex_message10)
         count += 1
 
     fe.close()
