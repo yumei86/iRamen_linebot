@@ -625,7 +625,7 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "豚骨",
+                    "text": "苗栗縣:豚骨",
                     "label": "豚骨"
                   },
                   "style": "primary",
@@ -637,7 +637,7 @@
                   "action": {
                     "type": "message",
                     "label": "咖哩",
-                    "text": "咖哩"
+                    "text": "苗栗縣:咖哩"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -682,7 +682,7 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "豚骨",
+                    "text": "新竹縣:豚骨",
                     "label": "豚骨"
                   },
                   "style": "primary",
@@ -732,7 +732,7 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "豚骨",
+                    "text": "新竹市:豚骨",
                     "label": "豚骨"
                   },
                   "style": "primary",
@@ -744,7 +744,7 @@
                   "action": {
                     "type": "message",
                     "label": "醬油",
-                    "text": "醬油"
+                    "text": "新竹市:醬油"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -763,7 +763,7 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "魚介",
+                    "text": "新竹市:魚介",
                     "label": "魚介"
                   },
                   "style": "primary",
@@ -775,7 +775,7 @@
                   "action": {
                     "type": "message",
                     "label": "沾麵",
-                    "text": "沾麵"
+                    "text": "新竹市:沾麵"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -794,7 +794,7 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "雞清",
+                    "text": "新竹市:雞清",
                     "label": "雞清"
                   },
                   "style": "primary",
@@ -806,7 +806,7 @@
                   "action": {
                     "type": "message",
                     "label": "家系",
-                    "text": "家系"
+                    "text": "新竹市:家系"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -825,7 +825,7 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "素食",
+                    "text": "新竹市:素食",
                     "label": "素食"
                   },
                   "style": "primary",
@@ -837,7 +837,7 @@
                   "action": {
                     "type": "message",
                     "label": "背脂",
-                    "text": "背脂"
+                    "text": "新竹市:背脂"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -856,7 +856,7 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "淡麗系",
+                    "text": "新竹市:淡麗系",
                     "label": "淡麗系"
                   },
                   "style": "primary",
