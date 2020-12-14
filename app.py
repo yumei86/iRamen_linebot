@@ -55,7 +55,7 @@ def handle_message(event):
 #----------------拉麵推薦介面-----------------
 
     #讀需要的json資料
-    f = open('json_for_app.json') 
+    f = open('json_files_for_robot/json_for_app.json') 
     data = json.load(f) 
     
 
@@ -125,19 +125,19 @@ def handle_message(event):
 
     #新北市湯頭選單
     #讀需要的推薦介面json資料
-    fn = open('north.json') 
-    datan = json.load(fn) 
+#    fn = open('north.json') 
+#    datan = json.load(fn) 
 
-    if event.message.text == "湯頭推薦:新北市":
-        flex_message7 = FlexSendMessage(
-                        alt_text='快回來看看我幫你找到的店家！',
-                        contents= datan[1]
-        )
+#    if event.message.text == "湯頭推薦:新北市":
+#        flex_message7 = FlexSendMessage(
+#                        alt_text='快回來看看我幫你找到的店家！',
+#                        contents= datan[1]
+#        )
     
-        line_bot_api.reply_message(event.reply_token,flex_message7)
+#       line_bot_api.reply_message(event.reply_token,flex_message7)
 
 
-    fn.close()
+#    fn.close()
 
 #----------------直接推薦-----------------
 
