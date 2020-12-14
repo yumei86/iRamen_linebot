@@ -121,7 +121,25 @@ def handle_message(event):
 
     f.close()
 
-#----------------直接推薦or選完湯頭介面-----------------
+#----------------湯頭推薦-----------------
+
+    #新北市湯頭選單
+    #讀需要的推薦介面json資料
+    fn = open('north.json') 
+    datan = json.load(fn) 
+
+    if event.message.text == "湯頭推薦:新北市":
+        flex_message7 = FlexSendMessage(
+                        alt_text='快回來看看我幫你找到的店家！',
+                        contents= datan[1]
+        )
+    
+        line_bot_api.reply_message(event.reply_token,flex_message7)
+
+
+    fn.close()
+
+#----------------直接推薦-----------------
 
     #讀需要的推薦介面json資料
     fr = open('recommand.json') 
@@ -137,6 +155,9 @@ def handle_message(event):
 
 
     fr.close()
+
+
+#----------------選完湯頭介面-----------------
 
 
 
