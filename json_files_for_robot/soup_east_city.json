@@ -1,0 +1,168 @@
+[
+    {
+    "type": "bubble",
+    "body": {
+      "type": "box",
+      "layout": "vertical",
+      "contents": [
+        {
+          "type": "text",
+          "text": "湯頭推薦",
+          "weight": "bold",
+          "size": "xl",
+          "color": "#876C5A"
+        },
+        {
+          "type": "text",
+          "text": "今晚我想來點...",
+          "size": "xs",
+          "margin": "sm"
+        },
+        {
+          "type": "separator",
+          "margin": "lg"
+        },
+        {
+          "type": "box",
+          "layout": "horizontal",
+          "margin": "lg",
+          "spacing": "sm",
+          "contents": [
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "text": "豚骨",
+                "label": "豚骨"
+              },
+              "style": "primary",
+              "height": "sm",
+              "color": "#797D62"
+            },
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "label": "三星蔥",
+                "text": "三星蔥"
+              },
+              "style": "primary",
+              "height": "sm",
+              "margin": "xxl",
+              "color": "#797D62"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "type": "bubble",
+    "body": {
+      "type": "box",
+      "layout": "vertical",
+      "contents": [
+        {
+          "type": "text",
+          "text": "湯頭推薦",
+          "weight": "bold",
+          "size": "xl",
+          "color": "#876C5A"
+        },
+        {
+          "type": "text",
+          "text": "今晚我想來點...",
+          "size": "xs",
+          "margin": "sm"
+        },
+        {
+          "type": "separator",
+          "margin": "lg"
+        },
+        {
+          "type": "box",
+          "layout": "horizontal",
+          "margin": "lg",
+          "spacing": "sm",
+          "contents": [
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "text": "豚骨",
+                "label": "豚骨"
+              },
+              "style": "primary",
+              "height": "sm",
+              "color": "#797D62"
+            },
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "label": "魚白",
+                "text": "魚白"
+              },
+              "style": "primary",
+              "height": "sm",
+              "margin": "xxl",
+              "color": "#797D62"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "type": "bubble",
+    "body": {
+      "type": "box",
+      "layout": "vertical",
+      "contents": [
+        {
+          "type": "text",
+          "text": "湯頭推薦",
+          "weight": "bold",
+          "size": "xl",
+          "color": "#876C5A"
+        },
+        {
+          "type": "text",
+          "text": "今晚我想來點...",
+          "size": "xs",
+          "margin": "sm"
+        },
+        {
+          "type": "separator",
+          "margin": "lg"
+        },
+        {
+          "type": "box",
+          "layout": "horizontal",
+          "margin": "lg",
+          "spacing": "sm",
+          "contents": [
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "text": "豚骨",
+                "label": "豚骨"
+              },
+              "style": "primary",
+              "height": "sm",
+              "color": "#797D62"
+            },
+            {
+              "type": "text",
+              "text": " ",
+              "margin": "xxl"
+            }
+          ]
+        }
+      ]
+    }
+  }
+
+
+]
