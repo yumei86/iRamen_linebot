@@ -103,6 +103,8 @@ def handle_message(event):
         )
         
         line_bot_api.reply_message(event.reply_token,flex_message4) 
+    
+    f.close()
 
 #----------------選擇湯頭/直接推薦介面-----------------
 
@@ -202,25 +204,32 @@ def handle_message(event):
     if event.message.text == "嘉義縣":
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "抱歉！\uDBC0\uDC7c 這邊尚未有拉麵店，請至附近其他縣市看看!"))
 
-    f.close()
-
 #----------------湯頭推薦-----------------
 
-    #新北市湯頭選單
+    #分成四區去叫不同的json檔（為了整理方便分成四區）
+    #n_city = ["台北市","新北市","基隆市","桃園市","苗栗縣","新竹縣","新竹市"]
+    #c_city = ["台中市","彰化市","南投縣","雲林縣"]
+    #s_city = ["嘉義市","台南市","高雄市","屏東縣"]
+    e_city = ["宜蘭縣","花蓮縣","台東縣"]
+
+    #東部湯頭選單
     #讀需要的推薦介面json資料
-#    fn = open('north.json') 
-#    datan = json.load(fn) 
+    fe = open('json_files_for_robot/soup_east_city.json') 
+    datae = json.load(fe) 
+    count = 0
 
-#    if event.message.text == "湯頭推薦:新北市":
-#        flex_message7 = FlexSendMessage(
-#                        alt_text='快回來看看我幫你找到的店家！',
-#                        contents= datan[1]
-#        )
+    for name in e_city:
+        
+        if event.message.text == "湯頭推薦:"+name :
+            flex_message7 = FlexSendMessage(
+                        alt_text='快回來看看我幫你找到的店家！',
+                        contents= datae[count]
+            )
     
-#       line_bot_api.reply_message(event.reply_token,flex_message7)
+        line_bot_api.reply_message(event.reply_token,flex_message7)
+        count += 1
 
-
-#    fn.close()
+    fe.close()
 
 #----------------直接推薦-----------------
 
