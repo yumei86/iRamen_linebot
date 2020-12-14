@@ -70,39 +70,28 @@ def handle_message(event):
 
 
 #----------------不同區域的介面設定-----------------
-        
-    elif event.message.text == "北部":
-        flex_message1 = FlexSendMessage(
-                        alt_text='北部的縣市',
-                        contents=  data[1]
-        )
-        
-        line_bot_api.reply_message(event.reply_token,flex_message1) 
-       
-    elif event.message.text == "中部":
-            
-        flex_message2 = FlexSendMessage(
-                        alt_text='中部的縣市',
-                        contents= data[2]
-        )
-        
-        line_bot_api.reply_message(event.reply_token,flex_message2) 
-    
-    elif event.message.text == "南部":
-        flex_message3 = FlexSendMessage(
-                        alt_text='南部的縣市',
-                        contents= data[3]
-        )
-        
-        line_bot_api.reply_message(event.reply_token,flex_message3) 
 
-    elif event.message.text == "東部":
-        flex_message4 = FlexSendMessage(
-                        alt_text='東部的縣市',
-                        contents= data[4]
-        )
+    TWregion = ["北部","中部","南部","東部"]
+    times = 1
+
+    for item in TWregion:
+        if event.message.text == item:
+            flex_message1 = FlexSendMessage(
+                           alt_text= item+'的縣市',
+                           contents=  data[times]
+            )
         
-        line_bot_api.reply_message(event.reply_token,flex_message4) 
+            line_bot_api.reply_message(event.reply_token,flex_message1) 
+        times += 1
+        
+
+    #elif event.message.text == "東部":
+    ##    flex_message4 = FlexSendMessage(
+     #                   alt_text='東部的縣市',
+     #                   contents= data[4]
+     #   )
+        
+     #   line_bot_api.reply_message(event.reply_token,flex_message4) 
     
     f.close()
 
@@ -237,25 +226,6 @@ def handle_message(event):
 
         f.close()
 
-
-    #中部湯頭選單
-    #讀需要的推薦介面json資料
-    #fe = open('json_files_for_robot/soup_center_city.json') 
-    #datae = json.load(fe) 
-    #count = 0
-
-    #for name in c_city:
-    #    cond = "湯頭推薦:"+name
-    #    if event.message.text == cond :
-    #        flex_message8 = FlexSendMessage(
-    #                    alt_text='快回來看看我幫你找到的湯頭！',
-    #                    contents= datae[count]
-    #       )
-    
-     #       line_bot_api.reply_message(event.reply_token,flex_message8)
-     #   count += 1
-
-    #fe.close()
 
 #----------------直接推薦-----------------
 
