@@ -337,7 +337,7 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "素食",
+                    "text": "新北市:素食",
                     "label": "素食"
                   },
                   "style": "primary",
@@ -387,7 +387,7 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "豚骨",
+                    "text": "基隆市:豚骨",
                     "label": "豚骨"
                   },
                   "style": "primary",
@@ -399,7 +399,7 @@
                   "action": {
                     "type": "message",
                     "label": "素食",
-                    "text": "素食"
+                    "text": "基隆市:素食"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -444,7 +444,7 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "豚骨",
+                    "text": "桃園市:豚骨",
                     "label": "豚骨"
                   },
                   "style": "primary",
@@ -456,7 +456,7 @@
                   "action": {
                     "type": "message",
                     "label": "醬油",
-                    "text": "醬油"
+                    "text": "桃園市:醬油"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -475,7 +475,7 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "雞白",
+                    "text": "桃園市:雞白",
                     "label": "雞白"
                   },
                   "style": "primary",
@@ -487,7 +487,7 @@
                   "action": {
                     "type": "message",
                     "label": "魚介",
-                    "text": "魚介"
+                    "text": "桃園市:魚介"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -506,7 +506,7 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "沾麵",
+                    "text": "桃園市:沾麵",
                     "label": "沾麵"
                   },
                   "style": "primary",
@@ -518,7 +518,7 @@
                   "action": {
                     "type": "message",
                     "label": "雞清",
-                    "text": "雞清"
+                    "text": "桃園市:雞清"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -537,7 +537,7 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "柑橘",
+                    "text": "桃園市:柑橘",
                     "label": "柑橘"
                   },
                   "style": "primary",
@@ -549,7 +549,7 @@
                   "action": {
                     "type": "message",
                     "label": "淡麗系",
-                    "text": "淡麗系"
+                    "text": "桃園市:淡麗系"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -568,7 +568,7 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "煮干",
+                    "text": "桃園市:煮干",
                     "label": "煮干"
                   },
                   "style": "primary",
@@ -580,7 +580,7 @@
                   "action": {
                     "type": "message",
                     "label": "大骨",
-                    "text": "大骨"
+                    "text": "桃園市:大骨"
                   },
                   "style": "primary",
                   "height": "sm",
