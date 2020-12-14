@@ -167,8 +167,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "label": "台北市:其他",
-                    "text": "其他"
+                    "label": "其他",
+                    "text": "台北市:其他"
                   },
                   "style": "primary",
                   "height": "sm",
