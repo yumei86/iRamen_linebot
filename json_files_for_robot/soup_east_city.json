@@ -32,7 +32,7 @@
               "type": "button",
               "action": {
                 "type": "message",
-                "text": "豚骨",
+                "text": "宜蘭縣：豚骨",
                 "label": "豚骨"
               },
               "style": "primary",
@@ -44,7 +44,7 @@
               "action": {
                 "type": "message",
                 "label": "三星蔥",
-                "text": "三星蔥"
+                "text": "宜蘭縣：三星蔥"
               },
               "style": "primary",
               "height": "sm",
@@ -89,7 +89,7 @@
               "type": "button",
               "action": {
                 "type": "message",
-                "text": "豚骨",
+                "text": "花蓮縣：豚骨",
                 "label": "豚骨"
               },
               "style": "primary",
@@ -101,7 +101,7 @@
               "action": {
                 "type": "message",
                 "label": "魚白",
-                "text": "魚白"
+                "text": "花蓮縣：魚白"
               },
               "style": "primary",
               "height": "sm",
@@ -146,7 +146,7 @@
               "type": "button",
               "action": {
                 "type": "message",
-                "text": "豚骨",
+                "text": "台東縣：豚骨",
                 "label": "豚骨"
               },
               "style": "primary",
