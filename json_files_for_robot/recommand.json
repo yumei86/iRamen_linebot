@@ -1,338 +1,347 @@
 [
   {
-  "type": "carousel",
-  "contents": [
-    {
-      "type": "bubble",
-      "size": "mega",
-      "header": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "text",
-            "text": "query出來的店家名",
-            "align": "start",
-            "size": "md",
-            "gravity": "center",
-            "color": "#ffffff"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "text": "+到最愛",
-                "size": "sm",
-                "align": "center",
-                "offsetTop": "3px",
-                "action": {
-                  "type": "message",
-                  "label": "加到最愛清單",
-                  "text": "加到最愛清單"
-                }
-              }
-            ],
-            "width": "60px",
-            "height": "25px",
-            "backgroundColor": "#FFCB69",
-            "cornerRadius": "20px",
-            "position": "absolute",
-            "offsetEnd": "xxl",
-            "offsetTop": "lg"
-          }
-        ],
-        "paddingTop": "15px",
-        "paddingAll": "15px",
-        "paddingBottom": "16px",
-        "backgroundColor": "#876C5A"
-      },
-      "body": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "text": "地址：",
-                "color": "#797D62",
-                "size": "md",
-                "wrap": true,
-                "weight": "bold"
-              },
-              {
-                "type": "text",
-                "size": "sm",
-                "wrap": true,
-                "text": "query出來的地址",
-                "action": {
-                  "type": "message",
-                  "label": "action",
-                  "text": "的傳送門"
-                }
-              },
-              {
-                "type": "separator",
-                "margin": "lg"
-              },
-              {
-                "type": "text",
-                "text": "特色：",
-                "size": "md",
-                "wrap": true,
-                "color": "#797D62",
-                "margin": "md",
-                "weight": "bold"
-              },
-              {
-                "type": "text",
-                "text": "query出來的特色",
-                "size": "sm",
-                "wrap": true
-              },
-              {
-                "type": "separator",
-                "margin": "lg"
-              },
-              {
-                "type": "text",
-                "text": "鄰近交通資訊：",
-                "size": "md",
-                "wrap": true,
-                "color": "#797D62",
-                "margin": "md",
-                "weight": "bold"
-              },
-              {
-                "type": "text",
-                "size": "sm",
-                "wrap": true,
-                "text": "query出來的交通資訊"
-              }
-            ],
-            "paddingBottom": "18px"
-          }
-        ],
-        "spacing": "md",
-        "paddingAll": "12px"
-      },
-      "footer": {
-        "type": "box",
-        "layout": "horizontal",
-        "contents": [
-          {
-            "type": "button",
-            "action": {
-              "type": "message",
-              "label": "看更多類似推薦",
-              "text": "看更多類似推薦"
+    "type": "carousel",
+    "contents": [
+      {
+        "type": "bubble",
+        "size": "mega",
+        "header": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "text",
+              "text": "query出來的店家名",
+              "align": "start",
+              "size": "md",
+              "gravity": "center",
+              "color": "#ffffff"
             },
-            "color": "#D08C60"
-          }
-        ]
-      },
-      "styles": {
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "+到最愛",
+                  "size": "sm",
+                  "align": "center",
+                  "offsetTop": "3px",
+                  "action": {
+                    "type": "message",
+                    "label": "加到最愛清單",
+                    "text": "加到最愛清單"
+                  }
+                }
+              ],
+              "width": "60px",
+              "height": "25px",
+              "backgroundColor": "#FFCB69",
+              "cornerRadius": "20px",
+              "position": "absolute",
+              "offsetEnd": "xxl",
+              "offsetTop": "lg"
+            }
+          ],
+          "paddingTop": "15px",
+          "paddingAll": "15px",
+          "paddingBottom": "16px",
+          "backgroundColor": "#876C5A"
+        },
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "地址：",
+                  "color": "#797D62",
+                  "size": "md",
+                  "wrap": true,
+                  "weight": "bold"
+                },
+                {
+                  "type": "text",
+                  "text": "↓↓點擊下方地址可以直接幫你傳送位置噢！",
+                  "color": "#CA8E68",
+                  "size": "xs",
+                  "wrap": true,
+                  "weight": "regular"
+                },
+                {
+                  "type": "text",
+                  "size": "sm",
+                  "wrap": true,
+                  "text": "query出來的地址",
+                  "action": {
+                    "type": "message",
+                    "label": "action",
+                    "text": "的傳送門"
+                  },
+                  "margin": "md"
+                },
+                {
+                  "type": "separator",
+                  "margin": "lg"
+                },
+                {
+                  "type": "text",
+                  "text": "特色：",
+                  "size": "md",
+                  "wrap": true,
+                  "color": "#797D62",
+                  "margin": "md",
+                  "weight": "bold"
+                },
+                {
+                  "type": "text",
+                  "text": "query出來的特色",
+                  "size": "sm",
+                  "wrap": true
+                },
+                {
+                  "type": "separator",
+                  "margin": "lg"
+                },
+                {
+                  "type": "text",
+                  "text": "鄰近交通資訊：",
+                  "size": "md",
+                  "wrap": true,
+                  "color": "#797D62",
+                  "margin": "md",
+                  "weight": "bold"
+                },
+                {
+                  "type": "text",
+                  "size": "sm",
+                  "wrap": true,
+                  "text": "query出來的交通資訊"
+                }
+              ],
+              "paddingBottom": "18px"
+            }
+          ],
+          "spacing": "md",
+          "paddingAll": "12px"
+        },
         "footer": {
-          "separator": false
+          "type": "box",
+          "layout": "horizontal",
+          "contents": [
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "label": "看更多類似推薦",
+                "text": "看更多類似推薦"
+              },
+              "color": "#D08C60"
+            }
+          ]
+        },
+        "styles": {
+          "footer": {
+            "separator": false
+          }
+        }
+      },
+      {
+        "type": "bubble",
+        "size": "mega",
+        "header": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "text",
+              "text": "query出來的店家名",
+              "align": "start",
+              "size": "md",
+              "gravity": "center",
+              "color": "#ffffff"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "+到最愛",
+                  "size": "sm",
+                  "align": "center",
+                  "offsetTop": "3px",
+                  "action": {
+                    "type": "message",
+                    "label": "加到最愛清單",
+                    "text": "加到最愛清單"
+                  }
+                }
+              ],
+              "width": "60px",
+              "height": "25px",
+              "backgroundColor": "#FFCB69",
+              "cornerRadius": "20px",
+              "position": "absolute",
+              "offsetEnd": "xxl",
+              "offsetTop": "lg"
+            }
+          ],
+          "paddingTop": "15px",
+          "paddingAll": "15px",
+          "paddingBottom": "16px",
+          "backgroundColor": "#876C5A"
+        },
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "網友評論1：",
+                  "color": "#797D62",
+                  "size": "md",
+                  "wrap": true,
+                  "weight": "bold"
+                },
+                {
+                  "type": "text",
+                  "size": "sm",
+                  "wrap": true,
+                  "text": "query出來的網友評論"
+                }
+              ],
+              "paddingBottom": "18px"
+            }
+          ],
+          "spacing": "md",
+          "paddingAll": "12px"
+        },
+        "footer": {
+          "type": "box",
+          "layout": "horizontal",
+          "contents": [
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "label": "看更多類似推薦",
+                "text": "看更多類似推薦"
+              },
+              "color": "#D08C60"
+            }
+          ]
+        },
+        "styles": {
+          "footer": {
+            "separator": false
+          }
+        }
+      },
+      {
+        "type": "bubble",
+        "size": "mega",
+        "header": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "text",
+              "text": "query出來的店家名",
+              "align": "start",
+              "size": "md",
+              "gravity": "center",
+              "color": "#ffffff"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "+到最愛",
+                  "size": "sm",
+                  "align": "center",
+                  "offsetTop": "3px",
+                  "action": {
+                    "type": "message",
+                    "label": "加到最愛清單",
+                    "text": "加到最愛清單"
+                  }
+                }
+              ],
+              "width": "60px",
+              "height": "25px",
+              "backgroundColor": "#FFCB69",
+              "cornerRadius": "20px",
+              "position": "absolute",
+              "offsetEnd": "xxl",
+              "offsetTop": "lg"
+            }
+          ],
+          "paddingTop": "15px",
+          "paddingAll": "15px",
+          "paddingBottom": "16px",
+          "backgroundColor": "#876C5A"
+        },
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "網友評論2：",
+                  "color": "#797D62",
+                  "size": "md",
+                  "wrap": true,
+                  "weight": "bold"
+                },
+                {
+                  "type": "text",
+                  "size": "sm",
+                  "wrap": true,
+                  "text": "query出來的網友評論"
+                }
+              ],
+              "paddingBottom": "18px"
+            }
+          ],
+          "spacing": "md",
+          "paddingAll": "12px"
+        },
+        "footer": {
+          "type": "box",
+          "layout": "horizontal",
+          "contents": [
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "label": "看更多類似推薦",
+                "text": "看更多類似推薦"
+              },
+              "color": "#D08C60"
+            }
+          ]
+        },
+        "styles": {
+          "footer": {
+            "separator": false
+          }
         }
       }
-    },
-    {
-      "type": "bubble",
-      "size": "mega",
-      "header": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "text",
-            "text": "query出來的店家名",
-            "align": "start",
-            "size": "md",
-            "gravity": "center",
-            "color": "#ffffff"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "text": "+到最愛",
-                "size": "sm",
-                "align": "center",
-                "offsetTop": "3px",
-                "action": {
-                  "type": "message",
-                  "label": "加到最愛清單",
-                  "text": "加到最愛清單"
-                }
-              }
-            ],
-            "width": "60px",
-            "height": "25px",
-            "backgroundColor": "#FFCB69",
-            "cornerRadius": "20px",
-            "position": "absolute",
-            "offsetEnd": "xxl",
-            "offsetTop": "lg"
-          }
-        ],
-        "paddingTop": "15px",
-        "paddingAll": "15px",
-        "paddingBottom": "16px",
-        "backgroundColor": "#876C5A"
-      },
-      "body": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "text": "網友評論1：",
-                "color": "#797D62",
-                "size": "md",
-                "wrap": true,
-                "weight": "bold"
-              },
-              {
-                "type": "text",
-                "size": "sm",
-                "wrap": true,
-                "text": "query出來的網友評論"
-              }
-            ],
-            "paddingBottom": "18px"
-          }
-        ],
-        "spacing": "md",
-        "paddingAll": "12px"
-      },
-      "footer": {
-        "type": "box",
-        "layout": "horizontal",
-        "contents": [
-          {
-            "type": "button",
-            "action": {
-              "type": "message",
-              "label": "看更多類似推薦",
-              "text": "看更多類似推薦"
-            },
-            "color": "#D08C60"
-          }
-        ]
-      },
-      "styles": {
-        "footer": {
-          "separator": false
-        }
-      }
-    },
-    {
-      "type": "bubble",
-      "size": "mega",
-      "header": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "text",
-            "text": "query出來的店家名",
-            "align": "start",
-            "size": "md",
-            "gravity": "center",
-            "color": "#ffffff"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "text": "+到最愛",
-                "size": "sm",
-                "align": "center",
-                "offsetTop": "3px",
-                "action": {
-                  "type": "message",
-                  "label": "加到最愛清單",
-                  "text": "加到最愛清單"
-                }
-              }
-            ],
-            "width": "60px",
-            "height": "25px",
-            "backgroundColor": "#FFCB69",
-            "cornerRadius": "20px",
-            "position": "absolute",
-            "offsetEnd": "xxl",
-            "offsetTop": "lg"
-          }
-        ],
-        "paddingTop": "15px",
-        "paddingAll": "15px",
-        "paddingBottom": "16px",
-        "backgroundColor": "#876C5A"
-      },
-      "body": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "text": "網友評論2：",
-                "color": "#797D62",
-                "size": "md",
-                "wrap": true,
-                "weight": "bold"
-              },
-              {
-                "type": "text",
-                "size": "sm",
-                "wrap": true,
-                "text": "query出來的網友評論"
-              }
-            ],
-            "paddingBottom": "18px"
-          }
-        ],
-        "spacing": "md",
-        "paddingAll": "12px"
-      },
-      "footer": {
-        "type": "box",
-        "layout": "horizontal",
-        "contents": [
-          {
-            "type": "button",
-            "action": {
-              "type": "message",
-              "label": "看更多類似推薦",
-              "text": "看更多類似推薦"
-            },
-            "color": "#D08C60"
-          }
-        ]
-      },
-      "styles": {
-        "footer": {
-          "separator": false
-        }
-      }
-    }
-  ]
-}
+    ]
+  }  
 ]
