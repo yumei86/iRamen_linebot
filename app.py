@@ -219,8 +219,8 @@ def handle_message(event):
     count = 0
 
     for name in e_city:
-        
-        if event.message.text == "湯頭推薦:"+name :
+        cond = "湯頭推薦:"+name
+        if event.message.text == cond :
             flex_message7 = FlexSendMessage(
                         alt_text='快回來看看我幫你找到的店家！',
                         contents= datae[count]
