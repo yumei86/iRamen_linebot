@@ -32,7 +32,7 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "豚骨",
+                    "text": "台北市:豚骨",
                     "label": "豚骨"
                   },
                   "style": "primary",
@@ -44,7 +44,7 @@
                   "action": {
                     "type": "message",
                     "label": "醬油",
-                    "text": "醬油"
+                    "text": "台北市:醬油"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -63,7 +63,7 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "雞白",
+                    "text": "台北市:雞白",
                     "label": "雞白"
                   },
                   "style": "primary",
@@ -75,7 +75,7 @@
                   "action": {
                     "type": "message",
                     "label": "魚介",
-                    "text": "魚介"
+                    "text": "台北市:魚介"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -94,7 +94,7 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "沾麵",
+                    "text": "台北市:沾麵",
                     "label": "沾麵"
                   },
                   "style": "primary",
@@ -106,7 +106,7 @@
                   "action": {
                     "type": "message",
                     "label": "雞清",
-                    "text": "雞清"
+                    "text": "台北市:雞清"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -125,7 +125,7 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "家系",
+                    "text": "台北市:家系",
                     "label": "家系"
                   },
                   "style": "primary",
@@ -137,7 +137,7 @@
                   "action": {
                     "type": "message",
                     "label": "雞豚",
-                    "text": "雞豚"
+                    "text": "台北市:雞豚"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -156,7 +156,7 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "淡麗系",
+                    "text": "台北市:淡麗系",
                     "label": "淡麗系"
                   },
                   "style": "primary",
@@ -167,7 +167,7 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "label": "其他",
+                    "label": "台北市:其他",
                     "text": "其他"
                   },
                   "style": "primary",
