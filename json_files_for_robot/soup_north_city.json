@@ -1,0 +1,879 @@
+[
+    {
+        "type": "bubble",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "text",
+              "text": "湯頭推薦",
+              "weight": "bold",
+              "size": "xl",
+              "color": "#876C5A"
+            },
+            {
+              "type": "text",
+              "text": "今晚我想來點...",
+              "size": "xs",
+              "margin": "sm"
+            },
+            {
+              "type": "separator",
+              "margin": "lg"
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "margin": "lg",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "text": "台北市:豚骨",
+                    "label": "豚骨"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "color": "#797D62"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "label": "醬油",
+                    "text": "台北市:醬油"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "margin": "xxl",
+                  "color": "#797D62"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "margin": "lg",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "text": "台北市:雞白",
+                    "label": "雞白"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "color": "#797D62"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "label": "魚介",
+                    "text": "台北市:魚介"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "margin": "xxl",
+                  "color": "#797D62"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "margin": "lg",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "text": "台北市:沾麵",
+                    "label": "沾麵"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "color": "#797D62"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "label": "雞清",
+                    "text": "台北市:雞清"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "margin": "xxl",
+                  "color": "#797D62"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "margin": "lg",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "text": "台北市:家系",
+                    "label": "家系"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "color": "#797D62"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "label": "雞豚",
+                    "text": "台北市:雞豚"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "margin": "xxl",
+                  "color": "#797D62"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "margin": "lg",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "text": "台北市:淡麗系",
+                    "label": "淡麗系"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "color": "#797D62"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "label": "其他",
+                    "text": "台北市:其他"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "margin": "xxl",
+                  "color": "#797D62"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "type": "bubble",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "text",
+              "text": "湯頭推薦",
+              "weight": "bold",
+              "size": "xl",
+              "color": "#876C5A"
+            },
+            {
+              "type": "text",
+              "text": "今晚我想來點...",
+              "size": "xs",
+              "margin": "sm"
+            },
+            {
+              "type": "separator",
+              "margin": "lg"
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "margin": "lg",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "text": "新北市:豚骨",
+                    "label": "豚骨"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "color": "#797D62"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "label": "醬油",
+                    "text": "新北市:醬油"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "margin": "xxl",
+                  "color": "#797D62"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "margin": "lg",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "text": "新北市:雞白",
+                    "label": "雞白"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "color": "#797D62"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "label": "魚介",
+                    "text": "新北市:魚介"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "margin": "xxl",
+                  "color": "#797D62"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "margin": "lg",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "text": "新北市:沾麵",
+                    "label": "沾麵"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "color": "#797D62"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "label": "雞清",
+                    "text": "新北市:雞清"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "margin": "xxl",
+                  "color": "#797D62"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "margin": "lg",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "text": "新北市:淡麗系",
+                    "label": "淡麗系"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "color": "#797D62"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "label": "煮干",
+                    "text": "新北市:煮干"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "margin": "xxl",
+                  "color": "#797D62"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "margin": "lg",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "text": "新北市:素食",
+                    "label": "素食"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "color": "#797D62"
+                },
+                {
+                  "type": "text",
+                  "text": " ",
+                  "margin": "xxl"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "type": "bubble",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "text",
+              "text": "湯頭推薦",
+              "weight": "bold",
+              "size": "xl",
+              "color": "#876C5A"
+            },
+            {
+              "type": "text",
+              "text": "今晚我想來點...",
+              "size": "xs",
+              "margin": "sm"
+            },
+            {
+              "type": "separator",
+              "margin": "lg"
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "margin": "lg",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "text": "基隆市:豚骨",
+                    "label": "豚骨"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "color": "#797D62"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "label": "素食",
+                    "text": "基隆市:素食"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "margin": "xxl",
+                  "color": "#797D62"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "type": "bubble",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "text",
+              "text": "湯頭推薦",
+              "weight": "bold",
+              "size": "xl",
+              "color": "#876C5A"
+            },
+            {
+              "type": "text",
+              "text": "今晚我想來點...",
+              "size": "xs",
+              "margin": "sm"
+            },
+            {
+              "type": "separator",
+              "margin": "lg"
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "margin": "lg",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "text": "桃園市:豚骨",
+                    "label": "豚骨"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "color": "#797D62"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "label": "醬油",
+                    "text": "桃園市:醬油"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "margin": "xxl",
+                  "color": "#797D62"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "margin": "lg",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "text": "桃園市:雞白",
+                    "label": "雞白"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "color": "#797D62"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "label": "魚介",
+                    "text": "桃園市:魚介"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "margin": "xxl",
+                  "color": "#797D62"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "margin": "lg",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "text": "桃園市:沾麵",
+                    "label": "沾麵"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "color": "#797D62"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "label": "雞清",
+                    "text": "桃園市:雞清"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "margin": "xxl",
+                  "color": "#797D62"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "margin": "lg",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "text": "桃園市:柑橘",
+                    "label": "柑橘"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "color": "#797D62"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "label": "淡麗系",
+                    "text": "桃園市:淡麗系"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "margin": "xxl",
+                  "color": "#797D62"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "margin": "lg",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "text": "桃園市:煮干",
+                    "label": "煮干"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "color": "#797D62"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "label": "大骨",
+                    "text": "桃園市:大骨"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "margin": "xxl",
+                  "color": "#797D62"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "type": "bubble",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "text",
+              "text": "湯頭推薦",
+              "weight": "bold",
+              "size": "xl",
+              "color": "#876C5A"
+            },
+            {
+              "type": "text",
+              "text": "今晚我想來點...",
+              "size": "xs",
+              "margin": "sm"
+            },
+            {
+              "type": "separator",
+              "margin": "lg"
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "margin": "lg",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "text": "苗栗縣:豚骨",
+                    "label": "豚骨"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "color": "#797D62"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "label": "咖哩",
+                    "text": "苗栗縣:咖哩"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "margin": "xxl",
+                  "color": "#797D62"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "type": "bubble",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "text",
+              "text": "湯頭推薦",
+              "weight": "bold",
+              "size": "xl",
+              "color": "#876C5A"
+            },
+            {
+              "type": "text",
+              "text": "今晚我想來點...",
+              "size": "xs",
+              "margin": "sm"
+            },
+            {
+              "type": "separator",
+              "margin": "lg"
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "margin": "lg",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "text": "新竹縣:豚骨",
+                    "label": "豚骨"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "color": "#797D62"
+                },
+                {
+                  "type": "text",
+                  "text": " ",
+                  "margin": "xxl"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "type": "bubble",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "text",
+              "text": "湯頭推薦",
+              "weight": "bold",
+              "size": "xl",
+              "color": "#876C5A"
+            },
+            {
+              "type": "text",
+              "text": "今晚我想來點...",
+              "size": "xs",
+              "margin": "sm"
+            },
+            {
+              "type": "separator",
+              "margin": "lg"
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "margin": "lg",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "text": "新竹市:豚骨",
+                    "label": "豚骨"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "color": "#797D62"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "label": "醬油",
+                    "text": "新竹市:醬油"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "margin": "xxl",
+                  "color": "#797D62"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "margin": "lg",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "text": "新竹市:魚介",
+                    "label": "魚介"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "color": "#797D62"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "label": "沾麵",
+                    "text": "新竹市:沾麵"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "margin": "xxl",
+                  "color": "#797D62"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "margin": "lg",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "text": "新竹市:雞清",
+                    "label": "雞清"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "color": "#797D62"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "label": "家系",
+                    "text": "新竹市:家系"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "margin": "xxl",
+                  "color": "#797D62"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "margin": "lg",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "text": "新竹市:素食",
+                    "label": "素食"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "color": "#797D62"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "label": "背脂",
+                    "text": "新竹市:背脂"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "margin": "xxl",
+                  "color": "#797D62"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "margin": "lg",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "text": "新竹市:淡麗系",
+                    "label": "淡麗系"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "color": "#797D62"
+                },
+                {
+                  "type": "text",
+                  "text": " ",
+                  "margin": "xxl"
+                }
+              ]
+            }
+          ]
+        }
+      }
+
+    
+
+]
