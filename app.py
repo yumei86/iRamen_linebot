@@ -221,7 +221,7 @@ def handle_message(event):
 
 #----------------直接推薦/縣市看更多類似推薦-----------------
     address = "query出來的地址"
-    
+
     for city in cityname:
         cond = "直接推薦:"+city
         if event.message.text == cond :
@@ -484,15 +484,15 @@ def handle_message(event):
             
             #----------------位置經緯度資訊-----------------
 
-            if event.message.text == address:
+        if event.message.text == address:
 
-                location_message = LocationSendMessage(
+            location_message = LocationSendMessage(
                         title= 'location',
                         address= address,
                         latitude=35.65910807942215,
                         longitude=139.70372892916203
                         )
-                line_bot_api.reply_message(event.reply_token,location_message)
+            line_bot_api.reply_message(event.reply_token,location_message)
 
 
 
