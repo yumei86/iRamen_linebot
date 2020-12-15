@@ -1,16 +1,15 @@
 import os
 import csv
 import secrets
-# from dotenv import load_dotenv
 from flask import Flask, request, abort
 from flask_sqlalchemy import SQLAlchemy
 
-
 app = Flask(__name__)
 
-ENV = 'prod'
+ENV = 'dev'
 
 if ENV == 'dev':
+  from dotenv import load_dotenv
   load_dotenv()
   SQLALCHEMY_DATABASE_URI_PRIVATE = os.getenv("SQLALCHEMY_DATABASE_URI_PRIVATE")
   app.debug = True
@@ -52,8 +51,10 @@ class Store(db.Model):
   soup = db.Column (db.String(200))
   transport =  db.Column (db.String(100))
 
-  def __init__(self, store_id, store, address, discription,\
-     open_time, latitude, longtitute, map_review, region, soup, transport):
+  store_favorite_relationship = db.relationship('Favorite', backref= 'store', lazy=True)
+
+  def __init__(self, store_id, store, still_there, address, discription,\
+     open_time, latitude, longtitute, map_review, region, province, soup, transport):
     self.store_id = store_id
     self.store = store
     self.still_there = still_there
@@ -67,7 +68,6 @@ class Store(db.Model):
     self.province = province
     self.soup = soup
     self.transport = transport
-    self.still_there = still_there
 
 class Post(db.Model):
   __tablename__ = 'post'
@@ -78,12 +78,28 @@ class Post(db.Model):
   ramen_name = db.Column (db.String(100))
   fb_review = db.Column (db.Text())
 
-  def __init__(self, store_id, create_on, ramen_name, fb_review):
+  post_favorite_relationship = db.relationship('Favorite', backref= 'post', lazy=True)
+
+  def __init__(self, store_id, stores, create_on, ramen_name, fb_review):
     self.store_id = store_id
     self.stores = stores
     self.create_on = create_on
     self.ramen_name = ramen_name
     self.fb_review = fb_review
+
+class Favorite(db.Model):
+  __tablename__ = 'favorite'
+  favorite_id = db.Column (db.String(10), primary_key = True)
+  detail_store_id = db.Column (db.String(10), db.ForeignKey('store.detail_store_id'), nullable=False, onupdate ='CASCADE')
+  post_id = db.Column (db.String(10), db.ForeignKey('post.post_id'), nullable=False, onupdate ='CASCADE')
+  line_id = db.Column (db.String(20),nullable=False)
+
+  def __init__(self, detail_store_id, post_id, line_id):
+    self.detail_store_id = detail_store_id
+    self.post_id= post_id
+    self.line_id = line_id
+
+
 
 
 
@@ -94,7 +110,7 @@ class Post(db.Model):
 # exit()
 
 ## query
-#.filter(Store.soup.contains('二郎風'))
+# .filter(Store.soup.contains('二郎風'))
 # .add_columns(Store.soup, Store.province, Store.store, Store.address,\
 #                           Store.discription, Store.open_time, Store.transport,\
 #                           Post.create_on, Post.ramen_name, Post.fb_review)\
@@ -105,13 +121,15 @@ class Post(db.Model):
 #                       .outerjoin(Post, Post.store_id == Main_store.store_id)\
 #                       .outerjoin(Store, Store.store_id == Main_store.store_id)\
 #                       .filter(Store.province == p)\
-#                       .filter(Store.soup.contains(s))
+#                       .filter(Store.soup.contains(s))\
+#                       .filter(Store.still_there == True)
 #   return province_soup_q
 # def query_province_direct(p):
 #   province_soup_q = db.session.query(Main_store, Store, Post)\
 #                       .outerjoin(Post, Post.store_id == Main_store.store_id)\
 #                       .outerjoin(Store, Store.store_id == Main_store.store_id)\
-#                       .filter(Store.province == p)
+#                       .filter(Store.province == p)\
+#                       .filter(Store.still_there == True)
 #   return province_soup_q
 # def convert_string_to_lst(string,c): 
 #     li = list(string.split(c)) 
