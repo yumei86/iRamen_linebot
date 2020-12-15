@@ -2,22 +2,23 @@
 import os
 import csv
 import secrets
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 from flask import Flask, request, abort
 from flask_sqlalchemy import SQLAlchemy
 
-load_dotenv()
-SQLALCHEMY_DATABASE_URI_PRIVATE = os.getenv("SQLALCHEMY_DATABASE_URI_PRIVATE")
+
 app = Flask(__name__)
 
 ENV = 'prod'
 
 if ENV == 'dev':
-  app.debug = True
-  app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI_PRIVATE
+    load_dotenv()
+    SQLALCHEMY_DATABASE_URI_PRIVATE = os.getenv("SQLALCHEMY_DATABASE_URI_PRIVATE")
+    app.debug = True
+    app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI_PRIVATE
 else:
-  app.debug = False
-  app.config['SQLALCHEMY_DATABASE_URI'] = ''
+    app.debug = False
+    app.config['SQLALCHEMY_DATABASE_URI'] = ''
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
