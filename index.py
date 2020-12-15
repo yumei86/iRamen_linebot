@@ -16,6 +16,7 @@ if ENV == 'dev':
   app.debug = True
   app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI_PRIVATE
 else:
+  DATABASE_URL = os.environ.get('DATABASE_URL')
   app.debug = False
   app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 
