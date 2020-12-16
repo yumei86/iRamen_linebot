@@ -343,63 +343,53 @@ def handle_message(event):
     
 
     for city in city_name:
+
         cond = "直接推薦:"+city
         more = "看更多推薦:"+city
+    #---------------------------------query 直接推薦、湯頭推薦、看更多類似推薦--------------------------
+        if ':' in cond:
+            select_first_param = cond[:cond.index(':')]
+            select_second_param = cond[cond.index(':')+1:]
+            
+        if (select_first_param == '直接推薦') or (select_first_param == '看更多推薦'):                
+            result = query_province_direct(select_second_param)
+                    
+        elif select_first_param in city_name:
+            result = query_province_soup(select_first_param, select_second_param)
+                   
+        #---------------------------------put all data in a string--------------------------
+        ouput_database_fb = ''
+        ouput_database_map = ''
+        output_before_random = ''
+        for r in result:
+            try:
+                ouput_database_fb += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
+                    FB_R_CREATE:{r[2].create_on},FB_R_RAMEN:{r[2].ramen_name},FB_R_CONTENT:{r[2].fb_review},\
+                    CHECK_TAG:{r[1].soup},CHECK_CITY:{r[1].province}%'
+
+            except AttributeError:
+                ouput_database_map += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
+                    MAP_REVIEW:{r[1].map_review},\
+                    CHECK_TAG:{r[1].soup},CHECK_CITY:{r[1].province}%'
+                
+
+        output_before_random += ouput_database_fb
+        output_before_random += ouput_database_map
+        output_before_random_clear = output_before_random.replace(u'\xa0', u' ').replace(' ','')
+               
+        #---------------------------------change data to a list of datas--------------------------
+        output_whole_lst = convert_string_to_lst(output_before_random_clear,'%')
+        #---------------------------------random(everytime renew can auto random)--------------------------
+        output_s = secrets.choice(output_whole_lst)
+        output_lst = convert_string_to_lst(output_s, ',')
+
+        address = output_lst[1][output_lst[1].index(':')+1:]
+
+        if __name__ == 'main':
+            app.run(debug=True) 
+
 
         if event.message.text == cond :
-    #---------------------------------query 直接推薦、湯頭推薦、看更多類似推薦--------------------------
-            if ':' in cond:
-                select_first_param = cond[:cond.index(':')]
-                select_second_param = cond[cond.index(':')+1:]
-                # print(select_second_param)
-            if (select_first_param == '直接推薦') or (select_first_param == '看更多推薦'):
-                    #query withOUT soup
-                result = query_province_direct(select_second_param)
-                    # print(type(result))
-                    #random here
-                
-            elif select_first_param in city_name:
-                    #query with soup
-                result = query_province_soup(select_first_param, select_second_param)
-                    # print(type(result))
-                    #random here
-                #---------------------------------put all data in a string--------------------------
-            ouput_database_fb = ''
-            ouput_database_map = ''
-            output_before_random = ''
-            for r in result:
-                try:
-                    ouput_database_fb += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
-                        FB_R_CREATE:{r[2].create_on},FB_R_RAMEN:{r[2].ramen_name},FB_R_CONTENT:{r[2].fb_review},\
-                        CHECK_TAG:{r[1].soup},CHECK_CITY:{r[1].province}%'
-                        # print('PROVINCE:{} STORE:{} ADDRESS:{} SOUP:{} MAP:{} \
-                        #   create_on:{} ramen_name:{} FB:{} '\
-                        #   .format(r[1].province, r[1].store, r[1].address, r[1].soup,r[1].map_review,\
-                        #     r[2].create_on,r[2].ramen_name, r[2].fb_review))
-                except AttributeError:
-                    ouput_database_map += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
-                        MAP_REVIEW:{r[1].map_review},\
-                        CHECK_TAG:{r[1].soup},CHECK_CITY:{r[1].province}%'
-                
-                    # print('STORE:{} SOUP:{} MAP:{}'.format(r[1].store, r[1].soup, r[1].map_review))
-
-                # print(ouput_database_fb)
-                # print(ouput_database_map)
-            output_before_random += ouput_database_fb
-            output_before_random += ouput_database_map
-            output_before_random_clear = output_before_random.replace(u'\xa0', u' ').replace(' ','')
-                # print(output_before_random)
-            #---------------------------------change data to a list of datas--------------------------
-            output_whole_lst = convert_string_to_lst(output_before_random_clear,'%')
-            #---------------------------------random(everytime renew can auto random)--------------------------
-            output_s = secrets.choice(output_whole_lst)
-            output_lst = convert_string_to_lst(output_s, ',')
-
-            address = output_lst[1]
-
-            if __name__ == 'main':
-                app.run(debug=True)
-
             flex_message3 = FlexSendMessage(
                             alt_text='快回來看看我幫你找到的店家！',
                             contents={
