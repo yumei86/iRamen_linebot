@@ -385,8 +385,11 @@ def handle_message(event):
         #---------------------------------random(everytime renew can auto random)--------------------------
         output_s = secrets.choice(output_whole_lst)
         output_lst = convert_string_to_lst(output_s, ',')
-
+        
+        store_n = output_lst[0][output_lst[0].index(':')+1:]
         address = output_lst[1][output_lst[1].index(':')+1:]
+        descrip = output_lst[2][output_lst[2].index(':')+1:]
+        trans = output_lst[3][output_lst[3].index(':')+1:]
 
         if __name__ == 'main':
             app.run(debug=True) 
@@ -407,7 +410,7 @@ def handle_message(event):
                                             "contents": [
                                                 {
                                                 "type": "text",
-                                                "text": "query出來的店家名",
+                                                "text": store_n,
                                                 "align": "start",
                                                 "size": "md",
                                                 "gravity": "center",
@@ -495,7 +498,7 @@ def handle_message(event):
                                                     },
                                                     {
                                                     "type": "text",
-                                                    "text": "query出來的特色",
+                                                    "text": descrip,
                                                     "size": "sm",
                                                     "wrap": True
                                                     },
@@ -516,7 +519,7 @@ def handle_message(event):
                                                     "type": "text",
                                                     "size": "sm",
                                                     "wrap": True,
-                                                    "text": "query出來的交通資訊"
+                                                    "text": trans
                                                     }
                                                 ],
                                                 "paddingBottom": "18px"
@@ -555,7 +558,7 @@ def handle_message(event):
                                             "contents": [
                                                 {
                                                 "type": "text",
-                                                "text": "query出來的店家名",
+                                                "text": store_n,
                                                 "align": "start",
                                                 "size": "md",
                                                 "gravity": "center",
@@ -650,7 +653,7 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token,flex_message3)
         
         #----------------位置經緯度資訊-----------------
-        elif event.message.text == address:
+        if event.message.text == address:
 
             location_message = LocationSendMessage(
                             title= 'location',
