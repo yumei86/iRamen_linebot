@@ -224,7 +224,7 @@ def handle_message(event):
 
     for city in cityname:
         cond = "直接推薦:"+city
-        more = "看更多推薦"+city
+        more = "看更多推薦:"+city
         address = "query出來的地址"
         if event.message.text == cond :
 
