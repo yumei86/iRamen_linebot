@@ -394,7 +394,7 @@ def handle_message(event):
             output_s = secrets.choice(output_whole_lst)
             output_lst = convert_string_to_lst(output_s, ',')
 
-        address = output_lst[2]
+        address = output_lst[1]
         if event.message.text == cond :
 
             flex_message3 = FlexSendMessage(
@@ -1223,3 +1223,5 @@ def handle_message(event):
 
                 line_bot_api.reply_message(event.reply_token,flex_message4)
 
+if __name__ == 'main':
+  app.run(debug=True)
