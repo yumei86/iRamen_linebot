@@ -375,7 +375,7 @@ def handle_message(event):
                     #   create_on:{} ramen_name:{} FB:{} '\
                     #   .format(r[1].province, r[1].store, r[1].address, r[1].soup,r[1].map_review,\
                     #     r[2].create_on,r[2].ramen_name, r[2].fb_review))
-                except AttributeError as error:
+                except AttributeError:
                     ouput_database_map += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
                         MAP_REVIEW:{r[1].map_review},\
                         CHECK_TAG:{r[1].soup},CHECK_CITY:{r[1].province}%'
@@ -961,7 +961,7 @@ def handle_message(event):
                  yilan,hualien,taitung] 
 
     for i in range(len(city_soup)):
-        cond = str(cityname[i])+":"
+        cond = str(city_name[i])+":"
         soup = city_soup[i]
         for item in soup:
             n = cond+item
@@ -1108,7 +1108,7 @@ def handle_message(event):
                                                 "action": {
                                                     "type": "message",
                                                     "label": "看更多推薦",
-                                                    "text": "看更多推薦:"+cityname[i]
+                                                    "text": "看更多推薦:"+city_name[i]
                                                 },
                                                 "color": "#D08C60"
                                                 }
@@ -1204,7 +1204,7 @@ def handle_message(event):
                                                 "action": {
                                                     "type": "message",
                                                     "label": "看更多推薦",
-                                                    "text": "看更多推薦:"+cityname[i]
+                                                    "text": "看更多推薦:"+city_name[i]
                                                 },
                                                 "color": "#D08C60"
                                                 }
