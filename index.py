@@ -116,81 +116,121 @@ class Favorite(db.Model):
 #                           Post.create_on, Post.ramen_name, Post.fb_review)\
 # print(province_soup_q) #(<Main_store 0>, <Store 2223>, <Post 3331>)
 
-## query
-# def query_province_soup(p, s):
-#   province_soup_q = db.session.query(Main_store, Store, Post)\
-#                       .outerjoin(Post, Post.store_id == Main_store.store_id)\
-#                       .outerjoin(Store, Store.store_id == Main_store.store_id)\
-#                       .filter(Store.province == p)\
-#                       .filter(Store.soup.contains(s))\
-#                       .filter(Store.still_there == True)
-#   return province_soup_q
-# def query_province_direct(p):
-#   province_soup_q = db.session.query(Main_store, Store, Post)\
-#                       .outerjoin(Post, Post.store_id == Main_store.store_id)\
-#                       .outerjoin(Store, Store.store_id == Main_store.store_id)\
-#                       .filter(Store.province == p)\
-#                       .filter(Store.still_there == True)
-#   return province_soup_q
-# def convert_string_to_lst(string,c): 
-#     li = list(string.split(c)) 
-#     return li 
+# query
+def query_province_soup(p, s):
+  province_soup_q = db.session.query(Main_store, Store, Post)\
+                      .outerjoin(Post, Post.store_id == Main_store.store_id)\
+                      .outerjoin(Store, Store.store_id == Main_store.store_id)\
+                      .filter(Store.province == p)\
+                      .filter(Store.soup.contains(s))\
+                      .filter(Store.still_there == True)
+  return province_soup_q
+def query_province_direct(p):
+  province_soup_q = db.session.query(Main_store, Store, Post)\
+                      .outerjoin(Post, Post.store_id == Main_store.store_id)\
+                      .outerjoin(Store, Store.store_id == Main_store.store_id)\
+                      .filter(Store.province == p)\
+                      .filter(Store.still_there == True)
+  return province_soup_q
+#+++++++++++++++++CHANGE+++++++++++++++++
+def query_store(stores,store2):
+  store_direct = db.session.query(Main_store, Store, Post)\
+                      .outerjoin(Post, Post.store_id == Main_store.store_id)\
+                      .outerjoin(Store, Store.store_id == Main_store.store_id)\
+                      .filter(Store.store.contains(stores))\
+                      .filter(Store.store.contains(store2))
+                      
+  return store_direct
+def query_store_direct(stores):
+  store_direct = db.session.query(Main_store, Store, Post)\
+                      .outerjoin(Post, Post.store_id == Main_store.store_id)\
+                      .outerjoin(Store, Store.store_id == Main_store.store_id)\
+                      .filter(Store.store.contains(stores))
+  return store_direct
+#+++++++++++++++++CHANGE+++++++++++++++++
 
-# city_name = ["台北市","新北市","基隆市","桃園市","苗栗縣","新竹縣","新竹市"\
-#             ,"台中市","彰化縣","南投縣","雲林縣","嘉義市","台南市","高雄市","屏東縣","宜蘭縣","花蓮縣","台東縣"]
-# user_select = '直接推薦:苗栗縣'
-# #---------------------------------query 直接推薦、湯頭推薦、看更多類似推薦--------------------------
-# if ':' in user_select:
-#   select_first_param = user_select[:user_select.index(':')]
-#   select_second_param = user_select[user_select.index(':')+1:]
-#   # print(select_second_param)
-#   if (select_first_param == '直接推薦') or (select_first_param == '看更多推薦'):
-#     #query withOUT soup
-#     result = query_province_direct(select_second_param)
-#     # print(type(result))
-#     #random here
-  
-#   elif select_first_param in city_name:
-#     #query with soup
-#     result = query_province_soup(select_first_param, select_second_param)
-#     # print(type(result))
-#     #random here
-# #---------------------------------put all data in a string--------------------------
-# ouput_database_fb = ''
-# ouput_database_map = ''
-# output_before_random = ''
-# for r in result:
-#   try:
-#     ouput_database_fb += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
-#         FB_R_CREATE:{r[2].create_on},FB_R_RAMEN:{r[2].ramen_name},FB_R_CONTENT:{r[2].fb_review},\
-#         CHECK_TAG:{r[1].soup},CHECK_CITY:{r[1].province}%'
-#     # print('PROVINCE:{} STORE:{} ADDRESS:{} SOUP:{} MAP:{} \
-#     #   create_on:{} ramen_name:{} FB:{} '\
-#     #   .format(r[1].province, r[1].store, r[1].address, r[1].soup,r[1].map_review,\
-#     #     r[2].create_on,r[2].ramen_name, r[2].fb_review))
-#   except AttributeError as error:
-#     ouput_database_map += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
-#         MAP_REVIEW:{r[1].map_review},\
-#         CHECK_TAG:{r[1].soup},CHECK_CITY:{r[1].province}%'
-  
-#     # print('STORE:{} SOUP:{} MAP:{}'.format(r[1].store, r[1].soup, r[1].map_review))
+def convert_string_to_lst(string,c): 
+    li = list(string.split(c)) 
+    return li 
 
-# # print(ouput_database_fb)
-# # print(ouput_database_map)
-# output_before_random += ouput_database_fb
-# output_before_random += ouput_database_map
-# output_before_random_clear = output_before_random.replace(u'\xa0', u' ').replace(' ','')
-# # print(output_before_random)
-# #---------------------------------change data to a list of datas--------------------------
-# output_whole_lst = convert_string_to_lst(output_before_random_clear,'%')
-# for data in output_whole_lst:
-#   if data == '':
-#     output_whole_lst.remove(data)
-# # print(output_whole_lst)
-# #---------------------------------random(everytime renew can auto random)--------------------------
-# output_s = secrets.choice(output_whole_lst)
-# output_lst = convert_string_to_lst(output_s, ',')
-# print(output_lst)
+city_name = ["台北市","新北市","基隆市","桃園市","苗栗縣","新竹縣","新竹市"\
+            ,"台中市","彰化縣","南投縣","雲林縣","嘉義市","台南市","高雄市","屏東縣","宜蘭縣","花蓮縣","台東縣"]
+user_select = '中山'
+
+
+#---------------------------------query 直接推薦、湯頭推薦、看更多類似推薦--------------------------
+if ':' in user_select:
+  select_first_param = user_select[:user_select.index(':')]
+  select_second_param = user_select[user_select.index(':')+1:]
+  # print(select_second_param)
+  if (select_first_param == '直接推薦') or (select_first_param == '看更多推薦'):
+    #query withOUT soup
+    result = query_province_direct(select_second_param)
+    # print(type(result))
+    #random here
+  
+  elif select_first_param in city_name:
+    #query with soup
+    result = query_province_soup(select_first_param, select_second_param)
+    # print(type(result))
+    #random here
+#+++++++++++++++++CHANGE+++++++++++++++++
+elif ' ' in user_select and ' ' not in user_select[-1] and ' ' not in user_select[0]:
+  input_store = ''
+  input_location = ''
+  input_lst = user_select.split()
+  if len(input_lst) == 2:
+    input_store += input_lst[0]
+    input_location += input_lst[1]
+  result = query_store(input_store,input_location)
+elif ' ' in user_select[-1] or ' ' in user_select[0]:
+  result = ''
+else:
+  result = query_store_direct(user_select)
+#+++++++++++++++++CHANGE+++++++++++++++++
+
+
+#---------------------------------put all data in a string--------------------------
+ouput_database_fb = ''
+ouput_database_map = ''
+output_before_random = ''
+for r in result:
+  try:
+      ouput_database_fb += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
+          FB_R_CREATE:{r[2].create_on},FB_R_RAMEN:{r[2].ramen_name},FB_R_CONTENT:{r[2].fb_review},\
+          CHECK_TAG:{r[1].soup},CHECK_CITY:{r[1].province}%'
+  # print('PROVINCE:{} STORE:{} ADDRESS:{} SOUP:{} MAP:{} \
+  #   create_on:{} ramen_name:{} FB:{} '\
+  #   .format(r[1].province, r[1].store, r[1].address, r[1].soup,r[1].map_review,\
+  #     r[2].create_on,r[2].ramen_name, r[2].fb_review))
+  except AttributeError as error:
+      ouput_database_map += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
+        MAP_REVIEW:{r[1].map_review},\
+        CHECK_TAG:{r[1].soup},CHECK_CITY:{r[1].province}%'
+
+
+
+# print(ouput_database_fb)
+# print(ouput_database_map)
+output_before_random += ouput_database_fb
+output_before_random += ouput_database_map
+output_before_random_clear = output_before_random.replace(u'\xa0', u' ').replace(' ','')
+# print(output_before_random)
+#---------------------------------change data to a list of datas--------------------------
+output_whole_lst = convert_string_to_lst(output_before_random_clear,'%')
+for data in output_whole_lst:
+  if data == '':
+    output_whole_lst.remove(data)
+# print(output_whole_lst)
+#---------------------------------random(everytime renew can auto random)--------------------------
+#+++++++++++++++++CHANGE+++++++++++++++++
+try:
+  output_s = secrets.choice(output_whole_lst)
+  output_lst = convert_string_to_lst(output_s, ',')
+  print(output_lst)
+except IndexError as error:
+  print("請輸入有效店名關鍵字(不可在前後加入空白)，例如\"鷹流 中山\",\"一風堂\"")
+#+++++++++++++++++CHANGE+++++++++++++++++
 
 
 
