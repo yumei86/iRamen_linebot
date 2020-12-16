@@ -395,7 +395,7 @@ def handle_message(event):
             output_s = secrets.choice(output_whole_lst)
             output_lst = convert_string_to_lst(output_s, ',')
 
-            address = output_lst[1][output_lst.index(':')+1:]
+            address = output_lst[1]
 
             flex_message3 = FlexSendMessage(
                             alt_text='快回來看看我幫你找到的店家！',
