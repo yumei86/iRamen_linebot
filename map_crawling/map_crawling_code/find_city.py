@@ -10,7 +10,7 @@ def mo(csv_file):
     # 以迴圈輸出每一列
     final = []
     for row in rows:
-        add = row[2]
+        add = row[4]
     
         if "," in add:
             add = "無提供地址資訊"
@@ -23,14 +23,15 @@ def mo(csv_file):
             final.append(add)
     return final
 
-inp = mo("/Users/linyumei/Ramen_May_git/map_crawling/csv_file/Map_Ramen_data_with_city_new_version.csv")
+inp = mo("/Users/linyumei/Ramen_May_git/map_crawling/csv_file/Store.csv")
 
 for item in inp:
+    
     print(item)
    
 
 #---------------create new csv file------------------
-
+'''
 with open('/Users/linyumei/Ramen_May_git/map_crawling/csv_file/city.csv', 'w', newline='') as csvfile:
     
     writer = csv.writer(csvfile, delimiter=',') #以空白分隔欄位，建立 CSV 檔寫入器
@@ -43,7 +44,7 @@ with open('/Users/linyumei/Ramen_May_git/map_crawling/csv_file/city.csv', 'w', n
 
         print(a)
         writer.writerow([a])
-    
+  '''  
 
 
 

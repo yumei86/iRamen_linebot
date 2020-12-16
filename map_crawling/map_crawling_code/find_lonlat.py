@@ -42,7 +42,7 @@ def mo(csv_file):
     # 以迴圈輸出每一列
     final = []
     for row in rows:
-        add = row[2]
+        add = row[4]
     
         if "," in add:
             add = "無提供地址資訊"
@@ -56,11 +56,11 @@ def mo(csv_file):
     return final
 
 
-inp = mo("Ramen_infor_version.csv")
+inp = mo("/Users/linyumei/Ramen_May_git/map_crawling/csv_file/Store.csv")
   
 #---------------create new csv file------------------
 
-with open('Ramenstore_lonlat.csv', 'w', newline='') as csvfile:
+with open('/Users/linyumei/Ramen_May_git/map_crawling/csv_file/Store_lonlat.csv', 'w', newline='') as csvfile:
     
     writer = csv.writer(csvfile, delimiter=',') #以空白分隔欄位，建立 CSV 檔寫入器
     writer.writerow(['latitude','longtitute'])
