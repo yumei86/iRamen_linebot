@@ -347,11 +347,10 @@ def handle_message(event):
         more = "看更多推薦:"+city
 
         if event.message.text == cond :
-            user_select = cond
     #---------------------------------query 直接推薦、湯頭推薦、看更多類似推薦--------------------------
-            if ':' in user_select:
-                select_first_param = user_select[:user_select.index(':')]
-                select_second_param = user_select[user_select.index(':')+1:]
+            if ':' in cond:
+                select_first_param = cond[:cond.index(':')]
+                select_second_param = cond[cond.index(':')+1:]
                 # print(select_second_param)
             if (select_first_param == '直接推薦') or (select_first_param == '看更多推薦'):
                     #query withOUT soup
@@ -396,7 +395,7 @@ def handle_message(event):
             output_s = secrets.choice(output_whole_lst)
             output_lst = convert_string_to_lst(output_s, ',')
 
-            address = output_lst[1]
+            address = output_lst[1][output_lst.index(':')+1:]
 
             flex_message3 = FlexSendMessage(
                             alt_text='快回來看看我幫你找到的店家！',
@@ -654,7 +653,7 @@ def handle_message(event):
 
             line_bot_api.reply_message(event.reply_token,flex_message3)
 
-        elif event.message.text == more :
+        if event.message.text == more :
 
             flex_message4 = FlexSendMessage(
                             alt_text='快回來看看我幫你找到的店家！',
