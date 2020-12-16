@@ -224,9 +224,9 @@ def handle_message(event):
 
     for city in cityname:
         cond = "直接推薦:"+city
-        cond1 = "看更多推薦"+city
+        #cond1 = "看更多推薦"+city
         address = "query出來的地址"
-        if event.message.text == cond or cond1 :
+        if event.message.text == cond :
 
             flex_message3 = FlexSendMessage(
                             alt_text='快回來看看我幫你找到的店家！',
