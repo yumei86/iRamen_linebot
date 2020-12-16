@@ -224,7 +224,8 @@ def handle_message(event):
 
     for city in cityname:
         cond = "直接推薦:"+city
-        if event.message.text == cond :
+        cond1 = "看更多推薦"+city
+        if event.message.text == cond or cond1 :
 
             flex_message3 = FlexSendMessage(
                             alt_text='快回來看看我幫你找到的店家！',
@@ -366,8 +367,8 @@ def handle_message(event):
                                                 "type": "button",
                                                 "action": {
                                                     "type": "message",
-                                                    "label": "看更多類似推薦",
-                                                    "text": "看更多類似推薦:"+city
+                                                    "label": "看更多推薦",
+                                                    "text": "看更多推薦:"+city
                                                 },
                                                 "color": "#D08C60"
                                                 }
@@ -435,7 +436,7 @@ def handle_message(event):
                                                 "contents": [
                                                     {
                                                     "type": "text",
-                                                    "text": "網友評論1：",
+                                                    "text": "網友評論：",
                                                     "color": "#797D62",
                                                     "size": "md",
                                                     "wrap": True,
@@ -462,8 +463,8 @@ def handle_message(event):
                                                 "type": "button",
                                                 "action": {
                                                     "type": "message",
-                                                    "label": "看更多類似推薦",
-                                                    "text": "看更多類似推薦:"+city
+                                                    "label": "看更多推薦",
+                                                    "text": "看更多推薦:"+city
                                                 },
                                                 "color": "#D08C60"
                                                 }
@@ -482,7 +483,7 @@ def handle_message(event):
 
             line_bot_api.reply_message(event.reply_token,flex_message3)
             
-            #----------------位置經緯度資訊-----------------
+#----------------位置經緯度資訊-----------------
 
         if event.message.text == address:
 
@@ -677,8 +678,8 @@ def handle_message(event):
                                                 "type": "button",
                                                 "action": {
                                                     "type": "message",
-                                                    "label": "看更多類似推薦",
-                                                    "text": "看更多類似推薦:"+cityname[i]
+                                                    "label": "看更多推薦",
+                                                    "text": "看更多推薦:"+cityname[i]
                                                 },
                                                 "color": "#D08C60"
                                                 }
@@ -773,8 +774,8 @@ def handle_message(event):
                                                 "type": "button",
                                                 "action": {
                                                     "type": "message",
-                                                    "label": "看更多類似推薦",
-                                                    "text": "看更多類似推薦:"+cityname[i]
+                                                    "label": "看更多推薦",
+                                                    "text": "看更多推薦:"+cityname[i]
                                                 },
                                                 "color": "#D08C60"
                                                 }
