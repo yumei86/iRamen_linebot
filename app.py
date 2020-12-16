@@ -397,6 +397,9 @@ def handle_message(event):
 
             address = output_lst[1]
 
+            if __name__ == 'main':
+                app.run(debug=True)
+
             flex_message3 = FlexSendMessage(
                             alt_text='快回來看看我幫你找到的店家！',
                             contents={
@@ -1223,5 +1226,3 @@ def handle_message(event):
 
                 line_bot_api.reply_message(event.reply_token,flex_message4)
 
-if __name__ == 'main':
-  app.run(debug=True)
