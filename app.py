@@ -379,6 +379,9 @@ def handle_message(event):
                
         #---------------------------------change data to a list of datas--------------------------
         output_whole_lst = convert_string_to_lst(output_before_random_clear,'%')
+        for data in output_whole_lst:
+            if data == '':
+                output_whole_lst.remove(data)
         #---------------------------------random(everytime renew can auto random)--------------------------
         output_s = secrets.choice(output_whole_lst)
         output_lst = convert_string_to_lst(output_s, ',')
