@@ -990,12 +990,339 @@ def handle_message(event):
                  chiayi,tainan,kaohsiung,pintung, \
                  yilan,hualien,taitung] 
 
+    
     for i in range(len(city_soup)):
         cond = str(city_name[i])+":"
         soup = city_soup[i]
+
+        mor = "看更多推薦:"+cond[0:-1]
+            #---------------------------------query 直接推薦、湯頭推薦、看更多類似推薦--------------------------
+        if ':' in mor:
+            select_first_param = cond[:cond.index(':')]
+            select_second_param = cond[cond.index(':')+1:]
+            
+            if (select_first_param == '直接推薦') or (select_first_param == '看更多推薦'):                
+                result = query_province_direct(select_second_param)
+                        
+            elif select_first_param in city_name:
+                result = query_province_soup(select_first_param, select_second_param)
+                   
+        #---------------------------------put all data in a string--------------------------
+        ouput_database_fb = ''
+        ouput_database_map = ''
+        output_before_random = ''
+        for r in result:
+            try:
+                ouput_database_fb += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
+                    FB_R_CREATE:{r[2].create_on},FB_R_RAMEN:{r[2].ramen_name},FB_R_CONTENT:{r[2].fb_review},\
+                    CHECK_TAG:{r[1].soup},CHECK_CITY:{r[1].province}%'
+
+            except AttributeError:
+                ouput_database_map += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
+                    MAP_REVIEW:{r[1].map_review},\
+                    CHECK_TAG:{r[1].soup},CHECK_CITY:{r[1].province}%'
+                
+
+        output_before_random += ouput_database_fb
+        output_before_random += ouput_database_map
+        output_before_random_clear = output_before_random.replace(u'\xa0', u' ').replace(' ','')
+               
+        #---------------------------------change data to a list of datas--------------------------
+        output_whole_lst = convert_string_to_lst(output_before_random_clear,'%')
+        for data in output_whole_lst:
+            if data == '':
+                output_whole_lst.remove(data)
+        #---------------------------------random(everytime renew can auto random)--------------------------
+        output_s = secrets.choice(output_whole_lst)
+        output_lst = convert_string_to_lst(output_s, ',')
+        
+        store_n = output_lst[0][output_lst[0].index(':')+1:]
+        address = output_lst[1][output_lst[1].index(':')+1:]
+        descrip = output_lst[2][output_lst[2].index(':')+1:]
+        trans = output_lst[3][output_lst[3].index(':')+1:]
+
+        if __name__ == 'main':
+            app.run(debug=True) 
+        
+        if event.message.text == mor :
+            flex_message6 = FlexSendMessage(
+                            alt_text='快回來看看我幫你找到的店家！',
+                            contents= {
+                                        "type": "carousel",
+                                        "contents": [
+                                            {
+                                            "type": "bubble",
+                                            "size": "mega",
+                                            "header": {
+                                                "type": "box",
+                                                "layout": "horizontal",
+                                                "contents": [
+                                                {
+                                                    "type": "text",
+                                                    "text": store_n,
+                                                    "align": "start",
+                                                    "size": "md",
+                                                    "gravity": "center",
+                                                    "color": "#ffffff",
+                                                    "wrap": True
+                                                },
+                                                {
+                                                    "type": "box",
+                                                    "layout": "vertical",
+                                                    "contents": [],
+                                                    "width": "80px",
+                                                    "height": "20px"
+                                                },
+                                                {
+                                                    "type": "box",
+                                                    "layout": "vertical",
+                                                    "contents": [
+                                                    {
+                                                        "type": "text",
+                                                        "text": "+到最愛",
+                                                        "size": "sm",
+                                                        "align": "center",
+                                                        "offsetTop": "3px",
+                                                        "action": {
+                                                        "type": "message",
+                                                        "label": "加到最愛清單",
+                                                        "text": "加到最愛清單:"+store_n
+                                                        }
+                                                    }
+                                                    ],
+                                                    "width": "60px",
+                                                    "height": "25px",
+                                                    "backgroundColor": "#FFCB69",
+                                                    "cornerRadius": "20px",
+                                                    "position": "absolute",
+                                                    "offsetEnd": "xxl",
+                                                    "offsetTop": "lg"
+                                                }
+                                                ],
+                                                "paddingTop": "15px",
+                                                "paddingAll": "15px",
+                                                "paddingBottom": "16px",
+                                                "backgroundColor": "#876C5A"
+                                            },
+                                            "body": {
+                                                "type": "box",
+                                                "layout": "vertical",
+                                                "contents": [
+                                                {
+                                                    "type": "box",
+                                                    "layout": "vertical",
+                                                    "contents": [
+                                                    {
+                                                        "type": "text",
+                                                        "text": "地址：",
+                                                        "color": "#797D62",
+                                                        "size": "md",
+                                                        "wrap": True,
+                                                        "weight": "bold"
+                                                    },
+                                                    {
+                                                        "type": "text",
+                                                        "text": "↓↓點擊下方地址可以直接幫你傳送位置噢！",
+                                                        "color": "#CA8E68",
+                                                        "size": "xs",
+                                                        "wrap": True,
+                                                        "weight": "regular"
+                                                    },
+                                                    {
+                                                    "type": "text",
+                                                    "size": "sm",
+                                                    "wrap": True,
+                                                    "text": address,
+                                                    "action": {
+                                                        "type": "message",
+                                                        "label": "action",
+                                                        "text": address
+                                                    },
+                                                    "margin": "md"
+                                                    },
+                                                    {
+                                                        "type": "separator",
+                                                        "margin": "lg"
+                                                    },
+                                                    {
+                                                        "type": "text",
+                                                        "text": "特色：",
+                                                        "size": "md",
+                                                        "wrap": True,
+                                                        "color": "#797D62",
+                                                        "margin": "md",
+                                                        "weight": "bold"
+                                                    },
+                                                    {
+                                                        "type": "text",
+                                                        "text": descrip,
+                                                        "size": "sm",
+                                                        "wrap": True,
+                                                        "margin": "md"
+                                                    },
+                                                    {
+                                                        "type": "separator",
+                                                        "margin": "lg"
+                                                    },
+                                                    {
+                                                        "type": "text",
+                                                        "text": "鄰近交通資訊：",
+                                                        "size": "md",
+                                                        "wrap": True,
+                                                        "color": "#797D62",
+                                                        "margin": "md",
+                                                        "weight": "bold"
+                                                    },
+                                                    {
+                                                        "type": "text",
+                                                        "size": "sm",
+                                                        "wrap": True,
+                                                        "text": trans,
+                                                        "margin": "md"
+                                                    }
+                                                    ],
+                                                    "paddingBottom": "18px"
+                                                }
+                                                ],
+                                                "spacing": "md",
+                                                "paddingAll": "12px"
+                                            },
+                                            "footer": {
+                                                "type": "box",
+                                                "layout": "horizontal",
+                                                "contents": [
+                                                {
+                                                    "type": "button",
+                                                    "action": {
+                                                    "type": "message",
+                                                    "label": "看更多推薦",
+                                                    "text": "看更多推薦:"+city
+                                                    },
+                                                    "color": "#D08C60"
+                                                }
+                                                ]
+                                            },
+                                            "styles": {
+                                                "footer": {
+                                                "separator": False
+                                                }
+                                            }
+                                            },
+                                            {
+                                            "type": "bubble",
+                                            "size": "mega",
+                                            "header": {
+                                                "type": "box",
+                                                "layout": "horizontal",
+                                                "contents": [
+                                                {
+                                                    "type": "text",
+                                                    "text": store_n,
+                                                    "align": "start",
+                                                    "size": "md",
+                                                    "gravity": "center",
+                                                    "color": "#ffffff",
+                                                    "wrap": True
+                                                },
+                                                {
+                                                    "type": "box",
+                                                    "layout": "vertical",
+                                                    "contents": [],
+                                                    "width": "80px",
+                                                    "height": "20px"
+                                                },
+                                                {
+                                                    "type": "box",
+                                                    "layout": "vertical",
+                                                    "contents": [
+                                                    {
+                                                        "type": "text",
+                                                        "text": "+到最愛",
+                                                        "size": "sm",
+                                                        "align": "center",
+                                                        "offsetTop": "3px",
+                                                        "action": {
+                                                        "type": "message",
+                                                        "label": "加到最愛清單",
+                                                        "text": "加到最愛清單:"+store_n
+                                                        }
+                                                    }
+                                                    ],
+                                                    "width": "60px",
+                                                    "height": "25px",
+                                                    "backgroundColor": "#FFCB69",
+                                                    "cornerRadius": "20px",
+                                                    "position": "absolute",
+                                                    "offsetEnd": "xxl",
+                                                    "offsetTop": "lg"
+                                                }
+                                                ],
+                                                "paddingTop": "15px",
+                                                "paddingAll": "15px",
+                                                "paddingBottom": "16px",
+                                                "backgroundColor": "#876C5A"
+                                            },
+                                            "body": {
+                                                "type": "box",
+                                                "layout": "vertical",
+                                                "contents": [
+                                                {
+                                                    "type": "box",
+                                                    "layout": "vertical",
+                                                    "contents": [
+                                                    {
+                                                        "type": "text",
+                                                        "text": "網友評論：",
+                                                        "size": "md",
+                                                        "wrap": True,
+                                                        "color": "#797D62",
+                                                        "margin": "md",
+                                                        "weight": "bold"
+                                                    },
+                                                    {
+                                                        "type": "text",
+                                                        "size": "sm",
+                                                        "wrap": True,
+                                                        "margin": "md",
+                                                        "text": "query出來的評論"
+                                                    }
+                                                    ],
+                                                    "paddingBottom": "18px"
+                                                }
+                                                ],
+                                                "spacing": "md",
+                                                "paddingAll": "12px"
+                                            },
+                                            "footer": {
+                                                "type": "box",
+                                                "layout": "horizontal",
+                                                "contents": [
+                                                {
+                                                    "type": "button",
+                                                    "action": {
+                                                    "type": "message",
+                                                    "label": "看更多推薦",
+                                                    "text": "看更多推薦:"+city
+                                                    },
+                                                    "color": "#D08C60"
+                                                }
+                                                ]
+                                            },
+                                            "styles": {
+                                                "footer": {
+                                                "separator": False
+                                                }
+                                            }
+                                            }
+                                        ]
+                                        }
+
+            )
+            line_bot_api.reply_message(event.reply_token,flex_message6)
+
+        #----------------選完湯頭介面不同湯頭介面-----------------
         for item in soup:
             n = cond+item
-            mor = "看更多推薦:"+cond[0:-1]
             #---------------------------------query 直接推薦、湯頭推薦、看更多類似推薦--------------------------
             if ':' in n:
                 select_first_param = cond[:cond.index(':')]
@@ -1322,281 +1649,5 @@ def handle_message(event):
 
                 line_bot_api.reply_message(event.reply_token,flex_message5)
 
-            if event.message.text == mor :
-
-                flex_message6 = FlexSendMessage(
-                            alt_text='快回來看看我幫你找到的店家！',
-                            contents= {
-                                        "type": "carousel",
-                                        "contents": [
-                                            {
-                                            "type": "bubble",
-                                            "size": "mega",
-                                            "header": {
-                                                "type": "box",
-                                                "layout": "horizontal",
-                                                "contents": [
-                                                {
-                                                    "type": "text",
-                                                    "text": store_n,
-                                                    "align": "start",
-                                                    "size": "md",
-                                                    "gravity": "center",
-                                                    "color": "#ffffff",
-                                                    "wrap": True
-                                                },
-                                                {
-                                                    "type": "box",
-                                                    "layout": "vertical",
-                                                    "contents": [],
-                                                    "width": "80px",
-                                                    "height": "20px"
-                                                },
-                                                {
-                                                    "type": "box",
-                                                    "layout": "vertical",
-                                                    "contents": [
-                                                    {
-                                                        "type": "text",
-                                                        "text": "+到最愛",
-                                                        "size": "sm",
-                                                        "align": "center",
-                                                        "offsetTop": "3px",
-                                                        "action": {
-                                                        "type": "message",
-                                                        "label": "加到最愛清單",
-                                                        "text": "加到最愛清單:"+store_n
-                                                        }
-                                                    }
-                                                    ],
-                                                    "width": "60px",
-                                                    "height": "25px",
-                                                    "backgroundColor": "#FFCB69",
-                                                    "cornerRadius": "20px",
-                                                    "position": "absolute",
-                                                    "offsetEnd": "xxl",
-                                                    "offsetTop": "lg"
-                                                }
-                                                ],
-                                                "paddingTop": "15px",
-                                                "paddingAll": "15px",
-                                                "paddingBottom": "16px",
-                                                "backgroundColor": "#876C5A"
-                                            },
-                                            "body": {
-                                                "type": "box",
-                                                "layout": "vertical",
-                                                "contents": [
-                                                {
-                                                    "type": "box",
-                                                    "layout": "vertical",
-                                                    "contents": [
-                                                    {
-                                                        "type": "text",
-                                                        "text": "地址：",
-                                                        "color": "#797D62",
-                                                        "size": "md",
-                                                        "wrap": True,
-                                                        "weight": "bold"
-                                                    },
-                                                    {
-                                                        "type": "text",
-                                                        "text": "↓↓點擊下方地址可以直接幫你傳送位置噢！",
-                                                        "color": "#CA8E68",
-                                                        "size": "xs",
-                                                        "wrap": True,
-                                                        "weight": "regular"
-                                                    },
-                                                    {
-                                                    "type": "text",
-                                                    "size": "sm",
-                                                    "wrap": True,
-                                                    "text": address,
-                                                    "action": {
-                                                        "type": "message",
-                                                        "label": "action",
-                                                        "text": address
-                                                    },
-                                                    "margin": "md"
-                                                    },
-                                                    {
-                                                        "type": "separator",
-                                                        "margin": "lg"
-                                                    },
-                                                    {
-                                                        "type": "text",
-                                                        "text": "特色：",
-                                                        "size": "md",
-                                                        "wrap": True,
-                                                        "color": "#797D62",
-                                                        "margin": "md",
-                                                        "weight": "bold"
-                                                    },
-                                                    {
-                                                        "type": "text",
-                                                        "text": descrip,
-                                                        "size": "sm",
-                                                        "wrap": True,
-                                                        "margin": "md"
-                                                    },
-                                                    {
-                                                        "type": "separator",
-                                                        "margin": "lg"
-                                                    },
-                                                    {
-                                                        "type": "text",
-                                                        "text": "鄰近交通資訊：",
-                                                        "size": "md",
-                                                        "wrap": True,
-                                                        "color": "#797D62",
-                                                        "margin": "md",
-                                                        "weight": "bold"
-                                                    },
-                                                    {
-                                                        "type": "text",
-                                                        "size": "sm",
-                                                        "wrap": True,
-                                                        "text": trans,
-                                                        "margin": "md"
-                                                    }
-                                                    ],
-                                                    "paddingBottom": "18px"
-                                                }
-                                                ],
-                                                "spacing": "md",
-                                                "paddingAll": "12px"
-                                            },
-                                            "footer": {
-                                                "type": "box",
-                                                "layout": "horizontal",
-                                                "contents": [
-                                                {
-                                                    "type": "button",
-                                                    "action": {
-                                                    "type": "message",
-                                                    "label": "看更多推薦",
-                                                    "text": "看更多推薦:"+city
-                                                    },
-                                                    "color": "#D08C60"
-                                                }
-                                                ]
-                                            },
-                                            "styles": {
-                                                "footer": {
-                                                "separator": False
-                                                }
-                                            }
-                                            },
-                                            {
-                                            "type": "bubble",
-                                            "size": "mega",
-                                            "header": {
-                                                "type": "box",
-                                                "layout": "horizontal",
-                                                "contents": [
-                                                {
-                                                    "type": "text",
-                                                    "text": store_n,
-                                                    "align": "start",
-                                                    "size": "md",
-                                                    "gravity": "center",
-                                                    "color": "#ffffff",
-                                                    "wrap": True
-                                                },
-                                                {
-                                                    "type": "box",
-                                                    "layout": "vertical",
-                                                    "contents": [],
-                                                    "width": "80px",
-                                                    "height": "20px"
-                                                },
-                                                {
-                                                    "type": "box",
-                                                    "layout": "vertical",
-                                                    "contents": [
-                                                    {
-                                                        "type": "text",
-                                                        "text": "+到最愛",
-                                                        "size": "sm",
-                                                        "align": "center",
-                                                        "offsetTop": "3px",
-                                                        "action": {
-                                                        "type": "message",
-                                                        "label": "加到最愛清單",
-                                                        "text": "加到最愛清單:"+store_n
-                                                        }
-                                                    }
-                                                    ],
-                                                    "width": "60px",
-                                                    "height": "25px",
-                                                    "backgroundColor": "#FFCB69",
-                                                    "cornerRadius": "20px",
-                                                    "position": "absolute",
-                                                    "offsetEnd": "xxl",
-                                                    "offsetTop": "lg"
-                                                }
-                                                ],
-                                                "paddingTop": "15px",
-                                                "paddingAll": "15px",
-                                                "paddingBottom": "16px",
-                                                "backgroundColor": "#876C5A"
-                                            },
-                                            "body": {
-                                                "type": "box",
-                                                "layout": "vertical",
-                                                "contents": [
-                                                {
-                                                    "type": "box",
-                                                    "layout": "vertical",
-                                                    "contents": [
-                                                    {
-                                                        "type": "text",
-                                                        "text": "網友評論：",
-                                                        "size": "md",
-                                                        "wrap": True,
-                                                        "color": "#797D62",
-                                                        "margin": "md",
-                                                        "weight": "bold"
-                                                    },
-                                                    {
-                                                        "type": "text",
-                                                        "size": "sm",
-                                                        "wrap": True,
-                                                        "margin": "md",
-                                                        "text": "query出來的評論"
-                                                    }
-                                                    ],
-                                                    "paddingBottom": "18px"
-                                                }
-                                                ],
-                                                "spacing": "md",
-                                                "paddingAll": "12px"
-                                            },
-                                            "footer": {
-                                                "type": "box",
-                                                "layout": "horizontal",
-                                                "contents": [
-                                                {
-                                                    "type": "button",
-                                                    "action": {
-                                                    "type": "message",
-                                                    "label": "看更多推薦",
-                                                    "text": "看更多推薦:"+city
-                                                    },
-                                                    "color": "#D08C60"
-                                                }
-                                                ]
-                                            },
-                                            "styles": {
-                                                "footer": {
-                                                "separator": False
-                                                }
-                                            }
-                                            }
-                                        ]
-                                        }
-
-            )
-
-                line_bot_api.reply_message(event.reply_token,flex_message6)
+ 
 
