@@ -339,47 +339,14 @@ def handle_message(event):
         f.close()
 
 
-#----------------直接or湯頭推薦/縣市看更多類似推薦-----------------
-
-    #各縣市湯頭清單
-    #北部
-    taipei = ["豚骨", "醬油", "雞白", "魚介", "沾麵", "雞清", "家系", "雞豚", "淡麗系", "其他"]
-    new_taipei = ["豚骨", "醬油", "雞白", "魚介", "沾麵", "雞清", "淡麗系", "煮干", "素食"]
-    keelung = ["豚骨", "素食"]
-    taoyuan = ["豚骨", "醬油", "雞白", "魚介", "沾麵", "雞清", "柑橘", "淡麗系", "煮干", "大骨"]
-    miaoli = ["豚骨", "咖哩"]
-    hsinchu_county = ["豚骨"]
-    hsinchu_city = ["豚骨", "醬油", "魚介", "雞清", "素食", "背脂", "淡麗系"]
-
-    #中部
-    taichung = ["豚骨", "醬油", "雞白", "魚介", "沾麵", "雞清", "家系", "雞豚", "味噌", "其他"]
-    chuanghua = ["豚骨", "雞白", "家系"]
-    nantou = ["豚骨"]
-    yunlin = ["豚骨", "雞白", "魚介"]
-
-    #南部
-    chiayi = ["豚骨", "沾麵", "家系"]
-    tainan = ["豚骨", "雞白", "魚介", "沾麵", "雞清", "雞豚", "咖哩", "淡麗系", "煮干", "其他"]
-    kaohsiung = ["豚骨", "醬油", "雞白", "魚介", "沾麵", "雞清", "家系", "雞豚", "淡麗系", "其他"]
-    pintung = ["豚骨", "醬油", "雞白", "雞清", "家系"]
-
-    #東部
-    yilan = ["豚骨", "三星蔥"]
-    hualien = ["豚骨", "魚白"]
-    taitung = ["豚骨"]
-
-    city_soup = [taipei,new_taipei,keelung,taoyuan,miaoli,hsinchu_county,hsinchu_city, \
-                 taichung,chuanghua,nantou,yunlin, \
-                 chiayi,tainan,kaohsiung,pintung, \
-                 yilan,hualien,taitung] 
-    
-    i_conut = 0
+#----------------直接推薦/縣市看更多類似推薦-----------------
 
     for city in city_name:
 
         cond = "直接推薦:"+city
         more = "看更多推薦:"+city
-    #---------------------------------query 直接推薦、湯頭推薦、看更多類似推薦--------------------------
+
+        #---------------------------query 直接推薦、湯頭推薦、看更多類似推薦--------------------------
         if ':' in cond:
             select_first_param = cond[:cond.index(':')]
             select_second_param = cond[cond.index(':')+1:]
@@ -390,7 +357,7 @@ def handle_message(event):
             elif select_first_param in city_name:
                 result = query_province_soup(select_first_param, select_second_param)
                    
-        #---------------------------------put all data in a string--------------------------
+        #---------------------------put all data in a string--------------------------
         ouput_database_fb = ''
         ouput_database_map = ''
         output_before_random = ''
@@ -423,9 +390,6 @@ def handle_message(event):
         address = output_lst[1][output_lst[1].index(':')+1:]
         descrip = output_lst[2][output_lst[2].index(':')+1:]
         trans = output_lst[3][output_lst[3].index(':')+1:]
-
-        if __name__ == 'main':
-            app.run(debug=True) 
 
 
         if event.message.text == cond :
@@ -983,14 +947,50 @@ def handle_message(event):
             )
 
             line_bot_api.reply_message(event.reply_token,flex_message4)
+
+#----------------選完湯頭介面/湯頭看更多類似推薦-----------------
+
+    #各縣市湯頭清單
+    #北部
+    taipei = ["豚骨", "醬油", "雞白", "魚介", "沾麵", "雞清", "家系", "雞豚", "淡麗系", "其他"]
+    new_taipei = ["豚骨", "醬油", "雞白", "魚介", "沾麵", "雞清", "淡麗系", "煮干", "素食"]
+    keelung = ["豚骨", "素食"]
+    taoyuan = ["豚骨", "醬油", "雞白", "魚介", "沾麵", "雞清", "柑橘", "淡麗系", "煮干", "大骨"]
+    miaoli = ["豚骨", "咖哩"]
+    hsinchu_county = ["豚骨"]
+    hsinchu_city = ["豚骨", "醬油", "魚介", "雞清", "素食", "背脂", "淡麗系"]
+
+    #中部
+    taichung = ["豚骨", "醬油", "雞白", "魚介", "沾麵", "雞清", "家系", "雞豚", "味噌", "其他"]
+    chuanghua = ["豚骨", "雞白", "家系"]
+    nantou = ["豚骨"]
+    yunlin = ["豚骨", "雞白", "魚介"]
+
+    #南部
+    chiayi = ["豚骨", "沾麵", "家系"]
+    tainan = ["豚骨", "雞白", "魚介", "沾麵", "雞清", "雞豚", "咖哩", "淡麗系", "煮干", "其他"]
+    kaohsiung = ["豚骨", "醬油", "雞白", "魚介", "沾麵", "雞清", "家系", "雞豚", "淡麗系", "其他"]
+    pintung = ["豚骨", "醬油", "雞白", "雞清", "家系"]
+
+    #東部
+    yilan = ["豚骨", "三星蔥"]
+    hualien = ["豚骨", "魚白"]
+    taitung = ["豚骨"]
+
+    city_soup = [taipei,new_taipei,keelung,taoyuan,miaoli,hsinchu_county,hsinchu_city, \
+                 taichung,chuanghua,nantou,yunlin, \
+                 chiayi,tainan,kaohsiung,pintung, \
+                 yilan,hualien,taitung] 
+
+    
+    for i in range(len(city_soup)):
+
+        cond = str(city_name[i])+":"
+        soup = city_soup[i] 
         
-'''
-        soup = city_soup[i_conut]
-        i_conut += 1
-        c = str(city)+":"
         #----------------選完湯頭介面不同湯頭介面-----------------
         for item in soup:
-            n = c+item
+            n = cond+item
             #---------------------------------query 直接推薦、湯頭推薦、看更多類似推薦--------------------------
             if ':' in n:
                 select_first_param = n[:n.index(':')]
@@ -1031,15 +1031,13 @@ def handle_message(event):
             output_s = secrets.choice(output_whole_lst)
             output_lst = convert_string_to_lst(output_s, ',')
             
-            store_s = output_lst[0][output_lst[0].index(':')+1:]
-            address_s = output_lst[1][output_lst[1].index(':')+1:]
-            descrip_s = output_lst[2][output_lst[2].index(':')+1:]
-            trans_s = output_lst[3][output_lst[3].index(':')+1:]
-
-            if __name__ == 'main':
-                app.run(debug=True) 
+            store_n = output_lst[0][output_lst[0].index(':')+1:]
+            address = output_lst[1][output_lst[1].index(':')+1:]
+            descrip = output_lst[2][output_lst[2].index(':')+1:]
+            trans = output_lst[3][output_lst[3].index(':')+1:]
 
             if event.message.text == n:
+
                 flex_message5 = FlexSendMessage(
                             alt_text='快回來看看我幫你找到的店家！',
                             contents= {
@@ -1054,7 +1052,7 @@ def handle_message(event):
                                                 "contents": [
                                                 {
                                                     "type": "text",
-                                                    "text": store_s,
+                                                    "text": store_n,
                                                     "align": "start",
                                                     "size": "md",
                                                     "gravity": "center",
@@ -1081,7 +1079,7 @@ def handle_message(event):
                                                         "action": {
                                                         "type": "message",
                                                         "label": "加到最愛清單",
-                                                        "text": "加到最愛清單:"+store_s
+                                                        "text": "加到最愛清單:"+store_n
                                                         }
                                                     }
                                                     ],
@@ -1127,11 +1125,11 @@ def handle_message(event):
                                                     "type": "text",
                                                     "size": "sm",
                                                     "wrap": True,
-                                                    "text": address_s,
+                                                    "text": address,
                                                     "action": {
                                                         "type": "message",
                                                         "label": "action",
-                                                        "text": address_s
+                                                        "text": address
                                                     },
                                                     "margin": "md"
                                                     },
@@ -1150,7 +1148,7 @@ def handle_message(event):
                                                     },
                                                     {
                                                         "type": "text",
-                                                        "text": descrip_s,
+                                                        "text": descrip,
                                                         "size": "sm",
                                                         "wrap": True,
                                                         "margin": "md"
@@ -1172,7 +1170,7 @@ def handle_message(event):
                                                         "type": "text",
                                                         "size": "sm",
                                                         "wrap": True,
-                                                        "text": trans_s,
+                                                        "text": trans,
                                                         "margin": "md"
                                                     }
                                                     ],
@@ -1191,7 +1189,7 @@ def handle_message(event):
                                                     "action": {
                                                     "type": "message",
                                                     "label": "看更多推薦",
-                                                    "text": "看更多推薦:"+city
+                                                    "text": "看更多推薦:"+cond[0:-1]
                                                     },
                                                     "color": "#D08C60"
                                                 }
@@ -1212,7 +1210,7 @@ def handle_message(event):
                                                 "contents": [
                                                 {
                                                     "type": "text",
-                                                    "text": store_s,
+                                                    "text": store_n,
                                                     "align": "start",
                                                     "size": "md",
                                                     "gravity": "center",
@@ -1239,7 +1237,7 @@ def handle_message(event):
                                                         "action": {
                                                         "type": "message",
                                                         "label": "加到最愛清單",
-                                                        "text": "加到最愛清單:"+store_s
+                                                        "text": "加到最愛清單:"+store_n
                                                         }
                                                     }
                                                     ],
@@ -1297,7 +1295,7 @@ def handle_message(event):
                                                     "action": {
                                                     "type": "message",
                                                     "label": "看更多推薦",
-                                                    "text": "看更多推薦:"+city
+                                                    "text": "看更多推薦:"+cond[0:-1]
                                                     },
                                                     "color": "#D08C60"
                                                 }
@@ -1315,7 +1313,10 @@ def handle_message(event):
             )
 
                 line_bot_api.reply_message(event.reply_token,flex_message5)
-'''
+        
+
+if __name__ == 'main':
+    app.run(debug=True) 
         
 
  
