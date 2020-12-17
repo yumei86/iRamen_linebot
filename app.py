@@ -984,7 +984,7 @@ def handle_message(event):
 
             line_bot_api.reply_message(event.reply_token,flex_message4)
         
-
+'''
         soup = city_soup[i_conut]
         i_conut += 1
         c = str(city)+":"
@@ -1315,7 +1315,7 @@ def handle_message(event):
             )
 
                 line_bot_api.reply_message(event.reply_token,flex_message5)
-
+'''
         
 
  
