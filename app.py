@@ -991,12 +991,11 @@ def handle_message(event):
                  yilan,hualien,taitung] 
 
     for i in range(len(city_soup)):
-        cond = str(city_name[i])
+        cond = str(city_name[i])+":"
         soup = city_soup[i]
         for item in soup:
-            n = cond+":"+item
-            m = "看更多推薦:"+cond
-
+            n = cond+item
+            mor = "看更多推薦:"+cond[0:-1]
             #---------------------------------query 直接推薦、湯頭推薦、看更多類似推薦--------------------------
             if ':' in n:
                 select_first_param = cond[:cond.index(':')]
@@ -1323,7 +1322,7 @@ def handle_message(event):
 
                 line_bot_api.reply_message(event.reply_token,flex_message5)
 
-            if event.message.text == m :
+            if event.message.text == mor :
 
                 flex_message6 = FlexSendMessage(
                             alt_text='快回來看看我幫你找到的店家！',
