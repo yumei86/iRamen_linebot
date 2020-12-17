@@ -986,6 +986,7 @@ def handle_message(event):
         
 
         soup = city_soup[i_conut]
+        i_conut += 1
         #----------------選完湯頭介面不同湯頭介面-----------------
         for item in soup:
             c = str(city)+":"
@@ -1030,10 +1031,10 @@ def handle_message(event):
             output_s = secrets.choice(output_whole_lst)
             output_lst = convert_string_to_lst(output_s, ',')
             
-            store_n = output_lst[0][output_lst[0].index(':')+1:]
-            address = output_lst[1][output_lst[1].index(':')+1:]
-            descrip = output_lst[2][output_lst[2].index(':')+1:]
-            trans = output_lst[3][output_lst[3].index(':')+1:]
+            store_s = output_lst[0][output_lst[0].index(':')+1:]
+            address_s = output_lst[1][output_lst[1].index(':')+1:]
+            descrip_s = output_lst[2][output_lst[2].index(':')+1:]
+            trans_s = output_lst[3][output_lst[3].index(':')+1:]
 
             if __name__ == 'main':
                 app.run(debug=True) 
@@ -1053,7 +1054,7 @@ def handle_message(event):
                                                 "contents": [
                                                 {
                                                     "type": "text",
-                                                    "text": store_n,
+                                                    "text": store_s,
                                                     "align": "start",
                                                     "size": "md",
                                                     "gravity": "center",
@@ -1080,7 +1081,7 @@ def handle_message(event):
                                                         "action": {
                                                         "type": "message",
                                                         "label": "加到最愛清單",
-                                                        "text": "加到最愛清單:"+store_n
+                                                        "text": "加到最愛清單:"+store_s
                                                         }
                                                     }
                                                     ],
@@ -1126,11 +1127,11 @@ def handle_message(event):
                                                     "type": "text",
                                                     "size": "sm",
                                                     "wrap": True,
-                                                    "text": address,
+                                                    "text": address_s,
                                                     "action": {
                                                         "type": "message",
                                                         "label": "action",
-                                                        "text": address
+                                                        "text": address_s
                                                     },
                                                     "margin": "md"
                                                     },
@@ -1149,7 +1150,7 @@ def handle_message(event):
                                                     },
                                                     {
                                                         "type": "text",
-                                                        "text": descrip,
+                                                        "text": descrip_s,
                                                         "size": "sm",
                                                         "wrap": True,
                                                         "margin": "md"
@@ -1171,7 +1172,7 @@ def handle_message(event):
                                                         "type": "text",
                                                         "size": "sm",
                                                         "wrap": True,
-                                                        "text": trans,
+                                                        "text": trans_s,
                                                         "margin": "md"
                                                     }
                                                     ],
@@ -1211,7 +1212,7 @@ def handle_message(event):
                                                 "contents": [
                                                 {
                                                     "type": "text",
-                                                    "text": store_n,
+                                                    "text": store_s,
                                                     "align": "start",
                                                     "size": "md",
                                                     "gravity": "center",
@@ -1238,7 +1239,7 @@ def handle_message(event):
                                                         "action": {
                                                         "type": "message",
                                                         "label": "加到最愛清單",
-                                                        "text": "加到最愛清單:"+store_n
+                                                        "text": "加到最愛清單:"+store_s
                                                         }
                                                     }
                                                     ],
@@ -1315,7 +1316,7 @@ def handle_message(event):
 
                 line_bot_api.reply_message(event.reply_token,flex_message5)
 
-        i_conut += 1
+        
 
  
 
