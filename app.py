@@ -396,12 +396,7 @@ def handle_message(event):
 
 
         if event.message.text == cond :
-            location_message = LocationSendMessage(
-                            title= 'location',
-                            address= address,
-                            latitude=35.65910807942215,
-                            longitude=139.70372892916203
-                            )
+
             flex_message3 = FlexSendMessage(
                             alt_text='快回來看看我幫你找到的店家！',
                             contents= {
@@ -486,17 +481,16 @@ def handle_message(event):
                                                         "weight": "regular"
                                                     },
                                                     {
-                                                        "type": "text",
-                                                        "size": "sm",
-                                                        "wrap": True,
-                                                        "action": {
-                                                        "type": "postback",
-                                                        "data": address,
-                                                        "label": "",
-                                                        "displayText": location_message
-                                                        },
-                                                        "margin": "md",
+                                                    "type": "text",
+                                                    "size": "sm",
+                                                    "wrap": True,
+                                                    "text": address,
+                                                    "action": {
+                                                        "type": "message",
+                                                        "label": "action",
                                                         "text": address
+                                                    },
+                                                    "margin": "md"
                                                     },
                                                     {
                                                         "type": "separator",
@@ -684,12 +678,7 @@ def handle_message(event):
 
 
         if event.message.text == more :
-            location_message = LocationSendMessage(
-                            title= 'location',
-                            address= address,
-                            latitude=35.65910807942215,
-                            longitude=139.70372892916203
-                            )
+
             flex_message4 = FlexSendMessage(
                             alt_text='快回來看看我幫你找到的店家！',
                             contents= {
@@ -774,17 +763,16 @@ def handle_message(event):
                                                         "weight": "regular"
                                                     },
                                                     {
-                                                        "type": "text",
-                                                        "size": "sm",
-                                                        "wrap": True,
-                                                        "action": {
-                                                        "type": "postback",
-                                                        "data": address,
-                                                        "label": "",
-                                                        "displayText": location_message
-                                                        },
-                                                        "margin": "md",
+                                                    "type": "text",
+                                                    "size": "sm",
+                                                    "wrap": True,
+                                                    "text": address,
+                                                    "action": {
+                                                        "type": "message",
+                                                        "label": "action",
                                                         "text": address
+                                                    },
+                                                    "margin": "md"
                                                     },
                                                     {
                                                         "type": "separator",
@@ -964,9 +952,8 @@ def handle_message(event):
                                         }
 
             )
-            
-            line_bot_api.reply_message(event.reply_token,flex_message4)
 
+            line_bot_api.reply_message(event.reply_token,flex_message4)
 
 
 
