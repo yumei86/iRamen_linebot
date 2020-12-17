@@ -987,9 +987,9 @@ def handle_message(event):
 
         soup = city_soup[i_conut]
         i_conut += 1
+        c = str(city)+":"
         #----------------選完湯頭介面不同湯頭介面-----------------
         for item in soup:
-            c = str(city)+":"
             n = c+item
             #---------------------------------query 直接推薦、湯頭推薦、看更多類似推薦--------------------------
             if ':' in n:
