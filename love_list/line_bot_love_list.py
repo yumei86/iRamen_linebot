@@ -3,7 +3,7 @@ elif "加到最愛清單" in event.message.text:
     text_list=event.message.text.split(":")
     add_ramen=text_list[1]
     
-    if Ramen.objects.filter(chinese_name=add_ramen).exists():
+    if ramen.objects.filter(chinese_name=add_ramen).exists():
         
         user=UserFavorite.objects.get(user_id=user_id)
         ramen_str=user.ramen
