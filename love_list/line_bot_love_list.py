@@ -32,3 +32,15 @@ elif "加到最愛清單" in event.message.text:
             event.reply_token,
             TextSendMessage(text="已經把" + add_ramen + "加進最愛清單！")
         )
+elif "從最愛清單刪除" in event.message.text:
+    
+    text_list=event.message.text.split(":")
+    delete_ramen=text_list[1]
+    
+    if Ramen.objects.filter(chinese_name=add_name).exists():
+        if delete_ramen in ramen_str:
+            ramen_str=ramen_str.remove(delete_ramen)
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text="已經把" + delete_ramen + "從最愛清單刪除！")
+            )
