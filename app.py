@@ -168,9 +168,6 @@ def handle_message(event):
     if event.message.text == "問題回報":
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "ooops...\uDBC0\uDC17 \n請點選以下連結回報問題：https://reurl.cc/14RmVW"))
 
-    elif event.message.text == "最愛清單":
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "尚未有最愛清單，快去加入你喜歡的拉麵吧！\uDBC0\uDC5e"))
-
 
 #----------------拉麵推薦介面-----------------
 
@@ -187,7 +184,6 @@ def handle_message(event):
         )
 
         line_bot_api.reply_message(event.reply_token,flex_message)
-
 
 #----------------不同區域的介面設定-----------------
 
@@ -338,8 +334,10 @@ def handle_message(event):
 
         f.close()
 
-
 #----------------直接推薦/縣市看更多類似推薦-----------------
+    
+    #前二 舊地址新地址 後四舊經緯 新經緯
+    temp_address = []
 
     for city in city_name:
 
@@ -365,11 +363,13 @@ def handle_message(event):
             try:
                 ouput_database_fb += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
                     FB_R_CREATE:{r[2].create_on},FB_R_RAMEN:{r[2].ramen_name},FB_R_CONTENT:{r[2].fb_review},\
+                    LONGITUDE:{r[1].longtitute},LATITUDE:{r[1].latitude},\
                     CHECK_TAG:{r[1].soup},CHECK_CITY:{r[1].province}%'
 
             except AttributeError:
                 ouput_database_map += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
                     MAP_REVIEW:{r[1].map_review},\
+                    LONGITUDE:{r[1].longtitute},LATITUDE:{r[1].latitude},\
                     CHECK_TAG:{r[1].soup},CHECK_CITY:{r[1].province}%'
                 
 
@@ -391,15 +391,20 @@ def handle_message(event):
         descrip = output_lst[2][output_lst[2].index(':')+1:]
         trans = output_lst[3][output_lst[3].index(':')+1:]
         
-        if len(output_lst) == 9:
+        if len(output_lst) == 11:
             #FB評論
             c1 = output_lst[4][output_lst[4].index(':')+1:]
             c2 = output_lst[5][output_lst[5].index(':')+1:]
             c3 = output_lst[6][output_lst[6].index(':')+1:]
             comment = f'貼文時間：\n{c1}\n品項：\n{c2}\n評論：\n{c3}'
-        elif len(output_lst) == 7:
+            lon = output_lst[7][output_lst[7].index(':')+1:]
+            lat = output_lst[8][output_lst[8].index(':')+1:]
+
+        elif len(output_lst) == 9:
             #googleMap
             comment = output_lst[4][output_lst[4].index(':')+1:]
+            lon = output_lst[5][output_lst[5].index(':')+1:]
+            lat = output_lst[6][output_lst[6].index(':')+1:]  
 
 
         if event.message.text == cond :
@@ -679,6 +684,24 @@ def handle_message(event):
             )
 
             line_bot_api.reply_message(event.reply_token,flex_message3)
+
+            if len(temp_address) <= 3:
+                temp_address.append(address)
+                temp_address.append(lon) 
+                temp_address.append(lat)
+
+#----------------位置經緯度資訊-----------------
+
+        if event.message.text == temp_address[0]:
+
+            location_message = LocationSendMessage(
+                            title= 'location',
+                            address= address,
+                            latitude= temp_address[1],
+                            longitude= temp_address[2]
+                            )
+            line_bot_api.reply_message(event.reply_token,location_message)
+        
 
         if event.message.text == more :
 
@@ -1334,7 +1357,11 @@ def handle_message(event):
             )
 
                 line_bot_api.reply_message(event.reply_token,flex_message5)
-        
+
+#----------------最愛清單訊息觸發設定-----------------   
+    #if event.message.text == "最愛清單":
+    #    line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "尚未有最愛清單，快去加入你喜歡的拉麵吧！\uDBC0\uDC5e"))
+
 
 if __name__ == 'main':
     app.run(debug=True) 
