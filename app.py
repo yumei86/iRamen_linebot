@@ -391,13 +391,13 @@ def handle_message(event):
         descrip = output_lst[2][output_lst[2].index(':')+1:]
         trans = output_lst[3][output_lst[3].index(':')+1:]
         
-        try:
+        if len(output_lst) == 9:
             #FB評論
             c1 = output_lst[4][output_lst[4].index(':')+1:]
             c2 = output_lst[5][output_lst[5].index(':')+1:]
             c3 = output_lst[6][output_lst[6].index(':')+1:]
             comment = f'貼文時間：\n{c1}\n品項：\n{c2}\n評論：\n{c3}'
-        except:
+        elif len(output_lst) == 7:
             #googleMap
             comment = output_lst[4][output_lst[4].index(':')+1:]
 
@@ -1047,13 +1047,13 @@ def handle_message(event):
             descrip = output_lst[2][output_lst[2].index(':')+1:]
             trans = output_lst[3][output_lst[3].index(':')+1:]
 
-            try:
+            if len(output_lst) == 9:
                 #FB評論
                 c1 = output_lst[4][output_lst[4].index(':')+1:]
                 c2 = output_lst[5][output_lst[5].index(':')+1:]
                 c3 = output_lst[6][output_lst[6].index(':')+1:]
                 comment = f'貼文時間：\n{c1}\n品項：\n{c2}\n評論：\n{c3}'
-            except:
+            elif len(output_lst) == 7:
                 #googleMap
                 comment = output_lst[4][output_lst[4].index(':')+1:]
 
