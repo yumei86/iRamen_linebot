@@ -396,7 +396,7 @@ def handle_message(event):
             c1 = output_lst[4][output_lst[4].index(':')+1:]
             c2 = output_lst[5][output_lst[5].index(':')+1:]
             c3 = output_lst[6][output_lst[6].index(':')+1:]
-            comment = f'貼文時間：{c1}\n品項：{c2}\n評論：{c3}'
+            comment = f'貼文時間：\n{c1}\n品項：\n{c2}\n評論：\n{c3}'
         except:
             #googleMap
             comment = output_lst[4][output_lst[4].index(':')+1:]
@@ -1047,6 +1047,16 @@ def handle_message(event):
             descrip = output_lst[2][output_lst[2].index(':')+1:]
             trans = output_lst[3][output_lst[3].index(':')+1:]
 
+            try:
+                #FB評論
+                c1 = output_lst[4][output_lst[4].index(':')+1:]
+                c2 = output_lst[5][output_lst[5].index(':')+1:]
+                c3 = output_lst[6][output_lst[6].index(':')+1:]
+                comment = f'貼文時間：\n{c1}\n品項：\n{c2}\n評論：\n{c3}'
+            except:
+                #googleMap
+                comment = output_lst[4][output_lst[4].index(':')+1:]
+
             if event.message.text == n:
 
                 flex_message5 = FlexSendMessage(
@@ -1288,7 +1298,7 @@ def handle_message(event):
                                                         "size": "sm",
                                                         "wrap": True,
                                                         "margin": "md",
-                                                        "text": "query出來的評論"
+                                                        "text": comment
                                                     }
                                                     ],
                                                     "paddingBottom": "18px"
