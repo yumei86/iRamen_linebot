@@ -690,18 +690,7 @@ def handle_message(event):
                 temp_address.append(lon) 
                 temp_address.append(lat)
 
-#----------------位置經緯度資訊-----------------
 
-        if event.message.text == temp_address[0]:
-
-            location_message = LocationSendMessage(
-                            title= 'location',
-                            address= address,
-                            latitude= temp_address[1],
-                            longitude= temp_address[2]
-                            )
-            line_bot_api.reply_message(event.reply_token,location_message)
-        
 
         if event.message.text == more :
 
@@ -980,6 +969,17 @@ def handle_message(event):
             )
 
             line_bot_api.reply_message(event.reply_token,flex_message4)
+
+    #----------------位置經緯度資訊-----------------
+    if event.message.text == temp_address[0]:
+
+        location_message = LocationSendMessage(
+                        title= 'location',
+                        address= address,
+                        latitude= temp_address[1],
+                        longitude= temp_address[2]
+                            )
+        line_bot_api.reply_message(event.reply_token,location_message)
 
 #----------------選完湯頭介面/湯頭看更多類似推薦-----------------
 
