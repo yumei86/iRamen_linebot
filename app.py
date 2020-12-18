@@ -9,7 +9,7 @@ from flask_sqlalchemy import SQLAlchemy
 import secrets
 import csv
 
-#----------------呼叫我們的line bot(這邊直接取用herohu的環境變數)-----------------
+#----------------呼叫我們的line bot(這邊直接取用heroku的環境變數)-----------------
 
 app = Flask(__name__)
 
@@ -390,6 +390,16 @@ def handle_message(event):
         address = output_lst[1][output_lst[1].index(':')+1:]
         descrip = output_lst[2][output_lst[2].index(':')+1:]
         trans = output_lst[3][output_lst[3].index(':')+1:]
+        
+        try:
+            #FB評論
+            c1 = output_lst[4][output_lst[4].index(':')+1:]
+            c2 = output_lst[5][output_lst[5].index(':')+1:]
+            c3 = output_lst[6][output_lst[6].index(':')+1:]
+            comment = f'貼文時間：{c1}\n品項：{c2}\n評論：{c3}'
+        except:
+            #googleMap
+            comment = output_lst[4][output_lst[4].index(':')+1:]
 
 
         if event.message.text == cond :
@@ -633,7 +643,7 @@ def handle_message(event):
                                                         "size": "sm",
                                                         "wrap": True,
                                                         "margin": "md",
-                                                        "text": "query出來的評論"
+                                                        "text": comment
                                                     }
                                                     ],
                                                     "paddingBottom": "18px"
@@ -911,7 +921,7 @@ def handle_message(event):
                                                         "size": "sm",
                                                         "wrap": True,
                                                         "margin": "md",
-                                                        "text": "query出來的評論"
+                                                        "text": comment
                                                     }
                                                     ],
                                                     "paddingBottom": "18px"
@@ -964,7 +974,7 @@ def handle_message(event):
     taichung = ["豚骨", "醬油", "雞白", "魚介", "沾麵", "雞清", "家系", "雞豚", "味噌", "其他"]
     chuanghua = ["豚骨", "雞白", "家系"]
     nantou = ["豚骨"]
-    #到雲林有bug
+    #到雲林豚骨有bug
     yunlin = ["雞白", "魚介"]
 
     #南部
