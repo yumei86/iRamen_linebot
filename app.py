@@ -498,9 +498,10 @@ def handle_message(event):
                                                     "wrap": True,
                                                     "text": address,
                                                     "action": {
-                                                        "type": "message",
-                                                        "label": "action",
-                                                        "text": address
+                                                        "type": "location",
+                                                        "address": address, 
+                                                        "latitude": lat,
+                                                        "longitude": lon 
                                                     },
                                                     "margin": "md"
                                                     },
@@ -684,12 +685,6 @@ def handle_message(event):
             )
 
             line_bot_api.reply_message(event.reply_token,flex_message3)
-
-            if len(temp_address) <= 3:
-                temp_address.append(address)
-                temp_address.append(lon) 
-                temp_address.append(lat)
-
 
 
         if event.message.text == more :
@@ -971,15 +966,15 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token,flex_message4)
 
     #----------------位置經緯度資訊-----------------
-    if event.message.text == temp_address[0]:
+    #if event.message.text == temp_address[0]:
 
-        location_message = LocationSendMessage(
-                        title= 'location',
-                        address= address,
-                        latitude= temp_address[1],
-                        longitude= temp_address[2]
+     #   location_message = LocationSendMessage(
+     #                   title= 'location',
+      #                  address= address,
+     #                   latitude= temp_address[1],
+      #                  longitude= temp_address[2]
                             )
-        line_bot_api.reply_message(event.reply_token,location_message)
+      #  line_bot_api.reply_message(event.reply_token,location_message)
 
 #----------------選完湯頭介面/湯頭看更多類似推薦-----------------
 
