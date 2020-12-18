@@ -136,8 +136,8 @@
               "type": "button",
               "action": {
                 "type": "message",
-                "label": "雞豚",
-                "text": "台中市:雞豚"
+                "label": "辣味噌",
+                "text": "台中市:辣味噌"
               },
               "style": "primary",
               "height": "sm",
@@ -156,8 +156,8 @@
               "type": "button",
               "action": {
                 "type": "message",
-                "text": "台中市:味噌",
-                "label": "味噌"
+                "text": "台中市:泡系",
+                "label": "泡系"
               },
               "style": "primary",
               "height": "sm",
@@ -224,8 +224,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "label": "雞白",
-                    "text": "彰化縣:雞白"
+                    "label": "雞白湯",
+                    "text": "彰化縣:雞白湯"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -246,6 +246,68 @@
                     "type": "message",
                     "text": "彰化縣:家系",
                     "label": "家系"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "color": "#797D62"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "label": "鴨清",
+                    "text": "彰化縣:鴨清"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "margin": "xxl",
+                  "color": "#797D62"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "margin": "lg",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "text": "彰化縣:鴨白",
+                    "label": "鴨白"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "color": "#797D62"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "label": "限定",
+                    "text": "彰化縣:限定"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "margin": "xxl",
+                  "color": "#797D62"
+                }
+              ]
+            },            
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "margin": "lg",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "text": "彰化縣:雞湯",
+                    "label": "雞湯"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -302,9 +364,15 @@
                   "color": "#797D62"
                 },
                 {
-                  "type": "text",
-                  "text": " ",
-                  "margin": "xxl"
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "label": "其他",
+                    "text": "南投縣:其他"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "color": "#797D62"
                 }
               ]
             }
@@ -344,8 +412,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "雲林縣:豚骨",
-                    "label": "豚骨"
+                    "text": "雲林縣:雞白",
+                    "label": "雞白"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -355,8 +423,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "label": "雞白",
-                    "text": "雲林縣:雞白"
+                    "label": "魚介雞湯",
+                    "text": "雲林縣:魚介雞湯"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -375,8 +443,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "雲林縣:魚介",
-                    "label": "魚介"
+                    "text": "雲林縣:限定",
+                    "label": "限定"
                   },
                   "style": "primary",
                   "height": "sm",
