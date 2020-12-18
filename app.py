@@ -498,10 +498,9 @@ def handle_message(event):
                                                     "wrap": True,
                                                     "text": address,
                                                     "action": {
-                                                        "type": "location",
-                                                        "address": address, 
-                                                        "latitude": lat,
-                                                        "longitude": lon 
+                                                        "type": "message",
+                                                        "label": "action",
+                                                        "text": "!"+lon+":"+lat
                                                     },
                                                     "margin": "md"
                                                     },
