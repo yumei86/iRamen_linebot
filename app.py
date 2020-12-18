@@ -683,7 +683,7 @@ def handle_message(event):
 
 #----------------位置經緯度資訊-----------------
 
-        elif event.message.text == location_temp:
+        if event.message.text == location_temp:
 
             location_message = LocationSendMessage(
                             title= 'location',
