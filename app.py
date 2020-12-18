@@ -679,19 +679,6 @@ def handle_message(event):
             )
 
             line_bot_api.reply_message(event.reply_token,flex_message3)
-            location_temp = address
-
-#----------------位置經緯度資訊-----------------
-
-        if event.message.text == location_temp:
-
-            location_message = LocationSendMessage(
-                            title= 'location',
-                            address= location_temp,
-                            latitude=35.65910807942215,
-                            longitude=139.70372892916203
-                            )
-            line_bot_api.reply_message(event.reply_token,location_message)
 
         if event.message.text == more :
 
