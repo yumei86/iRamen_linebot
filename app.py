@@ -973,7 +973,7 @@ def handle_message(event):
       #                  address= address,
      #                   latitude= temp_address[1],
       #                  longitude= temp_address[2]
-                            )
+       #                     )
       #  line_bot_api.reply_message(event.reply_token,location_message)
 
 #----------------選完湯頭介面/湯頭看更多類似推薦-----------------
