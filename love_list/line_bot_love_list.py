@@ -42,5 +42,5 @@ elif "從最愛清單刪除" in event.message.text:
             ramen_str=ramen_str.remove(delete_ramen)
             line_bot_api.reply_message(
                 event.reply_token,
-                TextSendMessage(text="已經把" + delete_ramen + "從最愛清單刪除！")
+                TextSendMessage(text="刪除最愛清單：" + delete_ramen)
             )
