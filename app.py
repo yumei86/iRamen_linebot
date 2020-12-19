@@ -498,7 +498,7 @@ def handle_message(event):
                                                     "action": {
                                                         "type": "message",
                                                         "label": "action",
-                                                        "text": "正在幫你找到位置:"+lon+":"+lat
+                                                        "text": "正在幫你找到:"+lon+":"+lat
                                                     },
                                                     "margin": "md"
                                                     },
@@ -966,8 +966,8 @@ def handle_message(event):
     if "正在幫你找到" in event.message.text:
 
         text_list = event.message.text.split(":")
-        lonti = text_list[1]
-        lati  = text_list[2]
+        lonti = float(text_list[1])
+        lati  = float(text_list[2])
 
         location_message = LocationSendMessage(
                         title= 'location',
