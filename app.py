@@ -965,12 +965,14 @@ def handle_message(event):
 #----------------位置經緯度資訊-----------------
     if "正在幫你找到" in event.message.text:
 
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "測試"))
+        #line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "測試"))
 
 
-        #text_list = event.message.text.split(":")
-        #lonti = float(text_list[1])
-        #lati  = float(text_list[2])
+        text_list = event.message.text.split(":")
+        lonti = float(text_list[1])
+        lati  = float(text_list[2])
+
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = str(lonti)+":"+str(lati)))
 
         #location_message = LocationSendMessage(
         #                title= 'location',
