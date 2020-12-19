@@ -136,8 +136,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "label": "雞豚",
-                    "text": "台北市:雞豚"
+                    "label": "味噌",
+                    "text": "台北市:味噌"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -244,8 +244,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "新北市:雞白",
-                    "label": "雞白"
+                    "text": "新北市:雞白湯",
+                    "label": "雞白湯"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -255,8 +255,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "label": "魚介",
-                    "text": "新北市:魚介"
+                    "label": "雞骨魚介",
+                    "text": "新北市:雞骨魚介"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -345,9 +345,15 @@
                   "color": "#797D62"
                 },
                 {
-                  "type": "text",
-                  "text": " ",
-                  "margin": "xxl"
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "text": "新北市:其他",
+                    "label": "其他"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "color": "#797D62"
                 }
               ]
             }
@@ -405,6 +411,30 @@
                   "height": "sm",
                   "margin": "xxl",
                   "color": "#797D62"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "margin": "lg",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "text": "基隆市:限定",
+                    "label": "限定"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "color": "#797D62"
+                },
+                {
+                  "type": "text",
+                  "text": " ",
+                  "margin": "xxl"
                 }
               ]
             }
@@ -548,8 +578,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "label": "淡麗系",
-                    "text": "桃園市:淡麗系"
+                    "label": "淡麗",
+                    "text": "桃園市:淡麗"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -579,8 +609,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "label": "大骨",
-                    "text": "桃園市:大骨"
+                    "label": "其他",
+                    "text": "桃園市:其他"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -643,6 +673,30 @@
                   "height": "sm",
                   "margin": "xxl",
                   "color": "#797D62"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "margin": "lg",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "text": "苗栗縣:雞骨",
+                    "label": "雞骨"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "color": "#797D62"
+                },
+                {
+                  "type": "text",
+                  "text": " ",
+                  "margin": "xxl"
                 }
               ]
             }
@@ -763,8 +817,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "新竹市:魚介",
-                    "label": "魚介"
+                    "text": "新竹市:豚骨魚介",
+                    "label": "豚骨魚介"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -864,9 +918,15 @@
                   "color": "#797D62"
                 },
                 {
-                  "type": "text",
-                  "text": " ",
-                  "margin": "xxl"
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "text": "新竹市:其他",
+                    "label": "其他"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "color": "#797D62"
                 }
               ]
             }
