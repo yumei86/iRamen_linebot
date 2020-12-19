@@ -336,8 +336,6 @@ def handle_message(event):
 
 #----------------直接推薦/縣市看更多類似推薦-----------------
     
-    #前二 舊地址新地址 後四舊經緯 新經緯
-    temp_address = []
 
     for city in city_name:
 
@@ -500,7 +498,7 @@ def handle_message(event):
                                                     "action": {
                                                         "type": "message",
                                                         "label": "action",
-                                                        "text": "!"+lon+":"+lat
+                                                        "text": "正在幫你找到位置:"+lon+":"+lat
                                                     },
                                                     "margin": "md"
                                                     },
@@ -965,15 +963,19 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token,flex_message4)
 
     #----------------位置經緯度資訊-----------------
-    #if event.message.text == temp_address[0]:
+    if "正在幫你找到位置" in event.message.text:
 
-     #   location_message = LocationSendMessage(
-     #                   title= 'location',
-      #                  address= address,
-     #                   latitude= temp_address[1],
-      #                  longitude= temp_address[2]
-       #                     )
-      #  line_bot_api.reply_message(event.reply_token,location_message)
+        text_list = event.message.text.split(":")
+        lonti = text_list[1]
+        lati  = text_list[2]
+
+        location_message = LocationSendMessage(
+                        title= 'location',
+                        address= '請點擊畫面跳轉google map!',
+                        latitude= lonti,
+                        longitude= lati
+                            )
+        line_bot_api.reply_message(event.reply_token,location_message)
 
 #----------------選完湯頭介面/湯頭看更多類似推薦-----------------
 
