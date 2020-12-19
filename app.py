@@ -971,8 +971,8 @@ def handle_message(event):
         text_list = event.message.text.split(":")
         lonti = float(text_list[1])
         lati  = float(text_list[2])
-
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = str(lonti)+":"+str(lati)))
+        line_bot_api.reply_message(event.reply_token,LocationSendMessage(title='點擊帶你前往！', address='', latitude=lati, longitude=lonti))
+    
 
         #location_message = LocationSendMessage(
         #                title= 'location',
