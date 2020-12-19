@@ -965,17 +965,20 @@ def handle_message(event):
 #----------------位置經緯度資訊-----------------
     if "正在幫你找到" in event.message.text:
 
-        text_list = event.message.text.split(":")
-        lonti = float(text_list[1])
-        lati  = float(text_list[2])
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "測試"))
 
-        location_message = LocationSendMessage(
-                        title= 'location',
-                        address= '請點擊畫面跳轉google map!',
-                        latitude= lonti,
-                        longitude= lati
-                            )
-        line_bot_api.reply_message(event.reply_token,location_message)
+
+        #text_list = event.message.text.split(":")
+        #lonti = float(text_list[1])
+        #lati  = float(text_list[2])
+
+        #location_message = LocationSendMessage(
+        #                title= 'location',
+        ##                address= '請點擊畫面跳轉google map!',
+         #               latitude= lonti,
+         #               longitude= lati
+         #                   )
+        #line_bot_api.reply_message(event.reply_token,location_message)
 
 #----------------選完湯頭介面/湯頭看更多類似推薦-----------------
 
