@@ -962,8 +962,8 @@ def handle_message(event):
 
             line_bot_api.reply_message(event.reply_token,flex_message4)
 
-    #----------------位置經緯度資訊-----------------
-    if "正在幫你找到位置" in event.message.text:
+#----------------位置經緯度資訊-----------------
+    if "正在幫你找到" in event.message.text:
 
         text_list = event.message.text.split(":")
         lonti = text_list[1]
