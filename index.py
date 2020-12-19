@@ -287,6 +287,7 @@ def submit():
 
 ##---------------------------------------Query love-list by userID-------------------------------------
 # # l[0]:Store l[1]:favorite
+#if message == '最愛清單'
 def get_list_from_user_id(user_id):  
   love_list_q = db.session.query(Store,Favorite)\
     .outerjoin(Favorite, Favorite.detail_store_id == Store.detail_store_id)\
@@ -303,16 +304,6 @@ for data in output_whole_love_list:
     output_whole_love_list.remove(data)
 
 print(output_whole_love_list)
-
-# #count how many list items
-# item_count_love_list = db.session.query(Favorite).filter(Favorite.line_id == user_line_id).count()
-# print(item_count_love_list)
-
-# if __name__ == 'main':
-app.run(debug=True, port=8000)
-
-
-
 
 
 # #soup query
@@ -364,3 +355,7 @@ app.run(debug=True, port=8000)
 #         f.write("%s,%s\n"%(key,soup_data[key]))
 
 
+#---------------------------------測試用---------------------------
+# if __name__ == 'main':
+app.run(debug=True, port=8000)
+#---------------------------------測試用---------------------------
