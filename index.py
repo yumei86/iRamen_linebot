@@ -231,7 +231,7 @@ except IndexError as error:
 
 ##---------------------------------------favorite list-------------------------------------
 user_line_id = 'demmifish'
-msg = '加到最愛清單:一本拉麵·梟'
+msg = '加到最愛清單:一蘭拉麵-台灣台北本店別館'
 first_love_param = ''
 second_love_param = ''
 if ':' in msg:
@@ -253,6 +253,7 @@ def store_exist(store_name):
 def count_love_list(user_id):
   count_love_list = db.session.query(Favorite)\
         .filter(Favorite.line_id == user_id).count()
+  return count_love_list
 def count_total_row(database_name):
   count_total_row = db.session.query(database_name).count()
   return count_total_row
@@ -267,14 +268,14 @@ def submit():
 #---------------------------------測試用---------------------------
   if request.method =='POST':
     if first_love_param == '加到最愛清單':
-      favorite_list_count = count_love_list(user_line_id)
-      already_add_store_count = store_exist(second_love_param)
-      get_foreign_id = get_store_id(second_love_param)
+      favorite_list_count = count_love_list(user_line_id) #how many items a user save
+      already_add_store_count = store_exist(second_love_param) #check if the store user want to add already exist in the list
+      get_foreign_id = get_store_id(second_love_param)#check the map_id(foreign key) of the store
+      print(favorite_list_count)
       # print(type(user_line_id))
       # print(type(get_foreign_id))
       if favorite_list_count == 0 or\
-         (favorite_list_count != 0 and already_add_store_count == 0):
-          # print(get_foreign_id)
+        favorite_list_count != 0 and already_add_store_count == 0 and favorite_list_count <= 25 :
         data = Favorite(user_line_id, get_foreign_id)
         db.session.add(data)
         db.session.commit()
@@ -298,13 +299,13 @@ love_lst_q = get_list_from_user_id(user_line_id)
 love_list = ''
 for l in love_lst_q:
   love_list += f'STORE:{l[0].store},ADDRESS:{l[0].address},DISCRIPTION:{l[0].discription},TRANSPORT:{l[0].transport},MAP_REVIEW:{l[0].map_review},CITY:{l[0].province},CHECK_TAG:{l[0].soup}%'
-output_whole_love_list = convert_string_to_lst(love_list,'%')
+love_list_clear = love_list.replace(u'\xa0', u' ').replace(' ','')
+output_whole_love_list = convert_string_to_lst(love_list_clear,'%')
 for data in output_whole_love_list:
   if data == '':
     output_whole_love_list.remove(data)
-
 print(output_whole_love_list)
-
+print(len(output_whole_love_list))
 
 # #soup query
 # soup_q = Store.query.all()
