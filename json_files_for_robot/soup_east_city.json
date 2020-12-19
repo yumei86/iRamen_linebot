@@ -52,7 +52,31 @@
               "color": "#797D62"
             }
           ]
-        }
+        },
+        {
+          "type": "box",
+          "layout": "horizontal",
+          "margin": "lg",
+          "spacing": "sm",
+          "contents": [
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "text": "宜蘭縣:其他",
+                "label": "其他"
+              },
+              "style": "primary",
+              "height": "sm",
+              "color": "#797D62"
+            },
+            {
+              "type": "text",
+              "text": " ",
+              "margin": "xxl"
+            }
+          ]
+        }          
       ]
     }
   },
@@ -109,7 +133,38 @@
               "color": "#797D62"
             }
           ]
-        }
+        },
+        {
+          "type": "box",
+          "layout": "horizontal",
+          "margin": "lg",
+          "spacing": "sm",
+          "contents": [
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "text": "花蓮縣:鬼頭刀",
+                "label": "鬼頭刀"
+              },
+              "style": "primary",
+              "height": "sm",
+              "color": "#797D62"
+            },
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "label": "其他",
+                "text": "花蓮縣:其他"
+              },
+              "style": "primary",
+              "height": "sm",
+              "margin": "xxl",
+              "color": "#797D62"
+            }
+          ]
+        }          
       ]
     }
   },
@@ -154,9 +209,15 @@
               "color": "#797D62"
             },
             {
-              "type": "text",
-              "text": " ",
-              "margin": "xxl"
+              "type": "button",
+              "action": {
+                "type": "message",
+                "label": "其他",
+                "text": "台東縣:其他"
+              },
+              "style": "primary",
+              "height": "sm",
+              "color": "#797D62"
             }
           ]
         }
