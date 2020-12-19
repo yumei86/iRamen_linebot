@@ -618,9 +618,10 @@
                     "type": "message",
                     "label": "其他",
                     "text": "屏東縣:其他"
-                  },                    
+                  },
                   "style": "primary",
                   "height": "sm",
+                  "margin": "xxl",
                   "color": "#797D62"
                 }
               ]
