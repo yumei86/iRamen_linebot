@@ -71,9 +71,46 @@
                   "color": "#797D62"
                 },
                 {
-                  "type": "text",
-                  "text": " ",
-                  "margin": "xxl"
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "label": "二郎風",
+                    "text": "嘉義市:二郎風"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "margin": "xxl",
+                  "color": "#797D62"
+                }
+              ]
+            },              
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "margin": "lg",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "text": "嘉義市:限定",
+                    "label": "限定"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "color": "#797D62"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "label": "變化",
+                    "text": "嘉義市:變化"
+                  },                    
+                  "style": "primary",
+                  "height": "sm",
+                  "color": "#797D62"
                 }
               ]
             }
@@ -124,8 +161,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "label": "雞白",
-                    "text": "台南市:雞白"
+                    "label": "雞白湯",
+                    "text": "台南市:雞白湯"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -144,8 +181,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "台南市:魚介",
-                    "label": "魚介"
+                    "text": "台南市:豚骨魚介",
+                    "label": "豚骨魚介"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -175,8 +212,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "台南市:雞清",
-                    "label": "雞清"
+                    "text": "台南市:二郎",
+                    "label": "二郎"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -186,8 +223,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "label": "雞豚",
-                    "text": "台南市:雞豚"
+                    "label": "素食",
+                    "text": "台南市:素食"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -325,8 +362,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "高雄市:雞白",
-                    "label": "雞白"
+                    "text": "高雄市:雞白湯",
+                    "label": "雞白湯"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -336,8 +373,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "label": "魚介",
-                    "text": "高雄市:魚介"
+                    "label": "豚骨魚介",
+                    "text": "高雄市:豚骨魚介"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -418,8 +455,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "高雄市:淡麗系",
-                    "label": "淡麗系"
+                    "text": "高雄市:淡麗",
+                    "label": "淡麗"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -526,7 +563,7 @@
                   "color": "#797D62"
                 }
               ]
-            },
+            },              
             {
               "type": "box",
               "layout": "horizontal",
@@ -545,9 +582,46 @@
                   "color": "#797D62"
                 },
                 {
-                  "type": "text",
-                  "text": " ",
-                  "margin": "xxl"
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "label": "雞濃",
+                    "text": "屏東縣:雞濃"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "margin": "xxl",
+                  "color": "#797D62"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "margin": "lg",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "text": "屏東縣:限定",
+                    "label": "限定"
+                  },
+                  "style": "primary",
+                  "height": "sm",
+                  "color": "#797D62"
+                },
+                {
+                  "type": "button",
+                  "action": {
+                    "type": "message",
+                    "label": "其他",
+                    "text": "屏東縣:其他"
+                  },                    
+                  "style": "primary",
+                  "height": "sm",
+                  "color": "#797D62"
                 }
               ]
             }
