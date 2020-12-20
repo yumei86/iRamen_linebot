@@ -498,7 +498,7 @@ def handle_message(event):
                                                     "action": {
                                                         "type": "message",
                                                         "label": "action",
-                                                        "text": "正在幫你找到:"+lon+":"+lat
+                                                        "text": "正在幫你找到:\n"+lon+":"+lat
                                                     },
                                                     "margin": "md"
                                                     },
@@ -777,7 +777,7 @@ def handle_message(event):
                                                     "action": {
                                                         "type": "message",
                                                         "label": "action",
-                                                        "text": address
+                                                        "text": "正在幫你找到:\n"+lon+":"+lat
                                                     },
                                                     "margin": "md"
                                                     },
@@ -965,52 +965,41 @@ def handle_message(event):
 #----------------位置經緯度資訊-----------------
     if "正在幫你找到" in event.message.text:
 
-        #line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "測試"))
-
-
         text_list = event.message.text.split(":")
         lonti = float(text_list[1])
         lati  = float(text_list[2])
-        line_bot_api.reply_message(event.reply_token, LocationSendMessage(title='點擊帶你前往！',address='test',latitude= lati,longitude= lonti))
+        line_bot_api.reply_message(event.reply_token,LocationSendMessage(title='點擊帶你前往！',address='iRamen',latitude= lati,longitude= lonti))
     
-
-        #location_message = LocationSendMessage(
-        #                title= 'location',
-        ##                address= '請點擊畫面跳轉google map!',
-         #               latitude= lonti,
-         #               longitude= lati
-         #                   )
-        #line_bot_api.reply_message(event.reply_token,location_message)
 
 #----------------選完湯頭介面/湯頭看更多類似推薦-----------------
 
     #各縣市湯頭清單
     #北部
-    taipei = ["豚骨", "醬油", "雞白", "魚介", "沾麵", "雞清", "家系", "雞豚", "淡麗系", "其他"]
-    new_taipei = ["豚骨", "醬油", "雞白", "魚介", "沾麵", "雞清", "淡麗系", "煮干", "素食"]
-    keelung = ["豚骨", "素食"]
-    taoyuan = ["豚骨", "醬油", "雞白", "魚介", "沾麵", "雞清", "柑橘", "淡麗", "煮干", "大骨"]
-    miaoli = ["豚骨", "咖哩"]
+    taipei = ["豚骨", "醬油", "雞白", "魚介", "沾麵", "雞清", "家系", "味噌", "淡麗系", "其他"]
+    new_taipei = ["豚骨", "醬油", "雞白湯", "雞骨魚介", "沾麵", "雞清", "淡麗系", "煮干", "素食","其他"]
+    keelung = ["豚骨", "素食","限定"]
+    taoyuan = ["豚骨", "醬油", "雞白", "魚介", "沾麵", "雞清", "柑橘", "淡麗", "煮干", "其他"]
+    miaoli = ["豚骨", "咖哩","雞骨"]
     hsinchu_county = ["豚骨"]
-    hsinchu_city = ["豚骨", "醬油", "魚介", "雞清", "素食", "背脂", "淡麗系"]
+    hsinchu_city = ["豚骨", "醬油", "豚股魚介", "沾麵" , "雞清", "家系" , "素食", "背脂", "淡麗系" , "其他"]
 
     #中部
-    taichung = ["豚骨", "醬油", "雞白", "魚介", "沾麵", "雞清", "家系", "雞豚", "味噌", "其他"]
-    chuanghua = ["豚骨", "雞白", "家系"]
-    nantou = ["豚骨"]
+    taichung = ["豚骨", "醬油", "雞白", "魚介", "沾麵", "雞清", "家系", "辣味噌", "泡系", "其他"]
+    chuanghua = ["豚骨", "雞白湯", "家系", "鴨清", "鴨白", "限定", "雞湯"]
+    nantou = ["豚骨", "其他"]
     #到雲林豚骨有bug
-    yunlin = ["雞白", "魚介"]
+    yunlin = ["雞白", "魚介雞湯", "限定"]
 
     #南部
-    chiayi = ["豚骨", "沾麵", "家系"]
-    tainan = ["豚骨", "雞白", "魚介", "沾麵", "雞清", "雞豚", "咖哩", "淡麗系", "煮干", "其他"]
-    kaohsiung = ["豚骨", "醬油", "雞白", "魚介", "沾麵", "雞清", "家系", "雞豚", "淡麗系", "其他"]
-    pintung = ["豚骨", "醬油", "雞白", "雞清", "家系"]
+    chiayi = ["豚骨", "沾麵", "家系", "二郎風", "限定", "變化"]
+    tainan = ["豚骨", "雞白湯", "豚骨魚介", "沾麵", "二郎", "素食", "咖哩", "淡麗系", "煮干", "其他"]
+    kaohsiung = ["豚骨", "醬油", "雞白湯", "豚骨魚介", "沾麵", "雞清", "家系", "雞豚", "淡麗", "其他"]
+    pintung = ["豚骨", "醬油", "雞白", "雞清", "家系", "雞濃", "限定", "其他"]
 
     #東部
-    yilan = ["豚骨", "三星蔥"]
-    hualien = ["豚骨", "魚白"]
-    taitung = ["豚骨"]
+    yilan = ["豚骨", "三星蔥", "其他"]
+    hualien = ["豚骨", "魚白", "鬼頭刀", "其他"]
+    taitung = ["豚骨", "其他"]
 
     city_soup = [taipei,new_taipei,keelung,taoyuan,miaoli,hsinchu_county,hsinchu_city, \
                  taichung,chuanghua,nantou,yunlin, \
@@ -1174,7 +1163,7 @@ def handle_message(event):
                                                     "action": {
                                                         "type": "message",
                                                         "label": "action",
-                                                        "text": address
+                                                        "text": "正在幫你找到:\n"+lon+":"+lat
                                                     },
                                                     "margin": "md"
                                                     },
