@@ -1471,7 +1471,7 @@ def handle_message(event):
 
 
 #----------------最愛清單訊息觸發設定-----------------  
-    ramen_test = output_whole_reman_st
+    ramen_test = ['我','傻眼']
     if event.message.text == "最愛清單":
 
         if ramen_test == []:
