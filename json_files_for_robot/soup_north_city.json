@@ -818,8 +818,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "新竹市:豚骨魚介",
-                    "label": "豚骨魚介"
+                    "text": "新竹市:二郎",
+                    "label": "二郎"
                   },
                   "style": "primary",
                   "height": "sm",
