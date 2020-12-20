@@ -348,11 +348,12 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "新北市:其他",
-                    "label": "其他"
+                    "label": "其他",
+                    "text": "新北市:其他"
                   },
                   "style": "primary",
                   "height": "sm",
+                  "margin": "xxl",
                   "color": "#797D62"
                 }
               ]
@@ -905,7 +906,7 @@
               "layout": "horizontal",
               "margin": "lg",
               "spacing": "sm",
-              "contents": [
+              "contents": [              
                 {
                   "type": "button",
                   "action": {
@@ -921,11 +922,12 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "新竹市:其他",
-                    "label": "其他"
+                    "label": "其他",
+                    "text": "新竹市:其他"
                   },
                   "style": "primary",
                   "height": "sm",
+                  "margin": "xxl",
                   "color": "#797D62"
                 }
               ]
