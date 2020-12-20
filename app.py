@@ -4,6 +4,7 @@ from linebot.exceptions import (InvalidSignatureError)
 from linebot.models import *
 import json
 import os
+from linebot.exceptions import LineBotApiError
 
 from flask_sqlalchemy import SQLAlchemy
 import secrets
@@ -135,6 +136,67 @@ def convert_string_to_lst(string,c):
     li = list(string.split(c)) 
     return li 
 
+##----------------我的最愛取得userid資料庫設定-----------------
+def get_store_id(store_name):
+    store_id_q = db.session.query(Store)\
+        .filter(Store.store == store_name)
+    for data in store_id_q:
+        get_id = data.detail_store_id
+    return get_id
+def store_exist(store_name):
+    store_exist = db.session.query(Store, Favorite)\
+            .join(Favorite, Favorite.detail_store_id == Store.detail_store_id)\
+            .filter(Store.store == store_name).count()
+    return store_exist
+def count_love_list(user_id):
+    count_love_list = db.session.query(Favorite)\
+            .filter(Favorite.line_id == user_id).count()
+    return count_love_list
+def count_total_row(database_name):
+    count_total_row = db.session.query(database_name).count()
+    return count_total_row
+
+
+##----------------Query love-list by userID----------------
+def get_list_from_user_id(user_id):  
+    love_list_q = db.session.query(Store,Favorite)\
+        .outerjoin(Favorite, Favorite.detail_store_id == Store.detail_store_id)\
+        .filter(Favorite.line_id == user_id)
+    return love_list_q
+
+
+#----------------最愛清單動態的模板設定-----------------
+
+def favorite_list_generator(favorite_list):
+    
+    button_list = [BoxComponent(
+                    layout="vertical",
+                    margin="sm",
+                    spacing="sm",
+                    contents=[
+                        TextComponent(text="最愛清單",weight="bold",size="sm",margin="sm",wrap=True,),
+                        SeparatorComponent(margin = "xl")
+                    ])]
+    for i in favorite_list:
+
+        favorite_button = ButtonComponent(style="primary", color="#997B66", size="sm", margin="sm",
+                                        action=MessageAction(label=i, text=i),)
+        delete_button = ButtonComponent(style="secondary", color="#F1DCA7", size="sm", margin="sm", flex=0,
+                                      action=MessageAction(label="-", text="刪除最愛清單："+i),)
+        button_row = BoxComponent(layout="horizontal", margin="md", spacing="sm",
+                                contents=[favorite_button, delete_button])
+        button_list.append(button_row)
+    
+    bubble = BubbleContainer(
+        director='ltr',
+    
+        body=BoxComponent(
+            layout="vertical",
+            contents=button_list
+        )
+    )
+
+    return bubble
 
 #----------------官方設定-----------------
 
@@ -498,7 +560,7 @@ def handle_message(event):
                                                     "action": {
                                                         "type": "message",
                                                         "label": "action",
-                                                        "text": "正在幫你找到:"+lon+":"+lat
+                                                        "text": "正在幫你找到:\n"+lon+":"+lat
                                                     },
                                                     "margin": "md"
                                                     },
@@ -777,7 +839,7 @@ def handle_message(event):
                                                     "action": {
                                                         "type": "message",
                                                         "label": "action",
-                                                        "text": address
+                                                        "text": "正在幫你找到:\n"+lon+":"+lat
                                                     },
                                                     "margin": "md"
                                                     },
@@ -965,52 +1027,40 @@ def handle_message(event):
 #----------------位置經緯度資訊-----------------
     if "正在幫你找到" in event.message.text:
 
-        #line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "測試"))
-
-
         text_list = event.message.text.split(":")
         lonti = float(text_list[1])
         lati  = float(text_list[2])
-        line_bot_api.reply_message(event.reply_token, LocationSendMessage(title='點擊帶你前往！',address='test',latitude= lati,longitude= lonti))
+        line_bot_api.reply_message(event.reply_token,LocationSendMessage(title='點擊帶你前往！',address='iRamen',latitude= lati,longitude= lonti))
     
-
-        #location_message = LocationSendMessage(
-        #                title= 'location',
-        ##                address= '請點擊畫面跳轉google map!',
-         #               latitude= lonti,
-         #               longitude= lati
-         #                   )
-        #line_bot_api.reply_message(event.reply_token,location_message)
 
 #----------------選完湯頭介面/湯頭看更多類似推薦-----------------
 
     #各縣市湯頭清單
     #北部
-    taipei = ["豚骨", "醬油", "雞白", "魚介", "沾麵", "雞清", "家系", "雞豚", "淡麗系", "其他"]
-    new_taipei = ["豚骨", "醬油", "雞白", "魚介", "沾麵", "雞清", "淡麗系", "煮干", "素食"]
-    keelung = ["豚骨", "素食"]
-    taoyuan = ["豚骨", "醬油", "雞白", "魚介", "沾麵", "雞清", "柑橘", "淡麗", "煮干", "大骨"]
-    miaoli = ["豚骨", "咖哩"]
+    taipei = ["豚骨", "醬油", "雞白", "魚介", "沾麵", "雞清", "家系", "味噌", "淡麗系", "其他"]
+    new_taipei = ["豚骨", "醬油", "雞白湯", "雞骨魚介", "沾麵", "雞清", "淡麗系", "煮干", "素食", "其他"]
+    keelung = ["豚骨", "素食", "限定"]
+    taoyuan = ["豚骨", "醬油", "雞白", "魚介", "沾麵", "雞清", "柑橘", "淡麗", "煮干", "其他"]
+    miaoli = ["豚骨", "咖哩","雞骨"]
     hsinchu_county = ["豚骨"]
-    hsinchu_city = ["豚骨", "醬油", "魚介", "雞清", "素食", "背脂", "淡麗系"]
+    hsinchu_city = ["豚骨", "醬油", "二郎", "沾麵" , "雞清", "家系" , "素食", "背脂", "淡麗系" , "其他"]
 
     #中部
-    taichung = ["豚骨", "醬油", "雞白", "魚介", "沾麵", "雞清", "家系", "雞豚", "味噌", "其他"]
-    chuanghua = ["豚骨", "雞白", "家系"]
-    nantou = ["豚骨"]
-    #到雲林豚骨有bug
-    yunlin = ["雞白", "魚介"]
+    taichung = ["豚骨", "醬油", "雞白", "魚介", "沾麵", "雞清", "家系", "辣味噌", "泡系", "其他"]
+    chuanghua = ["豚骨", "雞白湯", "家系", "鴨清", "鴨白", "限定", "雞湯"]
+    nantou = ["豚骨", "其他"]
+    yunlin = ["雞白", "魚介雞湯", "限定"]
 
     #南部
-    chiayi = ["豚骨", "沾麵", "家系"]
-    tainan = ["豚骨", "雞白", "魚介", "沾麵", "雞清", "雞豚", "咖哩", "淡麗系", "煮干", "其他"]
-    kaohsiung = ["豚骨", "醬油", "雞白", "魚介", "沾麵", "雞清", "家系", "雞豚", "淡麗系", "其他"]
-    pintung = ["豚骨", "醬油", "雞白", "雞清", "家系"]
+    chiayi = ["豚骨", "沾麵", "家系", "二郎風", "限定", "變化"]
+    tainan = ["豚骨", "雞白湯", "豚骨魚介", "沾麵", "二郎", "素食", "咖哩", "淡麗系", "煮干", "其他"]
+    kaohsiung = ["豚骨", "醬油", "雞白湯", "豚骨魚介", "沾麵", "雞清", "家系", "雞豚", "淡麗", "其他"]
+    pintung = ["豚骨", "醬油", "雞白", "雞清", "家系", "雞濃", "限定", "其他"]
 
     #東部
-    yilan = ["豚骨", "三星蔥"]
-    hualien = ["豚骨", "魚白"]
-    taitung = ["豚骨"]
+    yilan = ["豚骨", "三星蔥", "其他"]
+    hualien = ["豚骨", "魚白", "鬼頭刀", "其他"]
+    taitung = ["豚骨", "其他"]
 
     city_soup = [taipei,new_taipei,keelung,taoyuan,miaoli,hsinchu_county,hsinchu_city, \
                  taichung,chuanghua,nantou,yunlin, \
@@ -1174,7 +1224,7 @@ def handle_message(event):
                                                     "action": {
                                                         "type": "message",
                                                         "label": "action",
-                                                        "text": address
+                                                        "text": "正在幫你找到:\n"+lon+":"+lat
                                                     },
                                                     "margin": "md"
                                                     },
@@ -1359,9 +1409,30 @@ def handle_message(event):
 
                 line_bot_api.reply_message(event.reply_token,flex_message5)
 
-#----------------最愛清單訊息觸發設定-----------------   
-    #if event.message.text == "最愛清單":
-    #    line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "尚未有最愛清單，快去加入你喜歡的拉麵吧！\uDBC0\uDC5e"))
+#----------------最愛清單加入資料庫設定與訊息回覆設定-----------------
+    
+    user_id = event.source.user_id
+
+    if "加到最愛清單" in event.message.text:
+        
+        #text_l = event.message.text.split(":")
+        #add_ramen = text_l[1]
+
+        user_line_id = user_id
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = user_line_id))
+
+#----------------最愛清單訊息觸發設定-----------------  
+    #ramen_st = ['測試用店家','傻眼貓咪']
+    if event.message.text == "最愛清單":
+
+        #line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "尚未有最愛清單，快去加入你喜歡的拉麵吧！\uDBC0\uDC5e"))
+        
+        flex_message6 = FlexSendMessage(
+                                        alt_text= '快回來看看我的最愛！',
+                                        contents= favorite_list_generator(ramen_st)
+        )
+        line_bot_api.reply_message(event.reply_token,flex_message6)  
+
 
 
 if __name__ == 'main':
