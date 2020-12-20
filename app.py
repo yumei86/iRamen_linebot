@@ -1412,7 +1412,11 @@ def handle_message(event):
 
     if "加到最愛清單" in event.message.text:
 
-        user_line_id = user_id
+        try:
+            user_line_id = user_id
+        except:
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "我需要一點時間認識你，請再點一次\udbc0\udc8e"))
+
         text_l = event.message.text.split(":")
         
         first_love_param = text_l[0]
