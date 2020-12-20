@@ -4,6 +4,7 @@ from linebot.exceptions import (InvalidSignatureError)
 from linebot.models import *
 import json
 import os
+from linebot.exceptions import LineBotApiError
 
 from flask_sqlalchemy import SQLAlchemy
 import secrets
@@ -135,6 +136,67 @@ def convert_string_to_lst(string,c):
     li = list(string.split(c)) 
     return li 
 
+##----------------我的最愛取得userid資料庫設定-----------------
+def get_store_id(store_name):
+    store_id_q = db.session.query(Store)\
+        .filter(Store.store == store_name)
+    for data in store_id_q:
+        get_id = data.detail_store_id
+    return get_id
+def store_exist(store_name):
+    store_exist = db.session.query(Store, Favorite)\
+            .join(Favorite, Favorite.detail_store_id == Store.detail_store_id)\
+            .filter(Store.store == store_name).count()
+    return store_exist
+def count_love_list(user_id):
+    count_love_list = db.session.query(Favorite)\
+            .filter(Favorite.line_id == user_id).count()
+    return count_love_list
+def count_total_row(database_name):
+    count_total_row = db.session.query(database_name).count()
+    return count_total_row
+
+
+##----------------Query love-list by userID----------------
+def get_list_from_user_id(user_id):  
+    love_list_q = db.session.query(Store,Favorite)\
+        .outerjoin(Favorite, Favorite.detail_store_id == Store.detail_store_id)\
+        .filter(Favorite.line_id == user_id)
+    return love_list_q
+
+
+#----------------最愛清單動態的模板設定-----------------
+
+def favorite_list_generator(favorite_list):
+    
+    button_list = [BoxComponent(
+                    layout="vertical",
+                    margin="sm",
+                    spacing="sm",
+                    content=[
+                        TextComponent(text="最愛清單", weight="bold", size="sm", margin="sm", wrap=True,),
+                        SeparatorComponent(margin = "xl")
+                    ])]
+    for i in favorite_list:
+
+        favorite_button = ButtonComponent(style="primary", color="#997B66", size="sm", margin="sm",
+                                        action=MessageAction(label=i, text=i), )
+        delete_button = ButtonComponent(style="secondary", color="#F1DCA7", size="sm", margin="sm", flex=0,
+                                      action=MessageAction(label="-", text="刪除最愛清單："+i), )
+        button_row = BoxComponent(layout="horizontal", margin="md", spacing="sm",
+                                contents=[favorite_button, delete_button])
+        button_list.append(button_row)
+    
+    bubble = BubbleContainer(
+        director='ltr',
+    
+        body=BoxComponent(
+            layout="vertical",
+            contents=button_list
+        )
+    )
+
+    return bubble
 
 #----------------官方設定-----------------
 
@@ -976,8 +1038,8 @@ def handle_message(event):
     #各縣市湯頭清單
     #北部
     taipei = ["豚骨", "醬油", "雞白", "魚介", "沾麵", "雞清", "家系", "味噌", "淡麗系", "其他"]
-    new_taipei = ["豚骨", "醬油", "雞白湯", "雞骨魚介", "沾麵", "雞清", "淡麗系", "煮干", "素食","其他"]
-    keelung = ["豚骨", "素食","限定"]
+    new_taipei = ["豚骨", "醬油", "雞白湯", "雞骨魚介", "沾麵", "雞清", "淡麗系", "煮干", "素食", "其他"]
+    keelung = ["豚骨", "素食", "限定"]
     taoyuan = ["豚骨", "醬油", "雞白", "魚介", "沾麵", "雞清", "柑橘", "淡麗", "煮干", "其他"]
     miaoli = ["豚骨", "咖哩","雞骨"]
     hsinchu_county = ["豚骨"]
@@ -987,7 +1049,6 @@ def handle_message(event):
     taichung = ["豚骨", "醬油", "雞白", "魚介", "沾麵", "雞清", "家系", "辣味噌", "泡系", "其他"]
     chuanghua = ["豚骨", "雞白湯", "家系", "鴨清", "鴨白", "限定", "雞湯"]
     nantou = ["豚骨", "其他"]
-    #到雲林豚骨有bug
     yunlin = ["雞白", "魚介雞湯", "限定"]
 
     #南部
@@ -1348,9 +1409,30 @@ def handle_message(event):
 
                 line_bot_api.reply_message(event.reply_token,flex_message5)
 
-#----------------最愛清單訊息觸發設定-----------------   
-    #if event.message.text == "最愛清單":
+#----------------最愛清單加入資料庫設定與訊息回覆設定-----------------
+    
+    user_id = event.source.user_id
+
+    if "加到最愛清單" in event.message.text:
+        
+        #text_l = event.message.text.split(":")
+        #add_ramen = text_l[1]
+
+        user_line_id = user_id
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = user_line_id))
+
+#----------------最愛清單訊息觸發設定-----------------  
+    ramen_st = ['測試用店家','傻眼貓咪']
+    if event.message.text == "最愛清單":
+
     #    line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "尚未有最愛清單，快去加入你喜歡的拉麵吧！\uDBC0\uDC5e"))
+        
+        flex_message6 = FlexSendMessage(
+                                        alt_text= '快回來看看我的最愛！',
+                                        contents= favorite_list_generator(ramen_st)
+        )
+        line_bot_api.reply_message(event.reply_token,flex_message6)  
+
 
 
 if __name__ == 'main':
