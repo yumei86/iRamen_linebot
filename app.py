@@ -94,7 +94,6 @@ class Post(db.Model):
   ramen_name = db.Column (db.String(100))
   fb_review = db.Column (db.Text())
 
-  post_favorite_relationship = db.relationship('Favorite', backref= 'post', lazy=True)
 
   def __init__(self, store_id, stores, create_on, ramen_name, fb_review):
     self.store_id = store_id
@@ -105,15 +104,13 @@ class Post(db.Model):
 
 class Favorite(db.Model):
   __tablename__ = 'favorite'
-  favorite_id = db.Column (db.String(10), primary_key = True)
-  detail_store_id = db.Column (db.String(10), db.ForeignKey('store.detail_store_id'), nullable=False, onupdate ='CASCADE')
-  post_id = db.Column (db.String(10), db.ForeignKey('post.post_id'), nullable=False, onupdate ='CASCADE')
-  line_id = db.Column (db.String(20),nullable=False)
-
-  def __init__(self, detail_store_id, post_id, line_id):
-    self.detail_store_id = detail_store_id
-    self.post_id= post_id
+  id = db.Column (db.Integer, primary_key = True)
+  line_id = db.Column (db.String(34), nullable = False)
+  detail_store_id = db.Column (db.String(10), db.ForeignKey('store.detail_store_id'), nullable = False, onupdate ='CASCADE')
+  
+  def __init__(self, line_id, detail_store_id):
     self.line_id = line_id
+    self.detail_store_id = detail_store_id
 
 def query_province_soup(p, s):
     province_soup_q = db.session.query(Main_store, Store, Post)\
