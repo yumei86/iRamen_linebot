@@ -175,7 +175,7 @@ def favorite_list_generator(favorite_list):
                     spacing="sm",
                     contents=[
                         TextComponent(text="最愛清單",weight="bold",size="sm",margin="sm",wrap=True,),
-                        SeparatorComponent(margin = "xl")
+                        SeparatorComponent(margin = "xxl")
                     ])]
     for i in favorite_list:
 
@@ -1411,18 +1411,63 @@ def handle_message(event):
 
 #----------------最愛清單加入資料庫設定與訊息回覆設定-----------------
     
-    user_id = event.source.user_id
-    
+    user_id = event.source.user_id   
 
     if "加到最愛清單" in event.message.text:
-        
-        #text_l = event.message.text.split(":")
-        #add_ramen = text_l[1]
+
         user_line_id = user_id
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = user_line_id))
+        text_l = event.message.text.split(":")
+        
+        first_love_param = text_l[0]
+        second_love_param = text_l[1] 
+
+        if first_love_param == '加到最愛清單':
+            favorite_list_count = count_love_list(user_line_id) #how many items a user save
+            already_add_store_count = store_exist(second_love_param) #check if the store user want to add already exist in the list
+            get_foreign_id = get_store_id(second_love_param)#check the map_id(foreign key) of the store
+
+        if favorite_list_count == 0 or\
+            favorite_list_count != 0 and already_add_store_count == 0 and favorite_list_count <= 25 :
+            data = Favorite(user_line_id,get_foreign_id)
+            db.session.add(data)
+            db.session.commit()
+
+            line_bot_api.reply_message(
+                    event.reply_token,
+                    TextSendMessage(text="已經把" + second_love_param + "加進最愛清單！")
+                )
+        elif favorite_list_count > 25:
+
+            line_bot_api.reply_message(
+                    event.reply_token,
+                    TextSendMessage(text="最愛清單數量超過上限，請刪除部分資料\udbc0\udc7c")
+                )
+        else:
+            line_bot_api.reply_message(
+                    event.reply_token,
+                    TextSendMessage(text= second_love_param + "已經在最愛清單！")
+                )
+    
+    
+    
+    love_lst_q = get_list_from_user_id(user_line_id)
+    love_list = ''
+    for l in love_lst_q:
+        love_list += f'STORE:{l[0].store},ADDRESS:{l[0].address},DISCRIPTION:{l[0].discription},TRANSPORT:{l[0].transport},MAP_REVIEW:{l[0].map_review},CITY:{l[0].province},CHECK_TAG:{l[0].soup}%'
+    love_list_clear = love_list.replace(u'\xa0', u' ').replace(' ','')
+    output_whole_love_list = convert_string_to_lst(love_list_clear,'%')
+    for data in output_whole_love_list:
+        if data == '':
+            output_whole_love_list.remove(data)
+    
+    ramen_st = []
+    for j in len(output_whole_love_list):
+        ramen_temp = output_whole_love_list[j].split(",")
+        ramen_st.append(ramen_temp[0])
+
 
 #----------------最愛清單訊息觸發設定-----------------  
-    ramen_st = []
+
     if event.message.text == "最愛清單":
 
         if ramen_st == []:
