@@ -1422,7 +1422,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text = user_line_id))
 
 #----------------最愛清單訊息觸發設定-----------------  
-    #ramen_st = ['測試用店家','傻眼貓咪']
+    ramen_st = ['測試用店家','傻眼貓咪']
     if event.message.text == "最愛清單":
 
         #line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "尚未有最愛清單，快去加入你喜歡的拉麵吧！\uDBC0\uDC5e"))
