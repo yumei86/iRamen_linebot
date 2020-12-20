@@ -1411,15 +1411,15 @@ def handle_message(event):
 
 #----------------最愛清單加入資料庫設定與訊息回覆設定-----------------
     
-    user_id = event.source.user_id
+    #user_id = event.source.user_id
 
-    if "加到最愛清單" in event.message.text:
+    #if "加到最愛清單" in event.message.text:
         
         #text_l = event.message.text.split(":")
         #add_ramen = text_l[1]
 
-        user_line_id = user_id
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = user_line_id))
+    #    user_line_id = user_id
+    #    line_bot_api.reply_message(event.reply_token, TextSendMessage(text = user_line_id))
 
 #----------------最愛清單訊息觸發設定-----------------  
     #ramen_st = ['測試用店家','傻眼貓咪']
