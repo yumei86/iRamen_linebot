@@ -173,16 +173,16 @@ def favorite_list_generator(favorite_list):
                     layout="vertical",
                     margin="sm",
                     spacing="sm",
-                    content=[
-                        TextComponent(text="最愛清單", weight="bold", size="sm", margin="sm", wrap=True,),
+                    contents=[
+                        TextComponent(text="最愛清單",weight="bold",size="sm",margin="sm",wrap=True,),
                         SeparatorComponent(margin = "xl")
                     ])]
     for i in favorite_list:
 
         favorite_button = ButtonComponent(style="primary", color="#997B66", size="sm", margin="sm",
-                                        action=MessageAction(label=i, text=i), )
+                                        action=MessageAction(label=i, text=i),)
         delete_button = ButtonComponent(style="secondary", color="#F1DCA7", size="sm", margin="sm", flex=0,
-                                      action=MessageAction(label="-", text="刪除最愛清單："+i), )
+                                      action=MessageAction(label="-", text="刪除最愛清單："+i),)
         button_row = BoxComponent(layout="horizontal", margin="md", spacing="sm",
                                 contents=[favorite_button, delete_button])
         button_list.append(button_row)
@@ -1422,16 +1422,16 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text = user_line_id))
 
 #----------------最愛清單訊息觸發設定-----------------  
-    ramen_st = ['測試用店家','傻眼貓咪']
+    #ramen_st = ['測試用店家','傻眼貓咪']
     if event.message.text == "最愛清單":
 
-    #    line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "尚未有最愛清單，快去加入你喜歡的拉麵吧！\uDBC0\uDC5e"))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "尚未有最愛清單，快去加入你喜歡的拉麵吧！\uDBC0\uDC5e"))
         
-        flex_message6 = FlexSendMessage(
-                                        alt_text= '快回來看看我的最愛！',
-                                        contents= favorite_list_generator(ramen_st)
-        )
-        line_bot_api.reply_message(event.reply_token,flex_message6)  
+       # flex_message6 = FlexSendMessage(
+       #                                 alt_text= '快回來看看我的最愛！',
+       #                                 contents= favorite_list_generator(ramen_st)
+       # )
+       # line_bot_api.reply_message(event.reply_token,flex_message6)  
 
 
 
