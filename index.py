@@ -88,7 +88,7 @@ class Post(db.Model):
 class Favorite(db.Model):
   __tablename__ = 'favorite'
   id = db.Column (db.Integer, primary_key = True)
-  line_id = db.Column (db.String(20), nullable = False)
+  line_id = db.Column (db.String(34), nullable = False)
   detail_store_id = db.Column (db.String(10), db.ForeignKey('store.detail_store_id'), nullable = False, onupdate ='CASCADE')
   
   def __init__(self, line_id, detail_store_id):
@@ -148,7 +148,7 @@ city_name = ["台北市","新北市","基隆市","桃園市","苗栗縣","新竹
             ,"台中市","彰化縣","南投縣","雲林縣","嘉義市","台南市","高雄市","屏東縣","宜蘭縣","花蓮縣","台東縣"]
 
 user_msg = 'query出來的地址'
-user_select = '直接推薦:雲林縣'
+user_select = '新竹市:魚介'
 select_first_param = ''
 select_second_param = ''
 
@@ -185,7 +185,7 @@ else:
 #+++++++++++++++++CHANGE+++++++++++++++++
 
 
-#MAP_ID:{r[1].detail_store_id},FB_ID:{r[2].post_id}
+# #MAP_ID:{r[1].detail_store_id},FB_ID:{r[2].post_id}
 #---------------------------------put all data in a string--------------------------
 ouput_database_fb = ''
 ouput_database_map = ''
@@ -228,6 +228,7 @@ try:
 except IndexError as error:
   print("請輸入有效店名關鍵字(不可在前後加入空白)，例如\"鷹流 中山\",\"一風堂\"")
 #+++++++++++++++++CHANGE+++++++++++++++++
+print(output_lst)
 
 ##---------------------------------------favorite list-------------------------------------
 user_line_id = 'demmifish'
@@ -357,6 +358,6 @@ print(len(output_whole_love_list))
 
 
 #---------------------------------測試用---------------------------
-# if __name__ == 'main':
-app.run(debug=True, port=8000)
+if __name__ == 'main':
+  app.run(debug=True)
 #---------------------------------測試用---------------------------
