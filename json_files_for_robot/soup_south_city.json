@@ -107,13 +107,14 @@
                     "type": "message",
                     "label": "變化",
                     "text": "嘉義市:變化"
-                  },                    
+                  },
                   "style": "primary",
                   "height": "sm",
+                  "margin": "xxl",
                   "color": "#797D62"
                 }
               ]
-            }
+            }              
           ]
         }
       },
