@@ -1451,28 +1451,35 @@ def handle_message(event):
     love_list = ''
     for l in love_lst_q:
         love_list += f'STORE:{l[0].store},ADDRESS:{l[0].address},DISCRIPTION:{l[0].discription},TRANSPORT:{l[0].transport},MAP_REVIEW:{l[0].map_review},CITY:{l[0].province},CHECK_TAG:{l[0].soup}%'
+        ramen_st += f'STORE:{l[0].store}%'
+
     love_list_clear = love_list.replace(u'\xa0', u' ').replace(' ','')
+    ramen_st_clear = ramen_st.replace(u'\xa0', u' ').replace(' ','')
+
     output_whole_love_list = convert_string_to_lst(love_list_clear,'%')
+    output_whole_reman_st = convert_string_to_lst(ramen_st_clear,'%')
+    
     for data in output_whole_love_list:
         if data == '':
             output_whole_love_list.remove(data)
-    
-    ramen_st = []
-    for j in len(output_whole_love_list):
-        ramen_temp = output_whole_love_list[j].split(",")
-        ramen_st.append(ramen_temp[0])
+
+    for data in output_whole_love_list:
+        if data == '':
+            output_whole_reman_st.remove(data)
+
+
 
 
 #----------------最愛清單訊息觸發設定-----------------  
-
+    ramen_test = output_whole_reman_st
     if event.message.text == "最愛清單":
 
-        if ramen_st == []:
+        if ramen_test == []:
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "尚未有最愛清單，快去加入你喜歡的拉麵吧！\uDBC0\uDC5e"))
         else:
             flex_message6 = FlexSendMessage(
                                         alt_text= '快回來看看我的最愛！',
-                                        contents= favorite_list_generator(ramen_st)
+                                        contents= favorite_list_generator(ramen_test)
             )
             line_bot_api.reply_message(event.reply_token,flex_message6)  
 
