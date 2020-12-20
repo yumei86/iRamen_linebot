@@ -217,10 +217,11 @@
               },
               "style": "primary",
               "height": "sm",
+              "margin": "xxl",
               "color": "#797D62"
             }
           ]
-        }
+        }         
       ]
     }
   }
