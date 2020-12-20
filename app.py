@@ -1412,26 +1412,27 @@ def handle_message(event):
 #----------------最愛清單加入資料庫設定與訊息回覆設定-----------------
     
     user_id = event.source.user_id
+    
 
     if "加到最愛清單" in event.message.text:
         
         #text_l = event.message.text.split(":")
         #add_ramen = text_l[1]
-
         user_line_id = user_id
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text = user_line_id))
 
 #----------------最愛清單訊息觸發設定-----------------  
-    ramen_st = ['測試用店家','傻眼貓咪']
+    ramen_st = []
     if event.message.text == "最愛清單":
 
-        #line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "尚未有最愛清單，快去加入你喜歡的拉麵吧！\uDBC0\uDC5e"))
-        
-        flex_message6 = FlexSendMessage(
+        if ramen_st == []:
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "尚未有最愛清單，快去加入你喜歡的拉麵吧！\uDBC0\uDC5e"))
+        else:
+            flex_message6 = FlexSendMessage(
                                         alt_text= '快回來看看我的最愛！',
                                         contents= favorite_list_generator(ramen_st)
-        )
-        line_bot_api.reply_message(event.reply_token,flex_message6)  
+            )
+            line_bot_api.reply_message(event.reply_token,flex_message6)  
 
 
 
