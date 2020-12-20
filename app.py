@@ -222,8 +222,29 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg = event.message.text
-    msg = msg.encode('utf-8')  
+    msg = msg.encode('utf-8') 
 
+#----------------取得userid-----------------
+    user_id = event.source.user_id  
+
+#----------------該id的最愛清單database-----------------
+    love_lst_q = get_list_from_user_id(user_id)
+    love_list = ''
+    for l in love_lst_q:
+        love_list += f'STORE:{l[0].store},ADDRESS:{l[0].address},DISCRIPTION:{l[0].discription},TRANSPORT:{l[0].transport},MAP_REVIEW:{l[0].map_review},CITY:{l[0].province},CHECK_TAG:{l[0].soup}%'
+    love_list_clear = love_list.replace(u'\xa0', u' ').replace(' ','')
+    output_whole_love_list = convert_string_to_lst(love_list_clear,'%')
+    for data in output_whole_love_list:
+        if data == '':
+            output_whole_love_list.remove(data)
+
+    ramen_test = []
+    for j in range(len(output_whole_love_list)):
+        temp_lst = output_whole_love_list[j].split(",")
+        ramen_test.append(temp_lst[0][temp_lst[0].index(':')+1:])
+
+
+#----------------問題回報（未來可加donate資訊）----------------
     if event.message.text == "問題回報":
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "ooops...\uDBC0\uDC17 \n請點選以下連結回報問題：https://reurl.cc/14RmVW"))
 
@@ -1029,7 +1050,6 @@ def handle_message(event):
         lati  = float(text_list[2])
         line_bot_api.reply_message(event.reply_token,LocationSendMessage(title='點擊帶你前往！',address='iRamen',latitude= lati,longitude= lonti))
     
-
 #----------------選完湯頭介面/湯頭看更多類似推薦-----------------
 
     #各縣市湯頭清單
@@ -1407,11 +1427,7 @@ def handle_message(event):
                 line_bot_api.reply_message(event.reply_token,flex_message5)
 
 #----------------最愛清單加入資料庫設定與訊息回覆設定-----------------
-    try:
-        user_id = event.source.user_id   
-    except:
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "我需要一點時間認識你，請再點一次\udbc0\udc8e"))
-
+      
     if "加到最愛清單" in event.message.text:
 
         user_line_id = user_id
@@ -1448,20 +1464,6 @@ def handle_message(event):
                     TextSendMessage(text= second_love_param + "已經在最愛清單！")
                 )
 
-    love_lst_q = get_list_from_user_id(user_id)
-    love_list = ''
-    for l in love_lst_q:
-        love_list += f'STORE:{l[0].store},ADDRESS:{l[0].address},DISCRIPTION:{l[0].discription},TRANSPORT:{l[0].transport},MAP_REVIEW:{l[0].map_review},CITY:{l[0].province},CHECK_TAG:{l[0].soup}%'
-    love_list_clear = love_list.replace(u'\xa0', u' ').replace(' ','')
-    output_whole_love_list = convert_string_to_lst(love_list_clear,'%')
-    for data in output_whole_love_list:
-        if data == '':
-            output_whole_love_list.remove(data)
-
-    ramen_test = []
-    for j in range(len(output_whole_love_list)):
-        temp_lst = output_whole_love_list[j].split(",")
-        ramen_test.append(temp_lst[0][temp_lst[0].index(':')+1:])
 
 
 #----------------最愛清單訊息觸發設定-----------------  
