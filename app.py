@@ -235,7 +235,10 @@ def handle_message(event):
     love_lst_q = get_list_from_user_id(user_id)
     love_list = ''
     for l in love_lst_q:
-        love_list += f'STORE:{l[0].store},ADDRESS:{l[0].address},DISCRIPTION:{l[0].discription},TRANSPORT:{l[0].transport},MAP_REVIEW:{l[0].map_review},CITY:{l[0].province},CHECK_TAG:{l[0].soup}%'
+        love_list += f'STORE:{l[0].store},ADDRESS:{l[0].address},DISCRIPTION:{l[0].discription},TRANSPORT:{l[0].transport},\
+                      MAP_REVIEW:{l[0].map_review},CITY:{l[0].province},\
+                      LONGITUDE:{l[0].longtitute},LATITUDE:{l[0].latitude},\
+                      CHECK_TAG:{l[0].soup}%'
     love_list_clear = love_list.replace(u'\xa0', u' ').replace(' ','')
     output_whole_love_list = convert_string_to_lst(love_list_clear,'%')
     for data in output_whole_love_list:
@@ -252,7 +255,8 @@ def handle_message(event):
         trans = temp_lst[3][temp_lst[3].index(':')+1:]
         com = temp_lst[4][temp_lst[4].index(':')+1:]
         city_r = temp_lst[5][temp_lst[5].index(':')+1:]
-
+        lont = temp_lst[6][temp_lst[5].index(':')+1:]
+        lati = temp_lst[7][temp_lst[5].index(':')+1:]
         r_store = ramen_test[j]
 
 #----------------最愛清單店家資訊msg-----------------
@@ -349,7 +353,7 @@ def handle_message(event):
                                                     "action": {
                                                         "type": "message",
                                                         "label": "action",
-                                                        "text": "正在幫你找到:還沒好> <"
+                                                        "text": "正在幫你找到:\n"+lont+":"+lati
                                                     },
                                                     "margin": "md"
                                                     },
