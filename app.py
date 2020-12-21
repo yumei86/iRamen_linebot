@@ -255,8 +255,8 @@ def handle_message(event):
         trans = temp_lst[3][temp_lst[3].index(':')+1:]
         com = temp_lst[4][temp_lst[4].index(':')+1:]
         city_r = temp_lst[5][temp_lst[5].index(':')+1:]
-        lont = temp_lst[6][temp_lst[5].index(':')+1:]
-        lati = temp_lst[7][temp_lst[5].index(':')+1:]
+        lont = temp_lst[6][temp_lst[6].index(':')+1:]
+        lati = temp_lst[7][temp_lst[7].index(':')+1:]
         r_store = ramen_test[j]
 
 #----------------最愛清單店家資訊msg-----------------
