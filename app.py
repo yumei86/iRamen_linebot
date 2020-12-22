@@ -634,9 +634,10 @@ def handle_message(event):
     if event.message.text == "問題回報":
         line_bot_api.reply_message(
                     event.reply_token,
-                    TextSendMessage(text="在回報問題前，可以看看我的常見問題:\n\udbc0\udcb2我的反應太慢:因為目前我的雲端伺服器有時會睡眠，請等待個幾秒鐘。\
-                                        \n若以上的問題清單都不是你情況，請幫我們填寫表單，非常感謝你！\
-                                        \n請點選以下連結回報問題：https://reurl.cc/14RmVW ")
+                    TextSendMessage(text="常見問題:\n\udbc0\udcb2我的反應太慢:\n因為目前我的雲端伺服器有時會睡眠，請等待個幾秒鐘。\
+                                        \n\
+                                        \n若以上的問題清單都不是你情況，請填寫表單，非常感謝你！\udbc0\udc7a\
+                                        \n請點選連結填寫：https://reurl.cc/14RmVW ")
 
         )
 #----------------拉麵推薦介面-----------------
