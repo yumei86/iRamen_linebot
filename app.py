@@ -1876,7 +1876,7 @@ def handle_message(event):
             output_lst = convert_string_to_lst(output_s, ',')
 
         except IndexError:
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2打字搜尋功能請輸入:關鍵字 關鍵字，\n例如\"鷹流 中山\",\n\"一風堂 桃園\"\
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字，\n例如\"鷹流 中山\",\n\"一風堂 桃園\"\
                                                                                   \n\udbc0\udcb2請輸入有效店名關鍵字(中間幫我留空，但不可在前後加入空白)\
                                                                                   \n\udbc0\udcb2或請幫我直接點選拉麵推薦選單做選擇喔！")
             )
@@ -2182,7 +2182,7 @@ def handle_message(event):
 
     elif ":" not in event.message.text:
 
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2打字搜尋功能請輸入:關鍵字 關鍵字，\n例如\"鷹流 中山\",\n\"一風堂 桃園\"\
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字，\n例如\"鷹流 中山\",\n\"一風堂 桃園\"\
                                                                                   \n\udbc0\udcb2請輸入有效店名關鍵字(中間幫我留空，但不可在前後加入空白)\
                                                                                   \n\udbc0\udcb2或請幫我直接點選拉麵推薦選單做選擇喔！")
         )
