@@ -179,7 +179,7 @@ def favorite_list_generator(favorite_list):
         favorite_button = ButtonComponent(style="primary", color="#997B66", size="sm", margin="sm",
                                         action=MessageAction(label=i, text=i),)
         delete_button = ButtonComponent(style="secondary", color="#F1DCA7", size="sm", margin="sm", flex=0,
-                                      action=MessageAction(label="-", text="刪除最愛清單："+i),)
+                                      action=MessageAction(label="-", text="刪除最愛清單:"+i),)
         button_row = BoxComponent(layout="horizontal", margin="md", spacing="sm",
                                 contents=[favorite_button, delete_button])
         button_list.append(button_row)
@@ -1764,6 +1764,29 @@ def handle_message(event):
             line_bot_api.reply_message(
                     event.reply_token,
                     TextSendMessage(text= second_love_param + "已經在最愛清單！")
+                )
+
+    if "刪除最愛清單" in event.message.text:
+ 
+        text_d = event.message.text.split(":")
+
+        #first_del_param = text_d[0]
+        second_del_param = text_d[1]
+
+        detail_id = get_store_id(second_del_param)
+        if detail_id != '':
+            data = db.session.query(Favorite)\
+                    .filter(Favorite.detail_store_id == detail_id).first()
+            db.session.delete(data)
+            db.session.commit()
+            line_bot_api.reply_message(
+                    event.reply_token,
+                    TextSendMessage(text="成功刪除"+ second_del_param )
+                )
+        else:
+            line_bot_api.reply_message(
+                    event.reply_token,
+                    TextSendMessage(text="發生錯誤，請再試一次\udbc0\udc7c" )
                 )
 
 
