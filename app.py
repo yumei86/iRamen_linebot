@@ -129,6 +129,24 @@ def query_province_direct(p):
                         .filter(Store.still_there == True)
     return province_soup_q
 
+#----------------直接打字query店家的部分-----------------
+def query_store(stores,store2):
+    store_direct = db.session.query(Main_store, Store, Post)\
+                        .outerjoin(Post, Post.store_id == Main_store.store_id)\
+                        .outerjoin(Store, Store.store_id == Main_store.store_id)\
+                        .filter(Store.store.contains(stores))\
+                        .filter(Store.store.contains(store2))
+                        
+    return store_direct
+def query_store_direct(stores):
+    store_direct = db.session.query(Main_store, Store, Post)\
+                        .outerjoin(Post, Post.store_id == Main_store.store_id)\
+                        .outerjoin(Store, Store.store_id == Main_store.store_id)\
+                        .filter(Store.store.contains(stores))
+    return store_direct
+#----------------------------------------------------
+
+
 def convert_string_to_lst(string,c): 
     li = list(string.split(c)) 
     return li 
@@ -1398,7 +1416,7 @@ def handle_message(event):
                             
                 elif select_first_param in city_name:
                     result = query_province_soup(select_first_param, select_second_param)
-                    
+
             #---------------------------------put all data in a string--------------------------
             ouput_database_fb = ''
             ouput_database_map = ''
@@ -1429,7 +1447,7 @@ def handle_message(event):
             #---------------------------------random(everytime renew can auto random)--------------------------
             output_s = secrets.choice(output_whole_lst)
             output_lst = convert_string_to_lst(output_s, ',')
-            
+       
             store_n = output_lst[0][output_lst[0].index(':')+1:]
             address = output_lst[1][output_lst[1].index(':')+1:]
             descrip = output_lst[2][output_lst[2].index(':')+1:]
@@ -1806,7 +1824,10 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token,flex_message6)  
 
 
+#----------------輸入關鍵字找尋店家-----------------
 
+    if " " in event.message.text:
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "我要測試這個空格"))
 
 
 if __name__ == 'main':
