@@ -637,7 +637,7 @@ def handle_message(event):
                     TextSendMessage(text="常見問題:\n\udbc0\udcb2我的反應太慢:\n因為目前我的雲端伺服器有時會睡眠，請等待個幾秒鐘。\
                                         \n\
                                         \n若以上的問題清單都不是你情況，請填寫表單，非常感謝你！\udbc0\udc7a\
-                                        \n請點選連結填寫：https://reurl.cc/14RmVW ")
+                                        \nhttps://reurl.cc/14RmVW")
 
         )
 #----------------拉麵推薦介面-----------------
