@@ -357,7 +357,7 @@ def handle_message(event):
                                                     },
                                                     {
                                                     "type": "text",
-                                                    "text": "↓↓點擊下方地址可以直接幫你傳送位置噢！",
+                                                    "text": "↓↓點擊下方地址可以直接幫你傳送地圖！",
                                                     "color": "#CA8E68",
                                                     "size": "xs",
                                                     "wrap": True,
@@ -955,7 +955,7 @@ def handle_message(event):
                                                     },
                                                     {
                                                         "type": "text",
-                                                        "text": "↓↓點擊下方地址可以直接幫你傳送位置噢！",
+                                                        "text": "↓↓點擊下方地址可以直接幫你傳送地圖！",
                                                         "color": "#CA8E68",
                                                         "size": "xs",
                                                         "wrap": True,
@@ -1234,7 +1234,7 @@ def handle_message(event):
                                                     },
                                                     {
                                                         "type": "text",
-                                                        "text": "↓↓點擊下方地址可以直接幫你傳送位置噢！",
+                                                        "text": "↓↓點擊下方地址可以直接幫你傳送地圖！",
                                                         "color": "#CA8E68",
                                                         "size": "xs",
                                                         "wrap": True,
@@ -1625,7 +1625,7 @@ def handle_message(event):
                                                     },
                                                     {
                                                         "type": "text",
-                                                        "text": "↓↓點擊下方地址可以直接幫你傳送位置噢！",
+                                                        "text": "↓↓點擊下方地址可以直接幫你傳送地址！",
                                                         "color": "#CA8E68",
                                                         "size": "xs",
                                                         "wrap": True,
@@ -1981,7 +1981,7 @@ def handle_message(event):
                                                         },
                                                         {
                                                             "type": "text",
-                                                            "text": "↓↓點擊下方地址可以直接幫你傳送位置噢！",
+                                                            "text": "↓↓點擊下方地址可以直接幫你傳送地址！",
                                                             "color": "#CA8E68",
                                                             "size": "xs",
                                                             "wrap": True,
