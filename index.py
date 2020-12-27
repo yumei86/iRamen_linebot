@@ -260,6 +260,22 @@ def count_total_row(database_name):
   return count_total_row
 
 
+##---------------------------------------DELETE favorite list------------------------------------- 
+del_msg = '刪除最愛清單:一蘭拉麵-台灣台北本店別館'
+first_del_param = ''
+second_del_param = ''
+if ':' in del_msg:
+  first_del_param = del_msg[:del_msg.index(':')]
+  second_del_param = del_msg[del_msg.index(':')+1:]
+
+def get_store_id(store_name):
+  store_id_q = db.session.query(Store)\
+      .filter(Store.store == store_name)
+  for data in store_id_q:
+    get_id = data.detail_store_id
+  return get_id
+
+
 #---------------------------------測試用---------------------------
 @app.route('/')
 def home():
@@ -285,6 +301,21 @@ def submit():
         return'最愛清單太長了要刪'
       else:
         return'已經加過這間店到最愛清單'
+
+#---------------------------------測試用---------------------------
+@app.route('/remove', methods=['DELETE'])
+def remove():
+  if request.method == 'DELETE':
+    if first_del_param == '刪除最愛清單':
+      detail_id = get_store_id(second_del_param)
+      if detail_id != '':
+        data = db.session.query(Favorite)\
+                .filter(Favorite.detail_store_id == detail_id).first()
+        db.session.delete(data)
+        db.session.commit()
+        return f'成功刪除 {second_del_param}'
+      else:
+        return'發生錯誤，請再試一次!'        
 
 
 ##---------------------------------------Query love-list by userID-------------------------------------
