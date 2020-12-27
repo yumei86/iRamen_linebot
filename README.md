@@ -10,9 +10,9 @@ A [ramen](https://en.wikipedia.org/wiki/Ramen) recommendation LINE bot to help T
 * General features:
 ![General features](readme_assets/product-intro.PNG )
 * Recommendation with Google Map 
-<img src = "readme_assets/recommend.gif" width = "100">
+<img src = "readme_assets/recommend.gif" width = "500">
 * Add your favorite Ramen stores to Pocket List
-<img src = "readme_assets/pocket_list.gif" width = "100">
+<img src = "readme_assets/pocket_list.gif" width = "500">
 * The interface is in Manderin.
 
 ### :ramen:Setup
