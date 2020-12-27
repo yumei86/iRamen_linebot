@@ -635,6 +635,10 @@ def handle_message(event):
         line_bot_api.reply_message(
                     event.reply_token,
                     TextSendMessage(text="常見問題:\n\udbc0\udcb2我的反應太慢:\n因為目前我的雲端伺服器有時會睡眠，請等待個幾秒鐘。\
+                                        \n\udbc0\udcb2選擇湯頭和評論品項不同:\n別擔心，該推薦店家是有賣你選的湯頭類型！\
+                                        \n\
+                                        \udbc0\udc84若你很喜歡我們的作品，也不吝嗇贊助，讓我們的iRamen變得更好，請匯款至以下戶頭:\n\
+                                        玉山銀行(808)0864979119334\
                                         \n\
                                         \n若以上的問題清單都不是你情況，請填寫表單，非常感謝你！\udbc0\udc7a\
                                         \nhttps://reurl.cc/14RmVW")
