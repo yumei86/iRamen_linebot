@@ -622,7 +622,7 @@ def handle_message(event):
         else:
             line_bot_api.reply_message(
                     event.reply_token,
-                    TextSendMessage(text="發生錯誤，請再試一次\udbc0\udc7c" )
+                    TextSendMessage(text= second_del_param + "已不在你的最愛清單囉!" )
                 )
 
 
