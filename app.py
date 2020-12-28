@@ -276,7 +276,7 @@ def handle_message(event):
         city_r = temp_lst[5][temp_lst[5].index(':')+1:]
         lont = temp_lst[6][temp_lst[6].index(':')+1:]
         lati = temp_lst[7][temp_lst[7].index(':')+1:]
-        opent = temp_lst[10][temp_lst[10].index(':')+1:]
+        opent = temp_lst[8][temp_lst[8].index(':')+1:]
         r_store = ramen_test[j]
         
 
