@@ -901,7 +901,7 @@ def handle_message(event):
             c1 = output_lst[4][output_lst[4].index(':')+1:]
             c2 = output_lst[5][output_lst[5].index(':')+1:]
             c3 = output_lst[6][output_lst[6].index(':')+1:]
-            comment = f'貼文時間：\n{c1}\n品項：\n{c2}\n評論：\n{c3}'
+            comment = f'貼文時間：\n{c1}\n\n品項：\n{c2}\n\n評論：\n{c3}'
             lon = output_lst[7][output_lst[7].index(':')+1:]
             lat = output_lst[8][output_lst[8].index(':')+1:]
             op  = output_lst[9][output_lst[9].index(':')+1:]
@@ -1614,7 +1614,7 @@ def handle_message(event):
                 c1 = output_lst[4][output_lst[4].index(':')+1:]
                 c2 = output_lst[5][output_lst[5].index(':')+1:]
                 c3 = output_lst[6][output_lst[6].index(':')+1:]
-                comment = f'貼文時間：\n{c1}\n品項：\n{c2}\n評論：\n{c3}'
+                comment = f'貼文時間：\n{c1}\n\n品項：\n{c2}\n\n評論：\n{c3}'
                 lon = output_lst[7][output_lst[7].index(':')+1:]
                 lat = output_lst[8][output_lst[8].index(':')+1:]
                 op  = output_lst[9][output_lst[9].index(':')+1:]
