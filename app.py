@@ -595,8 +595,6 @@ def handle_message(event):
                 )
 
     if "刪除最愛清單" in event.message.text:
-
-        already_add_store_count = store_exist(second_love_param)
  
         text_d = event.message.text.split(":")
 
@@ -615,11 +613,11 @@ def handle_message(event):
                     TextSendMessage(text="成功刪除"+ second_del_param )
                 )
 
-        elif store_exist(second_del_param) == 0: #check if the store user want to rermove already not exist in the list
-            line_bot_api.reply_message(
-                    event.reply_token,
-                    TextSendMessage(text= second_del_param + "已不在你的最愛清單囉!" )
-                )
+        #elif store_exist(second_del_param) == 0: #check if the store user want to rermove already not exist in the list
+        #    line_bot_api.reply_message(
+        #            event.reply_token,
+        #            TextSendMessage(text= second_del_param + "已不在你的最愛清單囉!" )
+        #        )
         
         else:
             line_bot_api.reply_message(
