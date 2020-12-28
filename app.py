@@ -562,7 +562,7 @@ def handle_message(event):
         tex = event.message.text
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text= text + "已不在你的最愛清單囉!" )
+            TextSendMessage(text= tex + "已不在你的最愛清單囉!" )
         )
 
 #----------------最愛清單加入資料庫設定與訊息回覆設定-----------------
