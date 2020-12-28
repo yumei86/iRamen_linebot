@@ -256,7 +256,7 @@ def handle_message(event):
         love_list += f'STORE:{l[0].store},ADDRESS:{l[0].address},DISCRIPTION:{l[0].discription},TRANSPORT:{l[0].transport},\
                       MAP_REVIEW:{l[0].map_review},CITY:{l[0].province},\
                       LONGITUDE:{l[0].longtitute},LATITUDE:{l[0].latitude},\
-                      CHECK_TAG:{l[0].soup}%'
+                      OPEN_TIME:{l[0].open_time},CHECK_TAG:{l[0].soup}%'
     love_list_clear = love_list.replace(u'\xa0', u' ').replace(' ','')
     output_whole_love_list = convert_string_to_lst(love_list_clear,'%')
     for data in output_whole_love_list:
@@ -264,6 +264,7 @@ def handle_message(event):
             output_whole_love_list.remove(data)
 
     ramen_test = []
+    
     for j in range(len(output_whole_love_list)):
         temp_lst = output_whole_love_list[j].split(",")
         ramen_test.append(temp_lst[0][temp_lst[0].index(':')+1:])
@@ -275,7 +276,9 @@ def handle_message(event):
         city_r = temp_lst[5][temp_lst[5].index(':')+1:]
         lont = temp_lst[6][temp_lst[6].index(':')+1:]
         lati = temp_lst[7][temp_lst[7].index(':')+1:]
+        opent = temp_lst[8][temp_lst[8].index(':')+1:]
         r_store = ramen_test[j]
+        
 
 #----------------最愛清單店家資訊msg-----------------
         if event.message.text == r_store:
@@ -413,6 +416,26 @@ def handle_message(event):
                                                     "size": "sm",
                                                     "wrap": True,
                                                     "text": trans,
+                                                    "margin": "md"
+                                                    },
+                                                    {
+                                                    "type": "separator",
+                                                    "margin": "lg"
+                                                    },
+                                                    {
+                                                    "type": "text",
+                                                    "text": "營業時間：",
+                                                    "size": "md",
+                                                    "wrap": True,
+                                                    "color": "#797D62",
+                                                    "margin": "md",
+                                                    "weight": "bold"
+                                                    },
+                                                    {
+                                                    "type": "text",
+                                                    "size": "sm",
+                                                    "wrap": True,
+                                                    "text": opent,
                                                     "margin": "md"
                                                     }
                                                 ],
@@ -556,6 +579,8 @@ def handle_message(event):
 
             line_bot_api.reply_message(event.reply_token,flex_message7)
 
+
+
 #----------------最愛清單加入資料庫設定與訊息回覆設定-----------------
       
     if "加到最愛清單" in event.message.text:
@@ -602,7 +627,8 @@ def handle_message(event):
         second_del_param = text_d[1]
 
         detail_id = get_store_id(second_del_param)
-        if detail_id != '':
+
+        if detail_id != '' and store_exist(second_del_param) == 1:
             data = db.session.query(Favorite)\
                     .filter(Favorite.detail_store_id == detail_id).first()
             db.session.delete(data)
@@ -611,10 +637,17 @@ def handle_message(event):
                     event.reply_token,
                     TextSendMessage(text="成功刪除"+ second_del_param )
                 )
+
+        elif store_exist(second_del_param) == 0: #check if the store user want to rermove already not exist in the list
+            line_bot_api.reply_message(
+                    event.reply_token,
+                    TextSendMessage(text= second_del_param + "已不在你的最愛清單囉!" )
+                )
+        
         else:
             line_bot_api.reply_message(
                     event.reply_token,
-                    TextSendMessage(text="發生錯誤，請再試一次\udbc0\udc7c" )
+                    TextSendMessage(text= "發生錯誤請再試一次" )
                 )
 
 
@@ -835,13 +868,13 @@ def handle_message(event):
             try:
                 ouput_database_fb += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
                     FB_R_CREATE:{r[2].create_on},FB_R_RAMEN:{r[2].ramen_name},FB_R_CONTENT:{r[2].fb_review},\
-                    LONGITUDE:{r[1].longtitute},LATITUDE:{r[1].latitude},\
+                    LONGITUDE:{r[1].longtitute},LATITUDE:{r[1].latitude},OPEN_TIME:{r[1].open_time},\
                     CHECK_TAG:{r[1].soup},CHECK_CITY:{r[1].province}%'
 
             except AttributeError:
                 ouput_database_map += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
                     MAP_REVIEW:{r[1].map_review},\
-                    LONGITUDE:{r[1].longtitute},LATITUDE:{r[1].latitude},\
+                    LONGITUDE:{r[1].longtitute},LATITUDE:{r[1].latitude},OPEN_TIME:{r[1].open_time},\
                     CHECK_TAG:{r[1].soup},CHECK_CITY:{r[1].province}%'
                 
 
@@ -863,20 +896,22 @@ def handle_message(event):
         descrip = output_lst[2][output_lst[2].index(':')+1:]
         trans = output_lst[3][output_lst[3].index(':')+1:]
         
-        if len(output_lst) == 11:
+        if len(output_lst) == 12:
             #FB評論
             c1 = output_lst[4][output_lst[4].index(':')+1:]
             c2 = output_lst[5][output_lst[5].index(':')+1:]
             c3 = output_lst[6][output_lst[6].index(':')+1:]
-            comment = f'貼文時間：\n{c1}\n品項：\n{c2}\n評論：\n{c3}'
+            comment = f'貼文時間：\n{c1}\n\n品項：\n{c2}\n\n評論：\n{c3}'
             lon = output_lst[7][output_lst[7].index(':')+1:]
             lat = output_lst[8][output_lst[8].index(':')+1:]
+            op  = output_lst[9][output_lst[9].index(':')+1:]
 
-        elif len(output_lst) == 9:
+        elif len(output_lst) == 10:
             #googleMap
             comment = output_lst[4][output_lst[4].index(':')+1:]
             lon = output_lst[5][output_lst[5].index(':')+1:]
-            lat = output_lst[6][output_lst[6].index(':')+1:]  
+            lat = output_lst[6][output_lst[6].index(':')+1:] 
+            op  = output_lst[7][output_lst[7].index(':')+1:] 
 
 
         if event.message.text == cond :
@@ -1015,6 +1050,26 @@ def handle_message(event):
                                                         "wrap": True,
                                                         "text": trans,
                                                         "margin": "md"
+                                                    },
+                                                    {
+                                                    "type": "separator",
+                                                    "margin": "lg"
+                                                    },
+                                                    {
+                                                    "type": "text",
+                                                    "text": "營業時間：",
+                                                    "size": "md",
+                                                    "wrap": True,
+                                                    "color": "#797D62",
+                                                    "margin": "md",
+                                                    "weight": "bold"
+                                                    },
+                                                    {
+                                                    "type": "text",
+                                                    "size": "sm",
+                                                    "wrap": True,
+                                                    "text": op,
+                                                    "margin": "md"
                                                     }
                                                     ],
                                                     "paddingBottom": "18px"
@@ -1294,6 +1349,26 @@ def handle_message(event):
                                                         "wrap": True,
                                                         "text": trans,
                                                         "margin": "md"
+                                                    },
+                                                    {
+                                                    "type": "separator",
+                                                    "margin": "lg"
+                                                    },
+                                                    {
+                                                    "type": "text",
+                                                    "text": "營業時間：",
+                                                    "size": "md",
+                                                    "wrap": True,
+                                                    "color": "#797D62",
+                                                    "margin": "md",
+                                                    "weight": "bold"
+                                                    },
+                                                    {
+                                                    "type": "text",
+                                                    "size": "sm",
+                                                    "wrap": True,
+                                                    "text": op,
+                                                    "margin": "md"
                                                     }
                                                     ],
                                                     "paddingBottom": "18px"
@@ -1506,13 +1581,13 @@ def handle_message(event):
                 try:
                     ouput_database_fb += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
                         FB_R_CREATE:{r[2].create_on},FB_R_RAMEN:{r[2].ramen_name},FB_R_CONTENT:{r[2].fb_review},\
-                        LONGITUDE:{r[1].longtitute},LATITUDE:{r[1].latitude},\
+                        LONGITUDE:{r[1].longtitute},LATITUDE:{r[1].latitude},OPEN_TIME:{r[1].open_time},\
                         CHECK_TAG:{r[1].soup},CHECK_CITY:{r[1].province}%'
 
                 except AttributeError:
                     ouput_database_map += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
                         MAP_REVIEW:{r[1].map_review},\
-                        LONGITUDE:{r[1].longtitute},LATITUDE:{r[1].latitude},\
+                        LONGITUDE:{r[1].longtitute},LATITUDE:{r[1].latitude},OPEN_TIME:{r[1].open_time},\
                         CHECK_TAG:{r[1].soup},CHECK_CITY:{r[1].province}%'
                     
 
@@ -1534,20 +1609,22 @@ def handle_message(event):
             descrip = output_lst[2][output_lst[2].index(':')+1:]
             trans = output_lst[3][output_lst[3].index(':')+1:]
 
-            if len(output_lst) == 11:
+            if len(output_lst) == 12:
                 #FB評論
                 c1 = output_lst[4][output_lst[4].index(':')+1:]
                 c2 = output_lst[5][output_lst[5].index(':')+1:]
                 c3 = output_lst[6][output_lst[6].index(':')+1:]
-                comment = f'貼文時間：\n{c1}\n品項：\n{c2}\n評論：\n{c3}'
+                comment = f'貼文時間：\n{c1}\n\n品項：\n{c2}\n\n評論：\n{c3}'
                 lon = output_lst[7][output_lst[7].index(':')+1:]
                 lat = output_lst[8][output_lst[8].index(':')+1:]
+                op  = output_lst[9][output_lst[9].index(':')+1:]
 
-            elif len(output_lst) == 9:
+            elif len(output_lst) == 10:
                 #googleMap
                 comment = output_lst[4][output_lst[4].index(':')+1:]
                 lon = output_lst[5][output_lst[5].index(':')+1:]
                 lat = output_lst[6][output_lst[6].index(':')+1:]  
+                op  = output_lst[7][output_lst[7].index(':')+1:]
 
             if event.message.text == n:
 
@@ -1685,6 +1762,26 @@ def handle_message(event):
                                                         "wrap": True,
                                                         "text": trans,
                                                         "margin": "md"
+                                                    },
+                                                    {
+                                                    "type": "separator",
+                                                    "margin": "lg"
+                                                    },
+                                                    {
+                                                    "type": "text",
+                                                    "text": "營業時間：",
+                                                    "size": "md",
+                                                    "wrap": True,
+                                                    "color": "#797D62",
+                                                    "margin": "md",
+                                                    "weight": "bold"
+                                                    },
+                                                    {
+                                                    "type": "text",
+                                                    "size": "sm",
+                                                    "wrap": True,
+                                                    "text": op,
+                                                    "margin": "md"
                                                     }
                                                     ],
                                                     "paddingBottom": "18px"
@@ -1854,13 +1951,13 @@ def handle_message(event):
             try:
                 ouput_database_fb += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
                     FB_R_CREATE:{r[2].create_on},FB_R_RAMEN:{r[2].ramen_name},FB_R_CONTENT:{r[2].fb_review},\
-                    LONGITUDE:{r[1].longtitute},LATITUDE:{r[1].latitude},\
+                    LONGITUDE:{r[1].longtitute},LATITUDE:{r[1].latitude},OPEN_TIME:{r[1].open_time},\
                     CHECK_TAG:{r[1].soup},CHECK_CITY:{r[1].province}%'
 
             except AttributeError:
                 ouput_database_map += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
                     MAP_REVIEW:{r[1].map_review},\
-                    LONGITUDE:{r[1].longtitute},LATITUDE:{r[1].latitude},\
+                    LONGITUDE:{r[1].longtitute},LATITUDE:{r[1].latitude},OPEN_TIME:{r[1].open_time},\
                     CHECK_TAG:{r[1].soup},CHECK_CITY:{r[1].province}%'
                         
 
@@ -1889,23 +1986,25 @@ def handle_message(event):
         descrip = output_lst[2][output_lst[2].index(':')+1:]
         trans = output_lst[3][output_lst[3].index(':')+1:]
 
-        if len(output_lst) == 11:
+        if len(output_lst) == 12:
             #FB評論
             c1 = output_lst[4][output_lst[4].index(':')+1:]
             c2 = output_lst[5][output_lst[5].index(':')+1:]
             c3 = output_lst[6][output_lst[6].index(':')+1:]
-            comment = f'貼文時間：\n{c1}\n品項：\n{c2}\n評論：\n{c3}'
+            comment = f'貼文時間：\n{c1}\n\n品項：\n{c2}\n\n評論：\n{c3}'
             lon = output_lst[7][output_lst[7].index(':')+1:]
             lat = output_lst[8][output_lst[8].index(':')+1:]
-            f_city = output_lst[10][output_lst[10].index(':')+1:]
+            op  = output_lst[9][output_lst[9].index(':')+1:]
+            f_city = output_lst[11][output_lst[10].index(':')+1:]
 
 
-        elif len(output_lst) == 9:
+        elif len(output_lst) == 10:
             #googleMap
             comment = output_lst[4][output_lst[4].index(':')+1:]
             lon = output_lst[5][output_lst[5].index(':')+1:]
-            lat = output_lst[6][output_lst[6].index(':')+1:]  
-            f_city = output_lst[8][output_lst[8].index(':')+1:]
+            lat = output_lst[6][output_lst[6].index(':')+1:]
+            op  = output_lst[7][output_lst[7].index(':')+1:]  
+            f_city = output_lst[9][output_lst[8].index(':')+1:]
 
         flex_message9 = FlexSendMessage(
                             alt_text='快回來看看我幫你找到的店家！',
@@ -2041,6 +2140,26 @@ def handle_message(event):
                                                             "wrap": True,
                                                             "text": trans,
                                                             "margin": "md"
+                                                        },
+                                                        {
+                                                        "type": "separator",
+                                                        "margin": "lg"
+                                                        },
+                                                        {
+                                                        "type": "text",
+                                                        "text": "營業時間：",
+                                                        "size": "md",
+                                                        "wrap": True,
+                                                        "color": "#797D62",
+                                                        "margin": "md",
+                                                        "weight": "bold"
+                                                        },
+                                                        {
+                                                        "type": "text",
+                                                        "size": "sm",
+                                                        "wrap": True,
+                                                        "text": op,
+                                                        "margin": "md"
                                                         }
                                                         ],
                                                         "paddingBottom": "18px"
