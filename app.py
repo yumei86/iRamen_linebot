@@ -256,7 +256,7 @@ def handle_message(event):
         love_list += f'STORE:{l[0].store},ADDRESS:{l[0].address},DISCRIPTION:{l[0].discription},TRANSPORT:{l[0].transport},\
                       MAP_REVIEW:{l[0].map_review},CITY:{l[0].province},\
                       LONGITUDE:{l[0].longtitute},LATITUDE:{l[0].latitude},\
-                      CHECK_TAG:{l[0].soup}%'
+                      OPEN_TIME:{l[0].longtitute},CHECK_TAG:{l[0].soup}%'
     love_list_clear = love_list.replace(u'\xa0', u' ').replace(' ','')
     output_whole_love_list = convert_string_to_lst(love_list_clear,'%')
     for data in output_whole_love_list:
@@ -276,6 +276,7 @@ def handle_message(event):
         city_r = temp_lst[5][temp_lst[5].index(':')+1:]
         lont = temp_lst[6][temp_lst[6].index(':')+1:]
         lati = temp_lst[7][temp_lst[7].index(':')+1:]
+        opent = temp_lst[8][temp_lst[8].index(':')+1:]
         r_store = ramen_test[j]
         
 
@@ -415,6 +416,26 @@ def handle_message(event):
                                                     "size": "sm",
                                                     "wrap": True,
                                                     "text": trans,
+                                                    "margin": "md"
+                                                    },
+                                                    {
+                                                    "type": "separator",
+                                                    "margin": "lg"
+                                                    },
+                                                    {
+                                                    "type": "text",
+                                                    "text": "營業時間：",
+                                                    "size": "md",
+                                                    "wrap": True,
+                                                    "color": "#797D62",
+                                                    "margin": "md",
+                                                    "weight": "bold"
+                                                    },
+                                                    {
+                                                    "type": "text",
+                                                    "size": "sm",
+                                                    "wrap": True,
+                                                    "text": opent,
                                                     "margin": "md"
                                                     }
                                                 ],
