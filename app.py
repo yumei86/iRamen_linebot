@@ -615,7 +615,7 @@ def handle_message(event):
         elif detail_id != '' and store_exist(second_del_param) == 0: #check if the store user want to rermove already not exist in the list
             line_bot_api.reply_message(
                     event.reply_token,
-                    TextSendMessage(text= second_del_para + "已不在你的最愛清單囉!" )
+                    TextSendMessage(text= second_del_param + "已不在你的最愛清單囉!" )
                 )
         
         else:
