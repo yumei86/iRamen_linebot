@@ -1,5 +1,5 @@
-# :ramen:iRamen_linebot:ramen:
-A [ramen](https://en.wikipedia.org/wiki/Ramen) recommendation LINE bot to help Taiwanese's ramen lovers choosing ramen stores in Taiwan.
+# :ramen:IRamen_LINEbot:ramen:
+A [ramen](https://en.wikipedia.org/wiki/Ramen) recommendation LINE bot which can help Taiwanese ramen lovers to choose ramen stores in Taiwan.
 
 ### :ramen:Our Goal
 * We are a group of ramen-lovers, our goal is to make a prototype of a mobile-first ramen recommendation chat bot in order to help other ramen lovers, if they have problem of choosing ramen shops in Taiwan.
@@ -13,7 +13,7 @@ A [ramen](https://en.wikipedia.org/wiki/Ramen) recommendation LINE bot to help T
 <img src = "readme_assets/recommend.gif" width = "500">
 * Add your favorite Ramen stores to Pocket List
 <img src = "readme_assets/pocket_list.gif" width = "500">
-* The interface is in Manderin.
+* The interface is in Mandarin.
 
 ### :ramen:Setup
 0. Download [LINE](https://line.me/en/download) in your mobile and create an account for yourself.
