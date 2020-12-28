@@ -603,7 +603,7 @@ def handle_message(event):
 
         detail_id = get_store_id(second_del_param)
 
-        if detail_id != '' and store_exist(second_del_param) == 0:
+        if detail_id != '' and store_exist(second_del_param) == 1:
             data = db.session.query(Favorite)\
                     .filter(Favorite.detail_store_id == detail_id).first()
             db.session.delete(data)
