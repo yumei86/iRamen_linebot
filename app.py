@@ -264,6 +264,7 @@ def handle_message(event):
             output_whole_love_list.remove(data)
 
     ramen_test = []
+    sto_list = []
     for j in range(len(output_whole_love_list)):
         temp_lst = output_whole_love_list[j].split(",")
         ramen_test.append(temp_lst[0][temp_lst[0].index(':')+1:])
@@ -276,6 +277,7 @@ def handle_message(event):
         lont = temp_lst[6][temp_lst[6].index(':')+1:]
         lati = temp_lst[7][temp_lst[7].index(':')+1:]
         r_store = ramen_test[j]
+        sto_list.append(ramen_test[j])
 
 #----------------最愛清單店家資訊msg-----------------
         if event.message.text == r_store:
@@ -555,6 +557,13 @@ def handle_message(event):
             )
 
             line_bot_api.reply_message(event.reply_token,flex_message7)
+
+    if event.message.text not in sto_list:
+        tex = event.message.text
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text= text + "已不在你的最愛清單囉!" )
+        )
 
 #----------------最愛清單加入資料庫設定與訊息回覆設定-----------------
       
