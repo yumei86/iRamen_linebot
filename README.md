@@ -91,7 +91,7 @@ Source website:[【台灣拉麵愛好會專屬】Ramen Map](https://www.google.c
 ![data flow](readme_assets/connection.PNG)
 ![database design](readme_assets/database.PNG)
 
-### :ramen:Autor
+### :ramen:Authors
 * [Yu Chao](https://github.com/troublecat55)
 * [May Lin](https://github.com/yumei86)
 * [Yuchia](https://github.com/yuchiaa)
