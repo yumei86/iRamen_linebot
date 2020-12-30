@@ -26,7 +26,7 @@ Source website:[台灣拉麵愛好會(台湾ラーメン愛好会 / Taiwan Ramen
 * Facebook private group online crawling and organizing the post contents.
 
 #### Facebook Private Group Crawling
-Run the `facebook_crawling.py`
+Run `facebook_crawling.py`
 * Step 1: install selenium and webdriver and the required packages
 * Step 2: set your username and password in .env
 * Step 3: change the chromedriver_path and the url of the website you want to crawl
