@@ -26,17 +26,17 @@ Source website:[台灣拉麵愛好會(台湾ラーメン愛好会 / Taiwan Ramen
 * Facebook private group online crawling and organizing the post contents.
 
 #### Facebook Private Group Crawling
-Run `the facebook_crawling.py`
+Run the `facebook_crawling.py`
 * Step 1: install selenium and webdriver and the required packages
 * Step 2: set your username and password in .env
 * Step 3: change the chromedriver_path and the url of the website you want to crawl
 * Step 4: set the number of iteration for dynamic page scrolling in the main function
-* Step 5: name the output file in main funtion
+* Step 5: name the output file in the main funtion
 
 ---
 
 #### Data Organization
-The task at this stage is to conbime the **Google map crawling** and **Facebook crawling files**. 
+The task at this stage is to combine the **Google map crawling** and **Facebook crawling files**. 
 First of all, both of the crawling files will undergo text preprocessing in order to provide the correct information we need.
 Then, We match the same ramen stores appearing in the both files, and label them with the same id.
 Therefore, the final 3 Csv files are produced:
