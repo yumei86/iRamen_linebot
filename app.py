@@ -2283,7 +2283,7 @@ def handle_message(event):
                                                         "action": {
                                                         "type": "message",
                                                         "label": "看更多推薦",
-                                                        "text": "看更多推薦:"+ f_city
+                                                        "text": "看更多推薦"+ f_city
                                                         },
                                                         "color": "#D08C60"
                                                     }
