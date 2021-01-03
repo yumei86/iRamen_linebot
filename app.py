@@ -631,7 +631,9 @@ def handle_message(event):
 
         if detail_id != '' and store_exist(user_line_id, second_del_param) == 1:
             data = db.session.query(Favorite)\
-                    .filter(Favorite.detail_store_id == detail_id).first()
+                    .filter(Favorite.detail_store_id == detail_id)\
+                    .filter(Favorite.line_id == user_line_id)\
+                    .first()
             db.session.delete(data)
             db.session.commit()
             line_bot_api.reply_message(
