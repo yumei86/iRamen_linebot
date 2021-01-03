@@ -2333,7 +2333,7 @@ def handle_message(event):
 
         line_bot_api.reply_message(event.reply_token,flex_message9)
 
-    elif ":" not in event.message.text:
+    else:
 
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n例如\n\"鷹流 中山\",\"七 面鳥\",\"麵屋秋 匠\"\
                                                                                   \n\udbc0\udcb2請輸入有效店名關鍵字(中間幫我留空,但不可在前後加入空白)\
