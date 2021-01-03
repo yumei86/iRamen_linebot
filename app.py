@@ -606,7 +606,7 @@ def handle_message(event):
 
                 line_bot_api.reply_message(
                         event.reply_token,
-                        TextSendMessage(text="剛剛你成功把" + second_love_param + "加進最愛清單！")
+                        TextSendMessage(text="你剛剛成功把 " + second_love_param + " 加進最愛清單！")
                     )
             elif favorite_list_count > 25:
 
