@@ -629,15 +629,15 @@ def handle_message(event):
         first_del_param = text_d[0]
         second_del_param = text_d[1]
 
-        if first_love_param == '刪除最愛清單':
+        if first_del_param == '刪除最愛清單':
 
             detail_id = get_store_id(second_del_param)
-            already_add_store_count = store_exist(user_line_id, second_del_param)
-            
-            if detail_id != '' and already_add_store_count != 0:
+
+            if detail_id != '' and store_exist(user_line_id, second_del_param) != 0:
                 data = db.session.query(Favorite)\
                         .filter(Favorite.detail_store_id == detail_id)\
-                        .filter(Favorite.line_id == user_line_id)
+                        .filter(Favorite.line_id == user_line_id)\
+                        .first()
                 db.session.delete(data)
                 db.session.commit()
                 line_bot_api.reply_message(
