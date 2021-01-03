@@ -158,10 +158,10 @@ def get_store_id(store_name):
     for data in store_id_q:
         get_id = data.detail_store_id
     return get_id
-def store_exist(user_line_id, store_name):
+def store_exist(get_user_line_id, store_name):
   store_exist = db.session.query(Store, Favorite)\
         .join(Favorite, Favorite.detail_store_id == Store.detail_store_id)\
-        .filter(Favorite.line_id == user_line_id)\
+        .filter(Favorite.line_id == get_user_line_id)\
         .filter(Store.store == store_name).count()
   return store_exist
 def count_love_list(user_id):
