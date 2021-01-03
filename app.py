@@ -1950,7 +1950,15 @@ def handle_message(event):
         elif ' ' in user_select[-1] or ' ' in user_select[0]:
             result = ''
         else:
-            result = query_store_direct(user_select)
+            store_direct_count = db.session.query(Main_store, Store, Post)\
+                      .outerjoin(Post, Post.store_id == Main_store.store_id)\
+                      .outerjoin(Store, Store.store_id == Main_store.store_id)\
+                      .filter(Store.store.contains(stores))\
+                      .count()
+            if store_direct_count != 0:
+              result = query_store_direct(user_select)
+            else:
+              result = ''
 
         #---------------------------------put all data in a string--------------------------
         ouput_database_fb = ''
@@ -1980,15 +1988,29 @@ def handle_message(event):
             if data == '':
                 output_whole_lst.remove(data)
         #---------------------------------random(everytime renew can auto random)--------------------------
-        try:
-            output_s = secrets.choice(output_whole_lst)
-            output_lst = convert_string_to_lst(output_s, ',')
+        if len(output_whole_lst) != 0:
+            if len(output_whole_lst) > 1:
+                try:
+                    output_s = secrets.choice(output_whole_lst)
+                    output_lst = convert_string_to_lst(output_s, ',')
 
-        except IndexError:
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n例如\n\"鷹流 中山\",\"一風堂 桃園\"\
-                                                                                  \n\udbc0\udcb2請輸入有效店名關鍵字(中間幫我留空,但不可在前後加入空白)\
-                                                                                  \n\udbc0\udcb2或請幫我直接點選拉麵推薦選單做選擇喔！")
+                except IndexError:
+                    line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n例如\n\"鷹流 中山\",\"七 面鳥\",\"麵屋秋 匠\"\
+                                                                                          \n\udbc0\udcb2請輸入有效店名關鍵字(中間幫我留空,但不可在前後加入空白)\
+                                                                                          \n\udbc0\udcb2或請幫我直接點選拉麵推薦選單做選擇喔！")
+                    )
+    
+            elif len(output_whole_lst) == 1:
+                output_s = output_whole_lst
+                output_lst = convert_string_to_lst(output_s, ',')
+
+        else:
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n例如\n\"鷹流 中山\",\"七 面鳥\",\"麵屋秋 匠\"\
+                                                                                      \n\udbc0\udcb2請輸入有效店名關鍵字(中間幫我留空,但不可在前後加入空白)\
+                                                                                      \n\udbc0\udcb2或請幫我直接點選拉麵推薦選單做選擇喔！")
             )
+
+
         
         store_n = output_lst[0][output_lst[0].index(':')+1:]
         address = output_lst[1][output_lst[1].index(':')+1:]
