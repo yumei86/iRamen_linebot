@@ -629,7 +629,7 @@ def handle_message(event):
 
         detail_id = get_store_id(second_del_param)
 
-        if detail_id != '' and store_exist(second_del_param) == 1:
+        if detail_id != '' and store_exist(user_line_id, second_del_param) == 1:
             data = db.session.query(Favorite)\
                     .filter(Favorite.detail_store_id == detail_id).first()
             db.session.delete(data)
@@ -639,7 +639,7 @@ def handle_message(event):
                     TextSendMessage(text="成功刪除"+ second_del_param )
                 )
 
-        elif store_exist(second_del_param) == 0: #check if the store user want to rermove already not exist in the list
+        elif store_exist(user_line_id, second_del_param) == 0: #check if the store user want to rermove already not exist in the list
             line_bot_api.reply_message(
                     event.reply_token,
                     TextSendMessage(text= second_del_param + "已不在你的最愛清單囉!" )
