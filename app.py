@@ -606,7 +606,7 @@ def handle_message(event):
 
                 line_bot_api.reply_message(
                         event.reply_token,
-                        TextSendMessage(text="已經把" + second_love_param + "加進最愛清單！")
+                        TextSendMessage(text="剛剛你成功把" + second_love_param + "加進最愛清單！")
                     )
             elif favorite_list_count > 25:
 
@@ -674,8 +674,10 @@ def handle_message(event):
     if event.message.text == "問題回報":
         line_bot_api.reply_message(
                     event.reply_token,
-                    TextSendMessage(text="常見問題:\n\udbc0\udcb2我的反應太慢:\n因為目前我的雲端伺服器有時會睡眠，請等待個幾秒鐘。\
+                    TextSendMessage(text="常見問題:\n\udbc0\udcb2我的反應太慢:\n因為目前我的雲端伺服器有時會睡眠，請等待幾秒鐘，多輸入個兩三次把我叫醒。\
                                         \n\udbc0\udcb2選擇湯頭和評論品項不同:\n別擔心，該推薦店家是有賣你選的湯頭類型！\
+                                        \n\udbc0\udcb22021.1.3已修復最愛清單技術問題\
+                                        \n\udbc0\udcb2希望有較小範圍的地區搜尋功能:\n若粉絲人數達到目標1萬人，我們未來會做定位系統，並且會給使用者鄰近您定位最近的五個店家。\
                                         \n\udbc0\udcb2更多資訊請到「台灣拉麵愛好會」觀看，我們的資料皆由此社團取得。\
                                         \n\udbc0\udc84若你很喜歡我們的作品，也不吝嗇贊助，讓我們的iRamen變得更好，請匯款至以下戶頭:\n玉山銀行(808)0864979119334\
                                         \n\
@@ -2311,7 +2313,7 @@ def handle_message(event):
 
     elif ":" not in event.message.text:
 
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n例如\n\"鷹流 中山\",\"一風堂 桃園\"\
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n例如\n\"鷹流 中山\",\"七 面鳥\",\"麵屋秋 匠\"\
                                                                                   \n\udbc0\udcb2請輸入有效店名關鍵字(中間幫我留空,但不可在前後加入空白)\
                                                                                   \n\udbc0\udcb2或請幫我直接點選拉麵推薦選單做選擇喔！")
         )
