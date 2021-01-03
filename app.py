@@ -621,19 +621,19 @@ def handle_message(event):
                 )
 
     if "刪除最愛清單" in event.message.text:
- 
+
+        user_line_id = user_id
+
         text_d = event.message.text.split(":")
 
         #first_del_param = text_d[0]
         second_del_param = text_d[1]
-
         detail_id = get_store_id(second_del_param)
 
-        if detail_id != '' and store_exist(user_line_id, second_del_param) == 1:
+        if detail_id != '' and store_exist(user_line_id, second_del_param) != 0:
             data = db.session.query(Favorite)\
                     .filter(Favorite.detail_store_id == detail_id)\
-                    .filter(Favorite.line_id == user_line_id)\
-                    .first()
+                    .filter(Favorite.line_id == user_line_id)
             db.session.delete(data)
             db.session.commit()
             line_bot_api.reply_message(
@@ -1708,7 +1708,7 @@ def handle_message(event):
                                                     },
                                                     {
                                                         "type": "text",
-                                                        "text": "↓↓點擊下方地址可以直接幫你傳送地址！",
+                                                        "text": "↓↓點擊下方地址可以直接幫你傳送地圖！",
                                                         "color": "#CA8E68",
                                                         "size": "xs",
                                                         "wrap": True,
@@ -2086,7 +2086,7 @@ def handle_message(event):
                                                         },
                                                         {
                                                             "type": "text",
-                                                            "text": "↓↓點擊下方地址可以直接幫你傳送地址！",
+                                                            "text": "↓↓點擊下方地址可以直接幫你傳送地圖！",
                                                             "color": "#CA8E68",
                                                             "size": "xs",
                                                             "wrap": True,
