@@ -158,11 +158,12 @@ def get_store_id(store_name):
     for data in store_id_q:
         get_id = data.detail_store_id
     return get_id
-def store_exist(store_name):
-    store_exist = db.session.query(Store, Favorite)\
-            .join(Favorite, Favorite.detail_store_id == Store.detail_store_id)\
-            .filter(Store.store == store_name).count()
-    return store_exist
+def store_exist(user_line_id, store_name):
+  store_exist = db.session.query(Store, Favorite)\
+        .join(Favorite, Favorite.detail_store_id == Store.detail_store_id)\
+        .filter(Favorite.line_id == user_line_id)\
+        .filter(Store.store == store_name).count()
+  return store_exist
 def count_love_list(user_id):
     count_love_list = db.session.query(Favorite)\
             .filter(Favorite.line_id == user_id).count()
@@ -594,7 +595,7 @@ def handle_message(event):
 
         if first_love_param == '加到最愛清單':
             favorite_list_count = count_love_list(user_line_id) #how many items a user save
-            already_add_store_count = store_exist(second_love_param) #check if the store user want to add already exist in the list
+            already_add_store_count = store_exist(user_line_id, second_love_param) #check if the store user want to add already exist in the list
             get_foreign_id = get_store_id(second_love_param)#check the map_id(foreign key) of the store
 
         if favorite_list_count == 0 or\
