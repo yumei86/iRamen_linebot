@@ -7,6 +7,7 @@ import os
 from linebot.exceptions import LineBotApiError
 
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.exc import IntegrityError
 import secrets
 import csv
 
@@ -601,9 +602,14 @@ def handle_message(event):
             if favorite_list_count == 0 or\
                 favorite_list_count != 0 and already_add_store_count == 0 and favorite_list_count <= 25 :
                 data = Favorite(user_line_id,get_foreign_id)
-                db.session.add(data)
-                db.session.commit()
-
+                while(data.id == None):
+                    try:
+                        db.session.add(data)
+                        db.session.commit()
+                    except IntegrityError:
+                        db.session.rollback()
+                        continue
+                    
                 line_bot_api.reply_message(
                         event.reply_token,
                         TextSendMessage(text="你剛剛成功把 " + second_love_param + " 加進最愛清單！")
@@ -1953,7 +1959,7 @@ def handle_message(event):
             store_direct_count = db.session.query(Main_store, Store, Post)\
                       .outerjoin(Post, Post.store_id == Main_store.store_id)\
                       .outerjoin(Store, Store.store_id == Main_store.store_id)\
-                      .filter(Store.store.contains(stores))\
+                      .filter(Store.store.contains(user_select))\
                       .count()
             if store_direct_count != 0:
               result = query_store_direct(user_select)
