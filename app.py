@@ -153,6 +153,11 @@ def convert_string_to_lst(string,c):
     return li 
 
 ##----------------我的最愛取得userid資料庫設定-----------------
+def count_store_in_table(store_name):
+  store_id_q = db.session.query(Store)\
+      .filter(Store.store == store_name)\
+      .count()
+  return store_id_q
 def get_store_id(store_name):
     store_id_q = db.session.query(Store)\
         .filter(Store.store == store_name)
@@ -595,36 +600,43 @@ def handle_message(event):
         second_love_param = text_l[1] 
 
         if first_love_param == '加到最愛清單':
+            store_in_table = count_store_in_table(second_love_param) #check if the store name legal
             favorite_list_count = count_love_list(user_line_id) #how many items a user save
             already_add_store_count = store_exist(user_line_id, second_love_param) #check if the store user want to add already exist in the list
-            get_foreign_id = get_store_id(second_love_param)#check the map_id(foreign key) of the store
+            
+            if store_in_table != 0:
+                if favorite_list_count == 0 or\
+                    favorite_list_count != 0 and already_add_store_count == 0 and favorite_list_count <= 25 :
+                    get_foreign_id = get_store_id(second_love_param)#check the map_id(foreign key) of the store
+                    data = Favorite(user_line_id,get_foreign_id)
+                    while(data.id == None):
+                        try:
+                            db.session.add(data)
+                            db.session.commit()
+                        except IntegrityError:
+                            db.session.rollback()
+                            continue
 
-            if favorite_list_count == 0 or\
-                favorite_list_count != 0 and already_add_store_count == 0 and favorite_list_count <= 25 :
-                data = Favorite(user_line_id,get_foreign_id)
-                while(data.id == None):
-                    try:
-                        db.session.add(data)
-                        db.session.commit()
-                    except IntegrityError:
-                        db.session.rollback()
-                        continue
+                    line_bot_api.reply_message(
+                            event.reply_token,
+                            TextSendMessage(text="你剛剛成功把 " + second_love_param + " 加進最愛清單！")
+                        )
+                elif favorite_list_count > 25:
 
-                line_bot_api.reply_message(
-                        event.reply_token,
-                        TextSendMessage(text="你剛剛成功把 " + second_love_param + " 加進最愛清單！")
-                    )
-            elif favorite_list_count > 25:
-
-                line_bot_api.reply_message(
-                        event.reply_token,
-                        TextSendMessage(text="最愛清單數量超過上限，請刪除部分資料\udbc0\udc7c")
-                    )
+                    line_bot_api.reply_message(
+                            event.reply_token,
+                            TextSendMessage(text="最愛清單數量超過上限，請刪除部分資料\udbc0\udc7c")
+                        )
+                else:
+                    line_bot_api.reply_message(
+                            event.reply_token,
+                            TextSendMessage(text= second_love_param + "已經在最愛清單！")
+                        )
             else:
                 line_bot_api.reply_message(
-                        event.reply_token,
-                        TextSendMessage(text= second_love_param + "已經在最愛清單！")
-                    )
+                            event.reply_token,
+                            TextSendMessage(text="你輸入的店名資料庫裡沒有啦Q_Q\udbc0\udc7c")
+                        )
 
     if "刪除最愛清單" in event.message.text:
 
