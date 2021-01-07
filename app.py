@@ -635,7 +635,7 @@ def handle_message(event):
             else:
                 line_bot_api.reply_message(
                             event.reply_token,
-                            TextSendMessage(text="你輸入的店名資料庫裡沒有啦Q_Q\udbc0\udc7c")
+                            TextSendMessage(text="你輸入的店名資料庫裡沒有啦\udbc0\udc7c")
                         )
 
     if "刪除最愛清單" in event.message.text:
