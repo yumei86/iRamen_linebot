@@ -131,12 +131,12 @@ def query_province_direct(p):
     return province_soup_q
 
 #----------------直接打字query店家的部分-----------------
-def query_store(stores,store2):
+def query_store(store_k1,store_k2):
     store_direct = db.session.query(Main_store, Store, Post)\
                         .outerjoin(Post, Post.store_id == Main_store.store_id)\
                         .outerjoin(Store, Store.store_id == Main_store.store_id)\
-                        .filter(Store.store.contains(stores))\
-                        .filter(Store.store.contains(store2))
+                        .filter(Store.store.contains(store_k1))\
+                        .filter(Store.store.contains(store_k2))
                         
     return store_direct
 def query_store_direct(stores):
@@ -1953,30 +1953,27 @@ def handle_message(event):
 
 #----------------輸入關鍵字找尋店家-----------------
     
-    if " " in event.message.text:
+    if ' ' in event.message.text:
 
         user_select = event.message.text
 
         if ' ' in user_select and ' ' not in user_select[-1] and ' ' not in user_select[0]:
-            input_store = ''
-            input_location = ''
+            input_key_first = ''
+            input_key_second = ''
             input_lst = user_select.split()
-            if len(input_lst) == 2:
-                    input_store += input_lst[0]
-                    input_location += input_lst[1]
-            result = query_store(input_store,input_location)
-        elif ' ' in user_select[-1] or ' ' in user_select[0]:
-            result = ''
-        else:
-            store_direct_count = db.session.query(Main_store, Store, Post)\
-                      .outerjoin(Post, Post.store_id == Main_store.store_id)\
-                      .outerjoin(Store, Store.store_id == Main_store.store_id)\
-                      .filter(Store.store.contains(user_select))\
-                      .count()
-            if store_direct_count != 0:
-              result = query_store_direct(user_select)
+            if len(input_lst) == 2 :
+              input_key_first += input_lst[0]
+              input_key_second += input_lst[1]
+              count_store = query_store(input_key_first,input_key_second).count()
+              # print(count_store)
+              if count_store != 0:
+                result = query_store(input_key_first,input_key_second)
+              else:
+                result = ''
             else:
-              result = ''
+                result = ''
+        else:
+          result = ''
 
         #---------------------------------put all data in a string--------------------------
         ouput_database_fb = ''
