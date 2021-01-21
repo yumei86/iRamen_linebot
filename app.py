@@ -898,7 +898,7 @@ def handle_message(event):
                     LONGITUDE:{r[1].longtitute},LATITUDE:{r[1].latitude},OPEN_TIME:{r[1].open_time},\
                     CHECK_TAG:{r[1].soup},CHECK_CITY:{r[1].province}%'
 
-            except AttributeError:
+            except AttributeError as error:
                 ouput_database_map += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
                     MAP_REVIEW:{r[1].map_review},\
                     LONGITUDE:{r[1].longtitute},LATITUDE:{r[1].latitude},OPEN_TIME:{r[1].open_time},\
@@ -1611,7 +1611,7 @@ def handle_message(event):
                         LONGITUDE:{r[1].longtitute},LATITUDE:{r[1].latitude},OPEN_TIME:{r[1].open_time},\
                         CHECK_TAG:{r[1].soup},CHECK_CITY:{r[1].province}%'
 
-                except AttributeError:
+                except AttributeError as error:
                     ouput_database_map += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
                         MAP_REVIEW:{r[1].map_review},\
                         LONGITUDE:{r[1].longtitute},LATITUDE:{r[1].latitude},OPEN_TIME:{r[1].open_time},\
