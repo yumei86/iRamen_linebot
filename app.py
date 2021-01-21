@@ -136,9 +136,10 @@ def query_store(store_k1,store_k2):
                         .outerjoin(Post, Post.store_id == Main_store.store_id)\
                         .outerjoin(Store, Store.store_id == Main_store.store_id)\
                         .filter(Store.store.contains(store_k1))\
-                        .filter(Store.store.contains(store_k2))
-
+                        .filter(Store.store.contains(store_k2))\
+                        .filter(Store.still_there == True)
     return store_direct
+
 def query_store_direct(stores):
     store_direct = db.session.query(Main_store, Store, Post)\
                         .outerjoin(Post, Post.store_id == Main_store.store_id)\
@@ -2026,34 +2027,37 @@ def handle_message(event):
             )
 
 
-        
-        store_n = output_lst[0][output_lst[0].index(':')+1:]
-        address = output_lst[1][output_lst[1].index(':')+1:]
-        descrip = output_lst[2][output_lst[2].index(':')+1:]
-        trans = output_lst[3][output_lst[3].index(':')+1:]
-
-        if len(output_lst) == 12:
-            #FB評論
-            c1 = output_lst[4][output_lst[4].index(':')+1:]
-            c2 = output_lst[5][output_lst[5].index(':')+1:]
-            c3 = output_lst[6][output_lst[6].index(':')+1:]
-            comment = f'貼文時間：\n{c1}\n\n品項：\n{c2}\n\n評論：\n{c3}'
-            lon = output_lst[7][output_lst[7].index(':')+1:]
-            lat = output_lst[8][output_lst[8].index(':')+1:]
-            op  = output_lst[9][output_lst[9].index(':')+1:]
-            f_city = output_lst[11][output_lst[10].index(':')+1:]
-
-
-        elif len(output_lst) == 10:
-            #googleMap
-            comment = output_lst[4][output_lst[4].index(':')+1:]
-            lon = output_lst[5][output_lst[5].index(':')+1:]
-            lat = output_lst[6][output_lst[6].index(':')+1:]
-            op  = output_lst[7][output_lst[7].index(':')+1:]  
-            f_city = output_lst[9][output_lst[8].index(':')+1:]
-        
-        
         if len(output_lst) == 12 or len(output_lst) == 10:
+
+            store_n = output_lst[0][output_lst[0].index(':')+1:]
+            address = output_lst[1][output_lst[1].index(':')+1:]
+            descrip = output_lst[2][output_lst[2].index(':')+1:]
+            trans = output_lst[3][output_lst[3].index(':')+1:]
+
+            if len(output_lst) == 12:
+                #FB評論
+                c1 = output_lst[4][output_lst[4].index(':')+1:]
+                c2 = output_lst[5][output_lst[5].index(':')+1:]
+                c3 = output_lst[6][output_lst[6].index(':')+1:]
+                comment = f'貼文時間：\n{c1}\n\n品項：\n{c2}\n\n評論：\n{c3}'
+                lon = output_lst[7][output_lst[7].index(':')+1:]
+                lat = output_lst[8][output_lst[8].index(':')+1:]
+                op  = output_lst[9][output_lst[9].index(':')+1:]
+                f_city = output_lst[11][output_lst[10].index(':')+1:]
+
+
+            elif len(output_lst) == 10:
+                #googleMap
+                comment = output_lst[4][output_lst[4].index(':')+1:]
+                lon = output_lst[5][output_lst[5].index(':')+1:]
+                lat = output_lst[6][output_lst[6].index(':')+1:]
+                op  = output_lst[7][output_lst[7].index(':')+1:]  
+                f_city = output_lst[9][output_lst[8].index(':')+1:]
+            
+            else:
+                line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2出錯拉靠邀") )
+        
+        
             flex_message9 = FlexSendMessage(
                                 alt_text='快回來看看我幫你找到的店家！',
                                 contents= {
