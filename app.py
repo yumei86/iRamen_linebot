@@ -2055,7 +2055,7 @@ def handle_message(event):
                 f_city = output_lst[9][output_lst[8].index(':')+1:]
             
             else:
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2出錯拉靠邀") )
+                line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2出錯啦靠邀，麻煩您把「錯誤代碼S1」和「您的店家搜尋指令（含空格）」填在填錯誤回報上，感激到五體投地\udbc0\udcb2") )
         
         
             flex_message9 = FlexSendMessage(
@@ -2354,7 +2354,7 @@ def handle_message(event):
 
             line_bot_api.reply_message(event.reply_token,flex_message9)
         else:
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2出錯拉靠邀")
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2出錯啦靠邀，麻煩您把「錯誤代碼S2」和「您的店家搜尋指令（含空格）」填在填錯誤回報上，感激到五體投地\udbc0\udcb2")
         )
 
     else:
