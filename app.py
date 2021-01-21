@@ -2051,6 +2051,10 @@ def handle_message(event):
             lat = output_lst[6][output_lst[6].index(':')+1:]
             op  = output_lst[7][output_lst[7].index(':')+1:]  
             f_city = output_lst[9][output_lst[8].index(':')+1:]
+        
+        else:
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "error")
+            )
 
         flex_message9 = FlexSendMessage(
                             alt_text='快回來看看我幫你找到的店家！',
