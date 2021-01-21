@@ -160,10 +160,11 @@ def count_store_in_table(store_name):
       .count()
   return store_id_q
 def get_store_id(store_name):
+    get_id = ''
     store_id_q = db.session.query(Store)\
         .filter(Store.store == store_name)
     for data in store_id_q:
-        get_id = data.detail_store_id
+        get_id += data.detail_store_id
     return get_id
 def store_exist(get_user_line_id, store_name):
   store_exist = db.session.query(Store, Favorite)\
@@ -616,7 +617,6 @@ def handle_message(event):
                             db.session.commit()
                         except IntegrityError:
                             db.session.rollback()
-                            continue
 
                     line_bot_api.reply_message(
                             event.reply_token,
