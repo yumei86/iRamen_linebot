@@ -611,12 +611,16 @@ def handle_message(event):
                     favorite_list_count != 0 and already_add_store_count == 0 and favorite_list_count <= 25 :
                     get_foreign_id = get_store_id(second_love_param)#check the map_id(foreign key) of the store
                     data = Favorite(user_line_id,get_foreign_id)
-                    if data.id is None:
+                    if data.id == None:
                         try:
                             db.session.add(data)
                             db.session.commit()
                         except IntegrityError:
                             db.session.rollback()
+                            line_bot_api.reply_message(
+                            event.reply_token,
+                            TextSendMessage(text="\udbc0\udc7c靠邀出錯惹，麻煩您幫忙把「錯誤訊息：P1」填進錯誤回報表單，感恩讚嘆！")
+                            )
 
                     line_bot_api.reply_message(
                             event.reply_token,
