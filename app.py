@@ -137,7 +137,7 @@ def query_store(store_k1,store_k2):
                         .outerjoin(Store, Store.store_id == Main_store.store_id)\
                         .filter(Store.store.contains(store_k1))\
                         .filter(Store.store.contains(store_k2))
-                        
+
     return store_direct
 def query_store_direct(stores):
     store_direct = db.session.query(Main_store, Store, Post)\
@@ -1980,17 +1980,23 @@ def handle_message(event):
         ouput_database_map = ''
         output_before_random = ''
         for r in result:
-            try:
-                ouput_database_fb += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
-                    FB_R_CREATE:{r[2].create_on},FB_R_RAMEN:{r[2].ramen_name},FB_R_CONTENT:{r[2].fb_review},\
-                    LONGITUDE:{r[1].longtitute},LATITUDE:{r[1].latitude},OPEN_TIME:{r[1].open_time},\
-                    CHECK_TAG:{r[1].soup},CHECK_CITY:{r[1].province}%'
-
-            except AttributeError:
+            if r[2] == None:
                 ouput_database_map += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
-                    MAP_REVIEW:{r[1].map_review},\
-                    LONGITUDE:{r[1].longtitute},LATITUDE:{r[1].latitude},OPEN_TIME:{r[1].open_time},\
-                    CHECK_TAG:{r[1].soup},CHECK_CITY:{r[1].province}%'
+                                MAP_REVIEW:{r[1].map_review},\
+                                LONGITUDE:{r[1].longtitute},LATITUDE:{r[1].latitude},OPEN_TIME:{r[1].open_time},\
+                                CHECK_TAG:{r[1].soup},CHECK_CITY:{r[1].province}%'
+            else:
+                try:
+                    ouput_database_fb += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
+                        FB_R_CREATE:{r[2].create_on},FB_R_RAMEN:{r[2].ramen_name},FB_R_CONTENT:{r[2].fb_review},\
+                        LONGITUDE:{r[1].longtitute},LATITUDE:{r[1].latitude},OPEN_TIME:{r[1].open_time},\
+                        CHECK_TAG:{r[1].soup},CHECK_CITY:{r[1].province}%'
+
+                except AttributeError:
+                    ouput_database_map += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
+                        MAP_REVIEW:{r[1].map_review},\
+                        LONGITUDE:{r[1].longtitute},LATITUDE:{r[1].latitude},OPEN_TIME:{r[1].open_time},\
+                        CHECK_TAG:{r[1].soup},CHECK_CITY:{r[1].province}%'
                         
 
         output_before_random += ouput_database_fb
