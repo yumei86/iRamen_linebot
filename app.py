@@ -1980,7 +1980,7 @@ def handle_message(event):
         ouput_database_map = ''
         output_before_random = ''
         for r in result:
-            if r[2] == None:
+            if r[2] is None:
                 ouput_database_map += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
                                 MAP_REVIEW:{r[1].map_review},\
                                 LONGITUDE:{r[1].longtitute},LATITUDE:{r[1].latitude},OPEN_TIME:{r[1].open_time},\
@@ -1992,7 +1992,7 @@ def handle_message(event):
                         LONGITUDE:{r[1].longtitute},LATITUDE:{r[1].latitude},OPEN_TIME:{r[1].open_time},\
                         CHECK_TAG:{r[1].soup},CHECK_CITY:{r[1].province}%'
 
-                except AttributeError:
+                except AttributeError as error:
                     ouput_database_map += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
                         MAP_REVIEW:{r[1].map_review},\
                         LONGITUDE:{r[1].longtitute},LATITUDE:{r[1].latitude},OPEN_TIME:{r[1].open_time},\
@@ -2013,7 +2013,7 @@ def handle_message(event):
             try:
                 output_s = secrets.choice(output_whole_lst)
                 output_lst = convert_string_to_lst(output_s, ',')
-            except IndexError:
+            except IndexError as error:
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n例如\n\"鷹流 中山\",\"七 面鳥\",\"麵屋秋 匠\"\
                                                                                       \n\udbc0\udcb2請輸入有效店名關鍵字(中間幫我留空,但不可在前後加入空白)\
                                                                                       \n\udbc0\udcb2或請幫我直接點選拉麵推薦選單做選擇喔！")
