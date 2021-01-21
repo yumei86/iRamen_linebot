@@ -611,7 +611,7 @@ def handle_message(event):
                     favorite_list_count != 0 and already_add_store_count == 0 and favorite_list_count <= 25 :
                     get_foreign_id = get_store_id(second_love_param)#check the map_id(foreign key) of the store
                     data = Favorite(user_line_id,get_foreign_id)
-                    while(data.id == None):
+                    if data.id is None:
                         try:
                             db.session.add(data)
                             db.session.commit()
