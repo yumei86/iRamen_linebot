@@ -912,7 +912,7 @@ def handle_message(event):
 
         output_before_random += ouput_database_fb
         output_before_random += ouput_database_map
-        output_before_random_clear = output_before_random.replace(u'\xa0', u' ').replace(' ','')
+        output_before_random_clear = output_before_random.replace(u'\xa0', u' ').replace(' ','').replace('\n','')
                
         #---------------------------------change data to a list of datas--------------------------
         output_whole_lst = convert_string_to_lst(output_before_random_clear,'%')
@@ -1625,7 +1625,7 @@ def handle_message(event):
 
             output_before_random += ouput_database_fb
             output_before_random += ouput_database_map
-            output_before_random_clear = output_before_random.replace(u'\xa0', u' ').replace(' ','')
+            output_before_random_clear = output_before_random.replace(u'\xa0', u' ').replace(' ','').replace('\n','')
                 
             #---------------------------------change data to a list of datas--------------------------
             output_whole_lst = convert_string_to_lst(output_before_random_clear,'%')
@@ -2006,7 +2006,7 @@ def handle_message(event):
 
         output_before_random += ouput_database_fb
         output_before_random += ouput_database_map
-        output_before_random_clear = output_before_random.replace(u'\xa0', u' ').replace(' ','')
+        output_before_random_clear = output_before_random.replace(u'\xa0', u' ').replace(' ','').replace('\n','')
                     
         #---------------------------------change data to a list of datas--------------------------
         output_whole_lst = convert_string_to_lst(output_before_random_clear,'%')
