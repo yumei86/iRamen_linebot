@@ -95,7 +95,6 @@ class Post(db.Model):
   ramen_name = db.Column (db.String(100))
   fb_review = db.Column (db.Text())
 
-
   def __init__(self, store_id, stores, create_on, ramen_name, fb_review):
     self.store_id = store_id
     self.stores = stores
@@ -121,7 +120,6 @@ def query_province_soup(p, s):
                         .filter(Store.soup.contains(s))\
                         .filter(Store.still_there == True)
     return province_soup_q
-
 def query_province_direct(p):
     province_soup_q = db.session.query(Main_store, Store, Post)\
                         .outerjoin(Post, Post.store_id == Main_store.store_id)\
@@ -130,7 +128,7 @@ def query_province_direct(p):
                         .filter(Store.still_there == True)
     return province_soup_q
 
-#----------------直接打字query店家的部分-----------------
+#----------------主要用在直接打字query店家的部分-----------------
 def query_store(store_k1,store_k2):
     store_direct = db.session.query(Main_store, Store, Post)\
                         .outerjoin(Post, Post.store_id == Main_store.store_id)\
@@ -139,16 +137,25 @@ def query_store(store_k1,store_k2):
                         .filter(Store.store.contains(store_k2))\
                         .filter(Store.still_there == True)
     return store_direct
-
-def query_store_direct(stores):
-    store_direct = db.session.query(Main_store, Store, Post)\
-                        .outerjoin(Post, Post.store_id == Main_store.store_id)\
-                        .outerjoin(Store, Store.store_id == Main_store.store_id)\
-                        .filter(Store.store.contains(stores))
-    return store_direct
+#----------------主要用在定位系統GIS的部分-----------------
+def query_region_by_store_table(r):
+  province_soup_q = db.session.query(Main_store, Store)\
+                      .outerjoin(Store, Store.store_id == Main_store.store_id)\
+                      .filter(Store.region == r)\
+                      .filter(Store.still_there == True)
+  return province_soup_q
+def query_store_by_full_name(s):
+  store_direct = db.session.query(Main_store, Store, Post)\
+                      .outerjoin(Post, Post.store_id == Main_store.store_id)\
+                      .outerjoin(Store, Store.store_id == Main_store.store_id)\
+                      .filter(Store.store == s)\
+                      .filter(Store.still_there == True)
+                      
+  return store_direct
+def take(n, iterable):
+    #"Return first n items of the iterable as a list"
+    return list(islice(iterable, n))
 #----------------------------------------------------
-
-
 def convert_string_to_lst(string,c): 
     li = list(string.split(c)) 
     return li 
@@ -176,10 +183,6 @@ def count_love_list(user_id):
     count_love_list = db.session.query(Favorite)\
             .filter(Favorite.line_id == user_id).count()
     return count_love_list
-def count_total_row(database_name):
-    count_total_row = db.session.query(database_name).count()
-    return count_total_row
-
 
 ##----------------Query love-list by userID----------------
 def get_list_from_user_id(user_id):  
