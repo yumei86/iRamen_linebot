@@ -2047,7 +2047,7 @@ def handle_message(event):
                 lon = output_lst[7][output_lst[7].index(':')+1:]
                 lat = output_lst[8][output_lst[8].index(':')+1:]
                 op  = output_lst[9][output_lst[9].index(':')+1:]
-                f_city = output_lst[11][output_lst[10].index(':')+1:]
+                f_city = output_lst[-1][output_lst[10].index(':')+1:]
 
 
             elif len(output_lst) == 10:
@@ -2056,7 +2056,7 @@ def handle_message(event):
                 lon = output_lst[5][output_lst[5].index(':')+1:]
                 lat = output_lst[6][output_lst[6].index(':')+1:]
                 op  = output_lst[7][output_lst[7].index(':')+1:]  
-                f_city = output_lst[9][output_lst[8].index(':')+1:]
+                f_city = output_lst[-1][output_lst[8].index(':')+1:]
             
             else:
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2出錯啦靠邀，麻煩您把「錯誤代碼S1」和「您的店家搜尋指令（含空格）」填在填錯誤回報上，感激到五體投地\udbc0\udcb2") )
