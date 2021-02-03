@@ -229,7 +229,7 @@ def favorite_list_generator(favorite_list):
 
 @app.route("/", methods=['GET'])
 def hello():
-    return "Hello RAMEN World>.^"
+    return "Hello RAMEN World!"
 
 @app.route("/", methods=['POST'])
 def callback():
@@ -698,7 +698,7 @@ def handle_message(event):
         line_bot_api.reply_message(
                     event.reply_token,
                     TextSendMessage(text="\n\
-                                        \udbc0\udcb2常見問題\n\n\udbc0\udcb2我的反應太慢:\n因為目前我的雲端伺服器有時會睡眠，請等待幾秒鐘，多輸入個兩三次把我叫醒。\
+                                        \udbc0\udcb2常見問題\n\n\udbc0\udcb2我的反應太慢:\n早上08:00AM-半夜02:00AM是我的工作時間，其餘的6小時是我的睡覺時間，不要吵我睡覺。\
                                         \n\
                                         \n\udbc0\udcb2選擇湯頭和評論品項不同:\n別擔心，該推薦店家是有賣你選的湯頭類型！\
                                         \n\
