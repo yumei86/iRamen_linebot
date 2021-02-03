@@ -229,7 +229,7 @@ def favorite_list_generator(favorite_list):
 
 @app.route("/", methods=['GET'])
 def hello():
-    return "Hello World!"
+    return "Hello RAMEN World>.^"
 
 @app.route("/", methods=['POST'])
 def callback():
@@ -245,7 +245,7 @@ def callback():
     except InvalidSignatureError:
        abort(400)
 
-    return 'OK'
+    return 'OK RAMEN'
 
 #----------------設定回覆訊息介面-----------------
 
