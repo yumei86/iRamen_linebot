@@ -697,7 +697,7 @@ def handle_message(event):
     if event.message.text == "問題回報":
         line_bot_api.reply_message(
                     event.reply_token,
-                    TextSendMessage(text="\b常見問題\b\n\udbc0\udcb2我的反應太慢:\n因為目前我的雲端伺服器有時會睡眠，請等待幾秒鐘，多輸入個兩三次把我叫醒。\
+                    TextSendMessage(text="\t\t\t常見問題\t\n\n\udbc0\udcb2我的反應太慢:\n因為目前我的雲端伺服器有時會睡眠，請等待幾秒鐘，多輸入個兩三次把我叫醒。\
                                         \n\
                                         \n\udbc0\udcb2選擇湯頭和評論品項不同:\n別擔心，該推薦店家是有賣你選的湯頭類型！\
                                         \n\
