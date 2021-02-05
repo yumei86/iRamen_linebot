@@ -720,7 +720,7 @@ def handle_message(event):
     if event.message.text == "問題回報":
         line_bot_api.reply_message(
                     event.reply_token,
-                    TextSendMessage(text="\udbc0\udcb2常見問題\n\n\udbc0\udcb2我的反應太慢:\n台灣時間早上09:00AM-半夜02:00AM是我的工作時間，我的反應應該要正常，太慢的話請多按幾次或填錯誤回報表單；其餘時間是我的睡覺時間，我一定要睡滿6小時，不要吵我睡覺!!!\
+                    TextSendMessage(text="\udbc0\udcb2常見問題\n\n\udbc0\udcb2我的反應太慢:\n台灣時間早上09:00AM-半夜02:00AM是我的工作時間，我的反應最慢要在5-10秒左右，太慢的話請多按幾次或填錯誤回報表單；其餘時間是我的睡覺時間，我一定要睡滿6小時，不要吵我睡覺!!!\
                                         \n\
                                         \n\udbc0\udcb2選擇湯頭和評論品項不同:\n別擔心，該推薦店家是有賣你選的湯頭類型！\
                                         \n\
@@ -2014,13 +2014,13 @@ def handle_message(event):
                 output_s = secrets.choice(output_whole_lst)
                 output_lst = convert_string_to_lst(output_s, ',')
             except IndexError as error:
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n例如\n\"鷹流 中山\",\"七 面鳥\",\"麵屋秋 匠\"\
+                line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n例如\n\"隱家 赤峰\",\"公 子\",\"山下公 園\"\
                                                                                       \n\udbc0\udcb2請輸入有效店名關鍵字(中間幫我留空,但不可在前後加入空白)\
                                                                                       \n\udbc0\udcb2或請幫我直接點選拉麵推薦選單做選擇喔！")
                 )
 
         else:
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n例如\n\"鷹流 中山\",\"七 面鳥\",\"麵屋秋 匠\"\
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n例如\n\"鷹流 公館\",\"七 面鳥\",\"麵屋秋 匠\"\
                                                                                       \n\udbc0\udcb2請輸入有效店名關鍵字(中間幫我留空,但不可在前後加入空白)\
                                                                                       \n\udbc0\udcb2或請幫我直接點選拉麵推薦選單做選擇喔！")
             )
@@ -2358,7 +2358,7 @@ def handle_message(event):
 
     else:
 
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n例如\n\"鷹流 中山\",\"七 面鳥\",\"麵屋秋 匠\"\
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n例如\n\"鷹流 公館\",\"真 劍\",\"麵屋秋 匠\"\
                                                                                   \n\udbc0\udcb2請輸入有效店名關鍵字(中間幫我留空,但不可在前後加入空白)\
                                                                                   \n\udbc0\udcb2或請幫我直接點選拉麵推薦選單做選擇喔！")
         )
