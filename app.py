@@ -114,7 +114,7 @@ class Favorite(db.Model):
 
 def get_data_str(lst):
     output_before_random = ''
-    for r in result:
+    for r in lst:
         if r[2] is None:
             output_before_random += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
                             MAP_REVIEW:{r[1].map_review},\
