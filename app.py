@@ -919,33 +919,7 @@ def handle_message(event):
                         
             elif select_first_param in city_name:
                 result = query_province_soup(select_first_param, select_second_param)
-                   
-        # #---------------------------put all data in a string--------------------------
-        # ouput_database_fb = ''
-        # ouput_database_map = ''
-        # output_before_random = ''
-        # for r in result:
-        #     if r[2] is None:
-        #         ouput_database_map += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
-        #                         MAP_REVIEW:{r[1].map_review},\
-        #                         LONGITUDE:{r[1].longtitute},LATITUDE:{r[1].latitude},OPEN_TIME:{r[1].open_time},\
-        #                         CHECK_TAG:{r[1].soup},CHECK_CITY:{r[1].province}%'
-        #     else:
-        #         try:
-        #             ouput_database_fb += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
-        #                 FB_R_CREATE:{r[2].create_on},FB_R_RAMEN:{r[2].ramen_name},FB_R_CONTENT:{r[2].fb_review},\
-        #                 LONGITUDE:{r[1].longtitute},LATITUDE:{r[1].latitude},OPEN_TIME:{r[1].open_time},\
-        #                 CHECK_TAG:{r[1].soup},CHECK_CITY:{r[1].province}%'
-
-        #         except AttributeError as error:
-        #             ouput_database_map += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
-        #                 MAP_REVIEW:{r[1].map_review},\
-        #                 LONGITUDE:{r[1].longtitute},LATITUDE:{r[1].latitude},OPEN_TIME:{r[1].open_time},\
-        #                 CHECK_TAG:{r[1].soup},CHECK_CITY:{r[1].province}%'
-                
-
-        # output_before_random += ouput_database_fb
-        # output_before_random += ouput_database_map
+        # #---------------------------------put all data to a string--------------------------           
         output_before_random_clear = get_data_str(result)
         if output_before_random_clear == None:
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\uDBC0\uDC7c該縣市不在台灣餒"))
@@ -954,7 +928,7 @@ def handle_message(event):
             #---------------------------------change data to a list of datas--------------------------
             output_whole_lst = convert_string_to_lst(output_before_random_clear,'%')
             for data in output_whole_lst:
-                if data == '':
+                if data == '' or data == ' ':
                     output_whole_lst.remove(data)
         #---------------------------------random(everytime renew can auto random)--------------------------
         output_s = secrets.choice(output_whole_lst)
@@ -1642,33 +1616,36 @@ def handle_message(event):
                 elif select_first_param in city_name:
                     result = query_province_soup(select_first_param, select_second_param)
 
-            #---------------------------------put all data in a string--------------------------
-            ouput_database_fb = ''
-            ouput_database_map = ''
-            output_before_random = ''
-            for r in result:
-                try:
-                    ouput_database_fb += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
-                        FB_R_CREATE:{r[2].create_on},FB_R_RAMEN:{r[2].ramen_name},FB_R_CONTENT:{r[2].fb_review},\
-                        LONGITUDE:{r[1].longtitute},LATITUDE:{r[1].latitude},OPEN_TIME:{r[1].open_time},\
-                        CHECK_TAG:{r[1].soup},CHECK_CITY:{r[1].province}%'
+            # #---------------------------------put all data to a string--------------------------
+            # ouput_database_fb = ''
+            # ouput_database_map = ''
+            # output_before_random = ''
+            # for r in result:
+            #     try:
+            #         ouput_database_fb += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
+            #             FB_R_CREATE:{r[2].create_on},FB_R_RAMEN:{r[2].ramen_name},FB_R_CONTENT:{r[2].fb_review},\
+            #             LONGITUDE:{r[1].longtitute},LATITUDE:{r[1].latitude},OPEN_TIME:{r[1].open_time},\
+            #             CHECK_TAG:{r[1].soup},CHECK_CITY:{r[1].province}%'
 
-                except AttributeError as error:
-                    ouput_database_map += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
-                        MAP_REVIEW:{r[1].map_review},\
-                        LONGITUDE:{r[1].longtitute},LATITUDE:{r[1].latitude},OPEN_TIME:{r[1].open_time},\
-                        CHECK_TAG:{r[1].soup},CHECK_CITY:{r[1].province}%'
+            #     except AttributeError as error:
+            #         ouput_database_map += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
+            #             MAP_REVIEW:{r[1].map_review},\
+            #             LONGITUDE:{r[1].longtitute},LATITUDE:{r[1].latitude},OPEN_TIME:{r[1].open_time},\
+            #             CHECK_TAG:{r[1].soup},CHECK_CITY:{r[1].province}%'
                     
 
-            output_before_random += ouput_database_fb
-            output_before_random += ouput_database_map
-            output_before_random_clear = output_before_random.replace(u'\xa0', u' ').replace('\n','')
-                
-            #---------------------------------change data to a list of datas--------------------------
-            output_whole_lst = convert_string_to_lst(output_before_random_clear,'%')
-            for data in output_whole_lst:
-                if data == '':
-                    output_whole_lst.remove(data)
+            # output_before_random += ouput_database_fb
+            # output_before_random += ouput_database_map
+            output_before_random_clear = get_data_str(result)
+            if output_before_random_clear == None:
+                line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\uDBC0\uDC7c該湯頭或縣市有誤"))
+            else:
+                output_before_random_clear = output_before_random_clear.replace(u'\xa0', u' ').replace('\n','')
+                #---------------------------------change data to a list of datas--------------------------
+                output_whole_lst = convert_string_to_lst(output_before_random_clear,'%')
+                for data in output_whole_lst:
+                    if data == '' or data == ' ':
+                        output_whole_lst.remove(data)
             #---------------------------------random(everytime renew can auto random)--------------------------
             output_s = secrets.choice(output_whole_lst)
             output_lst = convert_string_to_lst(output_s, ',')
