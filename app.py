@@ -1966,10 +1966,10 @@ def handle_message(event):
         if ' ' in user_select and ' ' not in user_select[-1] and ' ' not in user_select[0]:
             input_lst = user_select.split()
             if len(input_lst) == 2 :
-              count_store = query_store(input_lst[0],input_lst[1]).count()
+              count_store = query_store(str(input_lst[0]),str(input_lst[1])).count()
               # print(count_store)
               if count_store != 0:
-                result = query_store(input_key_first,input_key_second)
+                result = query_store(str(input_lst[0]),str(input_lst[1]))
               else:
                 result = ''
             else:
