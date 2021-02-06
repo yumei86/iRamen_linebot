@@ -1966,19 +1966,19 @@ def handle_message(event):
         if ' ' in user_select and ' ' not in user_select[-1] and ' ' not in user_select[0]:
             input_lst = user_select.split()
             if len(input_lst) == 2 :
-              count_store = query_store(str(input_lst[0]),str(input_lst[1])).count()
+              count_store = query_store(input_lst[0],input_lst[1]).count()
               # print(count_store)
               if count_store != 0:
-                keyword_result = query_store(input_key_first,input_key_second)
+                result = query_store(input_key_first,input_key_second)
               else:
-                keyword_result = ''
+                result = ''
             else:
-                keyword_result = ''
+                result = ''
         else:
-          keyword_result = ''
+          result = ''
 
        #---------------------------------put all data to a string--------------------------
-        output_before_random_clear = get_data_str(keyword_result)
+        output_before_random_clear = get_data_str(result)
         if output_before_random_clear == None:
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n\n例:{store_example_choice}\
                                                                                       \n\n\udbc0\udcb2請輸入有效店名關鍵字(中間幫我留空,但不可在前後加入空白)\
@@ -2339,6 +2339,7 @@ def handle_message(event):
         )
 
     else:
+
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n\n例:{store_example_choice}\
                                                                                   \n\n\udbc0\udcb2請輸入有效店名關鍵字(中間幫我留空,但不可在前後加入空白)\
                                                                                   \n\udbc0\udcb2或請幫我直接點選拉麵推薦選單做選擇喔！")
