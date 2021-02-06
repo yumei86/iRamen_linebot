@@ -1964,25 +1964,21 @@ def handle_message(event):
         store_example_choice = reduce(lambda a,x:a+str(x),store_example_choice_lst,"")
 
         if ' ' in user_select and ' ' not in user_select[-1] and ' ' not in user_select[0]:
-            input_key_first = ''
-            input_key_second = ''
             input_lst = user_select.split()
             if len(input_lst) == 2 :
-              input_key_first += input_lst[0]
-              input_key_second += input_lst[1]
-              count_store = query_store(input_key_first,input_key_second).count()
+              count_store = query_store(str(input_lst[0]),str(input_lst[1])).count()
               # print(count_store)
               if count_store != 0:
-                result = query_store(input_key_first,input_key_second)
+                keyword_result = query_store(input_key_first,input_key_second)
               else:
-                result = ''
+                keyword_result = ''
             else:
-                result = ''
+                keyword_result = ''
         else:
-          result = ''
+          keyword_result = ''
 
        #---------------------------------put all data to a string--------------------------
-        output_before_random_clear = get_data_str(result)
+        output_before_random_clear = get_data_str(keyword_result)
         if output_before_random_clear == None:
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n\n例:{store_example_choice}\
                                                                                       \n\n\udbc0\udcb2請輸入有效店名關鍵字(中間幫我留空,但不可在前後加入空白)\
@@ -2343,7 +2339,6 @@ def handle_message(event):
         )
 
     else:
-
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n\n例:{store_example_choice}\
                                                                                   \n\n\udbc0\udcb2請輸入有效店名關鍵字(中間幫我留空,但不可在前後加入空白)\
                                                                                   \n\udbc0\udcb2或請幫我直接點選拉麵推薦選單做選擇喔！")
