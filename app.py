@@ -9,6 +9,7 @@ from linebot.exceptions import LineBotApiError
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import IntegrityError
 import secrets
+import random
 import csv
 
 #----------------呼叫我們的line bot(這邊直接取用heroku的環境變數)-----------------
@@ -1956,7 +1957,9 @@ def handle_message(event):
     if ' ' in event.message.text:
 
         user_select = event.message.text
-
+        store_example = ['「鷹流 公館」','「公 子」','「山下公 園」','「隱家 赤峰」','「七 面鳥」','「麵屋 壹」','「真 劍」','「麵屋秋 匠」','「Mr 拉麵雲」','「辰 拉」','「京都 柚子」']
+        random.shuffle(store_example)
+        store_example_choice = store_example[:3]
         if ' ' in user_select and ' ' not in user_select[-1] and ' ' not in user_select[0]:
             input_key_first = ''
             input_key_second = ''
@@ -1978,7 +1981,9 @@ def handle_message(event):
        #---------------------------------put all data to a string--------------------------
         output_before_random_clear = get_data_str(result)
         if output_before_random_clear == None:
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\uDBC0\uDC7c該湯頭或縣市有誤"))
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n例如\n{store_example_choice}\
+                                                                                      \n\udbc0\udcb2請輸入有效店名關鍵字(中間幫我留空,但不可在前後加入空白)\
+                                                                                      \n\udbc0\udcb2或請幫我直接點選拉麵推薦選單做選擇喔！"))
         else:
             output_before_random_clear = output_before_random_clear.replace(u'\xa0', u' ').replace('\n','')
             #---------------------------------change data to a list of datas--------------------------
@@ -1992,13 +1997,13 @@ def handle_message(event):
                 output_s = secrets.choice(output_whole_lst)
                 output_lst = convert_string_to_lst(output_s, ',')
             except IndexError as error:
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n例如\n「鷹流 公館」,「公 子」,「山下公 園」\
+                line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n例如\n{store_example_choice}\
                                                                                       \n\udbc0\udcb2請輸入有效店名關鍵字(中間幫我留空,但不可在前後加入空白)\
                                                                                       \n\udbc0\udcb2或請幫我直接點選拉麵推薦選單做選擇喔！")
                 )
 
         else:
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n例如\n「隱家 赤峰」,「七 面鳥」,「麵屋 壹」\
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n例如\n{store_example_choice}\
                                                                                       \n\udbc0\udcb2請輸入有效店名關鍵字(中間幫我留空,但不可在前後加入空白)\
                                                                                       \n\udbc0\udcb2或請幫我直接點選拉麵推薦選單做選擇喔！")
             )
@@ -2336,7 +2341,7 @@ def handle_message(event):
 
     else:
 
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n例如\n\"鷹流 公館\",\"真 劍\",\"麵屋秋 匠\"\
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n例如\n{store_example_choice}\
                                                                                   \n\udbc0\udcb2請輸入有效店名關鍵字(中間幫我留空,但不可在前後加入空白)\
                                                                                   \n\udbc0\udcb2或請幫我直接點選拉麵推薦選單做選擇喔！")
         )
