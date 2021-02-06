@@ -1975,52 +1975,30 @@ def handle_message(event):
         else:
           result = ''
 
-        #---------------------------------put all data in a string--------------------------
-        ouput_database_fb = ''
-        ouput_database_map = ''
-        output_before_random = ''
-        for r in result:
-            if r[2] is None:
-                ouput_database_map += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
-                                MAP_REVIEW:{r[1].map_review},\
-                                LONGITUDE:{r[1].longtitute},LATITUDE:{r[1].latitude},OPEN_TIME:{r[1].open_time},\
-                                CHECK_TAG:{r[1].soup},CHECK_CITY:{r[1].province}%'
-            else:
-                try:
-                    ouput_database_fb += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
-                        FB_R_CREATE:{r[2].create_on},FB_R_RAMEN:{r[2].ramen_name},FB_R_CONTENT:{r[2].fb_review},\
-                        LONGITUDE:{r[1].longtitute},LATITUDE:{r[1].latitude},OPEN_TIME:{r[1].open_time},\
-                        CHECK_TAG:{r[1].soup},CHECK_CITY:{r[1].province}%'
-
-                except AttributeError as error:
-                    ouput_database_map += f'STORE:{r[1].store},ADDRESS:{r[1].address},DISCRIPTION:{r[1].discription},TRANSPORT:{r[1].transport},\
-                        MAP_REVIEW:{r[1].map_review},\
-                        LONGITUDE:{r[1].longtitute},LATITUDE:{r[1].latitude},OPEN_TIME:{r[1].open_time},\
-                        CHECK_TAG:{r[1].soup},CHECK_CITY:{r[1].province}%'
-                        
-
-        output_before_random += ouput_database_fb
-        output_before_random += ouput_database_map
-        output_before_random_clear = output_before_random.replace(u'\xa0', u' ').replace('\n','')
-                    
-        #---------------------------------change data to a list of datas--------------------------
-        output_whole_lst = convert_string_to_lst(output_before_random_clear,'%')
-        for data in output_whole_lst:
-            if data == '':
-                output_whole_lst.remove(data)
-        #---------------------------------random(everytime renew can auto random)--------------------------
+       #---------------------------------put all data to a string--------------------------
+        output_before_random_clear = get_data_str(result)
+        if output_before_random_clear == None:
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\uDBC0\uDC7c該湯頭或縣市有誤"))
+        else:
+            output_before_random_clear = output_before_random_clear.replace(u'\xa0', u' ').replace('\n','')
+            #---------------------------------change data to a list of datas--------------------------
+            output_whole_lst = convert_string_to_lst(output_before_random_clear,'%')
+            for data in output_whole_lst:
+                if data == '' or data == ' ':
+                    output_whole_lst.remove(data)
+        
         if len(output_whole_lst) != 0:
             try:
                 output_s = secrets.choice(output_whole_lst)
                 output_lst = convert_string_to_lst(output_s, ',')
             except IndexError as error:
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n例如\n\"隱家 赤峰\",\"公 子\",\"山下公 園\"\
+                line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n例如\n「鷹流 公館」,「公 子」,「山下公 園」\
                                                                                       \n\udbc0\udcb2請輸入有效店名關鍵字(中間幫我留空,但不可在前後加入空白)\
                                                                                       \n\udbc0\udcb2或請幫我直接點選拉麵推薦選單做選擇喔！")
                 )
 
         else:
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n例如\n\"鷹流 公館\",\"七 面鳥\",\"麵屋秋 匠\"\
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n例如\n「隱家 赤峰」,「七 面鳥」,「麵屋 壹」\
                                                                                       \n\udbc0\udcb2請輸入有效店名關鍵字(中間幫我留空,但不可在前後加入空白)\
                                                                                       \n\udbc0\udcb2或請幫我直接點選拉麵推薦選單做選擇喔！")
             )
