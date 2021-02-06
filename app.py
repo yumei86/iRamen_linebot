@@ -10,6 +10,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import IntegrityError
 import secrets
 import random
+from functools import reduce
 import csv
 
 #----------------呼叫我們的line bot(這邊直接取用heroku的環境變數)-----------------
@@ -1959,7 +1960,8 @@ def handle_message(event):
         user_select = event.message.text
         store_example = ['「鷹流 公館」','「公 子」','「山下公 園」','「隱家 赤峰」','「七 面鳥」','「麵屋 壹」','「真 劍」','「麵屋秋 匠」','「Mr 拉麵雲」','「辰 拉」','「京都 柚子」']
         random.shuffle(store_example)
-        store_example_choice = store_example[:3]
+        store_example_choice_lst = store_example[:3]
+        store_example_choice = reduce(lambda a,x:a+str(x),store_example_choice_lst,"")
         if ' ' in user_select and ' ' not in user_select[-1] and ' ' not in user_select[0]:
             input_key_first = ''
             input_key_second = ''
