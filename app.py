@@ -1958,10 +1958,11 @@ def handle_message(event):
     if ' ' in event.message.text:
 
         user_select = event.message.text
-        store_example = ['「鷹流 公館」','「公 子」','「山下公 園」','「隱家 赤峰」','「七 面鳥」','「麵屋 壹」','「真 劍」','「麵屋秋 匠」','「Mr 拉麵雲」','「辰 拉」','「京都 柚子」']
+        store_example = ['「鷹流 公館」','「公 子」','「山下公 園」','「隱家 赤峰」','「七 面鳥」','「麵屋 壹」','「真 劍」','「麵屋秋 匠」','「Mr 拉麵雲」','「辰 拉」','「京都 柚子」','麵屋 ichi']
         random.shuffle(store_example)
         store_example_choice_lst = store_example[:3]
         store_example_choice = reduce(lambda a,x:a+str(x),store_example_choice_lst,"")
+
         if ' ' in user_select and ' ' not in user_select[-1] and ' ' not in user_select[0]:
             input_key_first = ''
             input_key_second = ''
@@ -1983,7 +1984,7 @@ def handle_message(event):
        #---------------------------------put all data to a string--------------------------
         output_before_random_clear = get_data_str(result)
         if output_before_random_clear == None:
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n\n例如\n{store_example_choice}\
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n\n\udbc0\udcb2例如:\n{store_example_choice}\
                                                                                       \n\n\udbc0\udcb2請輸入有效店名關鍵字(中間幫我留空,但不可在前後加入空白)\
                                                                                       \n\udbc0\udcb2或請幫我直接點選拉麵推薦選單做選擇喔！"))
         else:
@@ -1999,13 +2000,13 @@ def handle_message(event):
                 output_s = secrets.choice(output_whole_lst)
                 output_lst = convert_string_to_lst(output_s, ',')
             except IndexError as error:
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n\n例如\n{store_example_choice}\
+                line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n\n\udbc0\udcb2例如:\n{store_example_choice}\
                                                                                       \n\n\udbc0\udcb2請輸入有效店名關鍵字(中間幫我留空,但不可在前後加入空白)\
                                                                                       \n\udbc0\udcb2或請幫我直接點選拉麵推薦選單做選擇喔！")
                 )
 
         else:
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n\n例如\n{store_example_choice}\
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n\n\udbc0\udcb2例如:\n{store_example_choice}\
                                                                                       \n\n\udbc0\udcb2請輸入有效店名關鍵字(中間幫我留空,但不可在前後加入空白)\
                                                                                       \n\udbc0\udcb2或請幫我直接點選拉麵推薦選單做選擇喔！")
             )
@@ -2343,7 +2344,7 @@ def handle_message(event):
 
     else:
 
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n\n例如\n{store_example_choice}\
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n\n\udbc0\udcb2例如:\n{store_example_choice}\
                                                                                   \n\n\udbc0\udcb2請輸入有效店名關鍵字(中間幫我留空,但不可在前後加入空白)\
                                                                                   \n\udbc0\udcb2或請幫我直接點選拉麵推薦選單做選擇喔！")
         )
