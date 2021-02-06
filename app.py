@@ -1958,7 +1958,7 @@ def handle_message(event):
     if ' ' in event.message.text:
 
         user_select = event.message.text
-        store_example = ['「鷹流 公館」','「公 子」','「山下公 園」','「隱家 赤峰」','「七 面鳥」','「麵屋 壹」','「真 劍」','「麵屋秋 匠」','「Mr 拉麵雲」','「辰 拉」','「京都 柚子」','麵屋 ichi']
+        store_example = ['「鷹流 公館」','「公 子」','「山下公 園」','「隱家 赤峰」','「七 面鳥」','「麵屋 壹」','「真 劍」','「麵屋秋 匠」','「Mr 拉麵雲」','「辰 拉」','「京都 柚子」','「麵屋 ichi」']
         random.shuffle(store_example)
         store_example_choice_lst = store_example[:5]
         store_example_choice = reduce(lambda a,x:a+str(x),store_example_choice_lst,"")
