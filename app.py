@@ -722,11 +722,11 @@ def handle_message(event):
     if event.message.text == "問題回報":
         line_bot_api.reply_message(
                     event.reply_token,
-                    TextSendMessage(text="\udbc0\udcb2常見問題\n\n\udbc0\udcb2我的反應太慢:\n•台灣時間早上09:00AM-半夜02:00AM是我的工作時間，最慢5-10秒左右會回覆，太慢或不回的話請多按幾次或填錯誤回報表單；\n•其餘時間是我的睡覺時間，一定要睡滿6小時，不要吵我睡覺\
+                    TextSendMessage(text="\udbc0\udcb2常見問題\n\n\udbc0\udcb2我的反應太慢:\n• 台灣時間早上09:00AM-半夜02:00AM是我的工作時間，最慢5-10秒左右會回覆，太慢或不回的話請多按幾次或填錯誤回報表單\n\n• 其餘時間是我的睡覺時間，一定要睡滿6小時，不要吵我睡覺\
                                         \n\
-                                        \n\udbc0\udcb2選擇湯頭和評論品項不同:\n•別擔心，該推薦店家是有賣你選的湯頭類型！\
+                                        \n\udbc0\udcb2選擇湯頭和評論品項不同:\n• 別擔心，該推薦店家是有賣你選的湯頭類型！\
                                         \n\
-                                        \n\udbc0\udcb2希望有較小範圍的地區搜尋功能:\n•在做了別急。\
+                                        \n\udbc0\udcb2希望有較小範圍的地區搜尋功能:\n• 在做了別急。\
                                         \n\
                                         \n\udbc0\udcb22021年1月初已修復最愛清單和關鍵字搜尋流暢度,請安心使用BY崩潰後端負責人\
                                         \n\
