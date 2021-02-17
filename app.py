@@ -721,7 +721,7 @@ def handle_message(event):
     if event.message.text == "問題回報":
         line_bot_api.reply_message(
                     event.reply_token,
-                    TextSendMessage(text="\udbc0\udcb2常見問題\n\n• 我的反應太慢:\n\n最慢5-10秒左右會回覆，太慢或不回的話請多按幾次或填錯誤回報表單。\n\n半夜2點後是我的睡覺時間，一定要睡滿6小時，不要吵我睡覺。\
+                    TextSendMessage(text="\udbc0\udcb2常見問題\n\n• 我的反應太慢:\n\n最慢5-10秒左右會回覆，太慢或不回的話請多按幾次或填錯誤回報表單。\n半夜2點後是我的睡覺時間，一定要睡滿6小時，不要吵我睡覺。\
                                         \n\
                                         \n• 選擇湯頭和評論品項不同:\n\n別擔心，該推薦店家是有賣你選的湯頭類型！\
                                         \n\
@@ -1989,7 +1989,7 @@ def handle_message(event):
     if ' ' in event.message.text:
 
         user_select = event.message.text
-        store_example = ['「鷹流 公館」','「公 子」','「山下公 園」','「隱家 赤峰」','「七 面鳥」','「麵屋 壹」','「真 劍」','「麵 屋秋匠」','「Mr 拉麵雲」','「辰 拉」','「京都 柚子」','「麵屋 ichi」','「麵屋 壹之穴」','「KIDO 拉麵」','「Ramen 初」']
+        store_example = ['「鷹流 公館」','「公 子」','「山下公 園」','「隱家 赤峰」','「七 面鳥」','「麵屋 壹」','「真 劍」','「秋 鳴」','「Mr 拉麵雲」','「辰 拉」','「京都 柚子」','「麵屋 ichi」','「麵屋 壹之穴」','「KIDO 拉麵」','「Ramen 初」']
         random.shuffle(store_example)
         store_example_choice_lst = store_example[:5]
         store_example_choice = ''.join(store_example_choice_lst)
