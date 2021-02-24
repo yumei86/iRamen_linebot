@@ -928,9 +928,7 @@ def handle_message(event):
             output_before_random_clear = output_before_random_clear.replace(u'\xa0', u' ').replace('\n','')
             #---------------------------------change data to a list of datas--------------------------
             output_whole_lst = convert_string_to_lst(output_before_random_clear,'%')
-            for data in output_whole_lst:
-                if data == '' or data == ' ':
-                    output_whole_lst.remove(data)
+            output_whole_lst = [i for i in output_whole_lst if i]
         #---------------------------------random(everytime renew can auto random)--------------------------
         output_s = secrets.choice(output_whole_lst)
         output_lst = convert_string_to_lst(output_s, ',')
@@ -1657,9 +1655,7 @@ def handle_message(event):
                 output_before_random_clear = output_before_random_clear.replace(u'\xa0', u' ').replace('\n','')
                 #---------------------------------change data to a list of datas--------------------------
                 output_whole_lst = convert_string_to_lst(output_before_random_clear,'%')
-                for data in output_whole_lst:
-                    if data == '' or data == ' ':
-                        output_whole_lst.remove(data)
+                output_whole_lst = [i for i in output_whole_lst if i]
             #---------------------------------random(everytime renew can auto random)--------------------------
             output_s = secrets.choice(output_whole_lst)
             output_lst = convert_string_to_lst(output_s, ',')
