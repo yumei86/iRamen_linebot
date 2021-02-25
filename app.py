@@ -489,8 +489,17 @@ def handle_message(event):
                                                 "type": "button",
                                                 "action": {
                                                     "type": "message",
-                                                    "label": "看網友評論",
-                                                    "text": "看網友評論:"+com
+                                                    "label": "評論超連結",
+                                                    "text": "以下是網友評論->"+com
+                                                },
+                                                "color": "#D08C60"
+                                                },
+                                                {
+                                                "type": "button",
+                                                "action": {
+                                                    "type": "message",
+                                                    "label": "看更多推薦",
+                                                    "text": "看更多推薦:"+city_r
                                                 },
                                                 "color": "#D08C60"
                                                 }
