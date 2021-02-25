@@ -1990,6 +1990,7 @@ def handle_message(event):
     if ' ' in event.message.text:
 
         user_select = event.message.text
+        keyword_result=''
 
         if ' ' in user_select and ' ' not in user_select[-1] and ' ' not in user_select[0]:
             input_lst = user_select.split()
@@ -1998,12 +1999,12 @@ def handle_message(event):
               # print(count_store)
               if count_store != 0:
                 keyword_result = query_store(str(input_lst[0]),str(input_lst[1]))
-              else:
-                keyword_result = ''
-            else:
-                keyword_result = ''
-        else:
-          keyword_result = ''
+        #       else:
+        #         keyword_result = ''
+        #     else:
+        #         keyword_result = ''
+        # else:
+        #   keyword_result = ''
 
        #---------------------------------put all data to a string--------------------------
         output_before_random_clear = get_data_str(keyword_result)
@@ -2015,8 +2016,7 @@ def handle_message(event):
             output_before_random_clear = output_before_random_clear.replace(u'\xa0', u' ').replace('\n','')
             #---------------------------------change data to a list of datas--------------------------
             output_whole_lst = convert_string_to_lst(output_before_random_clear,'%')
-            while("" in output_whole_lst) : 
-                output_whole_lst.remove("") 
+            output_whole_lst = [i for i in output_whole_lst if i]
         
         if len(output_whole_lst) != 0:
             try:
