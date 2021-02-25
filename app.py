@@ -483,14 +483,14 @@ def handle_message(event):
                                             },
                                             "footer": {
                                             "type": "box",
-                                            "layout": "horizontal",
+                                            "layout": "vertical",
                                             "contents": [
                                                 {
                                                 "type": "button",
                                                 "action": {
                                                     "type": "message",
-                                                    "label": "評論超連結",
-                                                    "text": f"網友評論{r_store}->\n{com}"
+                                                    "label": "NEW!看網友評論",
+                                                    "text": f"網友評論{r_store}->\n\n{com}"
                                                 },
                                                 "color": "#D08C60"
                                                 },
@@ -1892,10 +1892,10 @@ def handle_message(event):
     
     if ' ' in event.message.text:
         if "網友評論" in event.message.text:
-            warm_msg = ['拉麵不分貴賤','No Ramen no life','拉麵是永久忍耐又有恩慈','好拉麵不分先來後到但是不可解壓縮','用拉麵抵擋水逆！','拉麵拯救宇宙']
+            warm_msg = ['拉麵不分貴賤','No Ramen no life','拉麵是永久忍耐又有恩慈','好拉麵不分先來後到','用拉麵抵擋水逆！','拉麵拯救宇宙','排隊不可解壓縮','趁年輕多吃拉麵','拉麵濃淡皆宜多吃為佳','排隊時多用IRAMEN推薦新店面','IRAMEN正在緩慢改版中']
             warm_msg_choice = secrets.choice(warm_msg)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"{warm_msg_choice}"))
-            
+
         elif ' ' in user_select and ' ' not in user_select[-1] and ' ' not in user_select[0]:
             user_select = event.message.text
             keyword_result=''
