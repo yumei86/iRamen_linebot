@@ -2267,13 +2267,13 @@ def handle_message(event):
                         )
 
                 line_bot_api.reply_message(event.reply_token,flex_message9)
-
-        elif len(output_lst) == 0:
+                
+        elif ' ' in user_select and ' ' in user_select[-1] and ' '  in user_select[0]:
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n\n例:{store_example_choice}\
                                                                                   \n\n\udbc0\udcb2請輸入有效店名關鍵字(中間幫我隨意留一個半形空,但不可在前後加入空白)\
                                                                                   \n\udbc0\udcb2或請幫我直接點選拉麵推薦選單做選擇喔！")
         )
-            
+
         else:
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2出錯啦靠邀，麻煩您把「錯誤代碼S2」和「您的店家搜尋指令（含空格）」填在填錯誤回報上，感激到五體投地\udbc0\udcb2")
         )
