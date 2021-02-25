@@ -490,7 +490,7 @@ def handle_message(event):
                                                 "action": {
                                                     "type": "message",
                                                     "label": "評論超連結",
-                                                    "text": f"以下是網友評論->\n{com}"
+                                                    "text": f"網友評論{r_store}->\n{com}"
                                                 },
                                                 "color": "#D08C60"
                                                 },
@@ -2264,8 +2264,12 @@ def handle_message(event):
                     )
 
             line_bot_api.reply_message(event.reply_token,flex_message9)
+
         else:
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2出錯啦靠邀，麻煩您把「錯誤代碼S2」和「您的店家搜尋指令（含空格）」填在填錯誤回報上，感激到五體投地\udbc0\udcb2")
+        )
+    elif "網友評論" in event.message.text:
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"吃完拉麵也可以貢獻你自己的心得哦！")
         )
 
     else:
