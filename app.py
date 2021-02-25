@@ -475,7 +475,7 @@ def handle_message(event):
                                                     "margin": "md"
                                                     }
                                                 ],
-                                                "paddingBottom": "18px"
+                                                "paddingBottom": "15px"
                                                 }
                                             ],
                                             "spacing": "md",
@@ -483,13 +483,13 @@ def handle_message(event):
                                             },
                                             "footer": {
                                             "type": "box",
-                                            "layout": "horizontal",
+                                            "layout": "vertical",
                                             "contents": [
                                                 {
                                                 "type": "button",
                                                 "action": {
                                                     "type": "message",
-                                                    "label": "NEW!看網友評論",
+                                                    "label": "看網友說啥",
                                                     "text": f"\udbc0\udc54網友評論{r_store} \n\n{com}"
                                                 },
                                                 "color": "#D08C60"
@@ -630,7 +630,7 @@ def handle_message(event):
                                         \n\
                                         \n• 希望有較小範圍的地區搜尋功能:\n\n在做了別急。\
                                         \n\
-                                        \n\udbc0\udcb22021年1月初已修復最愛清單和關鍵字搜尋流暢度,請安心使用BY崩潰後端負責人\
+                                        \n\udbc0\udcb22021年2月新增:先把拉麵店加到最愛清單，就能點擊評論超連結惹!BY崩潰後端負責人\
                                         \n\
                                         \n\udbc0\udcb2更多資訊請到「台灣拉麵愛好會」觀看，我們的資料皆由此社團取得。\
                                         \n\
