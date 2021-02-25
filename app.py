@@ -1895,18 +1895,17 @@ def handle_message(event):
             warm_msg = ['拉麵不分貴賤','No Ramen no life','拉麵是永久忍耐又有恩慈','好拉麵不分先來後到但是不可解壓縮','用拉麵抵擋水逆！','拉麵拯救宇宙']
             warm_msg_choice = secrets.choice(warm_msg)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"{warm_msg_choice}"))
-        else:
+        elif ' ' in user_select and ' ' not in user_select[-1] and ' ' not in user_select[0]::
 
             user_select = event.message.text
             keyword_result=''
-
-            if ' ' in user_select and ' ' not in user_select[-1] and ' ' not in user_select[0]:
-                input_lst = user_select.split()
-                if len(input_lst) == 2 :
-                  count_store = query_store(str(input_lst[0]),str(input_lst[1])).count()
-                  # print(count_store)
-                  if count_store != 0:
-                    keyword_result = query_store(str(input_lst[0]),str(input_lst[1]))
+            
+            input_lst = user_select.split()
+            if len(input_lst) == 2 :
+              count_store = query_store(str(input_lst[0]),str(input_lst[1])).count()
+              # print(count_store)
+              if count_store != 0:
+                keyword_result = query_store(str(input_lst[0]),str(input_lst[1]))
             #       else:
             #         keyword_result = ''
             #     else:
