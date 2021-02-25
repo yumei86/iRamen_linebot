@@ -1891,15 +1891,14 @@ def handle_message(event):
     # store_example_choice = reduce(lambda a,x: a+str(x), store_example_choice_lst, "")
     
     if ' ' in event.message.text:
-        if "網友評論" in event.message.text:
+        user_select = event.message.text
+        keyword_result=''
+        if "網友評論" in user_select:
             warm_msg = ['拉麵不分貴賤','No Ramen no life','拉麵是永久忍耐又有恩慈','好拉麵不分先來後到','用拉麵抵擋水逆！','拉麵拯救宇宙','排隊不可解壓縮','趁年輕多吃拉麵','拉麵濃淡皆宜多吃為佳','排隊時多用IRAMEN推薦新店面','IRAMEN正在緩慢改版中']
             warm_msg_choice = secrets.choice(warm_msg)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"{warm_msg_choice}"))
 
         elif ' ' in user_select and ' ' not in user_select[-1] and ' ' not in user_select[0]:
-            user_select = event.message.text
-            keyword_result=''
-
             input_lst = user_select.split()
             if len(input_lst) == 2 :
               count_store = query_store(str(input_lst[0]),str(input_lst[1])).count()
