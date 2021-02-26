@@ -308,7 +308,7 @@ def handle_message(event):
                       MAP_REVIEW:{l[0].map_review},CITY:{l[0].province},\
                       LONGITUDE:{l[0].longtitute},LATITUDE:{l[0].latitude},\
                       OPEN_TIME:{l[0].open_time},CHECK_TAG:{l[0].soup}%'
-    love_list_clear = love_list.replace(u'\xa0', u' ')
+    love_list_clear = love_list.replace(u'\xa0', u' ').replace(u'\n', u' ')
     output_whole_love_list = convert_string_to_lst(love_list_clear,'%')
     for data in output_whole_love_list:
         if data == '':
