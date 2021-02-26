@@ -11,6 +11,7 @@ from sqlalchemy.exc import IntegrityError
 import secrets
 import random
 import csv
+import re
 
 #----------------呼叫我們的line bot(這邊直接取用heroku的環境變數)-----------------
 
@@ -183,7 +184,21 @@ def take(n, iterable):
 def convert_string_to_lst(string,c): 
     li = list(string.split(c)) 
     return li 
+def divide_map_review(comment_s):
+    comment_clean = comment_s.replace(" - ", "-").replace("- ", "-").replace(" -", "-")
+    comment_clean_split = re.split('[   ]',comment_clean)
+    comment_lst = [i for i in comment_clean_split if i]
+    if len(comment_lst) > 1:
+        comment_final_list = []
+        for i, val in enumerate(comment_lst):
+            if i != (len(comment_lst)-1) and val[-1].islower() == True and val[0].isupper() == True and comment_lst[i+1][0].isupper() == True:
+                val = val + comment_lst[i+1]
+                comment_lst.remove(comment_lst[i+1])
+            comment_final_list.append(val)
 
+        return comment_final_list
+    else:
+        return comment_lst
 ##----------------我的最愛取得userid資料庫設定-----------------
 def count_store_in_table(store_name):
   store_id_q = db.session.query(Store)\
