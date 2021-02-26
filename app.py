@@ -324,6 +324,9 @@ def handle_message(event):
         dis = temp_lst[2][temp_lst[2].index(':')+1:]
         trans = temp_lst[3][temp_lst[3].index(':')+1:]
         com = temp_lst[4][temp_lst[4].index(':')+1:]
+        com_lst = divide_map_review(com)
+        com_lst = [item + '\n' for item in com_lst]
+        com_format = ''.join(map(str, com_lst))
         city_r = temp_lst[5][temp_lst[5].index(':')+1:]
         lont = temp_lst[6][temp_lst[6].index(':')+1:]
         lati = temp_lst[7][temp_lst[7].index(':')+1:]
@@ -505,7 +508,7 @@ def handle_message(event):
                                                 "action": {
                                                     "type": "message",
                                                     "label": "NEW!看網友評論",
-                                                    "text": f"\udbc0\udc54網友評論{r_store} \n\n{com}"
+                                                    "text": f"\udbc0\udc54網友評論{r_store} \n\n{com_format}"
                                                 },
                                                 "color": "#D08C60"
                                                 },
