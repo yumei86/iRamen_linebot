@@ -325,7 +325,7 @@ def handle_message(event):
         trans = temp_lst[3][temp_lst[3].index(':')+1:]
         com = temp_lst[4][temp_lst[4].index(':')+1:]
         com_lst = divide_map_review(com)
-        com_lst = [item + '\n' for item in com_lst]
+        com_lst = [v+'\n\n' if i%2 != 0 and i != len(com_lst)-1 else v+'\n' for i,v in enumerate(com_lst)]
         com_format = ''.join(map(str, com_lst))
         city_r = temp_lst[5][temp_lst[5].index(':')+1:]
         lont = temp_lst[6][temp_lst[6].index(':')+1:]
