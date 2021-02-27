@@ -435,7 +435,7 @@ def handle_message(event):
                                                     "action": {
                                                         "type": "message",
                                                         "label": "action",
-                                                        "text": "正在幫你找到:\n"+lont+":"+lati
+                                                        "text": f"正在幫你找到: \n{lont}:{lati}"
                                                     },
                                                     "margin": "md"
                                                     },
@@ -987,7 +987,7 @@ def handle_message(event):
                                                     "action": {
                                                         "type": "message",
                                                         "label": "action",
-                                                        "text": "正在幫你找到:\n"+lon+":"+lat
+                                                        "text": f"正在幫你找到: \n{lon}:{lat}"
                                                     },
                                                     "margin": "md"
                                                     },
@@ -1295,7 +1295,7 @@ def handle_message(event):
                                                     "action": {
                                                         "type": "message",
                                                         "label": "action",
-                                                        "text": "正在幫你找到:\n"+lon+":"+lat
+                                                        "text": f"正在幫你找到: \n{lon}:{lat}"
                                                     },
                                                     "margin": "md"
                                                     },
@@ -1683,7 +1683,7 @@ def handle_message(event):
                                                     "action": {
                                                         "type": "message",
                                                         "label": "action",
-                                                        "text": "正在幫你找到:\n"+lon+":"+lat
+                                                        "text": f"正在幫你找到: \n{lon}:{lat}"
                                                     },
                                                     "margin": "md"
                                                     },
@@ -1903,23 +1903,22 @@ def handle_message(event):
     store_example_choice_lst = store_example[:5]
     store_example_choice = ''.join(store_example_choice_lst)
     # store_example_choice = reduce(lambda a,x: a+str(x), store_example_choice_lst, "")
-    #----------------位置經緯度資訊-----------------
-    if "正在幫你找到" in event.message.text:
-
-        text_list = event.message.text.split(":")
-        lonti = float(text_list[1])
-        lati  = float(text_list[2])
-        line_bot_api.reply_message(event.reply_token,LocationSendMessage(title='點擊帶你前往！',address='iRamen',latitude= lati,longitude= lonti))
     #----------------輸入關鍵字找尋店家-----------------
-    elif ' ' in event.message.text:
+    if ' ' in event.message.text:
         user_select = event.message.text
         keyword_result=''
         if "網友評論" in user_select:
             warm_msg = ['拉麵不分貴賤','No Ramen no life','拉麵是永久忍耐又有恩慈','好拉麵不分先來後到但排隊不可解壓縮','用拉麵抵擋水逆！','拉麵拯救宇宙','趁年輕多吃拉麵','拉麵濃淡皆宜多吃為佳','肚子餓就用IRAMEN機器人推薦新店面','IRAMEN機器人正在緩慢改版中敬請期待']
             warm_msg_choice = secrets.choice(warm_msg)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"{warm_msg_choice}"))
+
+        elif "正在幫你找到:" in event.message.text:
+            text_list = event.message.text.split(":")
+            lonti = float(text_list[1])
+            lati  = float(text_list[2])
+            line_bot_api.reply_message(event.reply_token,LocationSendMessage(title='點擊帶你前往！',address='iRamen',latitude= lati,longitude= lonti))
         #----------------weather api logic----------------- 
-        elif "附近天氣搜索中:" in event.message.text:
+        elif "附近天氣搜索中:" in user_select:
             text_list = event.message.text.split(":")
             lonti = float(text_list[1])
             lati  = float(text_list[2])
@@ -2106,7 +2105,7 @@ def handle_message(event):
                                                                         "action": {
                                                                             "type": "message",
                                                                             "label": "action",
-                                                                            "text": "正在幫你找到:\n"+lon+":"+lat
+                                                                            "text": f"正在幫你找到: \n{lon}:{lat}"
                                                                         },
                                                                         "margin": "md"
                                                                         },
