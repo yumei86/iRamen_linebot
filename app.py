@@ -1474,13 +1474,6 @@ def handle_message(event):
 
             line_bot_api.reply_message(event.reply_token,flex_message4)
 
-#----------------位置經緯度資訊-----------------
-    if "正在幫你找到" in event.message.text:
-
-        text_list = event.message.text.split(":")
-        lonti = float(text_list[1])
-        lati  = float(text_list[2])
-        line_bot_api.reply_message(event.reply_token,LocationSendMessage(title='點擊帶你前往！',address='iRamen',latitude= lati,longitude= lonti))
     
 #----------------選完湯頭介面/湯頭看更多類似推薦-----------------
 
@@ -1907,8 +1900,15 @@ def handle_message(event):
     store_example_choice_lst = store_example[:5]
     store_example_choice = ''.join(store_example_choice_lst)
     # store_example_choice = reduce(lambda a,x: a+str(x), store_example_choice_lst, "")
-    
-    if ' ' in event.message.text:
+    #----------------位置經緯度資訊-----------------
+    if "正在幫你找到" in event.message.text:
+
+        text_list = event.message.text.split(":")
+        lonti = float(text_list[1])
+        lati  = float(text_list[2])
+        line_bot_api.reply_message(event.reply_token,LocationSendMessage(title='點擊帶你前往！',address='iRamen',latitude= lati,longitude= lonti))
+    #----------------輸入關鍵字找尋店家-----------------
+    elif ' ' in event.message.text:
         user_select = event.message.text
         keyword_result=''
         if "網友評論" in user_select:
