@@ -1067,7 +1067,7 @@ def handle_message(event):
                                                     "action": {
                                                     "type": "message",
                                                     "label": "看當地天氣",
-                                                    "text": f"{store_n}附近天氣搜索中:\n{lon}:{lat}"
+                                                    "text": f"{store_n} 附近天氣搜索中:\n{lon}:{lat}"
                                                     },
                                                     "color": "#D08C60"
                                                 }
@@ -1883,37 +1883,6 @@ def handle_message(event):
         lonti = float(text_list[1])
         lati  = float(text_list[2])
         line_bot_api.reply_message(event.reply_token,LocationSendMessage(title='點擊帶你前往！',address='iRamen',latitude= lati,longitude= lonti))
-    #----------------weather api logic----------------- 
-    elif "附近天氣搜索中:" in event.message.text:
-        text_list = event.message.text.split(":")
-        lonti = float(text_list[1])
-        lati  = float(text_list[2])
-        
-        WEATHER_API_KEY = os.environ.get('WEATHER_API_KEY')
-        weather_data = query_local_weather(lonti, lati, WEATHER_API_KEY)
-        weather_description = weather_data['current']['weather'][0]['description']
-        main_temp = weather_data['current']['temp']
-        temp_feels_like = weather_data['current']['feels_like']
-        humidity_procent = weather_data['current']['humidity']
-        uvi_index = weather_data['current']['uvi']
-        uvi_index_description = ''
-        if 0 <= uvi_index <= 2:
-          uvi_index_description = '對於一般人無危險'
-        elif 3 <= uvi_index <= 5:
-          uvi_index_description = '無保護暴露於陽光中有較輕傷害的風險'
-        elif 6 <= uvi_index <= 7:
-          uvi_index_description = '無保護暴露於陽光中有很大傷害的風險'
-        elif 8 <= uvi_index <= 10:
-          uvi_index_description = '暴露於陽光中有極高風險'
-        elif 11 <= uvi_index:
-          uvi_index_description = '暴露於陽光中極其危險'
-        else:
-          uvi_index_description = '目前無相關資訊'
-        if weather_data:
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f'目前當地【{weather_description}】\n\n氣溫:{main_temp}℃\n體感溫度:{temp_feels_like}℃\n濕度:{humidity_procent}%\n紫外線指數:{uvi_index}，{uvi_index_description}'))
-        else:
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2出錯啦靠邀，麻煩您把「錯誤代碼W1」和「您的店家搜尋指令（含空格）」填在填錯誤回報上，感激到五體投地\udbc0\udcb2")
-        )
     #----------------輸入關鍵字找尋店家-----------------
     elif ' ' in event.message.text:
         user_select = event.message.text
@@ -1922,7 +1891,38 @@ def handle_message(event):
             warm_msg = ['拉麵不分貴賤','No Ramen no life','拉麵是永久忍耐又有恩慈','好拉麵不分先來後到但排隊不可解壓縮','用拉麵抵擋水逆！','拉麵拯救宇宙','趁年輕多吃拉麵','拉麵濃淡皆宜多吃為佳','肚子餓就用IRAMEN機器人推薦新店面','IRAMEN機器人正在緩慢改版中敬請期待']
             warm_msg_choice = secrets.choice(warm_msg)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"{warm_msg_choice}"))
-
+        #----------------weather api logic----------------- 
+        elif "附近天氣搜索中:" in event.message.text:
+            text_list = event.message.text.split(":")
+            lonti = float(text_list[1])
+            lati  = float(text_list[2])
+            
+            WEATHER_API_KEY = os.environ.get('WEATHER_API_KEY')
+            weather_data = query_local_weather(lonti, lati, WEATHER_API_KEY)
+            weather_description = weather_data['current']['weather'][0]['description']
+            main_temp = weather_data['current']['temp']
+            temp_feels_like = weather_data['current']['feels_like']
+            humidity_procent = weather_data['current']['humidity']
+            uvi_index = weather_data['current']['uvi']
+            uvi_index_description = ''
+            if 0 <= uvi_index <= 2:
+              uvi_index_description = '對於一般人無危險'
+            elif 3 <= uvi_index <= 5:
+              uvi_index_description = '無保護暴露於陽光中有較輕傷害的風險'
+            elif 6 <= uvi_index <= 7:
+              uvi_index_description = '無保護暴露於陽光中有很大傷害的風險'
+            elif 8 <= uvi_index <= 10:
+              uvi_index_description = '暴露於陽光中有極高風險'
+            elif 11 <= uvi_index:
+              uvi_index_description = '暴露於陽光中極其危險'
+            else:
+              uvi_index_description = '目前無相關資訊'
+            if weather_data:
+                line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f'目前當地【{weather_description}】\n\n氣溫:{main_temp}℃\n體感溫度:{temp_feels_like}℃\n濕度:{humidity_procent}%\n紫外線指數:{uvi_index}，{uvi_index_description}'))
+            else:
+                line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2出錯啦靠邀，麻煩您把「錯誤代碼W1」和「您的店家搜尋指令（含空格）」填在填錯誤回報上，感激到五體投地\udbc0\udcb2")
+            )
+    
         elif ' ' in user_select and ' ' not in user_select[-1] and ' ' not in user_select[0]:
             input_lst = user_select.split()
             if len(input_lst) == 2 :
