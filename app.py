@@ -12,6 +12,7 @@ import secrets
 import random
 import csv
 import re
+import requests
 
 #----------------呼叫我們的line bot(這邊直接取用heroku的環境變數)-----------------
 
@@ -180,7 +181,13 @@ def query_store_by_full_name(s):
 def take(n, iterable):
     #"Return first n items of the iterable as a list"
     return list(islice(iterable, n))
-#----------------------------------------------------
+#--------------------天氣weather api--------------------------------
+def query_local_weather(lon,lat,APIkey):
+  weather_url = f'https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude=minutely,hourly,daily&lang=zh_tw&appid={APIkey}&units=metric'
+  get_weather_data = requests.get(weather_url)
+  weather_result = get_weather_data.json()
+  return weather_result
+#---------------------formation-------------------------------
 def convert_string_to_lst(string,c): 
     li = list(string.split(c)) 
     return li 
@@ -1052,6 +1059,15 @@ def handle_message(event):
                                                     "type": "message",
                                                     "label": "看更多推薦",
                                                     "text": "看更多推薦:"+city
+                                                    },
+                                                    "color": "#D08C60"
+                                                },
+                                                {
+                                                    "type": "button",
+                                                    "action": {
+                                                    "type": "message",
+                                                    "label": "看當地天氣",
+                                                    "text": f"{store_n} 附近天氣搜索中:\n{lon}:{lat}"
                                                     },
                                                     "color": "#D08C60"
                                                 }
