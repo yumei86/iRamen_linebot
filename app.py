@@ -520,6 +520,15 @@ def handle_message(event):
                                                 "color": "#D08C60"
                                                 },
                                                 {
+                                                    "type": "button",
+                                                    "action": {
+                                                    "type": "message",
+                                                    "label": "看當地天氣",
+                                                    "text": f"{r_store} 附近天氣搜索中:\n{lont}:{lati}"
+                                                    },
+                                                    "color": "#D08C60"
+                                                },
+                                                {
                                                 "type": "button",
                                                 "action": {
                                                     "type": "message",
@@ -1369,6 +1378,15 @@ def handle_message(event):
                                                     "text": "看更多推薦:"+city
                                                     },
                                                     "color": "#D08C60"
+                                                },
+                                                {
+                                                    "type": "button",
+                                                    "action": {
+                                                    "type": "message",
+                                                    "label": "看當地天氣",
+                                                    "text": f"{store_n} 附近天氣搜索中:\n{lon}:{lat}"
+                                                    },
+                                                    "color": "#D08C60"
                                                 }
                                                 ]
                                             },
@@ -1748,6 +1766,15 @@ def handle_message(event):
                                                     "text": "看更多推薦:"+cond[0:-1]
                                                     },
                                                     "color": "#D08C60"
+                                                },
+                                                {
+                                                    "type": "button",
+                                                    "action": {
+                                                    "type": "message",
+                                                    "label": "看當地天氣",
+                                                    "text": f"{store_n} 附近天氣搜索中:\n{lon}:{lat}"
+                                                    },
+                                                    "color": "#D08C60"
                                                 }
                                                 ]
                                             },
@@ -1896,7 +1923,7 @@ def handle_message(event):
             text_list = event.message.text.split(":")
             lonti = float(text_list[1])
             lati  = float(text_list[2])
-            
+
             WEATHER_API_KEY = os.environ.get('WEATHER_API_KEY')
             weather_data = query_local_weather(lonti, lati, WEATHER_API_KEY)
             weather_description = weather_data['current']['weather'][0]['description']
@@ -1922,7 +1949,7 @@ def handle_message(event):
             else:
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2出錯啦靠邀，麻煩您把「錯誤代碼W1」和「您的店家搜尋指令（含空格）」填在填錯誤回報上，感激到五體投地\udbc0\udcb2")
             )
-    
+
         elif ' ' in user_select and ' ' not in user_select[-1] and ' ' not in user_select[0]:
             input_lst = user_select.split()
             if len(input_lst) == 2 :
@@ -2160,6 +2187,15 @@ def handle_message(event):
                                                                         "type": "message",
                                                                         "label": "看更多推薦",
                                                                         "text": "看更多推薦:"+ f_city
+                                                                        },
+                                                                        "color": "#D08C60"
+                                                                    },
+                                                                    {
+                                                                        "type": "button",
+                                                                        "action": {
+                                                                        "type": "message",
+                                                                        "label": "看當地天氣",
+                                                                        "text": f"{store_n} 附近天氣搜索中:\n{lon}:{lat}"
                                                                         },
                                                                         "color": "#D08C60"
                                                                     }
