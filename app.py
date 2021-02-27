@@ -822,7 +822,7 @@ def handle_message(event):
             count += 1
 
         f.close()
-
+'''
 #----------------直接推薦/縣市看更多類似推薦-----------------
     
 
@@ -838,43 +838,42 @@ def handle_message(event):
             
             if (select_first_param == '直接推薦') or (select_first_param == '看更多推薦'):                
                 result = query_province_direct(select_second_param)
-                        
-            elif select_first_param in city_name:
-                result = query_province_soup(select_first_param, select_second_param)
-        # #---------------------------------put all data to a string--------------------------           
-        output_before_random_clear = get_data_str(result)
-        if output_before_random_clear == None:
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\uDBC0\uDC7c該縣市不在台灣餒"))
-        else:
-            output_before_random_clear = output_before_random_clear.replace(u'\xa0', u' ').replace('\n','')
-            #---------------------------------change data to a list of datas--------------------------
-            output_whole_lst = convert_string_to_lst(output_before_random_clear,'%')
-            output_whole_lst = [i for i in output_whole_lst if i]
-        #---------------------------------random(everytime renew can auto random)--------------------------
-        output_s = secrets.choice(output_whole_lst)
-        output_lst = convert_string_to_lst(output_s, ',')
-        
-        store_n = output_lst[0][output_lst[0].index(':')+1:]
-        address = output_lst[1][output_lst[1].index(':')+1:]
-        descrip = output_lst[2][output_lst[2].index(':')+1:]
-        trans = output_lst[3][output_lst[3].index(':')+1:]
-        
-        if len(output_lst) == 12:
-            #FB評論
-            c1 = output_lst[4][output_lst[4].index(':')+1:]
-            c2 = output_lst[5][output_lst[5].index(':')+1:]
-            c3 = output_lst[6][output_lst[6].index(':')+1:]
-            comment = f'貼文時間：\n{c1}\n\n品項：\n{c2}\n\n評論：\n{c3}'
-            lon = output_lst[7][output_lst[7].index(':')+1:]
-            lat = output_lst[8][output_lst[8].index(':')+1:]
-            op  = output_lst[9][output_lst[9].index(':')+1:]
+                # #---------------------------------put all data to a string--------------------------           
+                output_before_random_clear = get_data_str(result)
+                if output_before_random_clear == None:
+                    line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\uDBC0\uDC7c該縣市不在台灣餒"))
+                else:
+                    output_before_random_clear = output_before_random_clear.replace(u'\xa0', u' ').replace('\n','')
+                    #---------------------------------change data to a list of datas--------------------------
+                    output_whole_lst = convert_string_to_lst(output_before_random_clear,'%')
+                    output_whole_lst = [i for i in output_whole_lst if i]
+                #---------------------------------random(everytime renew can auto random)--------------------------
+                output_s = secrets.choice(output_whole_lst)
+                output_lst = convert_string_to_lst(output_s, ',')
 
-        elif len(output_lst) == 10:
-            #googleMap
-            comment = output_lst[4][output_lst[4].index(':')+1:]
-            lon = output_lst[5][output_lst[5].index(':')+1:]
-            lat = output_lst[6][output_lst[6].index(':')+1:] 
-            op  = output_lst[7][output_lst[7].index(':')+1:] 
+                store_n = output_lst[0][output_lst[0].index(':')+1:]
+                address = output_lst[1][output_lst[1].index(':')+1:]
+                descrip = output_lst[2][output_lst[2].index(':')+1:]
+                trans = output_lst[3][output_lst[3].index(':')+1:]
+
+                if len(output_lst) == 12:
+                    #FB評論
+                    c1 = output_lst[4][output_lst[4].index(':')+1:]
+                    c2 = output_lst[5][output_lst[5].index(':')+1:]
+                    c3 = output_lst[6][output_lst[6].index(':')+1:]
+                    comment = f'貼文時間：\n{c1}\n\n品項：\n{c2}\n\n評論：\n{c3}'
+                    lon = output_lst[7][output_lst[7].index(':')+1:]
+                    lat = output_lst[8][output_lst[8].index(':')+1:]
+                    op  = output_lst[9][output_lst[9].index(':')+1:]
+
+                elif len(output_lst) == 10:
+                    #googleMap
+                    comment = output_lst[4][output_lst[4].index(':')+1:]
+                    lon = output_lst[5][output_lst[5].index(':')+1:]
+                    lat = output_lst[6][output_lst[6].index(':')+1:] 
+                    op  = output_lst[7][output_lst[7].index(':')+1:]         
+            
+        
 
 
         if event.message.text == cond :
@@ -1474,7 +1473,7 @@ def handle_message(event):
 
             line_bot_api.reply_message(event.reply_token,flex_message4)
 
-    
+ '''   
 #----------------選完湯頭介面/湯頭看更多類似推薦-----------------
 
     # #各縣市湯頭清單
