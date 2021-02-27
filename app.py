@@ -1067,7 +1067,7 @@ def handle_message(event):
                                                     "action": {
                                                     "type": "message",
                                                     "label": "看當地天氣",
-                                                    "text": f"{store_n} 附近天氣搜索中:\n{lon}:{lat}"
+                                                    "text": f"{store_n}附近天氣搜索中:\n{lon}:{lat}"
                                                     },
                                                     "color": "#D08C60"
                                                 }
@@ -1884,7 +1884,7 @@ def handle_message(event):
         lati  = float(text_list[2])
         line_bot_api.reply_message(event.reply_token,LocationSendMessage(title='點擊帶你前往！',address='iRamen',latitude= lati,longitude= lonti))
     #----------------weather api logic----------------- 
-    elif "天氣搜索中:" in event.message.text:
+    elif "附近天氣搜索中:" in event.message.text:
         text_list = event.message.text.split(":")
         lonti = float(text_list[1])
         lati  = float(text_list[2])
@@ -1914,7 +1914,6 @@ def handle_message(event):
         else:
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2出錯啦靠邀，麻煩您把「錯誤代碼W1」和「您的店家搜尋指令（含空格）」填在填錯誤回報上，感激到五體投地\udbc0\udcb2")
         )
-
     #----------------輸入關鍵字找尋店家-----------------
     elif ' ' in event.message.text:
         user_select = event.message.text
