@@ -822,7 +822,7 @@ def handle_message(event):
             count += 1
 
         f.close()
-'''
+
 #----------------直接推薦/縣市看更多類似推薦-----------------
     
 
@@ -836,12 +836,12 @@ def handle_message(event):
             select_first_param = cond[:cond.index(':')]
             select_second_param = cond[cond.index(':')+1:]
             
-            if (select_first_param == '直接推薦') or (select_first_param == '看更多推薦'):                
+            if ((select_first_param == '直接推薦') or (select_first_param == '看更多推薦')) and select_second_param in city_name:                
                 result = query_province_direct(select_second_param)
                 # #---------------------------------put all data to a string--------------------------           
                 output_before_random_clear = get_data_str(result)
                 if output_before_random_clear == None:
-                    line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\uDBC0\uDC7c該縣市不在台灣餒"))
+                    line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\uDBC0\uDC7c該縣市沒有拉麵店"))
                 else:
                     output_before_random_clear = output_before_random_clear.replace(u'\xa0', u' ').replace('\n','')
                     #---------------------------------change data to a list of datas--------------------------
@@ -871,7 +871,9 @@ def handle_message(event):
                     comment = output_lst[4][output_lst[4].index(':')+1:]
                     lon = output_lst[5][output_lst[5].index(':')+1:]
                     lat = output_lst[6][output_lst[6].index(':')+1:] 
-                    op  = output_lst[7][output_lst[7].index(':')+1:]         
+                    op  = output_lst[7][output_lst[7].index(':')+1:]  
+            else:
+                line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\uDBC0\uDC7c請輸入合法字串"))      
             
         
 
@@ -1473,7 +1475,7 @@ def handle_message(event):
 
             line_bot_api.reply_message(event.reply_token,flex_message4)
 
- '''   
+
 #----------------選完湯頭介面/湯頭看更多類似推薦-----------------
 
     # #各縣市湯頭清單
