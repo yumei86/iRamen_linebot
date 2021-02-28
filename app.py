@@ -2319,6 +2319,7 @@ def handle_message(event):
         for r in map_review_data:
           #抓出來是tuple
           r_str = ''.join(list(map(str,r)))
+          r_str = r_str.replace(u'\xa0', u' ').replace(u'\n', u' ')
           map_lst = divide_map_review(r_str)
           map_lst = [v+'\n\n' if i%2 != 0 and i != len(map_lst)-1 else v+'\n' for i,v in enumerate(map_lst)]
           map_format += ''.join(map(str, map_lst))
