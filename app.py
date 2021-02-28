@@ -2324,7 +2324,7 @@ def handle_message(event):
           map_lst = [v+'\n\n' if i%2 != 0 and i != len(map_lst)-1 else v+'\n' for i,v in enumerate(map_lst)]
           map_format += ''.join(map(str, map_lst))
         
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"{map_format}")
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"\n{map_format}")
         )
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n\n例:{store_example_choice}\
