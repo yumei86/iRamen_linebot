@@ -1913,13 +1913,13 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"{warm_msg_choice}"))
 
         elif "正在幫你找到:" in user_select:
-            text_list = event.message.text.split(":")
+            text_list = user_select.split(":")
             lonti = float(text_list[1])
             lati  = float(text_list[2])
             line_bot_api.reply_message(event.reply_token,LocationSendMessage(title='點擊帶你前往！',address='iRamen',latitude= lati,longitude= lonti))
         #----------------weather api logic----------------- 
         elif "附近天氣搜索中:" in user_select:
-            text_list = event.message.text.split(":")
+            text_list = user_select.split(":")
             lonti = float(text_list[1])
             lati  = float(text_list[2])
 
