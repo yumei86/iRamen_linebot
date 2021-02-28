@@ -1489,8 +1489,8 @@ def handle_message(event):
                                                     "type": "button",
                                                     "action": {
                                                     "type": "message",
-                                                    "label": "看更多推薦",
-                                                    "text": "看更多推薦:"+city
+                                                    "label": "評論超連結",
+                                                    "text": f"輸出評論超連結:{store_n}"
                                                     },
                                                     "color": "#D08C60"
                                                 }
@@ -1877,8 +1877,8 @@ def handle_message(event):
                                                     "type": "button",
                                                     "action": {
                                                     "type": "message",
-                                                    "label": "看更多推薦",
-                                                    "text": "看更多推薦:"+cond[0:-1]
+                                                    "label": "評論超連結",
+                                                    "text": f"輸出評論超連結:{store_n}"
                                                     },
                                                     "color": "#D08C60"
                                                 }
@@ -2286,8 +2286,8 @@ def handle_message(event):
                                                                         "type": "button",
                                                                         "action": {
                                                                         "type": "message",
-                                                                        "label": "看更多推薦",
-                                                                        "text": "看更多推薦:"+ f_city
+                                                                        "label": "評論超連結",
+                                                                        "text": f"輸出評論超連結:{store_n}"
                                                                         },
                                                                         "color": "#D08C60"
                                                                     }
