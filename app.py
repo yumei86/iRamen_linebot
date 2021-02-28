@@ -1907,7 +1907,6 @@ def handle_message(event):
     if ' ' in event.message.text:
         user_select = event.message.text
         if ' ' in user_select and ' ' not in user_select[-1] and ' ' not in user_select[0]:
-            keyword_result=''
             if "有人評論" in user_select:
                 warm_msg = ['拉麵不分貴賤','No Ramen no life','拉麵是恆久忍耐又有恩慈','好拉麵不分先來後到但排隊不可解壓縮','用拉麵抵擋水逆！','拉麵拯救宇宙','趁年輕多吃拉麵','拉麵濃淡皆宜多吃為佳','IRAMEN機器人正在緩慢改版中敬請期待','做好事，說好話，吃好麵','總是需要一碗拉麵，哪怕是一點點自以為是的紀念','總有一碗麵一直住在心底，卻消失在生活里','用心甘情願的態度吃隨遇而安的拉麵','希望所有的努力都不會被辜負，所有的拉麵都不會冷掉','拉麵是留給堅持的人','拉麵使人偉大','比一個人吃拉麵更寂寞的是一個人沒有錢吃拉麵']
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"{random.choice(warm_msg)}"))
@@ -1951,6 +1950,7 @@ def handle_message(event):
 
             else:
                 input_lst = user_select.split()
+                keyword_result=''
                 if len(input_lst) == 2 :
                   count_store = query_store(str(input_lst[0]),str(input_lst[1])).count()
                   # print(count_store)
