@@ -1912,7 +1912,7 @@ def handle_message(event):
             warm_msg_choice = secrets.choice(warm_msg)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"{warm_msg_choice}"))
 
-        elif "正在幫你找到:" in event.message.text:
+        elif "正在幫你找到:" in user_select:
             text_list = event.message.text.split(":")
             lonti = float(text_list[1])
             lati  = float(text_list[2])
