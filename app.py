@@ -1208,7 +1208,7 @@ def handle_message(event):
                                                                         "action": {
                                                                         "type": "message",
                                                                         "label": "評論超連結",
-                                                                        "text": f"輸出評論超連結→ {store_n}"
+                                                                        "text": f"輸出評論超連結→{store_n}"
                                                                         },
                                                                         "color": "#D08C60"
                                                                     }
@@ -1279,7 +1279,7 @@ def handle_message(event):
               map_lst = divide_map_review(r_str)
               map_lst = [v+'\n\n' if i%2 != 0 and i != len(map_lst)-1 else v+'\n' for i,v in enumerate(map_lst)]
               map_format += ''.join(map(str, map_lst))
-
+            
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"\n{map_format}")
             )
         else:
@@ -1625,7 +1625,7 @@ def handle_message(event):
                                                                         "action": {
                                                                         "type": "message",
                                                                         "label": "評論超連結",
-                                                                        "text": f"輸出評論超連結→ {store_n}"
+                                                                        "text": f"輸出評論超連結→{store_n}"
                                                                         },
                                                                         "color": "#D08C60"
                                                                     }
