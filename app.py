@@ -1647,8 +1647,9 @@ def handle_message(event):
               map_lst = divide_map_review(r_str)
               map_lst = [v+'\n\n' if i%2 != 0 and i != len(map_lst)-1 else v+'\n' for i,v in enumerate(map_lst)]
               map_format += ''.join(map(str, map_lst))
+              map_format = map_format[:-1]
             
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"\n{map_format}")
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"{map_format}")
             )
     
     else:
