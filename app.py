@@ -921,7 +921,7 @@ def handle_message(event):
 
         if len(output_lst) == 12 or len(output_lst) == 10:
              
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text = f"{store_n}{f_city}{op}{descrip}")
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text = f"{store_n}{f_city}{op}{descrip}"))
         else:
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"資料庫有誤"))
             
