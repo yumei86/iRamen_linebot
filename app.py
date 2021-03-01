@@ -1268,20 +1268,6 @@ def handle_message(event):
             else:
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2出錯啦靠邀，麻煩您把「錯誤代碼W1」和「您的店家搜尋指令（含空格）」填在填錯誤回報上，感激到五體投地\udbc0\udcb2")
             )
-        elif "輸出評論超連結→" in event.message.text:
-            text_list = event.message.text.split("→")
-            map_review_data = db.session.query(Store.map_review).filter(Store.store == text_list[1]).filter(Store.still_there == True)
-            map_format = ''
-            for r in map_review_data:
-              #抓出來是tuple
-              r_str = ''.join(list(map(str,r)))
-              r_str = r_str.replace(u'\xa0', u' ').replace(u'\n', u' ')
-              map_lst = divide_map_review(r_str)
-              map_lst = [v+'\n\n' if i%2 != 0 and i != len(map_lst)-1 else v+'\n' for i,v in enumerate(map_lst)]
-              map_format += ''.join(map(str, map_lst))
-            
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"\n{map_format}")
-            )
         else:
             input_lst = user_select.split()
             keyword_result=''
@@ -1650,6 +1636,20 @@ def handle_message(event):
                                                                               \n\n\udbc0\udcb2請輸入有效店名關鍵字(中間幫我隨意留一個半形空,但不可在前後加入空白)\
                                                                               \n\udbc0\udcb2或請幫我直接點選拉麵推薦選單做選擇喔！")
     )
+    elif "輸出評論超連結→" in event.message.text:
+            text_list = event.message.text.split("→")
+            map_review_data = db.session.query(Store.map_review).filter(Store.store == text_list[1]).filter(Store.still_there == True)
+            map_format = ''
+            for r in map_review_data:
+              #抓出來是tuple
+              r_str = ''.join(list(map(str,r)))
+              r_str = r_str.replace(u'\xa0', u' ').replace(u'\n', u' ')
+              map_lst = divide_map_review(r_str)
+              map_lst = [v+'\n\n' if i%2 != 0 and i != len(map_lst)-1 else v+'\n' for i,v in enumerate(map_lst)]
+              map_format += ''.join(map(str, map_lst))
+            
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"\n{map_format}")
+            )
     
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n\n例:{store_example_choice}\
