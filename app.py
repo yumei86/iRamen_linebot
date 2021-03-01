@@ -874,7 +874,7 @@ def handle_message(event):
     store_example_choice = ''.join(store_example_choice_lst)
     # store_example_choice = reduce(lambda a,x: a+str(x), store_example_choice_lst, "")
     #----------------輸入關鍵字找尋店家-----------------
-    if ('湯頭推薦'not in event.message.text and ':' in event.message.text) and ':' not in event.message.text[0] and ':' not in event.message.text[-1] and '最愛清單' not in event.message.text:
+    if ('湯頭推薦'not in event.message.text and 'http' not in event.message.text and ':' in event.message.text) and ':' not in event.message.text[0] and ':' not in event.message.text[-1] and '最愛清單' not in event.message.text:
         user_choice = event.message.text
         select_first_param = user_choice[:user_choice.index(':')]
         select_second_param = user_choice[user_choice.index(':')+1:]
