@@ -1588,7 +1588,9 @@ def handle_message(event):
             )
 
                 line_bot_api.reply_message(event.reply_token,flex_message5)
-
+            else:
+                line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"O1，{n}")
+            )
 #----------------輸入關鍵字找尋店家-----------------
     store_example = ['「鷹流 公館」','「公 子」','「山下公 園」','「隱家 赤峰」','「七 面鳥」','「麵屋 壹」','「真 劍」','「秋 鳴」','「Mr 拉麵雲」','「辰 拉」','「京都 柚子」','「麵屋 ichi」','「麵屋 壹之穴」','「KIDO 拉麵」','「Ramen 初」','「暴 走」','「Hiro 新店」']
     random.shuffle(store_example)
