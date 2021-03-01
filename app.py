@@ -435,7 +435,7 @@ def handle_message(event):
                                                     "action": {
                                                         "type": "message",
                                                         "label": "action",
-                                                        "text": f"正在幫你找到: \n{lont}:{lati}"
+                                                        "text": f"正在幫你找到→ \n{lont}→{lati}"
                                                     },
                                                     "margin": "md"
                                                     },
@@ -515,7 +515,7 @@ def handle_message(event):
                                                 "action": {
                                                     "type": "message",
                                                     "label": "NEW!看網友評論",
-                                                    "text": f"\udbc0\udc54有人評論 {r_store}\n\n{com_format}"
+                                                    "text": f"\udbc0\udc54有人評論→ {r_store}\n\n{com_format}"
                                                 },
                                                 "color": "#D08C60"
                                                 },
@@ -524,7 +524,7 @@ def handle_message(event):
                                                     "action": {
                                                     "type": "message",
                                                     "label": "看當地天氣",
-                                                    "text": f"{r_store} 附近天氣搜索中:\n{lont}:{lati}"
+                                                    "text": f"{r_store} 附近天氣搜索中→ \n{lont}→{lati}"
                                                     },
                                                     "color": "#D08C60"
                                                 },
@@ -874,7 +874,7 @@ def handle_message(event):
     store_example_choice = ''.join(store_example_choice_lst)
     # store_example_choice = reduce(lambda a,x: a+str(x), store_example_choice_lst, "")
     #----------------輸入關鍵字找尋店家-----------------
-    if ('湯頭推薦'not in event.message.text and ':' in event.message.text) and ':' not in event.message.text[0] and ':' not in event.message.text[-1]:
+    if ('湯頭推薦'not in event.message.text and ':' in event.message.text) and ':' not in event.message.text[0] and ':' not in event.message.text[-1] and '最愛清單' not in event.message.text:
         user_choice = event.message.text
         select_first_param = user_choice[:user_choice.index(':')]
         select_second_param = user_choice[user_choice.index(':')+1:]
@@ -1013,7 +1013,7 @@ def handle_message(event):
                                                                         "action": {
                                                                             "type": "message",
                                                                             "label": "action",
-                                                                            "text": f"正在幫你找到: \n{lon}:{lat}"
+                                                                            "text": f"正在幫你找到→ \n{lon}→{lat}"
                                                                         },
                                                                         "margin": "md"
                                                                         },
@@ -1102,7 +1102,7 @@ def handle_message(event):
                                                                         "action": {
                                                                         "type": "message",
                                                                         "label": "看當地天氣",
-                                                                        "text": f"{store_n} 附近天氣搜索中:\n{lon}:{lat}"
+                                                                        "text": f"{store_n} 附近天氣搜索中→ \n{lon}→{lat}"
                                                                         },
                                                                         "color": "#D08C60"
                                                                     }
@@ -1208,7 +1208,7 @@ def handle_message(event):
                                                                         "action": {
                                                                         "type": "message",
                                                                         "label": "評論超連結",
-                                                                        "text": f"輸出評論超連結:{store_n}"
+                                                                        "text": f"輸出評論超連結→{store_n}"
                                                                         },
                                                                         "color": "#D08C60"
                                                                     }
@@ -1230,17 +1230,17 @@ def handle_message(event):
             
     elif ' ' in event.message.text and ' ' not in event.message.text[-1] and ' ' not in event.message.text[0]:
         user_select = event.message.text
-        if "有人評論" in user_select:
+        if "有人評論→" in user_select:
             warm_msg = ['拉麵不分貴賤','No Ramen no life','拉麵是恆久忍耐又有恩慈','好拉麵不分先來後到但排隊不可解壓縮','用拉麵抵擋水逆！','拉麵拯救宇宙','趁年輕多吃拉麵','拉麵濃淡皆宜多吃為佳','IRAMEN機器人正在緩慢改版中敬請期待','做好事，說好話，吃好麵','總是需要一碗拉麵，哪怕是一點點自以為是的紀念','總有一碗麵一直住在心底，卻消失在生活里','用心甘情願的態度吃隨遇而安的拉麵','希望所有的努力都不會被辜負，所有的拉麵都不會冷掉','拉麵是留給堅持的人','拉麵使人偉大','比一個人吃拉麵更寂寞的是一個人沒有錢吃拉麵']
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"{random.choice(warm_msg)}"))
-        elif "正在幫你找到:" in user_select:
-            text_list = user_select.split(":")
+        elif "正在幫你找到→" in user_select:
+            text_list = user_select.split("→")
             lonti = float(text_list[1])
             lati  = float(text_list[2])
             line_bot_api.reply_message(event.reply_token,LocationSendMessage(title='點擊帶你前往！',address='iRamen',latitude= lati,longitude= lonti))
         #----------------weather api logic----------------- 
-        elif "附近天氣搜索中:" in user_select:
-            text_list = user_select.split(":")
+        elif "附近天氣搜索中→" in user_select:
+            text_list = user_select.split("→")
             lonti = float(text_list[1])
             lati  = float(text_list[2])
             WEATHER_API_KEY = os.environ.get('WEATHER_API_KEY')
@@ -1416,7 +1416,7 @@ def handle_message(event):
                                                                         "action": {
                                                                             "type": "message",
                                                                             "label": "action",
-                                                                            "text": f"正在幫你找到: \n{lon}:{lat}"
+                                                                            "text": f"正在幫你找到→ \n{lon}→{lat}"
                                                                         },
                                                                         "margin": "md"
                                                                         },
@@ -1505,7 +1505,7 @@ def handle_message(event):
                                                                         "action": {
                                                                         "type": "message",
                                                                         "label": "看當地天氣",
-                                                                        "text": f"{store_n} 附近天氣搜索中:\n{lon}:{lat}"
+                                                                        "text": f"{store_n} 附近天氣搜索中→ \n{lon}→{lat}"
                                                                         },
                                                                         "color": "#D08C60"
                                                                     }
@@ -1611,7 +1611,7 @@ def handle_message(event):
                                                                         "action": {
                                                                         "type": "message",
                                                                         "label": "評論超連結",
-                                                                        "text": f"輸出評論超連結:{store_n}"
+                                                                        "text": f"輸出評論超連結→{store_n}"
                                                                         },
                                                                         "color": "#D08C60"
                                                                     }
@@ -1636,7 +1636,7 @@ def handle_message(event):
                                                                               \n\n\udbc0\udcb2請輸入有效店名關鍵字(中間幫我隨意留一個半形空,但不可在前後加入空白)\
                                                                               \n\udbc0\udcb2或請幫我直接點選拉麵推薦選單做選擇喔！")
     )
-    elif "輸出評論超連結:" in event.message.text:
+    elif "輸出評論超連結→" in event.message.text:
         text_list = event.message.text.split(":")
         map_review_data = db.session.query(Store.map_review).filter(Store.store == text_list[1]).filter(Store.still_there == True)
         map_format = ''
