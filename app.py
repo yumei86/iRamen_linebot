@@ -255,7 +255,7 @@ def favorite_list_generator(favorite_list):
         favorite_button = ButtonComponent(style="primary", color="#997B66", size="sm", margin="sm",
                                         action=MessageAction(label=i, text=i),)
         delete_button = ButtonComponent(style="secondary", color="#F1DCA7", size="sm", margin="sm", flex=0,
-                                      action=MessageAction(label="-", text="刪除最愛清單☹"+i),)
+                                      action=MessageAction(label="-", text="刪除最愛清單♡"+i),)
         button_row = BoxComponent(layout="horizontal", margin="md", spacing="sm",
                                 contents=[favorite_button, delete_button])
         button_list.append(button_row)
@@ -385,7 +385,7 @@ def handle_message(event):
                                                     "action": {
                                                         "type": "message",
                                                         "label": "刪除最愛清單",
-                                                        "text": "刪除最愛清單☹"+r_store
+                                                        "text": "刪除最愛清單♡"+r_store
                                                     }
                                                     }
                                                 ],
@@ -604,11 +604,11 @@ def handle_message(event):
                             TextSendMessage(text="你輸入的店名資料庫裡沒有啦\udbc0\udc7c")
                         )
 
-    if "刪除最愛清單☹" in event.message.text:
+    if "刪除最愛清單♡" in event.message.text:
 
         user_line_id = user_id
 
-        text_d = event.message.text.split("☹")
+        text_d = event.message.text.split("♡")
 
         first_del_param = text_d[0]
         second_del_param = text_d[1]
