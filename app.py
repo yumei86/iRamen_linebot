@@ -618,99 +618,7 @@ def handle_message(event):
         "花蓮縣" : ["豚骨", "魚白", "鬼頭刀", "其他"],
         "台東縣" : ["豚骨", "其他"]
     }
-    for city in city_name:
-        if event.message.text == city:
-            flex_message5 = FlexSendMessage(
-                        alt_text='依據你的喜好選擇吧！',
-                        contents= 
-                                    {
-                                        "type": "bubble",
-                                        "body": {
-                                        "type": "box",
-                                        "layout": "vertical",
-                                        "contents": [
-                                            {
-                                            "type": "text",
-                                            "text": "推薦方式 ",
-                                            "weight": "bold",
-                                            "size": "xl",
-                                            "style": "normal",
-                                            "decoration": "none",
-                                            "align": "start",
-                                            "gravity": "top",
-                                            "color": "#876C5A",
-                                            "position": "relative"
-                                            },
-                                            {
-                                            "type": "box",
-                                            "layout": "vertical",
-                                            "margin": "lg",
-                                            "spacing": "sm",
-                                            "contents": [
-                                                {
-                                                "type": "text",
-                                                "text": "我有口味偏好 -> 請選湯頭推薦",
-                                                "size": "sm"
-                                                },
-                                                {
-                                                "type": "text",
-                                                "text": "我想來點驚喜 -> 請選直接推薦",
-                                                "size": "sm"
-                                                },
-                                                {
-                                                "type": "separator",
-                                                "margin": "lg"
-                                                }
-                                            ]
-                                            }
-                                        ]
-                                        },
-                                        "footer": {
-                                        "type": "box",
-                                        "layout": "horizontal",
-                                        "contents": [
-                                            {
-                                            "type": "button",
-                                            "style": "primary",
-                                            "height": "sm",
-                                            "action": {
-                                                "type": "message",
-                                                "label": "湯頭推薦",
-                                                "text": "湯頭推薦:"+city
-                                            },
-                                            "color": "#797D62",
-                                            "margin": "md",
-                                            "offsetTop": "none",
-                                            "offsetBottom": "none",
-                                            "offsetStart": "none",
-                                            "offsetEnd": "none",
-                                            "gravity": "center"
-                                            },
-                                            {
-                                            "type": "button",
-                                            "style": "primary",
-                                            "height": "sm",
-                                            "action": {
-                                                "type": "message",
-                                                "label": "直接推薦",
-                                                "text": "直接推薦:"+city
-                                            },
-                                            "color": "#797D62",
-                                            "margin": "md"
-                                            },
-                                            {
-                                            "type": "spacer",
-                                            "size": "sm"
-                                            }
-                                        ]
-                                        }
-                                    }
-        )
-        
-            line_bot_api.reply_message(event.reply_token,flex_message5) 
     
-    if event.message.text == "嘉義縣":
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "抱歉！\uDBC0\uDC7c 這邊尚未有拉麵店，請至附近其他縣市看看!"))
 
 #----------------湯頭推薦-----------------
 
@@ -755,7 +663,99 @@ def handle_message(event):
     store_example_choice = ''.join(store_example_choice_lst)
     # store_example_choice = reduce(lambda a,x: a+str(x), store_example_choice_lst, "")
     #----------------輸入關鍵字找尋店家-----------------
-    if ('湯頭推薦'not in event.message.text and '評論' not in event.message.text and ':' in event.message.text) and ':' not in event.message.text[0] and ':' not in event.message.text[-1] and '最愛清單' not in event.message.text:
+    if event.message.text in city_name:
+        flex_message5 = FlexSendMessage(
+                    alt_text='依據你的喜好選擇吧！',
+                    contents= 
+                                {
+                                    "type": "bubble",
+                                    "body": {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "contents": [
+                                        {
+                                        "type": "text",
+                                        "text": "推薦方式 ",
+                                        "weight": "bold",
+                                        "size": "xl",
+                                        "style": "normal",
+                                        "decoration": "none",
+                                        "align": "start",
+                                        "gravity": "top",
+                                        "color": "#876C5A",
+                                        "position": "relative"
+                                        },
+                                        {
+                                        "type": "box",
+                                        "layout": "vertical",
+                                        "margin": "lg",
+                                        "spacing": "sm",
+                                        "contents": [
+                                            {
+                                            "type": "text",
+                                            "text": "我有口味偏好 -> 請選湯頭推薦",
+                                            "size": "sm"
+                                            },
+                                            {
+                                            "type": "text",
+                                            "text": "我想來點驚喜 -> 請選直接推薦",
+                                            "size": "sm"
+                                            },
+                                            {
+                                            "type": "separator",
+                                            "margin": "lg"
+                                            }
+                                        ]
+                                        }
+                                    ]
+                                    },
+                                    "footer": {
+                                    "type": "box",
+                                    "layout": "horizontal",
+                                    "contents": [
+                                        {
+                                        "type": "button",
+                                        "style": "primary",
+                                        "height": "sm",
+                                        "action": {
+                                            "type": "message",
+                                            "label": "湯頭推薦",
+                                            "text": "湯頭推薦:"+event.message.text
+                                        },
+                                        "color": "#797D62",
+                                        "margin": "md",
+                                        "offsetTop": "none",
+                                        "offsetBottom": "none",
+                                        "offsetStart": "none",
+                                        "offsetEnd": "none",
+                                        "gravity": "center"
+                                        },
+                                        {
+                                        "type": "button",
+                                        "style": "primary",
+                                        "height": "sm",
+                                        "action": {
+                                            "type": "message",
+                                            "label": "直接推薦",
+                                            "text": "直接推薦:"+event.message.text
+                                        },
+                                        "color": "#797D62",
+                                        "margin": "md"
+                                        },
+                                        {
+                                        "type": "spacer",
+                                        "size": "sm"
+                                        }
+                                    ]
+                                    }
+                                }
+        )
+    
+        line_bot_api.reply_message(event.reply_token,flex_message5) 
+    
+    elif event.message.text == "嘉義縣":
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "抱歉！\uDBC0\uDC7c 這邊尚未有拉麵店，請至附近其他縣市看看!"))
+    elif ('湯頭推薦'not in event.message.text and '評論' not in event.message.text and ':' in event.message.text) and ':' not in event.message.text[0] and ':' not in event.message.text[-1] and '最愛清單' not in event.message.text:
         user_choice = event.message.text
         select_first_param = user_choice[:user_choice.index(':')]
         select_second_param = user_choice[user_choice.index(':')+1:]
