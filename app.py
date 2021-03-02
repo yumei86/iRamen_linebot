@@ -365,16 +365,17 @@ def handle_message(event):
 
     #分成四區去叫不同的json檔（為了整理方便分成四區）
 
-    n_city = ["台北市","新北市","基隆市","桃園市","苗栗縣","新竹縣","新竹市"]
-    c_city = ["台中市","彰化縣","南投縣","雲林縣"]
-    s_city = ["嘉義市","台南市","高雄市","屏東縣"]
-    e_city = ["宜蘭縣","花蓮縣","台東縣"]
+    north = ["台北市","新北市","基隆市","桃園市","苗栗縣","新竹縣","新竹市"]
+    center = ["台中市","彰化縣","南投縣","雲林縣"]
+    south = ["嘉義市","台南市","高雄市","屏東縣"]
+    east = ["宜蘭縣","花蓮縣","台東縣"]
 
-    n_dict = dict.fromkeys(n_city, ("北","north"))
-    c_dict = dict.fromkeys(c_city, ("中","center"))
-    s_dict = dict.fromkeys(s_city, ("南","south"))
-    e_dict = dict.fromkeys(e_city, ("東","east"))
+    n_dict = dict.fromkeys(north, ("北","north"))
+    c_dict = dict.fromkeys(center, ("中","center"))
+    s_dict = dict.fromkeys(south, ("南","south"))
+    e_dict = dict.fromkeys(east, ("東","east"))
     city_name_dic = {**n_dict, **c_dict, **s_dict, **e_dict}
+    city_region_dict = dict(zip(["north","center","south","east"], [north,center,south,east]))
 
 #----------------輸入關鍵字找尋店家-----------------
     store_example = ['「鷹流 公館」','「公 子」','「山下公 園」','「隱家 赤峰」','「七 面鳥」','「麵屋 壹」','「真 劍」','「秋 鳴」','「Mr 拉麵雲」','「辰 拉」','「京都 柚子」','「麵屋 ichi」','「麵屋 壹之穴」','「KIDO 拉麵」','「Ramen 初」','「暴 走」','「Hiro 新店」']
@@ -415,19 +416,18 @@ def handle_message(event):
 #----------------選擇湯頭介面-----------------
     elif "湯頭推薦:" in event.message.text:
         user_choice = event.message.text
-        c = user_choice[user_choice.index(':')+1:]
+        city_choice = user_choice[user_choice.index(':')+1:]
         #用迴圈去讀湯頭選單
         #讀需要的推薦介面json資料
-        f = open('json_files_for_robot/soup_'+city_name_dic[c][0]+'_city.json') 
+        f = open('json_files_for_robot/soup_'+city_name_dic[city_choice][1]+'_city.json') 
         data = json.load(f) 
-        count = 0
-        for name in data:
-            flex_message2 = FlexSendMessage(
+        #---------------------get province list----------------#
+        for i, v in enumerate(city_region_dict[city_name_dic[city_choice][1]]):
+            if v == city_choice:
+                flex_message2 = FlexSendMessage(
                            alt_text='快回來看看我幫你找到的湯頭！',
-                           contents= data[count]
+                           contents= data[i]
                )
-            line_bot_api.reply_message(event.reply_token,flex_message2)
-            count += 1
 
         f.close()
 
