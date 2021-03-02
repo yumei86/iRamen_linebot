@@ -317,8 +317,8 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    msg = event.message.text
-    msg = msg.encode('utf-8') 
+    # msg = event.message.text
+    # msg = msg.encode('utf-8') 
 
 #----------------取得userid-----------------
     user_id = event.source.user_id
@@ -385,7 +385,7 @@ def handle_message(event):
     #----------------拉麵推薦介面-----------------
     if event.message.text == "拉麵推薦":
     #讀需要的json資料
-        f = open('json_files_for_robot/json_for_app.json') 
+        f = open('json_files_for_robot/json_for_app.json', encoding="utf8") 
         data = json.load(f) 
 
         flex_message = FlexSendMessage(
@@ -398,7 +398,7 @@ def handle_message(event):
 #----------------不同區域的介面設定-----------------
 
     elif event.message.text in TWregion:
-        f = open('json_files_for_robot/json_for_app.json') 
+        f = open('json_files_for_robot/json_for_app.json', encoding="utf8") 
         data = json.load(f) 
 
         for i,v in enumerate(TWregion):
@@ -417,7 +417,7 @@ def handle_message(event):
         city_choice = user_choice[user_choice.index(':')+1:]
         #用迴圈去讀湯頭選單
         #讀需要的推薦介面json資料
-        f = open('json_files_for_robot/soup_'+city_name_dic[city_choice][1]+'_city.json') 
+        f = open('json_files_for_robot/soup_'+city_name_dic[city_choice][1]+'_city.json', encoding="utf8") 
         data = json.load(f) 
         #---------------------get province list----------------#
         for i, v in enumerate(city_region_dict[city_name_dic[city_choice][1]]):
