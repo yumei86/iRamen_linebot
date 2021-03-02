@@ -553,41 +553,6 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token,flex_message7)
 
 
-
-
-
-
-
-#----------------最愛清單訊息觸發設定-----------------  
-    if event.message.text == "最愛清單":
-
-        if ramen_test == []:
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "尚未有最愛清單，快去加入你喜歡的拉麵吧！\uDBC0\uDC5e"))
-        else:
-            flex_message6 = FlexSendMessage(
-                                        alt_text= '快回來看看我的最愛！',
-                                        contents= favorite_list_generator(ramen_test)
-            )
-            line_bot_api.reply_message(event.reply_token,flex_message6) 
-
-#----------------問題回報（未來可加donate資訊）----------------
-    if event.message.text == "問題回報":
-        line_bot_api.reply_message(
-                    event.reply_token,
-                    TextSendMessage(text="\udbc0\udcb2常見問題\n\n• 我的反應太慢:\n\n最慢2秒左右會回覆，太慢或不回的話請多按幾次或填錯誤回報表單。\n半夜2點後是我的睡覺時間，一定要睡滿6小時，不要吵我睡覺。\
-                                        \n\
-                                        \n• 選擇湯頭和評論品項不同:\n\n別擔心，該推薦店家是有賣你選的湯頭類型！\
-                                        \n\
-                                        \n• 希望有較小範圍的地區搜尋功能:\n\n在做了別急。\
-                                        \n\
-                                        \n\udbc0\udcb22021年2月新增:可點式評論超連結+幫你查店家附近天氣+拉麵心靈雞湯 BY崩潰後端負責人\
-                                        \n\
-                                        \n\udbc0\udc84若你很喜歡我們的作品，也不吝嗇贊助，讓我們的iRamen變得更好，請匯款至以下戶頭:\n玉山銀行(808)0864979119334\
-                                        \n\
-                                        \n若以上的問題清單都不是你情況，請填寫表單，非常感謝你！\udbc0\udc7a\
-                                        \nhttps://reurl.cc/14RmVW")
-
-        )
 #----------------拉麵推薦介面-----------------
 
     #讀需要的json資料
@@ -1567,6 +1532,17 @@ def handle_message(event):
             
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"{map_format}")
             )
+    #----------------最愛清單訊息觸發設定-----------------  
+    elif event.message.text == "最愛清單":
+
+        if ramen_test == []:
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "尚未有最愛清單，快去加入你喜歡的拉麵吧！\uDBC0\uDC5e"))
+        else:
+            flex_message6 = FlexSendMessage(
+                                        alt_text= '快回來看看我的最愛！',
+                                        contents= favorite_list_generator(ramen_test)
+            )
+            line_bot_api.reply_message(event.reply_token,flex_message6) 
      #----------------最愛清單加入資料庫設定與訊息回覆設定-----------------
       
     elif "加到最愛清單♡" in event.message.text or "刪除最愛清單♡" in event.message.text:
@@ -1629,13 +1605,28 @@ def handle_message(event):
                 line_bot_api.reply_message(event.reply_token,TextSendMessage(text= "發生錯誤請再試一次" ))
         else:
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text= "不要亂打字!!!" ))
-
     
+#----------------問題回報（未來可加donate資訊）----------------
+    elif event.message.text == "問題回報":
+        line_bot_api.reply_message(
+                    event.reply_token,
+                    TextSendMessage(text="\udbc0\udcb2常見問題\n\n• 我的反應太慢:\n\n最慢2秒左右會回覆，太慢或不回的話請多按幾次或填錯誤回報表單。\n半夜2點後是我的睡覺時間，一定要睡滿6小時，不要吵我睡覺。\
+                                        \n\
+                                        \n• 選擇湯頭和評論品項不同:\n\n別擔心，該推薦店家是有賣你選的湯頭類型！\
+                                        \n\
+                                        \n• 希望有較小範圍的地區搜尋功能:\n\n在做了別急。\
+                                        \n\
+                                        \n\udbc0\udcb22021年2月新增:可點式評論超連結+幫你查店家附近天氣+拉麵心靈雞湯 BY崩潰後端負責人\
+                                        \n\
+                                        \n\udbc0\udc84若你很喜歡我們的作品，也不吝嗇贊助，讓我們的iRamen變得更好，請匯款至以下戶頭:\n玉山銀行(808)0864979119334\
+                                        \n\
+                                        \n若以上的問題清單都不是你情況，請填寫表單，非常感謝你！\udbc0\udc7a\
+                                        \nhttps://reurl.cc/14RmVW"))
+
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n\n例:{store_example_choice}\
                                                                                   \n\n\udbc0\udcb2請輸入有效店名關鍵字(中間幫我隨意留一個半形空,但不可在前後加入空白)\
-                                                                                  \n\udbc0\udcb2或請幫我直接點選拉麵推薦選單做選擇喔！")
-        )
+                                                                                  \n\udbc0\udcb2或請幫我直接點選拉麵推薦選單做選擇喔！"))
         
 if __name__ == 'main':
     app.run(debug=True) 
