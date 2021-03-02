@@ -327,41 +327,8 @@ def handle_message(event):
         user_id = event.source.user_id
         
 
-#----------------拉麵推薦介面-----------------
-
-    #讀需要的json資料
-    f = open('json_files_for_robot/json_for_app.json') 
-    data = json.load(f) 
-    
-
-    if event.message.text == "拉麵推薦":
-
-        flex_message = FlexSendMessage(
-                        alt_text='拉麵推薦',
-                        contents= data[0]
-        )
-
-        line_bot_api.reply_message(event.reply_token,flex_message)
-
-#----------------不同區域的介面設定-----------------
 
     TWregion = ["北部","中部","南部","東部"]
-    times = 1
-
-    for item in TWregion:
-        if event.message.text == item:
-            flex_message1 = FlexSendMessage(
-                           alt_text= item+'的縣市',
-                           contents=  data[times]
-            )
-        
-            line_bot_api.reply_message(event.reply_token,flex_message1) 
-        times += 1
-
-    
-    f.close()
-
-#----------------選擇湯頭/直接推薦介面-----------------
 
     city_name = ["台北市","新北市","基隆市","桃園市","苗栗縣","新竹縣","新竹市","台中市","彰化縣","南投縣","雲林縣","嘉義市","台南市","高雄市","屏東縣","宜蘭縣","花蓮縣","台東縣"]
     
@@ -403,32 +370,11 @@ def handle_message(event):
     s_city = ["嘉義市","台南市","高雄市","屏東縣"]
     e_city = ["宜蘭縣","花蓮縣","台東縣"]
 
-    all_city = [n_city,c_city,s_city,e_city]
-    region = ["north","center","south","east"]
-
-    #用迴圈去讀湯頭選單
-    #讀需要的推薦介面json資料
-    for i in range(len(region)):
-        f = open('json_files_for_robot/soup_'+region[i]+'_city.json') 
-        data = json.load(f) 
-        city_cond = all_city[i]
-        count = 0
-
-        for name in city_cond:
-            cond = "湯頭推薦:"+name
-            if event.message.text == cond :
-                flex_message2 = FlexSendMessage(
-                            alt_text='快回來看看我幫你找到的湯頭！',
-                            contents= data[count]
-                )
-    
-                line_bot_api.reply_message(event.reply_token,flex_message2)
-            count += 1
-
-        f.close()
-
-
-
+    n_dict = dict.fromkeys(n_city, ("北","north"))
+    c_dict = dict.fromkeys(c_city, ("中","center"))
+    s_dict = dict.fromkeys(s_city, ("南","south"))
+    e_dict = dict.fromkeys(e_city, ("東","east"))
+    city_name_dic = {**n_dict, **c_dict, **s_dict, **e_dict}
 
 #----------------輸入關鍵字找尋店家-----------------
     store_example = ['「鷹流 公館」','「公 子」','「山下公 園」','「隱家 赤峰」','「七 面鳥」','「麵屋 壹」','「真 劍」','「秋 鳴」','「Mr 拉麵雲」','「辰 拉」','「京都 柚子」','「麵屋 ichi」','「麵屋 壹之穴」','「KIDO 拉麵」','「Ramen 初」','「暴 走」','「Hiro 新店」']
@@ -436,8 +382,56 @@ def handle_message(event):
     store_example_choice_lst = store_example[:5]
     store_example_choice = ''.join(store_example_choice_lst)
     # store_example_choice = reduce(lambda a,x: a+str(x), store_example_choice_lst, "")
-    #----------------輸入關鍵字找尋店家-----------------
-    if event.message.text in city_name:
+    #----------------拉麵推薦介面-----------------
+    if event.message.text == "拉麵推薦":
+    #讀需要的json資料
+        f = open('json_files_for_robot/json_for_app.json') 
+        data = json.load(f) 
+
+        flex_message = FlexSendMessage(
+                        alt_text='拉麵推薦',
+                        contents= data[0]
+        )
+
+        line_bot_api.reply_message(event.reply_token,flex_message)
+        f.close()
+#----------------不同區域的介面設定-----------------
+
+    elif event.message.text in TWregion:
+        f = open('json_files_for_robot/json_for_app.json') 
+        data = json.load(f) 
+        times = 1
+
+        for item in TWregion:
+            if event.message.text == item:
+                flex_message1 = FlexSendMessage(
+                               alt_text= item+'的縣市',
+                               contents=  data[times]
+                )
+
+                line_bot_api.reply_message(event.reply_token,flex_message1) 
+            times += 1
+        f.close()
+#----------------選擇湯頭介面-----------------
+    elif "湯頭推薦:" in event.message.text:
+        user_choice = event.message.text
+        c = user_choice[user_choice.index(':')+1:]
+        #用迴圈去讀湯頭選單
+        #讀需要的推薦介面json資料
+        f = open('json_files_for_robot/soup_'+city_name_dic[c][0]+'_city.json') 
+        data = json.load(f) 
+        count = 0
+        for name in data:
+            flex_message2 = FlexSendMessage(
+                           alt_text='快回來看看我幫你找到的湯頭！',
+                           contents= data[count]
+               )
+            line_bot_api.reply_message(event.reply_token,flex_message2)
+            count += 1
+
+        f.close()
+
+    elif event.message.text in city_name:
         flex_message5 = FlexSendMessage(
                     alt_text='依據你的喜好選擇吧！',
                     contents= 
@@ -529,7 +523,7 @@ def handle_message(event):
     
     elif event.message.text == "嘉義縣":
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "抱歉！\uDBC0\uDC7c 這邊尚未有拉麵店，請至附近其他縣市看看!"))
-    elif ('湯頭推薦'not in event.message.text and '評論' not in event.message.text and ':' in event.message.text) and ':' not in event.message.text[0] and ':' not in event.message.text[-1] and '最愛清單' not in event.message.text:
+    elif ('湯頭推薦:'not in event.message.text and '評論' not in event.message.text and ':' in event.message.text) and ':' not in event.message.text[0] and ':' not in event.message.text[-1] and '最愛清單' not in event.message.text:
         user_choice = event.message.text
         select_first_param = user_choice[:user_choice.index(':')]
         select_second_param = user_choice[user_choice.index(':')+1:]
@@ -923,7 +917,7 @@ def handle_message(event):
             else:
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2出錯啦靠邀，麻煩您把「錯誤代碼W1」和「您的店家搜尋指令（含空格）」填在填錯誤回報上，感激到五體投地\udbc0\udcb2")
             )
-        else:
+        else:    #----------------輸入關鍵字找尋店家-----------------
             input_lst = user_select.split()
             keyword_result=''
             if len(input_lst) == 2 :
