@@ -405,7 +405,7 @@ def handle_message(event):
             if event.message.text == v:
                 flex_message1 = FlexSendMessage(
                                alt_text= v + '的縣市',
-                               contents= data[i]
+                               contents= data[i+1]
                 )
 
                 line_bot_api.reply_message(event.reply_token,flex_message1) 
