@@ -273,7 +273,7 @@ def favorite_list_generator(favorite_list):
     for i in favorite_list:
 
         favorite_button = ButtonComponent(style="primary", color="#997B66", size="sm", margin="sm",
-                                        action=MessageAction(label=i, text=f'搜尋你的清單♥{i}'),)
+                                        action=MessageAction(label=i, text=f'搜尋你的清單♡{i}'),)
         delete_button = ButtonComponent(style="secondary", color="#F1DCA7", size="sm", margin="sm", flex=0,
                                       action=MessageAction(label="-", text="刪除最愛清單♡"+i),)
         button_row = BoxComponent(layout="horizontal", margin="md", spacing="sm",
@@ -1151,7 +1151,7 @@ def handle_message(event):
                                                                         "action": {
                                                                         "type": "message",
                                                                         "label": "看更多推薦",
-                                                                        "text": user_select
+                                                                        "text": "看更多推薦" + f_city
                                                                         },
                                                                         "color": "#D08C60"
                                                                     },
@@ -1319,8 +1319,8 @@ def handle_message(event):
             )
             line_bot_api.reply_message(event.reply_token,flex_message6) 
      #----------------最愛清單加入資料庫設定與訊息回覆設定-----------------
-    elif "搜尋你的清單♥" in event.message.text:
-        text_l  = event.message.text.split("♥")
+    elif "搜尋你的清單♡" in event.message.text:
+        text_l  = event.message.text.split("♡")
         store_name_full = text_l[1] 
         if store_exist(user_id, store_name_full) != 0:
             store_detail = query_map_review_by_full_name(store_name_full)
@@ -1548,7 +1548,7 @@ def handle_message(event):
 
             line_bot_api.reply_message(event.reply_token,flex_message7)
         else:
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2出錯啦靠邀，麻煩您把「錯誤代碼L1」和「您的店家搜尋指令（含空格）」填在填錯誤回報上，感激到五體投地\udbc0\udcb2")
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "你已將此店家從最愛清單中刪除")
         )       
 
       
