@@ -974,7 +974,7 @@ def handle_message(event):
                                                                         "action": {
                                                                         "type": "message",
                                                                         "label": "看更多推薦",
-                                                                        "text": "看更多推薦:"+ f_city
+                                                                        "text": event.message.text
                                                                         },
                                                                         "color": "#D08C60"
                                                                     },
@@ -1377,7 +1377,7 @@ def handle_message(event):
                                                                         "action": {
                                                                         "type": "message",
                                                                         "label": "看更多推薦",
-                                                                        "text": "看更多推薦:"+ f_city
+                                                                        "text": event.message.text
                                                                         },
                                                                         "color": "#D08C60"
                                                                     },
