@@ -428,6 +428,7 @@ def handle_message(event):
                            alt_text='快回來看看我幫你找到的湯頭！',
                            contents= data[i]
                )
+               line_bot_api.reply_message(event.reply_token,flex_message2) 
 
         f.close()
 
