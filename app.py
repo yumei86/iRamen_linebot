@@ -331,7 +331,6 @@ def handle_message(event):
     TWregion = ["北部","中部","南部","東部"]
 
     city_name = ["台北市","新北市","基隆市","桃園市","苗栗縣","新竹縣","新竹市","台中市","彰化縣","南投縣","雲林縣","嘉義市","台南市","高雄市","屏東縣","宜蘭縣","花蓮縣","台東縣"]
-    
     city_soup = {
     #北部
         "台北市": ["豚骨", "醬油", "雞白", "魚介", "沾麵", "雞清", "家系", "味噌", "淡麗系", "其他"],
@@ -401,17 +400,16 @@ def handle_message(event):
     elif event.message.text in TWregion:
         f = open('json_files_for_robot/json_for_app.json') 
         data = json.load(f) 
-        times = 1
 
-        for item in TWregion:
-            if event.message.text == item:
+        for i,v in enumerate(TWregion):
+            if event.message.text == v:
                 flex_message1 = FlexSendMessage(
-                               alt_text= item+'的縣市',
-                               contents=  data[times]
+                               alt_text= v + '的縣市',
+                               contents= data[i]
                 )
 
                 line_bot_api.reply_message(event.reply_token,flex_message1) 
-            times += 1
+
         f.close()
 #----------------選擇湯頭介面-----------------
     elif "湯頭推薦:" in event.message.text:
@@ -428,6 +426,7 @@ def handle_message(event):
                            alt_text='快回來看看我幫你找到的湯頭！',
                            contents= data[i]
                 )
+
                 line_bot_api.reply_message(event.reply_token,flex_message2) 
 
         f.close()
@@ -1306,13 +1305,16 @@ def handle_message(event):
         user_list_count = count_love_list(user_id)
         if user_list_count == 0:
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "尚未有最愛清單，快去加入你喜歡的拉麵吧！\uDBC0\uDC5e"))
-        else:
+        elif user_list_count != 0:
             ramen_test = get_love_list_from_user_id(user_id)
             flex_message6 = FlexSendMessage(
                                         alt_text= '快回來看看我的最愛！',
                                         contents= favorite_list_generator(ramen_test)
             )
             line_bot_api.reply_message(event.reply_token,flex_message6) 
+        else:
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2出錯啦靠邀，麻煩您把「錯誤代碼L2」和「您的店家搜尋指令（含空格）」填在填錯誤回報上，感激到五體投地\udbc0\udcb2")
+        )       
      #----------------最愛清單加入資料庫設定與訊息回覆設定-----------------
     elif "搜尋你的清單♡" in event.message.text:
         text_l  = event.message.text.split("♡")
