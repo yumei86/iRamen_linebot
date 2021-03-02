@@ -556,11 +556,11 @@ def handle_message(event):
 
 #----------------最愛清單加入資料庫設定與訊息回覆設定-----------------
       
-    if "加到最愛清單♥" in event.message.text:
+    if "加到最愛清單♡" in event.message.text or "刪除最愛清單♡" in event.message.text:
 
         user_line_id = user_id
 
-        text_l = event.message.text.split("♥")
+        text_l = event.message.text.split("♡")
         
         first_love_param = text_l[0]
         second_love_param = text_l[1] 
@@ -594,52 +594,30 @@ def handle_message(event):
                             TextSendMessage(text="最愛清單數量超過上限，請刪除部分資料\udbc0\udc7c")
                         )
                 else:
-                    line_bot_api.reply_message(
-                            event.reply_token,
-                            TextSendMessage(text= second_love_param + "已經在最愛清單！")
-                        )
+                    line_bot_api.reply_message(event.reply_token,TextSendMessage(text= second_love_param + "已經在最愛清單！"))
             else:
-                line_bot_api.reply_message(
-                            event.reply_token,
-                            TextSendMessage(text="你輸入的店名資料庫裡沒有啦\udbc0\udc7c")
-                        )
+                line_bot_api.reply_message(event.reply_token,TextSendMessage(text="你輸入的店名資料庫裡沒有啦\udbc0\udc7c"))
 
-    if "刪除最愛清單♡" in event.message.text:
-
-        user_line_id = user_id
-
-        text_d = event.message.text.split("♡")
-
-        first_del_param = text_d[0]
-        second_del_param = text_d[1]
-
-        if first_del_param == '刪除最愛清單':
-
-            detail_id = get_store_id(second_del_param)
-
-            if detail_id != '' and store_exist(user_line_id, second_del_param) != 0:
+        elif first_love_param == '刪除最愛清單':
+            detail_id = get_store_id(second_love_param)
+            if detail_id != '' and store_exist(user_line_id, second_love_param) != 0:
                 data = db.session.query(Favorite)\
                         .filter(Favorite.detail_store_id == detail_id)\
                         .filter(Favorite.line_id == user_line_id)\
                         .first()
                 db.session.delete(data)
                 db.session.commit()
-                line_bot_api.reply_message(
-                        event.reply_token,
-                        TextSendMessage(text="成功刪除"+ second_del_param )
-                    )
+                line_bot_api.reply_message(event.reply_token,TextSendMessage(text="成功刪除"+ second_love_param ))
 
-            elif store_exist(user_line_id, second_del_param) == 0: #check if the store user want to rermove already not exist in the list
-                line_bot_api.reply_message(
-                        event.reply_token,
-                        TextSendMessage(text= second_del_param + "已不在你的最愛清單囉!" )
-                    )
+            elif store_exist(user_line_id, second_love_param) == 0: #check if the store user want to rermove already not exist in the list
+                line_bot_api.reply_message(event.reply_token,TextSendMessage(text= second_love_param + "已不在你的最愛清單囉!" ))
 
             else:
-                line_bot_api.reply_message(
-                        event.reply_token,
-                        TextSendMessage(text= "發生錯誤請再試一次" )
-                    )
+                line_bot_api.reply_message(event.reply_token,TextSendMessage(text= "發生錯誤請再試一次" ))
+        else:
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text= "不要亂打字!!!" ))
+
+
 
 
 #----------------最愛清單訊息觸發設定-----------------  
@@ -963,7 +941,7 @@ def handle_message(event):
                                                                             "action": {
                                                                             "type": "message",
                                                                             "label": "加到最愛清單",
-                                                                            "text": "加到最愛清單♥"+store_n
+                                                                            "text": "加到最愛清單♡"+store_n
                                                                             }
                                                                         }
                                                                         ],
@@ -1150,7 +1128,7 @@ def handle_message(event):
                                                                             "action": {
                                                                             "type": "message",
                                                                             "label": "加到最愛清單",
-                                                                            "text": "加到最愛清單♥"+store_n
+                                                                            "text": "加到最愛清單♡"+store_n
                                                                             }
                                                                         }
                                                                         ],
@@ -1366,7 +1344,7 @@ def handle_message(event):
                                                                             "action": {
                                                                             "type": "message",
                                                                             "label": "加到最愛清單",
-                                                                            "text": "加到最愛清單♥"+store_n
+                                                                            "text": "加到最愛清單♡"+store_n
                                                                             }
                                                                         }
                                                                         ],
@@ -1553,7 +1531,7 @@ def handle_message(event):
                                                                             "action": {
                                                                             "type": "message",
                                                                             "label": "加到最愛清單",
-                                                                            "text": "加到最愛清單♥"+store_n
+                                                                            "text": "加到最愛清單♡"+store_n
                                                                             }
                                                                         }
                                                                         ],
