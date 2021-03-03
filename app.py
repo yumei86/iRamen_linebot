@@ -1614,17 +1614,17 @@ def handle_message(event):
     elif event.message.text == "問題回報":
         line_bot_api.reply_message(
                     event.reply_token,
-                    TextSendMessage(text="\udbc0\udcb2常見問題\n\n• 我的反應太慢:\n\n最慢2秒左右會回覆，太慢或不回的話請多按幾次或填錯誤回報表單。\n半夜2點後是我的睡覺時間，一定要睡滿6小時，不要吵我睡覺。\
+                    TextSendMessage(text="\udbc0\udcb2常見問題\
                                         \n\
                                         \n• 選擇湯頭和評論品項不同:\n\n別擔心，該推薦店家是有賣你選的湯頭類型！\
                                         \n\
                                         \n• 希望有較小範圍的地區搜尋功能:\n\n在做了別急。\
                                         \n\
-                                        \n\udbc0\udcb22021年2月新增:可點式評論超連結+幫你查店家附近天氣+拉麵心靈雞湯 BY崩潰後端負責人\
+                                        \n\udbc0\udcb22月新增\n• 評論超連結\n• 店家附近天氣\n• 拉麵語錄\n• 分流看更多推薦\n• 大幅提升回應速度\
                                         \n\
                                         \n\udbc0\udc84若你很喜歡我們的作品，也不吝嗇贊助，讓我們的iRamen變得更好，請匯款至以下戶頭:\n玉山銀行(808)0864979119334\
                                         \n\
-                                        \n若以上的問題清單都不是你情況，請填寫表單，非常感謝你！\udbc0\udc7a\
+                                        \n歡迎請填寫使用者回饋表單，非常感謝你！\udbc0\udc7a\
                                         \nhttps://reurl.cc/14RmVW"))
 
     else:
