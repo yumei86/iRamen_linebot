@@ -974,7 +974,7 @@ def handle_message(event):
                             op  = output_lst[7][output_lst[7].index(':')+1:]  
                         else:
                             line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2出錯啦靠邀，麻煩您把「錯誤代碼S1」和「您的店家搜尋指令（含空格）」填在填錯誤回報上，感激到五體投地\udbc0\udcb2") )
-                        flex_message9 = FlexSendMessage(
+                        flex_message3 = FlexSendMessage(
                                             alt_text='快回來看看我幫你找到的店家！',
                                             contents= {
                                                             "type": "carousel",
@@ -1275,7 +1275,7 @@ def handle_message(event):
                                                             ]
                                                             }
                                 )
-                        line_bot_api.reply_message(event.reply_token,flex_message9)
+                        line_bot_api.reply_message(event.reply_token,flex_message3)
                     else:
                         line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2出錯啦靠邀，麻煩您把「錯誤代碼S3」和「您的店家搜尋指令（含空格）」填在填錯誤回報上，感激到五體投地\udbc0\udcb2")
         )       
