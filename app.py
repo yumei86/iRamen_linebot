@@ -417,19 +417,19 @@ def handle_message(event):
         city_choice = user_choice[user_choice.index(':')+1:]
         #用迴圈去讀湯頭選單
         #讀需要的推薦介面json資料
-        f_city_name = open('json_files_for_robot/soup_'+city_name_dic[city_choice][1]+'_city.json', encoding="utf8") 
-        data_city_name = json.load(f_city_name) 
+        f_city_soup = open('json_files_for_robot/soup_'+city_name_dic[city_choice][1]+'_city.json', encoding="utf8") 
+        data_city_soup = json.load(f_city_soup) 
         #---------------------get province list----------------#
         for i, v in enumerate(city_region_dict[city_name_dic[city_choice][1]]):
             if v == city_choice:
                 flex_message2 = FlexSendMessage(
                            alt_text='快回來看看我幫你找到的湯頭！',
-                           contents= data_city_name[i]
+                           contents= data_city_soup[i]
                 )
 
                 line_bot_api.reply_message(event.reply_token,flex_message2) 
 
-        f_city_name.close()
+        f_city_soup.close()
 
     elif event.message.text in city_name:
         flex_message5 = FlexSendMessage(
@@ -913,7 +913,7 @@ def handle_message(event):
             else:
               uvi_index_description = '目前無相關資訊'
             if weather_data:
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f'目前當地【{weather_description}】\n\n氣溫:{main_temp}℃\n體感溫度:{temp_feels_like}℃\n濕度:{humidity_procent}%\n紫外線指數:{uvi_index}，{uvi_index_description}'))
+                line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f'【{weather_description}】\n\n氣溫:{main_temp}℃\n體感溫度:{temp_feels_like}℃\n濕度:{humidity_procent}%\n紫外線指數:{uvi_index}，{uvi_index_description}'))
             else:
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2出錯啦靠邀，麻煩您把「錯誤代碼W1」和「您的店家搜尋指令（含空格）」填在填錯誤回報上，感激到五體投地\udbc0\udcb2")
             )
