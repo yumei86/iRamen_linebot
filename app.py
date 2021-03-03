@@ -398,38 +398,38 @@ def handle_message(event):
 #----------------不同區域的介面設定-----------------
 
     elif event.message.text in TWregion:
-        f = open('json_files_for_robot/json_for_app.json', encoding="utf8") 
-        data = json.load(f) 
+        f_region = open('json_files_for_robot/json_for_app.json', encoding="utf8") 
+        data_region = json.load(f_region) 
 
         for i,v in enumerate(TWregion):
             if event.message.text == v:
                 flex_message1 = FlexSendMessage(
                                alt_text= v + '的縣市',
-                               contents= data[i+1]
+                               contents= data_region[i+1]
                 )
 
                 line_bot_api.reply_message(event.reply_token,flex_message1) 
 
-        f.close()
+        f_region.close()
 #----------------選擇湯頭介面-----------------
     elif "湯頭推薦:" in event.message.text:
         user_choice = event.message.text
         city_choice = user_choice[user_choice.index(':')+1:]
         #用迴圈去讀湯頭選單
         #讀需要的推薦介面json資料
-        f = open('json_files_for_robot/soup_'+city_name_dic[city_choice][1]+'_city.json', encoding="utf8") 
-        data = json.load(f) 
+        f_city_name = open('json_files_for_robot/soup_'+city_name_dic[city_choice][1]+'_city.json', encoding="utf8") 
+        data_city_name = json.load(f_city_name) 
         #---------------------get province list----------------#
         for i, v in enumerate(city_region_dict[city_name_dic[city_choice][1]]):
             if v == city_choice:
                 flex_message2 = FlexSendMessage(
                            alt_text='快回來看看我幫你找到的湯頭！',
-                           contents= data[i]
+                           contents= data_city_name[i]
                 )
 
                 line_bot_api.reply_message(event.reply_token,flex_message2) 
 
-        f.close()
+        f_city_name.close()
 
     elif event.message.text in city_name:
         flex_message5 = FlexSendMessage(
