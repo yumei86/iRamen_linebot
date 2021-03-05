@@ -316,6 +316,7 @@ def tags_button_generator(tag_lst,append_obj,city):
         "type": "box",
         "layout": "horizontal",
         "margin": "sm",
+        "flex": 0
         "contents": []
     }
     tag_btn_layout["contents"] = sub
