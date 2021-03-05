@@ -316,7 +316,6 @@ def tags_button_generator(tag_lst,append_obj,city):
         "type": "box",
         "layout": "vertical",
         "margin": "sm",
-        "flex": 0,
         "contents": []
     }
     tag_btn_layout["contents"] = sub
@@ -1363,7 +1362,6 @@ def handle_message(event):
                           "body": {
                             "type": "box",
                             "layout": "vertical",
-                            "justifyContent": "flex-start",
                             "contents": [
                               {
                                 "type": "text",
