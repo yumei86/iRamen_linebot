@@ -1358,38 +1358,38 @@ def handle_message(event):
         tags = store_query_tags(store_n)
         tag_list = convert_string_to_lst(tags,'#')
         tag_list = [i for i in tag_list if i]
-        # contents_tags = {
-        #                   "type": "bubble",
-        #                   "body": {
-        #                     "type": "box",
-        #                     "layout": "vertical",
-        #                     "contents": [
-        #                       {
-        #                         "type": "text",
-        #                         "text": f"{store_n}相關風格",
-        #                         "weight": "bold",
-        #                         "size": "sm",
-        #                         "color": "#876C5A"
-        #                       },
-        #                       {
-        #                         "type": "text",
-        #                         "text": "點擊看類似店家...",
-        #                         "size": "xs",
-        #                         "margin": "sm"
-        #                       },
-        #                       {
-        #                         "type": "separator",
-        #                         "margin": "lg"
-        #                       }
-        #                     ]
-        #                 }
-        #                 }
+        contents_tags = {
+                          "type": "bubble",
+                          "body": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                              {
+                                "type": "text",
+                                "text": f"{store_n}相關風格",
+                                "weight": "bold",
+                                "size": "sm",
+                                "color": "#876C5A"
+                              },
+                              {
+                                "type": "text",
+                                "text": "點擊看類似店家...",
+                                "size": "xs",
+                                "margin": "sm"
+                              },
+                              {
+                                "type": "separator",
+                                "margin": "lg"
+                              }
+                            ]
+                        }
+                        }
 
-        # flex_message_tags = FlexSendMessage(
-        #                                 alt_text='快回來看看我幫你找到的店家！',
-        #                                 contents= tags_button_generator(tag_list, contents_tags, city_n))
-        # line_bot_api.reply_message(event.reply_token,flex_message_tags)
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text = f"{store_n}{city_n}{tag_list}"))
+        flex_message_tags = FlexSendMessage(
+                                        alt_text='快回來看看我幫你找到的店家！',
+                                        contents= tags_button_generator(tag_list, contents_tags, city_n))
+        line_bot_api.reply_message(event.reply_token,flex_message_tags)
+        # line_bot_api.reply_message(event.reply_token,TextSendMessage(text = f"{store_n}{city_n}{tag_list}"))
     #----------------最愛清單訊息觸發設定-----------------  
     elif event.message.text == "最愛清單":
         user_list_count = count_love_list(user_id)
