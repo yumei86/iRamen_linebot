@@ -1179,6 +1179,9 @@ def handle_message(event):
                                                                 "footer": {
                                                                     "type": "box",
                                                                     "layout": "horizontal",
+                                                                    "adjustMode": "shrink-to-fit",
+                                                                    "margin": "none",
+                                                                    "align" : "start",
                                                                     "contents": [
                                                                     {
                                                                         "type": "button",
