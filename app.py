@@ -902,6 +902,15 @@ def handle_message(event):
                                                                         "text": f"輸出評論超連結→{store_n}"
                                                                         },
                                                                         "color": "#D08C60"
+                                                                    },
+                                                                    {
+                                                                        "type": "button",
+                                                                        "action": {
+                                                                        "type": "message",
+                                                                        "label": "看相似店鋪",
+                                                                        "text": f"類別搜索中→{store_n}→{f_city}"
+                                                                        },
+                                                                        "color": "#D08C60"
                                                                     }
                                                                     ]
                                                                 },
@@ -1616,6 +1625,15 @@ def handle_message(event):
                                                     "type": "message",
                                                     "label": "看當地天氣",
                                                     "text": f"{r_store} 附近天氣搜索中→ \n{lont}→{lati}"
+                                                    },
+                                                    "color": "#D08C60"
+                                                },
+                                                {
+                                                    "type": "button",
+                                                    "action": {
+                                                    "type": "message",
+                                                    "label": "看相似店鋪",
+                                                    "text": f"類別搜索中→{r_store}→{city_r}"
                                                     },
                                                     "color": "#D08C60"
                                                 },
