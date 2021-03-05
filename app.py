@@ -302,7 +302,7 @@ def tags_button_generator(tag_lst,append_obj,city):
           "action": {
           "type": "message",
           "label": item,
-          "text": item 
+          "text": f"{city}:{item}" 
           },
           "color": "#D08C60"
     }
