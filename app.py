@@ -792,8 +792,8 @@ def handle_message(event):
                                                                         "type": "button",
                                                                         "action": {
                                                                         "type": "message",
-                                                                        "label": "看當地天氣",
-                                                                        "text": f"{store_n} 附近天氣搜索中→ \n{lon}→{lat}"
+                                                                        "label": "看相似店鋪",
+                                                                        "text": f"類別搜索中→{store_n}→{f_city}"
                                                                         },
                                                                         "color": "#D08C60"
                                                                     }
@@ -907,8 +907,8 @@ def handle_message(event):
                                                                         "type": "button",
                                                                         "action": {
                                                                         "type": "message",
-                                                                        "label": "看相似店鋪",
-                                                                        "text": f"類別搜索中→{store_n}→{f_city}"
+                                                                        "label": "看當地天氣",
+                                                                        "text": f"{store_n} 附近天氣搜索中→ \n{lon}→{lat}"
                                                                         },
                                                                         "color": "#D08C60"
                                                                     }
