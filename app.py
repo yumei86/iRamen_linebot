@@ -316,7 +316,6 @@ def tags_button_generator(tag_lst,append_obj,city):
         "type": "box",
         "layout": "horizontal",
         "margin": "sm",
-        "paddingAll":"0px",
         "contents": []
     }
     tag_btn_layout["contents"] = sub
@@ -1363,12 +1362,13 @@ def handle_message(event):
                           "body": {
                             "type": "box",
                             "layout": "vertical",
+                            "justifyContent": "flex-start",
                             "contents": [
                               {
                                 "type": "text",
                                 "text": f"{store_n}相關風格",
                                 "weight": "bold",
-                                "size": "xl",
+                                "size": "md",
                                 "color": "#876C5A"
                               },
                               {
