@@ -1367,8 +1367,11 @@ def handle_message(event):
                                 "type": "text",
                                 "text": f"{store_n}相關風格",
                                 "weight": "bold",
+                                "align": "start",
+                                "gravity": "center",
                                 "size": "md",
-                                "color": "#876C5A"
+                                "color": "#876C5A",
+                                "wrap":True
                               },
                               {
                                 "type": "text",
