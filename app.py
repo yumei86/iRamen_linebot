@@ -1351,8 +1351,8 @@ def handle_message(event):
         
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"• {store_name}\n\n{map_format}")
         )
-    elif "類別搜索中→" in user_select:
-        group_list = user_select.split("→")
+    elif "類別搜索中→" in event.message.text:
+        group_list = event.message.text.split("→")
         store_n = str(group_list[1])
         city_n = str(group_list[2])
         tags = store_query_tags(store_n)
