@@ -1610,32 +1610,42 @@ def handle_message(event):
                                             "type": "box",
                                             "layout": "vertical",
                                             "contents": [
+                                            {
+                                            "type": "box",
+                                            "layout": "horizontal",
+                                            "contents":[
                                                 {
                                                 "type": "button",
                                                 "action": {
                                                     "type": "message",
-                                                    "label": "NEW!看網友評論",
+                                                    "label": "看網友評論",
                                                     "text": f"\udbc0\udc54有人評論→ {r_store}\n\n{com_format}"
                                                 },
                                                 "color": "#D08C60"
                                                 },
                                                 {
-                                                    "type": "button",
-                                                    "action": {
+                                                "type": "button",
+                                                "action": {
                                                     "type": "message",
                                                     "label": "看當地天氣",
                                                     "text": f"{r_store} 附近天氣搜索中→ \n{lont}→{lati}"
-                                                    },
-                                                    "color": "#D08C60"
                                                 },
+                                                "color": "#D08C60"
+                                                }
+                                            ]
+                                            },
+                                            {
+                                            "type": "box",
+                                            "layout": "horizontal",
+                                            "contents":[
                                                 {
-                                                    "type": "button",
-                                                    "action": {
+                                                "type": "button",
+                                                "action": {
                                                     "type": "message",
                                                     "label": "看相似店鋪",
                                                     "text": f"類別搜索中→{r_store}→{city_r}"
-                                                    },
-                                                    "color": "#D08C60"
+                                                },
+                                                "color": "#D08C60"
                                                 },
                                                 {
                                                 "type": "button",
@@ -1646,6 +1656,9 @@ def handle_message(event):
                                                 },
                                                 "color": "#D08C60"
                                                 }
+                                            ]
+                                            }
+                     
                                             ]
                                             },
                                             "styles": {
