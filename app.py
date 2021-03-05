@@ -578,7 +578,7 @@ def handle_message(event):
         if result == '':
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\uDBC0\uDC7c輸入的字串不合法，查詢不到你想要的東西"))         
         output_before_random_clear = get_data_str(result)
-        if output_before_random_clear == None:
+        if output_before_random_clear == None or output_before_random_clear == '':
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\uDBC0\uDC7c輸入的字串不合法，查詢不到你想要的東西"))
         else:
             output_before_random_clear = output_before_random_clear.replace(u'\xa0', u' ').replace('\n','')
