@@ -892,7 +892,7 @@ def handle_message(event):
             text_list = user_select.split("→")
             lonti = float(text_list[1])
             lati  = float(text_list[2])
-            store_name = str(text_list[0]).replace('搜索中','')
+            store_name = str(text_list[0]).replace('搜索中','').replace(' ','')
             WEATHER_API_KEY = os.environ.get('WEATHER_API_KEY')
             weather_data = query_local_weather(lonti, lati, WEATHER_API_KEY)
             weather_description = weather_data['current']['weather'][0]['description']
@@ -914,7 +914,7 @@ def handle_message(event):
             else:
               uvi_index_description = '目前無相關資訊'
             if weather_data:
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f'{store_name}\n【{weather_description}】\n\n氣溫:{main_temp}℃\n體感溫度:{temp_feels_like}℃\n濕度:{humidity_procent}%\n紫外線指數:{uvi_index}，{uvi_index_description}'))
+                line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f'{store_name}\n\n【{weather_description}】\n\n氣溫:{main_temp}℃\n體感溫度:{temp_feels_like}℃\n濕度:{humidity_procent}%\n紫外線指數:{uvi_index}，{uvi_index_description}'))
             else:
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2出錯啦靠邀，麻煩您把「錯誤代碼W1」和「您的店家搜尋指令（含空格）」填在填錯誤回報上，感激到五體投地\udbc0\udcb2")
             )
@@ -1300,7 +1300,7 @@ def handle_message(event):
               map_format += ''.join(map(str, map_lst))
               map_format = map_format[:-1]
             
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"{store_name}\n{map_format}")
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"{store_name}\n\n{map_format}")
             )
     #----------------最愛清單訊息觸發設定-----------------  
     elif event.message.text == "最愛清單":
