@@ -965,7 +965,7 @@ def handle_message(event):
             else:
               uvi_index_description = '目前無相關資訊'
             if weather_data:
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f'• {store_name}\n\n【{weather_description}】\n\n氣溫:{main_temp}℃\n體感溫度:{temp_feels_like}℃\n濕度:{humidity_procent}%\n紫外線指數:{uvi_index}，{uvi_index_description}'))
+                line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f'目前{store_name}\n\n【{weather_description}】\n\n氣溫:{main_temp}℃\n體感溫度:{temp_feels_like}℃\n濕度:{humidity_procent}%\n紫外線指數:{uvi_index}，{uvi_index_description}'))
             else:
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2出錯啦靠邀，麻煩您把「錯誤代碼W1」和「您的店家搜尋指令（含空格）」填在填錯誤回報上，感激到五體投地\udbc0\udcb2")
             )
@@ -1363,7 +1363,7 @@ def handle_message(event):
           map_format += ''.join(map(str, map_lst))
           map_format = map_format[:-1]
         
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"• {store_name}\n\n{map_format}")
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"{store_name}\n\n{map_format}")
         )
     elif "類別搜索中→" in event.message.text:
         group_list = event.message.text.split("→")
