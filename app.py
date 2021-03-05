@@ -370,6 +370,7 @@ def handle_message(event):
     TWregion = ["北部","中部","南部","東部"]
 
     city_name = ["台北市","新北市","基隆市","桃園市","苗栗縣","新竹縣","新竹市","台中市","彰化縣","南投縣","雲林縣","嘉義市","台南市","高雄市","屏東縣","宜蘭縣","花蓮縣","台東縣"]
+    '''
     city_soup = {
     #北部
         "台北市": ["豚骨", "醬油", "雞白", "魚介", "沾麵", "雞清", "家系", "味噌", "淡麗系", "其他"],
@@ -397,7 +398,7 @@ def handle_message(event):
         "花蓮縣" : ["豚骨", "魚白", "鬼頭刀", "其他"],
         "台東縣" : ["豚骨", "其他"]
     }
-    
+    '''
 
 #----------------湯頭推薦-----------------
 
@@ -569,11 +570,13 @@ def handle_message(event):
         result = ''
         if ((select_first_param == '直接推薦') or (select_first_param == '看更多推薦')) and select_second_param in city_name:                
             result = query_province_direct(select_second_param)
-        elif select_first_param in city_name and select_second_param in city_soup[select_first_param]:
+        elif select_first_param in city_name:
             result = query_province_soup(select_first_param, select_second_param)
         else:
             result = ''
-        # #---------------------------------put all data to a string--------------------------           
+        # #---------------------------------put all data to a string--------------------------  
+        if result == '':
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\uDBC0\uDC7c輸入的字串不合法，查詢不到你想要的東西"))         
         output_before_random_clear = get_data_str(result)
         if output_before_random_clear == None:
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\uDBC0\uDC7c輸入的字串不合法，查詢不到你想要的東西"))
