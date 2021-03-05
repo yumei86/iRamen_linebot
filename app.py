@@ -416,7 +416,7 @@ def handle_message(event):
     city_name_dic = {**n_dict, **c_dict, **s_dict, **e_dict}
     city_region_dict = dict(zip(["north","center","south","east"], [north,center,south,east]))
 
-#----------------輸入關鍵字找尋店家-----------------
+#----------------雞湯文-----------------
     store_example = ['「鷹流 公館」','「公 子」','「山下公 園」','「隱家 赤峰」','「七 面鳥」','「麵屋 壹」','「真 劍」','「秋 鳴」','「Mr 拉麵雲」','「辰 拉」','「京都 柚子」','「麵屋 ichi」','「麵屋 壹之穴」','「KIDO 拉麵」','「Ramen 初」','「暴 走」','「Hiro 新店」']
     random.shuffle(store_example)
     store_example_choice_lst = store_example[:5]
@@ -958,44 +958,6 @@ def handle_message(event):
             else:
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2出錯啦靠邀，麻煩您把「錯誤代碼W1」和「您的店家搜尋指令（含空格）」填在填錯誤回報上，感激到五體投地\udbc0\udcb2")
             )
-        elif "類別搜索中→" in user_select:
-            group_list = user_select.split("→")
-            store_n = str(text_list[1]).replace(' ','').replace('\n','')
-            city_n = str(text_list[2])
-            tags = store_query_tags(store_n)
-            tag_list = convert_string_to_lst(tags,'#')
-            tag_list = [i for i in tag_list if i]
-            contents_tags = {
-                              "type": "bubble",
-                              "body": {
-                                "type": "box",
-                                "layout": "vertical",
-                                "contents": [
-                                  {
-                                    "type": "text",
-                                    "text": f"{store_n}相關風格",
-                                    "weight": "bold",
-                                    "size": "sm",
-                                    "color": "#876C5A"
-                                  },
-                                  {
-                                    "type": "text",
-                                    "text": "點擊看類似店家...",
-                                    "size": "xs",
-                                    "margin": "sm"
-                                  },
-                                  {
-                                    "type": "separator",
-                                    "margin": "lg"
-                                  }
-                                ]
-                                }
-                            }
-            
-            flex_message_tags = FlexSendMessage(
-                                            alt_text='快回來看看我幫你找到的店家！',
-                                            contents= tags_button_generator(tag_list, contents_tags, city_n))
-            line_bot_api.reply_message(event.reply_token,flex_message_tags)
         else:    #----------------輸入關鍵字找尋店家-----------------
             input_lst = user_select.split()
             keyword_result=''
@@ -1233,7 +1195,7 @@ def handle_message(event):
                                                                         "action": {
                                                                         "type": "message",
                                                                         "label": "看相似店鋪",
-                                                                        "text": f"類別搜索中→ \n{store_n}→{f_city}"
+                                                                        "text": f"類別搜索中→{store_n}→{f_city}"
                                                                         },
                                                                         "color": "#D08C60"
                                                                     }
@@ -1389,6 +1351,44 @@ def handle_message(event):
             
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"• {store_name}\n\n{map_format}")
             )
+    elif "類別搜索中→" in user_select:
+            group_list = user_select.split("→")
+            store_n = str(text_list[1])
+            city_n = str(text_list[2])
+            tags = store_query_tags(store_n)
+            tag_list = convert_string_to_lst(tags,'#')
+            tag_list = [i for i in tag_list if i]
+            # contents_tags = {
+            #                   "type": "bubble",
+            #                   "body": {
+            #                     "type": "box",
+            #                     "layout": "vertical",
+            #                     "contents": [
+            #                       {
+            #                         "type": "text",
+            #                         "text": f"{store_n}相關風格",
+            #                         "weight": "bold",
+            #                         "size": "sm",
+            #                         "color": "#876C5A"
+            #                       },
+            #                       {
+            #                         "type": "text",
+            #                         "text": "點擊看類似店家...",
+            #                         "size": "xs",
+            #                         "margin": "sm"
+            #                       },
+            #                       {
+            #                         "type": "separator",
+            #                         "margin": "lg"
+            #                       }
+            #                     ]
+            #                 }
+            #                 }
+            
+            # flex_message_tags = FlexSendMessage(
+            #                                 alt_text='快回來看看我幫你找到的店家！',
+            #                                 contents= tags_button_generator(tag_list, contents_tags, city_n))
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text = f"{store_n}{city_n}{tag_list}"))
     #----------------最愛清單訊息觸發設定-----------------  
     elif event.message.text == "最愛清單":
         user_list_count = count_love_list(user_id)
