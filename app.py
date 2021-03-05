@@ -1336,59 +1336,59 @@ def handle_message(event):
                                                                               \n\udbc0\udcb2或請幫我直接點選拉麵推薦選單做選擇喔！")
     )
     elif "輸出評論超連結→" in event.message.text:
-            text_list = event.message.text.split("→")
-            store_name = str(text_list[1])
-            map_review_data = db.session.query(Store.map_review).filter(Store.store == text_list[1]).filter(Store.still_there == True)
-            map_format = ''
-            for r in map_review_data:
-              #抓出來是tuple
-              r_str = ''.join(list(map(str,r)))
-              r_str = r_str.replace(u'\xa0', u' ').replace(u'\n', u' ')
-              map_lst = divide_map_review(r_str)
-              map_lst = [v+'\n\n' if i%2 != 0 and i != len(map_lst)-1 else v+'\n' for i,v in enumerate(map_lst)]
-              map_format += ''.join(map(str, map_lst))
-              map_format = map_format[:-1]
-            
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"• {store_name}\n\n{map_format}")
-            )
+        text_list = event.message.text.split("→")
+        store_name = str(text_list[1])
+        map_review_data = db.session.query(Store.map_review).filter(Store.store == text_list[1]).filter(Store.still_there == True)
+        map_format = ''
+        for r in map_review_data:
+          #抓出來是tuple
+          r_str = ''.join(list(map(str,r)))
+          r_str = r_str.replace(u'\xa0', u' ').replace(u'\n', u' ')
+          map_lst = divide_map_review(r_str)
+          map_lst = [v+'\n\n' if i%2 != 0 and i != len(map_lst)-1 else v+'\n' for i,v in enumerate(map_lst)]
+          map_format += ''.join(map(str, map_lst))
+          map_format = map_format[:-1]
+        
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"• {store_name}\n\n{map_format}")
+        )
     elif "類別搜索中→" in user_select:
-            group_list = user_select.split("→")
-            store_n = str(text_list[1])
-            city_n = str(text_list[2])
-            tags = store_query_tags(store_n)
-            tag_list = convert_string_to_lst(tags,'#')
-            tag_list = [i for i in tag_list if i]
-            # contents_tags = {
-            #                   "type": "bubble",
-            #                   "body": {
-            #                     "type": "box",
-            #                     "layout": "vertical",
-            #                     "contents": [
-            #                       {
-            #                         "type": "text",
-            #                         "text": f"{store_n}相關風格",
-            #                         "weight": "bold",
-            #                         "size": "sm",
-            #                         "color": "#876C5A"
-            #                       },
-            #                       {
-            #                         "type": "text",
-            #                         "text": "點擊看類似店家...",
-            #                         "size": "xs",
-            #                         "margin": "sm"
-            #                       },
-            #                       {
-            #                         "type": "separator",
-            #                         "margin": "lg"
-            #                       }
-            #                     ]
-            #                 }
-            #                 }
-            
-            # flex_message_tags = FlexSendMessage(
-            #                                 alt_text='快回來看看我幫你找到的店家！',
-            #                                 contents= tags_button_generator(tag_list, contents_tags, city_n))
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text = f"{store_n}{city_n}{tag_list}"))
+        group_list = user_select.split("→")
+        store_n = str(group_list[1])
+        city_n = str(group_list[2])
+        tags = store_query_tags(store_n)
+        tag_list = convert_string_to_lst(tags,'#')
+        tag_list = [i for i in tag_list if i]
+        contents_tags = {
+                          "type": "bubble",
+                          "body": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                              {
+                                "type": "text",
+                                "text": f"{store_n}相關風格",
+                                "weight": "bold",
+                                "size": "sm",
+                                "color": "#876C5A"
+                              },
+                              {
+                                "type": "text",
+                                "text": "點擊看類似店家...",
+                                "size": "xs",
+                                "margin": "sm"
+                              },
+                              {
+                                "type": "separator",
+                                "margin": "lg"
+                              }
+                            ]
+                        }
+                        }
+
+        flex_message_tags = FlexSendMessage(
+                                        alt_text='快回來看看我幫你找到的店家！',
+                                        contents= tags_button_generator(tag_list, contents_tags, city_n))
+        line_bot_api.reply_message(event.reply_token,flex_message_tags)
     #----------------最愛清單訊息觸發設定-----------------  
     elif event.message.text == "最愛清單":
         user_list_count = count_love_list(user_id)
