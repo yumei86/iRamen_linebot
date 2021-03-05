@@ -1369,7 +1369,7 @@ def handle_message(event):
                                 "weight": "bold",
                                 "align": "start",
                                 "gravity": "center",
-                                "size": "md",
+                                "size": "xl",
                                 "color": "#876C5A",
                                 "wrap":True
                               },
