@@ -755,7 +755,7 @@ def handle_message(event):
                                                                         "type": "button",
                                                                         "action": {
                                                                         "type": "message",
-                                                                        "label": "看更多推薦",
+                                                                        "label": "看同類推薦",
                                                                         "text": user_choice
                                                                         },
                                                                         "color": "#D08C60"
