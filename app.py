@@ -291,6 +291,46 @@ def favorite_list_generator(favorite_list):
 
     return bubble
 
+#----------------tag functions-----------
+def tags_button_generator(tag_lst,append_obj,city):
+  lst_to_append_tags = append_obj["body"]["contents"]
+  tag_btn_lst = []
+
+  for item in tag_lst:
+    tag_btn = {
+          "type": "button",
+          "action": {
+          "type": "message",
+          "label": item,
+          "text": item 
+          },
+          "color": "#D08C60"
+    }
+
+    tag_btn_lst.append(tag_btn)
+  tag_btn_group = [tag_btn_lst[2*i:(2*i)+2] for i in range(int((len(tag_btn_lst)/2)) +1)]
+  tag_btn_group = [sub for sub in tag_btn_group if len(sub) != 0]
+
+  for sub in tag_btn_group:
+    tag_btn_layout = {
+        "type": "box",
+        "layout": "horizontal",
+        "margin": "sm",
+        "spacing": "sm",
+        "contents": []
+    }
+    tag_btn_layout["contents"] = sub
+    lst_to_append_tags.append(tag_btn_layout)
+
+  return append_obj
+
+def store_query_tags(s):
+  store_query_tags = db.session.query(Store).filter(Store.store == s)
+  result = ''
+  for r in store_query_tags:
+    result += f"{r.soup}"
+  return result
+
 #----------------官方設定-----------------
 
 @app.route("/", methods=['GET'])
@@ -914,10 +954,48 @@ def handle_message(event):
             else:
               uvi_index_description = '目前無相關資訊'
             if weather_data:
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f'{store_name}\n\n【{weather_description}】\n\n氣溫:{main_temp}℃\n體感溫度:{temp_feels_like}℃\n濕度:{humidity_procent}%\n紫外線指數:{uvi_index}，{uvi_index_description}'))
+                line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f'• {store_name}\n\n【{weather_description}】\n\n氣溫:{main_temp}℃\n體感溫度:{temp_feels_like}℃\n濕度:{humidity_procent}%\n紫外線指數:{uvi_index}，{uvi_index_description}'))
             else:
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2出錯啦靠邀，麻煩您把「錯誤代碼W1」和「您的店家搜尋指令（含空格）」填在填錯誤回報上，感激到五體投地\udbc0\udcb2")
             )
+        elif "類別搜索中→" in user_select:
+            group_list = user_select.split("→")
+            store_n = str(text_list[1]).replace(' ','').replace('\n','')
+            city_n = str(text_list[2])
+            tags = store_query_tags(store_n)
+            tag_list = convert_string_to_lst(tags,'#')
+            tag_list = [i for i in tag_list if i]
+            contents_tags = {
+                              "type": "bubble",
+                              "body": {
+                                "type": "box",
+                                "layout": "vertical",
+                                "contents": [
+                                  {
+                                    "type": "text",
+                                    "text": f"{store_n}相關風格",
+                                    "weight": "bold",
+                                    "size": "sm",
+                                    "color": "#876C5A"
+                                  },
+                                  {
+                                    "type": "text",
+                                    "text": "點擊看類似店家...",
+                                    "size": "xs",
+                                    "margin": "sm"
+                                  },
+                                  {
+                                    "type": "separator",
+                                    "margin": "lg"
+                                  }
+                                ]
+                                }
+                            }
+            
+            flex_message_tags = FlexSendMessage(
+                                            alt_text='快回來看看我幫你找到的店家！',
+                                            contents= tags_button_generator(tag_list, contents_tags, city_n))
+            line_bot_api.reply_message(event.reply_token,flex_message_tags)
         else:    #----------------輸入關鍵字找尋店家-----------------
             input_lst = user_select.split()
             keyword_result=''
@@ -1154,8 +1232,8 @@ def handle_message(event):
                                                                         "type": "button",
                                                                         "action": {
                                                                         "type": "message",
-                                                                        "label": "看當地天氣",
-                                                                        "text": f"{store_n} 附近天氣搜索中→ \n{lon}→{lat}"
+                                                                        "label": "看相似店鋪",
+                                                                        "text": f"類別搜索中→ \n{store_n}→{f_city}"
                                                                         },
                                                                         "color": "#D08C60"
                                                                     }
@@ -1264,6 +1342,15 @@ def handle_message(event):
                                                                         "text": f"輸出評論超連結→{store_n}"
                                                                         },
                                                                         "color": "#D08C60"
+                                                                    },
+                                                                    {
+                                                                        "type": "button",
+                                                                        "action": {
+                                                                        "type": "message",
+                                                                        "label": "看當地天氣",
+                                                                        "text": f"{store_n} 附近天氣搜索中→ \n{lon}→{lat}"
+                                                                        },
+                                                                        "color": "#D08C60"
                                                                     }
                                                                     ]
                                                                 },
@@ -1300,7 +1387,7 @@ def handle_message(event):
               map_format += ''.join(map(str, map_lst))
               map_format = map_format[:-1]
             
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"{store_name}\n\n{map_format}")
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"• {store_name}\n\n{map_format}")
             )
     #----------------最愛清單訊息觸發設定-----------------  
     elif event.message.text == "最愛清單":
