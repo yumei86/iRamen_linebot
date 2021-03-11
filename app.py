@@ -1171,8 +1171,8 @@ def handle_message(event):
                                                                         "type": "button",
                                                                         "action": {
                                                                         "type": "message",
-                                                                        "label": "看更多推薦",
-                                                                        "text": "看更多推薦:" + f_city
+                                                                        "label": "再搜索一次",
+                                                                        "text": user_select
                                                                         },
                                                                         "color": "#D08C60"
                                                                     },
