@@ -203,16 +203,16 @@ def divide_map_review(comment_s):
         return comment_lst
 ##----------------我的最愛取得userid資料庫設定-----------------
 def get_love_list_from_user_id(user_id):  
-  love_list_q = db.session.query(Store,Favorite)\
-    .outerjoin(Favorite, Favorite.detail_store_id == Store.detail_store_id)\
-    .filter(Favorite.line_id == user_id)
-  love_list = ''
-  for l in love_list_q :
-    love_list += f'{l[0].store}%'
-  love_list_clear = love_list.replace(u'\xa0', u' ').replace(' ','')
-  output_whole_love_list = convert_string_to_lst(love_list_clear,'%')
-  output_whole_love_list = [i for i in output_whole_love_list if i]
-  return output_whole_love_list
+    love_list_q = db.session.query(Store,Favorite)\
+      .outerjoin(Favorite, Favorite.detail_store_id == Store.detail_store_id)\
+      .filter(Favorite.line_id == user_id)
+    love_list = ''
+    for l in love_list_q :
+      love_list += f'{l[0].store}%'
+    love_list_clear = love_list.replace(u'\xa0', u' ').replace(' ','')
+    output_whole_love_list = convert_string_to_lst(love_list_clear,'%')
+    output_whole_love_list = [i for i in output_whole_love_list if i]
+    return output_whole_love_list
 
 def count_store_in_table(store_name):
     store_id_q = db.session.query(Store)\
