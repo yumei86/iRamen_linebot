@@ -104,7 +104,7 @@
               "type": "button",
               "action": {
                 "type": "message",
-                "label": "懶人救星!開定位探店GPS",
+                "label": "開定位探店GPS",
                 "text": "定位"
               },
               "style": "primary",

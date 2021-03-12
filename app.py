@@ -465,12 +465,8 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    # msg = event.message.text
-    # msg = msg.encode('utf-8') 
-
 #----------------取得userid-----------------
     user_id = event.source.user_id
-
     if user_id == '':
         user_id = event.source.user_id
     TWregion = ["北部","中部","南部","東部"]
@@ -489,10 +485,8 @@ def handle_message(event):
         f = open('json_files_for_robot/json_for_app.json', encoding="utf8") 
         data = json.load(f) 
 
-        flex_message = FlexSendMessage(
-                        alt_text='拉麵推薦',
-                        contents= data[0]
-        )
+        flex_message = FlexSendMessage(alt_text='拉麵推薦',
+                                       contents= data[0])
 
         line_bot_api.reply_message(event.reply_token,flex_message)
         f.close()
