@@ -429,6 +429,7 @@ def store_query_tags(s):
         result += f"{r.soup}"
     return result
 
+#----------------用來做縣市對應region字典-----------------
 north = ["台北市","新北市","基隆市","桃園市","苗栗縣","新竹縣","新竹市","臺北市"]
 center = ["台中市","彰化縣","南投縣","雲林縣","臺中市"]
 south = ["嘉義市","台南市","高雄市","屏東縣","臺南市"]
@@ -437,7 +438,6 @@ n_dict = dict.fromkeys(north, ("北","north"))
 c_dict = dict.fromkeys(center, ("中","center"))
 s_dict = dict.fromkeys(south, ("南","south"))
 e_dict = dict.fromkeys(east, ("東","east"))
-
 
 #----------------官方設定-----------------
 
@@ -1807,6 +1807,13 @@ def handle_message(event):
                                                     QuickReplyButton(action=LocationAction(label="我在哪My LOC"))
                                                 ]))
         line_bot_api.reply_message(event.reply_token,text_message_location) 
+    elif "搜尋店家細節♡" in event.message.text:
+        text_s = event.message.text.split("♡")
+        store_full_name = text_s[1] 
+        store_detail_for_distance = query_map_review_by_full_name(store_full_name)
+        output_whole_lst = convert_string_to_lst(store_detail_for_distance,',')
+        output_whole_lst = [i for i in output_whole_lst if i]
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"{output_whole_lst}"))
 #----------------問題回報（未來可加donate資訊）----------------
     elif event.message.text == "問題回報":
         line_bot_api.reply_message(
