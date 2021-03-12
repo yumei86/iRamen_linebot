@@ -1861,29 +1861,26 @@ def handle_location(event):
       else:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text= "出錯惹靠腰，麻煩幫忙在使用者回報填寫出錯代碼「G1」和您的狀況" ))
     
-    distance = vincenty(user_location,(24.83114000,121.01343000))
-    line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"{distance}"))
     # '''
     # 算距離
     # '''
-    # if all_store_province == '':
-    #     line_bot_api.reply_message(event.reply_token,TextSendMessage(text= "\udbc0\udcb2目前不支援離島與國外拉麵店，請到台灣本島吃拉麵~" ),
-    #                                                                  quick_reply= QuickReply(items=[QuickReplyButton(action=LocationAction(label="再定位一次My LOC"))
-    # else:
-    #     sorted_city_distance_dic = caculate_distance(user_location,all_store_province)
-    #     if  len(sorted_city_distance_dic) >= 10:
-    #       choice_nearby_city_tup = take(10, sorted_city_distance_dic.items())
-    #     else:
-    #       line_bot_api.reply_message(event.reply_token,TextSendMessage(text= "出錯惹靠腰，麻煩幫忙在使用者回報填寫出錯代碼「G2」和您的狀況" ))
+    if all_store_province == '':
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text= "\udbc0\udcb2目前不支援離島與國外拉麵店，請到台灣本島吃拉麵~" ))
+    else:
+        sorted_city_distance_dic = caculate_distance(user_location,all_store_province)
+        if  len(sorted_city_distance_dic) >= 10:
+          choice_nearby_city_tup = take(10, sorted_city_distance_dic.items())
+        else:
+          line_bot_api.reply_message(event.reply_token,TextSendMessage(text= "出錯惹靠腰，麻煩幫忙在使用者回報填寫出錯代碼「G2」和您的狀況" ))
 
     
-    # flex_message_location = FlexSendMessage(
-    #                                     alt_text='快回來看看我幫你找到的店家！',
-    #                                     contents= distance_template_generator(choice_nearby_city_tup),
-    #                                     quick_reply= QuickReply(items=[QuickReplyButton(action=LocationAction(label="再定位一次My LOC")),
-    #                                                                    QuickReplyButton(action=URIAction(label="拉麵地圖自己找",uri=f'https://www.google.com/maps/d/u/0/viewer?fbclid=IwAR3O8PKxMuqtqb2wMKoHKe4cCETwnT2RSCZSpsyPPkFsJ6NpstcrDcjhO2k&mid=1I8nWhKMX1j8I2bUkN4qN3-FSyFCCsCh7&ll={u_lat}%2C{u_long}'))
-    #                                                                    ]))
-    # line_bot_api.reply_message(event.reply_token,flex_message_location)
+    flex_message_location = FlexSendMessage(
+                                        alt_text='快回來看看我幫你找到的店家！',
+                                        contents= distance_template_generator(choice_nearby_city_tup),
+                                        quick_reply= QuickReply(items=[QuickReplyButton(action=LocationAction(label="再定位一次My LOC")),
+                                                                       QuickReplyButton(action=URIAction(label="拉麵地圖自己找",uri=f'https://www.google.com/maps/d/u/0/viewer?fbclid=IwAR3O8PKxMuqtqb2wMKoHKe4cCETwnT2RSCZSpsyPPkFsJ6NpstcrDcjhO2k&mid=1I8nWhKMX1j8I2bUkN4qN3-FSyFCCsCh7&ll={u_lat}%2C{u_long}'))
+                                                                       ]))
+    line_bot_api.reply_message(event.reply_token,flex_message_location)
         
 if __name__ == 'main':
     app.run(debug=True) 
