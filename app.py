@@ -1816,7 +1816,14 @@ def handle_message(event):
                 line_bot_api.reply_message(event.reply_token,TextSendMessage(text= "發生錯誤請再試一次" ))
         else:
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text= "不要亂打字!!!" ))
-    
+
+    #----------------定位叫使用者給位置-----------------
+    elif event.message.text == "定位" :
+        text_message_location = TextSendMessage(text='偷偷分享位置給我，我才能推薦附近店家給你哦！\uDBC0\uDCB9',
+                                                quick_reply=QuickReply(items=[
+                                                    QuickReplyButton(action=LocationAction(label="我在哪My LOC"))
+                                                ]))
+        line_bot_api.reply_message(event.reply_token,text_message_location) 
 #----------------問題回報（未來可加donate資訊）----------------
     elif event.message.text == "問題回報":
         line_bot_api.reply_message(
