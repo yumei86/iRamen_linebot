@@ -1813,7 +1813,21 @@ def handle_message(event):
         store_detail_for_distance = query_map_review_by_full_name(store_full_name)
         output_whole_lst = convert_string_to_lst(store_detail_for_distance,',')
         output_whole_lst = [i for i in output_whole_lst if i]
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"{output_whole_lst}"))
+        if len(output_whole_lst) == 10:
+            r_store = output_whole_lst[0][output_whole_lst[0].index(':')+1:]
+            ad = output_whole_lst[1][output_whole_lst[1].index(':')+1:]
+            dis = output_whole_lst[2][output_whole_lst[2].index(':')+1:]
+            trans = output_whole_lst[3][output_whole_lst[3].index(':')+1:]
+            com = output_whole_lst[4][output_whole_lst[4].index(':')+1:]
+            com_lst = divide_map_review(com)
+            com_lst = [v+'\n\n' if i%2 != 0 and i != len(com_lst)-1 else v+'\n' for i,v in enumerate(com_lst)]
+            com_format = ''.join(map(str, com_lst))
+            city_r = output_whole_lst[5][output_whole_lst[5].index(':')+1:]
+            lont = output_whole_lst[6][output_whole_lst[6].index(':')+1:]
+            lati = output_whole_lst[7][output_whole_lst[7].index(':')+1:]
+            opent = output_whole_lst[8][output_whole_lst[8].index(':')+1:]
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"{r_store}{opent}"))
+        
 #----------------問題回報（未來可加donate資訊）----------------
     elif event.message.text == "問題回報":
         line_bot_api.reply_message(
