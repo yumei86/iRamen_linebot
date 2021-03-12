@@ -436,6 +436,15 @@ def store_query_tags(s):
         result += f"{r.soup}"
     return result
 
+north = ["台北市","新北市","基隆市","桃園市","苗栗縣","新竹縣","新竹市","臺北市"]
+center = ["台中市","彰化縣","南投縣","雲林縣","臺中市"]
+south = ["嘉義市","台南市","高雄市","屏東縣","臺南市"]
+east = ["宜蘭縣","花蓮縣","台東縣","臺東縣"]
+n_dict = dict.fromkeys(north, ("北","north"))
+c_dict = dict.fromkeys(center, ("中","center"))
+s_dict = dict.fromkeys(south, ("南","south"))
+e_dict = dict.fromkeys(east, ("東","east"))
+
 #----------------官方設定-----------------
 
 @app.route("/", methods=['GET'])
@@ -479,18 +488,6 @@ def handle_message(event):
     
 
 #----------------湯頭推薦-----------------
-
-    #分成四區去叫不同的json檔（為了整理方便分成四區）
-
-    north = ["台北市","新北市","基隆市","桃園市","苗栗縣","新竹縣","新竹市"]
-    center = ["台中市","彰化縣","南投縣","雲林縣"]
-    south = ["嘉義市","台南市","高雄市","屏東縣"]
-    east = ["宜蘭縣","花蓮縣","台東縣"]
-
-    n_dict = dict.fromkeys(north, ("北","north"))
-    c_dict = dict.fromkeys(center, ("中","center"))
-    s_dict = dict.fromkeys(south, ("南","south"))
-    e_dict = dict.fromkeys(east, ("東","east"))
     city_name_dic = {**n_dict, **c_dict, **s_dict, **e_dict}
     city_region_dict = dict(zip(["north","center","south","east"], [north,center,south,east]))
 
@@ -1845,6 +1842,53 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n\n例:{store_example_choice}\
                                                                                   \n\n\udbc0\udcb2請輸入有效店名關鍵字(中間幫我隨意留一個半形空,但不可在前後加入空白)\
                                                                                   \n\udbc0\udcb2或請幫我直接點選拉麵推薦選單做選擇喔！"))
+@handler.add(MessageEvent, message=LocationMessage)#定位細節
+def handle_location(event):
+    #---------------縣市對應北中南東-----------------
+    city_name_dic = {**n_dict, **c_dict, **s_dict, **e_dict}
+    #---------------user info-----------------
+    u_lat = event.message.latitude
+    u_long = event.message.longitude   
+    user_address = event.message.address
+    u_address = user_address.replace(' ', '')
+    user_location = (u_lat, u_long)
+    all_store_province = ''
+    choice_nearby_city_tup = ''
+    for k, v in city_name_dic.items():
+      if k in u_address:
+        region_value = v[0]
+        all_store_province = query_region_by_store_table(region_value)
+        break
+      elif k not in u_address and ("臺灣" in u_address or '台灣' in u_address or '台湾' in u_address or 'Taiwan' in u_address):
+        #search all
+        all_store_province = province_soup_q = db.session.query(Main_store, Store)\
+                          .outerjoin(Store, Store.store_id == Main_store.store_id)\
+                          .filter(Store.still_there == True)
+        break
+      elif k not in u_address and "臺灣" not in u_address or '台灣' not in u_address or '台湾' not in u_address or 'Taiwan' not in u_address:
+        all_store_province = ''
+      else:
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text= "出錯惹靠腰，麻煩幫忙在使用者回報填寫出錯代碼「G1」和您的狀況" ))
+    # '''
+    # 算距離
+    # '''
+    if all_store_province == '':
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text= "\udbc0\udcb2目前不支援離島與國外拉麵店，請到台灣本島吃拉麵~" ),
+                                                                     quick_reply= QuickReply(items=[QuickReplyButton(action=LocationAction(label="再定位一次My LOC"))
+    else:
+        sorted_city_distance_dic = caculate_distance(user_location,all_store_province)
+        if  len(sorted_city_distance_dic) >= 10:
+          choice_nearby_city_tup = take(10, sorted_city_distance_dic.items())
+        else:
+          line_bot_api.reply_message(event.reply_token,TextSendMessage(text= "出錯惹靠腰，麻煩幫忙在使用者回報填寫出錯代碼「G2」和您的狀況" ))
+    
+    flex_message_location = FlexSendMessage(
+                                        alt_text='快回來看看我幫你找到的店家！',
+                                        contents= distance_template_generator(choice_nearby_city_tup),
+                                        quick_reply= QuickReply(items=[QuickReplyButton(action=LocationAction(label="再定位一次My LOC")),
+                                                                       QuickReplyButton(action=URIAction(label="拉麵地圖自己找",uri=f'https://www.google.com/maps/d/u/0/viewer?fbclid=IwAR3O8PKxMuqtqb2wMKoHKe4cCETwnT2RSCZSpsyPPkFsJ6NpstcrDcjhO2k&mid=1I8nWhKMX1j8I2bUkN4qN3-FSyFCCsCh7&ll={u_lat}%2C{u_long}'))
+                                                                       ]))
+    line_bot_api.reply_message(event.reply_token,flex_message_location)
         
 if __name__ == 'main':
     app.run(debug=True) 
