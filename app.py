@@ -444,6 +444,7 @@ n_dict = dict.fromkeys(north, ("北","north"))
 c_dict = dict.fromkeys(center, ("中","center"))
 s_dict = dict.fromkeys(south, ("南","south"))
 e_dict = dict.fromkeys(east, ("東","east"))
+city_name_dic = {**n_dict, **c_dict, **s_dict, **e_dict}
 
 #----------------官方設定-----------------
 
@@ -483,12 +484,10 @@ def handle_message(event):
 
 
     TWregion = ["北部","中部","南部","東部"]
-
     city_name = ["台北市","新北市","基隆市","桃園市","苗栗縣","新竹縣","新竹市","台中市","彰化縣","南投縣","雲林縣","嘉義市","台南市","高雄市","屏東縣","宜蘭縣","花蓮縣","台東縣"]
     
 
 #----------------湯頭推薦-----------------
-    city_name_dic = {**n_dict, **c_dict, **s_dict, **e_dict}
     city_region_dict = dict(zip(["north","center","south","east"], [north,center,south,east]))
 
 #----------------雞湯文-----------------
@@ -1844,8 +1843,6 @@ def handle_message(event):
                                                                                   \n\udbc0\udcb2或請幫我直接點選拉麵推薦選單做選擇喔！"))
 @handler.add(MessageEvent, message=LocationMessage)#定位細節
 def handle_location(event):
-    #---------------縣市對應北中南東-----------------
-    city_name_dic = {**n_dict, **c_dict, **s_dict, **e_dict}
     #---------------user info-----------------
     u_lat = event.message.latitude
     u_long = event.message.longitude   
