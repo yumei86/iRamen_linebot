@@ -1860,7 +1860,7 @@ def handle_message(event):
                                                 "contents": [
                                                     {
                                                     "type": "text",
-                                                    "text": "加到最愛",
+                                                    "text": "+到最愛",
                                                     "size": "sm",
                                                     "align": "center",
                                                     "offsetTop": "3px",

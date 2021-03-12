@@ -1,555 +1,578 @@
 [
-    {
-      "type": "bubble",
-      "hero": {
-        "type": "image",
-        "url": "https://github.com/yumei86/iRamen_linebot/blob/master/image/TWmap.png?raw=true",
-        "size": "full",
-        "aspectRatio": "20:13",
-        "aspectMode": "cover",
-        "position": "relative"
-      },
-      "body": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "text",
-            "text": "你在哪裡？",
-            "weight": "bold",
-            "size": "xl",
-            "contents": [],
-            "color": "#876C5A"
-          },
-          {
-            "type": "text",
-            "text": "請幫助我選擇你在台灣的哪個位置：）",
-            "size": "xs",
-            "margin": "sm"
-          },
-          {
-            "type": "separator",
-            "margin": "lg"
-          },
-          {
-            "type": "box",
-            "layout": "horizontal",
-            "contents": [
-              {
-                "type": "button",
-                "action": {
-                  "type": "message",
-                  "label": "北部",
-                  "text": "北部"
-                },
-                "style": "primary",
-                "height": "sm",
-                "color": "#797D62"
-              },
-              {
-                "type": "button",
-                "action": {
-                  "type": "message",
-                  "label": "中部",
-                  "text": "中部"
-                },
-                "style": "primary",
-                "margin": "xxl",
-                "height": "sm",
-                "color": "#797D62"
-              }
-            ],
-            "margin": "lg"
-          },
-          {
-            "type": "box",
-            "layout": "horizontal",
-            "contents": [
-              {
-                "type": "button",
-                "action": {
-                  "type": "message",
-                  "label": "南部",
-                  "text": "南部"
-                },
-                "style": "primary",
-                "height": "sm",
-                "color": "#797D62"
-              },
-              {
-                "type": "button",
-                "action": {
-                  "type": "message",
-                  "label": "東部",
-                  "text": "東部"
-                },
-                "style": "primary",
-                "margin": "xxl",
-                "height": "sm",
-                "color": "#797D62"
-              }
-            ],
-            "margin": "md"
-          }
-        ]
-      }
+  {
+    "type": "bubble",
+    "hero": {
+      "type": "image",
+      "url": "https://github.com/yumei86/iRamen_linebot/blob/master/image/TWmap.png?raw=true",
+      "size": "full",
+      "aspectRatio": "20:13",
+      "aspectMode": "cover",
+      "position": "relative"
     },
+    "body": {
+      "type": "box",
+      "layout": "vertical",
+      "contents": [
+        {
+          "type": "text",
+          "text": "你在哪裡？",
+          "weight": "bold",
+          "size": "xl",
+          "contents": [],
+          "color": "#876C5A"
+        },
+        {
+          "type": "text",
+          "text": "請幫助我選擇你在台灣的哪個位置：）",
+          "size": "xs",
+          "margin": "sm"
+        },
+        {
+          "type": "separator",
+          "margin": "lg"
+        },
+        {
+          "type": "box",
+          "layout": "horizontal",
+          "contents": [
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "label": "北部",
+                "text": "北部"
+              },
+              "style": "primary",
+              "height": "sm",
+              "color": "#797D62"
+            },
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "label": "中部",
+                "text": "中部"
+              },
+              "style": "primary",
+              "margin": "xxl",
+              "height": "sm",
+              "color": "#797D62"
+            }
+          ],
+          "margin": "lg"
+        },
+        {
+          "type": "box",
+          "layout": "horizontal",
+          "contents": [
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "label": "南部",
+                "text": "南部"
+              },
+              "style": "primary",
+              "height": "sm",
+              "color": "#797D62"
+            },
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "label": "東部",
+                "text": "東部"
+              },
+              "style": "primary",
+              "margin": "xxl",
+              "height": "sm",
+              "color": "#797D62"
+            }
 
-    {
-      "type": "bubble",
-      "hero": {
-        "type": "image",
-        "url": "https://github.com/yumei86/iRamen_linebot/blob/master/image/northtw.png?raw=true",
-        "size": "full",
-        "aspectRatio": "20:12",
-        "aspectMode": "cover"
-      },
-      "body": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "text",
-            "text": "你在哪個縣市？",
-            "weight": "bold",
-            "size": "xl",
-            "color": "#876C5A"
-          },
-          {
-            "type": "text",
-            "text": "請幫助我選擇縣市讓你更快得到推薦喔！",
-            "size": "xs",
-            "margin": "sm"
-          },
-          {
-            "type": "separator",
-            "margin": "lg"
-          },
-          {
-            "type": "box",
-            "layout": "horizontal",
-            "margin": "lg",
-            "spacing": "sm",
-            "contents": [
-              {
-                "type": "button",
-                "action": {
-                  "type": "message",
-                  "text": "台北市",
-                  "label": "台北市"
-                },
-                "style": "primary",
-                "height": "sm",
-                "color": "#797D62"
+          ],
+          "margin": "md"
+        },
+        {
+          "type": "separator",
+          "margin": "lg"
+        },
+        {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "label": "懶人救星!開定位探店GPS",
+                "text": "定位"
               },
-              {
-                "type": "button",
-                "action": {
-                  "type": "message",
-                  "label": "新北市",
-                  "text": "新北市"
-                },
-                "style": "primary",
-                "height": "sm",
-                "margin": "xxl",
-                "color": "#797D62"
-              }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "horizontal",
-            "margin": "lg",
-            "spacing": "sm",
-            "contents": [
-              {
-                "type": "button",
-                "action": {
-                  "type": "message",
-                  "text": "基隆市",
-                  "label": "基隆市"
-                },
-                "style": "primary",
-                "height": "sm",
-                "color": "#797D62"
-              },
-              {
-                "type": "button",
-                "action": {
-                  "type": "message",
-                  "label": "桃園市",
-                  "text": "桃園市"
-                },
-                "style": "primary",
-                "height": "sm",
-                "margin": "xxl",
-                "color": "#797D62"
-              }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "horizontal",
-            "margin": "lg",
-            "spacing": "sm",
-            "contents": [
-              {
-                "type": "button",
-                "action": {
-                  "type": "message",
-                  "text": "新竹市",
-                  "label": "新竹市"
-                },
-                "style": "primary",
-                "height": "sm",
-                "color": "#797D62"
-              },
-              {
-                "type": "button",
-                "action": {
-                  "type": "message",
-                  "label": "新竹縣",
-                  "text": "新竹縣"
-                },
-                "style": "primary",
-                "height": "sm",
-                "margin": "xxl",
-                "color": "#797D62"
-              }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "horizontal",
-            "margin": "lg",
-            "spacing": "sm",
-            "contents": [
-              {
-                "type": "button",
-                "action": {
-                  "type": "message",
-                  "text": "苗栗縣",
-                  "label": "苗栗縣"
-                },
-                "style": "primary",
-                "height": "sm",
-                "color": "#797D62"
-              },
-              {
-                "type": "text",
-                "text": " ",
-                "margin": "xxl"
-              }
-            ]
-          }
-        ]
-      }
-    },
-
-
-    {
-      "type": "bubble",
-      "hero": {
-        "type": "image",
-        "url": "https://github.com/yumei86/iRamen_linebot/blob/master/image/centraltw.png?raw=true",
-        "size": "full",
-        "aspectRatio": "20:13",
-        "aspectMode": "cover"
-      },
-      "body": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "text",
-            "text": "你在哪個縣市？",
-            "weight": "bold",
-            "size": "xl",
-            "color": "#876C5A"
-          },
-          {
-            "type": "text",
-            "text": "請幫助我選擇縣市讓你更快得到推薦喔！",
-            "size": "xs",
-            "margin": "sm"
-          },
-          {
-            "type": "separator",
-            "margin": "lg"
-          },
-          {
-            "type": "box",
-            "layout": "horizontal",
-            "margin": "lg",
-            "spacing": "sm",
-            "contents": [
-              {
-                "type": "button",
-                "action": {
-                  "type": "message",
-                  "text": "台中市",
-                  "label": "台中市"
-                },
-                "style": "primary",
-                "height": "sm",
-                "color": "#797D62"
-              },
-              {
-                "type": "button",
-                "action": {
-                  "type": "message",
-                  "label": "彰化縣",
-                  "text": "彰化縣"
-                },
-                "style": "primary",
-                "height": "sm",
-                "margin": "xxl",
-                "color": "#797D62"
-              }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "horizontal",
-            "margin": "md",
-            "spacing": "sm",
-            "contents": [
-              {
-                "type": "button",
-                "action": {
-                  "type": "message",
-                  "label": "南投縣",
-                  "text": "南投縣"
-                },
-                "style": "primary",
-                "height": "sm",
-                "color": "#797D62"
-              },
-              {
-                "type": "button",
-                "action": {
-                  "type": "message",
-                  "label": "雲林縣",
-                  "text": "雲林縣"
-                },
-                "style": "primary",
-                "height": "sm",
-                "margin": "xxl",
-                "color": "#797D62"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "type": "bubble",
-      "hero": {
-        "type": "image",
-        "url": "https://github.com/yumei86/iRamen_linebot/blob/master/image/southtw.png?raw=true",
-        "size": "full",
-        "aspectRatio": "20:13",
-        "aspectMode": "cover"
-      },
-      "body": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "text",
-            "text": "你在哪個縣市？",
-            "weight": "bold",
-            "size": "xl",
-            "color": "#876C5A"
-          },
-          {
-            "type": "text",
-            "text": "請幫助我選擇縣市讓你更快得到推薦喔！",
-            "size": "xs",
-            "margin": "sm"
-          },
-          {
-            "type": "separator",
-            "margin": "lg"
-          },
-          {
-            "type": "box",
-            "layout": "horizontal",
-            "margin": "lg",
-            "spacing": "sm",
-            "contents": [
-              {
-                "type": "button",
-                "action": {
-                  "type": "message",
-                  "text": "嘉義市",
-                  "label": "嘉義市"
-                },
-                "style": "primary",
-                "height": "sm",
-                "color": "#797D62"
-              },
-              {
-                "type": "button",
-                "action": {
-                  "type": "message",
-                  "label": "嘉義縣",
-                  "text": "嘉義縣"
-                },
-                "style": "primary",
-                "height": "sm",
-                "margin": "xxl",
-                "color": "#797D62"
-              }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "horizontal",
-            "margin": "md",
-            "spacing": "sm",
-            "contents": [
-              {
-                "type": "button",
-                "action": {
-                  "type": "message",
-                  "text": "台南市",
-                  "label": "台南市"
-                },
-                "style": "primary",
-                "height": "sm",
-                "color": "#797D62"
-              },
-              {
-                "type": "button",
-                "action": {
-                  "type": "message",
-                  "label": "高雄市",
-                  "text": "高雄市"
-                },
-                "style": "primary",
-                "height": "sm",
-                "margin": "xxl",
-                "color": "#797D62"
-              }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "horizontal",
-            "margin": "md",
-            "spacing": "sm",
-            "contents": [
-              {
-                "type": "button",
-                "action": {
-                  "type": "message",
-                  "text": "屏東縣",
-                  "label": "屏東縣"
-                },
-                "style": "primary",
-                "height": "sm",
-                "color": "#797D62"
-              },
-              {
-                "type": "text",
-                "text": " ",
-                "size": "lg",
-                "margin": "xxl"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "type": "bubble",
-      "hero": {
-        "type": "image",
-        "url": "https://github.com/yumei86/iRamen_linebot/blob/master/image/easttw.png?raw=true",
-        "size": "full",
-        "aspectRatio": "20:13",
-        "aspectMode": "cover"
-      },
-      "body": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "text",
-            "text": "你在哪個縣市？",
-            "weight": "bold",
-            "size": "xl",
-            "color": "#876C5A"
-          },
-          {
-            "type": "text",
-            "text": "請幫助我選擇縣市讓你更快得到推薦喔！",
-            "size": "xs",
-            "margin": "sm"
-          },
-          {
-            "type": "separator",
-            "margin": "lg"
-          },
-          {
-            "type": "box",
-            "layout": "horizontal",
-            "margin": "lg",
-            "spacing": "sm",
-            "contents": [
-              {
-                "type": "button",
-                "action": {
-                  "type": "message",
-                  "text": "宜蘭縣",
-                  "label": "宜蘭縣"
-                },
-                "style": "primary",
-                "height": "sm",
-                "color": "#797D62"
-              },
-              {
-                "type": "button",
-                "action": {
-                  "type": "message",
-                  "label": "花蓮縣",
-                  "text": "花蓮縣"
-                },
-                "style": "primary",
-                "height": "sm",
-                "margin": "xxl",
-                "color": "#797D62"
-              }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "horizontal",
-            "spacing": "sm",
-            "contents": [
-              {
-                "type": "button",
-                "action": {
-                  "type": "message",
-                  "text": "台東縣",
-                  "label": "台東縣"
-                },
-                "style": "primary",
-                "height": "sm",
-                "color": "#797D62"
-              },
-              {
-                "type": "text",
-                "text": " ",
-                "margin": "xxl"
-              }
-            ],
-            "margin": "md"
-          }
-        ]
-      }
+              "style": "primary",
+              "margin": "xxl",
+              "height": "sm",
+              "color": "#797D62"
+            }
+          ]
+        }
+      ]
     }
+  },
+
+  {
+    "type": "bubble",
+    "hero": {
+      "type": "image",
+      "url": "https://github.com/yumei86/iRamen_linebot/blob/master/image/northtw.png?raw=true",
+      "size": "full",
+      "aspectRatio": "20:12",
+      "aspectMode": "cover"
+    },
+    "body": {
+      "type": "box",
+      "layout": "vertical",
+      "contents": [
+        {
+          "type": "text",
+          "text": "你在哪個縣市？",
+          "weight": "bold",
+          "size": "xl",
+          "color": "#876C5A"
+        },
+        {
+          "type": "text",
+          "text": "請幫助我選擇縣市讓你更快得到推薦喔！",
+          "size": "xs",
+          "margin": "sm"
+        },
+        {
+          "type": "separator",
+          "margin": "lg"
+        },
+        {
+          "type": "box",
+          "layout": "horizontal",
+          "margin": "lg",
+          "spacing": "sm",
+          "contents": [
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "text": "台北市",
+                "label": "台北市"
+              },
+              "style": "primary",
+              "height": "sm",
+              "color": "#797D62"
+            },
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "label": "新北市",
+                "text": "新北市"
+              },
+              "style": "primary",
+              "height": "sm",
+              "margin": "xxl",
+              "color": "#797D62"
+            }
+          ]
+        },
+        {
+          "type": "box",
+          "layout": "horizontal",
+          "margin": "lg",
+          "spacing": "sm",
+          "contents": [
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "text": "基隆市",
+                "label": "基隆市"
+              },
+              "style": "primary",
+              "height": "sm",
+              "color": "#797D62"
+            },
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "label": "桃園市",
+                "text": "桃園市"
+              },
+              "style": "primary",
+              "height": "sm",
+              "margin": "xxl",
+              "color": "#797D62"
+            }
+          ]
+        },
+        {
+          "type": "box",
+          "layout": "horizontal",
+          "margin": "lg",
+          "spacing": "sm",
+          "contents": [
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "text": "新竹市",
+                "label": "新竹市"
+              },
+              "style": "primary",
+              "height": "sm",
+              "color": "#797D62"
+            },
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "label": "新竹縣",
+                "text": "新竹縣"
+              },
+              "style": "primary",
+              "height": "sm",
+              "margin": "xxl",
+              "color": "#797D62"
+            }
+          ]
+        },
+        {
+          "type": "box",
+          "layout": "horizontal",
+          "margin": "lg",
+          "spacing": "sm",
+          "contents": [
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "text": "苗栗縣",
+                "label": "苗栗縣"
+              },
+              "style": "primary",
+              "height": "sm",
+              "color": "#797D62"
+            },
+            {
+              "type": "text",
+              "text": " ",
+              "margin": "xxl"
+            }
+          ]
+        }
+      ]
+    }
+  },
+
+
+  {
+    "type": "bubble",
+    "hero": {
+      "type": "image",
+      "url": "https://github.com/yumei86/iRamen_linebot/blob/master/image/centraltw.png?raw=true",
+      "size": "full",
+      "aspectRatio": "20:13",
+      "aspectMode": "cover"
+    },
+    "body": {
+      "type": "box",
+      "layout": "vertical",
+      "contents": [
+        {
+          "type": "text",
+          "text": "你在哪個縣市？",
+          "weight": "bold",
+          "size": "xl",
+          "color": "#876C5A"
+        },
+        {
+          "type": "text",
+          "text": "請幫助我選擇縣市讓你更快得到推薦喔！",
+          "size": "xs",
+          "margin": "sm"
+        },
+        {
+          "type": "separator",
+          "margin": "lg"
+        },
+        {
+          "type": "box",
+          "layout": "horizontal",
+          "margin": "lg",
+          "spacing": "sm",
+          "contents": [
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "text": "台中市",
+                "label": "台中市"
+              },
+              "style": "primary",
+              "height": "sm",
+              "color": "#797D62"
+            },
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "label": "彰化縣",
+                "text": "彰化縣"
+              },
+              "style": "primary",
+              "height": "sm",
+              "margin": "xxl",
+              "color": "#797D62"
+            }
+          ]
+        },
+        {
+          "type": "box",
+          "layout": "horizontal",
+          "margin": "md",
+          "spacing": "sm",
+          "contents": [
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "label": "南投縣",
+                "text": "南投縣"
+              },
+              "style": "primary",
+              "height": "sm",
+              "color": "#797D62"
+            },
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "label": "雲林縣",
+                "text": "雲林縣"
+              },
+              "style": "primary",
+              "height": "sm",
+              "margin": "xxl",
+              "color": "#797D62"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "type": "bubble",
+    "hero": {
+      "type": "image",
+      "url": "https://github.com/yumei86/iRamen_linebot/blob/master/image/southtw.png?raw=true",
+      "size": "full",
+      "aspectRatio": "20:13",
+      "aspectMode": "cover"
+    },
+    "body": {
+      "type": "box",
+      "layout": "vertical",
+      "contents": [
+        {
+          "type": "text",
+          "text": "你在哪個縣市？",
+          "weight": "bold",
+          "size": "xl",
+          "color": "#876C5A"
+        },
+        {
+          "type": "text",
+          "text": "請幫助我選擇縣市讓你更快得到推薦喔！",
+          "size": "xs",
+          "margin": "sm"
+        },
+        {
+          "type": "separator",
+          "margin": "lg"
+        },
+        {
+          "type": "box",
+          "layout": "horizontal",
+          "margin": "lg",
+          "spacing": "sm",
+          "contents": [
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "text": "嘉義市",
+                "label": "嘉義市"
+              },
+              "style": "primary",
+              "height": "sm",
+              "color": "#797D62"
+            },
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "label": "嘉義縣",
+                "text": "嘉義縣"
+              },
+              "style": "primary",
+              "height": "sm",
+              "margin": "xxl",
+              "color": "#797D62"
+            }
+          ]
+        },
+        {
+          "type": "box",
+          "layout": "horizontal",
+          "margin": "md",
+          "spacing": "sm",
+          "contents": [
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "text": "台南市",
+                "label": "台南市"
+              },
+              "style": "primary",
+              "height": "sm",
+              "color": "#797D62"
+            },
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "label": "高雄市",
+                "text": "高雄市"
+              },
+              "style": "primary",
+              "height": "sm",
+              "margin": "xxl",
+              "color": "#797D62"
+            }
+          ]
+        },
+        {
+          "type": "box",
+          "layout": "horizontal",
+          "margin": "md",
+          "spacing": "sm",
+          "contents": [
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "text": "屏東縣",
+                "label": "屏東縣"
+              },
+              "style": "primary",
+              "height": "sm",
+              "color": "#797D62"
+            },
+            {
+              "type": "text",
+              "text": " ",
+              "size": "lg",
+              "margin": "xxl"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "type": "bubble",
+    "hero": {
+      "type": "image",
+      "url": "https://github.com/yumei86/iRamen_linebot/blob/master/image/easttw.png?raw=true",
+      "size": "full",
+      "aspectRatio": "20:13",
+      "aspectMode": "cover"
+    },
+    "body": {
+      "type": "box",
+      "layout": "vertical",
+      "contents": [
+        {
+          "type": "text",
+          "text": "你在哪個縣市？",
+          "weight": "bold",
+          "size": "xl",
+          "color": "#876C5A"
+        },
+        {
+          "type": "text",
+          "text": "請幫助我選擇縣市讓你更快得到推薦喔！",
+          "size": "xs",
+          "margin": "sm"
+        },
+        {
+          "type": "separator",
+          "margin": "lg"
+        },
+        {
+          "type": "box",
+          "layout": "horizontal",
+          "margin": "lg",
+          "spacing": "sm",
+          "contents": [
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "text": "宜蘭縣",
+                "label": "宜蘭縣"
+              },
+              "style": "primary",
+              "height": "sm",
+              "color": "#797D62"
+            },
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "label": "花蓮縣",
+                "text": "花蓮縣"
+              },
+              "style": "primary",
+              "height": "sm",
+              "margin": "xxl",
+              "color": "#797D62"
+            }
+          ]
+        },
+        {
+          "type": "box",
+          "layout": "horizontal",
+          "spacing": "sm",
+          "contents": [
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "text": "台東縣",
+                "label": "台東縣"
+              },
+              "style": "primary",
+              "height": "sm",
+              "color": "#797D62"
+            },
+            {
+              "type": "text",
+              "text": " ",
+              "margin": "xxl"
+            }
+          ],
+          "margin": "md"
+        }
+      ]
+    }
+  }
 
 
 ]
