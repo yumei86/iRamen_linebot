@@ -1,5 +1,14 @@
 # :ramen:IRamen_LINEbot:ramen:
 A [ramen](https://en.wikipedia.org/wiki/Ramen) recommendation LINE bot which can help Taiwanese ramen lovers to choose ramen stores in Taiwan.
+* The interface is in Mandarin.目前只支援繁體中文
+- [x] GPS定位系統
+- [x] 湯頭推薦
+- [x] 店家風格選單
+- [x] 關鍵字搜尋功能
+- [x] 外部評論超連結
+- [x] 店家附近實時天氣
+- [x] 大幅優化機器人速度
+- [x] 涵蓋全台將近500家拉麵店與千則網友評論
 
 ### :ramen:Our Goal
 * We are a group of ramen-lovers, our goal is to make a prototype of a mobile-first ramen recommendation chat bot in order to help other ramen lovers, if they have problem of choosing ramen shops in Taiwan.
@@ -9,15 +18,18 @@ A [ramen](https://en.wikipedia.org/wiki/Ramen) recommendation LINE bot which can
 ### :ramen:App demo and features
 * General features:
 ![General features](readme_assets/product-intro.PNG )
-* Recommendation with Google Map 
-<img src = "readme_assets/recommend.gif" width = "500">
+* NEW! GPS feature! 
+<img src = "readme_assets/distance.gif" width = "500">
+* Recommendation with Google Map/soup or shop style
+<img src = "readme_assets/new_recommend.gif" width = "500">
+* Offer detail information to users such as nearby weather of the store/review hyperlinks
 * Add your favorite Ramen stores to Pocket List
-<img src = "readme_assets/pocket_list.gif" width = "500">
+<img src = "readme_assets/new_pocket_list.gif" width = "500">
 * The interface is in Mandarin.
 
 ### :ramen:Setup
 0. Download [LINE](https://line.me/en/download) in your mobile and create an account for yourself.
-1. Add official ID `633cqaoy` or scan the QRcode below to add IRAMEN to your friend list. 
+1. Add official ID `@633cqaoy` or scan the QRcode below to add IRAMEN to your friend list. 
 ![I RAMEN QRCODE](readme_assets/QR_code.PNG)
 2. You can start to use our IRAMEN LINE BOT
 
