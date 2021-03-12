@@ -1848,32 +1848,33 @@ def handle_location(event):
     for k, v in city_name_dic.items():
       if k in u_address:
         region_value = v[0]
-        all_store_province = query_region_by_store_table(region_value)
-        break
-      elif k not in u_address and ("臺灣" in u_address or '台灣' in u_address or '台湾' in u_address or 'Taiwan' in u_address):
-        #search all
-        all_store_province = province_soup_q = db.session.query(Main_store, Store)\
-                          .outerjoin(Store, Store.store_id == Main_store.store_id)\
-                          .filter(Store.still_there == True)
-        break
-      elif k not in u_address and "臺灣" not in u_address or '台灣' not in u_address or '台湾' not in u_address or 'Taiwan' not in u_address:
-        all_store_province = ''
-      else:
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text= "出錯惹靠腰，麻煩幫忙在使用者回報填寫出錯代碼「G1」和您的狀況" ))
-    # '''
-    # 算距離
-    # '''
-    if all_store_province == '':
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text= "\udbc0\udcb2目前不支援離島與國外拉麵店，請到台灣本島吃拉麵~" ),
-                                                                     quick_reply= QuickReply(items=[QuickReplyButton(action=LocationAction(label="再定位一次My LOC"))
-    else:
-        sorted_city_distance_dic = caculate_distance(user_location,all_store_province)
-        if  len(sorted_city_distance_dic) >= 10:
-          choice_nearby_city_tup = take(10, sorted_city_distance_dic.items())
-        else:
-          line_bot_api.reply_message(event.reply_token,TextSendMessage(text= "出錯惹靠腰，麻煩幫忙在使用者回報填寫出錯代碼「G2」和您的狀況" ))
+    line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"抓到{region_value}"))
+    #     all_store_province = query_region_by_store_table(region_value)
+    #     break
+    #   elif k not in u_address and ("臺灣" in u_address or '台灣' in u_address or '台湾' in u_address or 'Taiwan' in u_address):
+    #     #search all
+    #     all_store_province = province_soup_q = db.session.query(Main_store, Store)\
+    #                       .outerjoin(Store, Store.store_id == Main_store.store_id)\
+    #                       .filter(Store.still_there == True)
+    #     break
+    #   elif k not in u_address and "臺灣" not in u_address or '台灣' not in u_address or '台湾' not in u_address or 'Taiwan' not in u_address:
+    #     all_store_province = ''
+    #   else:
+    #     line_bot_api.reply_message(event.reply_token,TextSendMessage(text= "出錯惹靠腰，麻煩幫忙在使用者回報填寫出錯代碼「G1」和您的狀況" ))
+    # # '''
+    # # 算距離
+    # # '''
+    # if all_store_province == '':
+    #     line_bot_api.reply_message(event.reply_token,TextSendMessage(text= "\udbc0\udcb2目前不支援離島與國外拉麵店，請到台灣本島吃拉麵~" ),
+    #                                                                  quick_reply= QuickReply(items=[QuickReplyButton(action=LocationAction(label="再定位一次My LOC"))
+    # else:
+    #     sorted_city_distance_dic = caculate_distance(user_location,all_store_province)
+    #     if  len(sorted_city_distance_dic) >= 10:
+    #       choice_nearby_city_tup = take(10, sorted_city_distance_dic.items())
+    #     else:
+    #       line_bot_api.reply_message(event.reply_token,TextSendMessage(text= "出錯惹靠腰，麻煩幫忙在使用者回報填寫出錯代碼「G2」和您的狀況" ))
 
-    line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"抓到{choice_nearby_city_tup}"))
+    
     # flex_message_location = FlexSendMessage(
     #                                     alt_text='快回來看看我幫你找到的店家！',
     #                                     contents= distance_template_generator(choice_nearby_city_tup),
