@@ -168,28 +168,20 @@ def query_store(store_k1,store_k2):
     return store_direct
 #----------------主要用在定位系統GIS的部分-----------------
 def query_region_by_store_table(r):
-  province_soup_q = db.session.query(Main_store, Store)\
-                      .outerjoin(Store, Store.store_id == Main_store.store_id)\
-                      .filter(Store.region == r)\
-                      .filter(Store.still_there == True)
-  return province_soup_q
-def query_store_by_full_name(s):
-  store_direct = db.session.query(Main_store, Store, Post)\
-                      .outerjoin(Post, Post.store_id == Main_store.store_id)\
-                      .outerjoin(Store, Store.store_id == Main_store.store_id)\
-                      .filter(Store.store == s)\
-                      .filter(Store.still_there == True)
-                      
-  return store_direct
+    province_soup_q = db.session.query(Main_store, Store)\
+                        .outerjoin(Store, Store.store_id == Main_store.store_id)\
+                        .filter(Store.region == r)\
+                        .filter(Store.still_there == True)
+    return province_soup_q
 def take(n, iterable):
     #"Return first n items of the iterable as a list"
     return list(islice(iterable, n))
 #--------------------天氣weather api--------------------------------
 def query_local_weather(lon,lat,APIkey):
-  weather_url = f'https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude=minutely,hourly,daily&lang=zh_tw&appid={APIkey}&units=metric'
-  get_weather_data = requests.get(weather_url)
-  weather_result = get_weather_data.json()
-  return weather_result
+    weather_url = f'https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude=minutely,hourly,daily&lang=zh_tw&appid={APIkey}&units=metric'
+    get_weather_data = requests.get(weather_url)
+    weather_result = get_weather_data.json()
+    return weather_result
 #---------------------formation-------------------------------
 def convert_string_to_lst(string,c): 
     li = list(string.split(c)) 
@@ -223,10 +215,10 @@ def get_love_list_from_user_id(user_id):
   return output_whole_love_list
 
 def count_store_in_table(store_name):
-  store_id_q = db.session.query(Store)\
-      .filter(Store.store == store_name)\
-      .count()
-  return store_id_q
+    store_id_q = db.session.query(Store)\
+        .filter(Store.store == store_name)\
+        .count()
+    return store_id_q
 def get_store_id(store_name):
     get_id = ''
     store_id_q = db.session.query(Store)\
@@ -235,14 +227,14 @@ def get_store_id(store_name):
         get_id += data.detail_store_id
     return get_id
 def store_exist(get_user_line_id, store_name):
-  store_exist = db.session.query(Store, Favorite)\
+    store_exist = db.session.query(Store, Favorite)\
         .join(Favorite, Favorite.detail_store_id == Store.detail_store_id)\
         .filter(Favorite.line_id == get_user_line_id)\
         .filter(Store.store == store_name).count()
-  return store_exist
+    return store_exist
 def count_love_list(user_id):
     count_love_list = db.session.query(Favorite)\
-            .filter(Favorite.line_id == user_id).count()
+        .filter(Favorite.line_id == user_id).count()
     return count_love_list
 
 ##----------------Query love-list by userID----------------
@@ -263,8 +255,7 @@ def query_map_review_by_full_name(s):
 
 #----------------最愛清單動態的模板設定-----------------
 
-def favorite_list_generator(favorite_list):
-    
+def favorite_list_generator(favorite_list):    
     button_list = [BoxComponent(
                     layout="vertical",
                     margin="sm",
@@ -296,42 +287,42 @@ def favorite_list_generator(favorite_list):
 
 #----------------tag functions-----------
 def tags_button_generator(tag_lst,append_obj,city):
-  lst_to_append_tags = append_obj["body"]["contents"]
-  tag_btn_lst = []
+    lst_to_append_tags = append_obj["body"]["contents"]
+    tag_btn_lst = []
 
-  for item in tag_lst:
-    tag_btn = {
-          "type": "button",
-          "action": {
-          "type": "message",
-          "label": item,
-          "text": f"{city}:{item}" 
-          },
-          "color": "#D08C60"
-    }
+    for item in tag_lst:
+        tag_btn = {
+              "type": "button",
+              "action": {
+              "type": "message",
+              "label": item,
+              "text": f"{city}:{item}" 
+              },
+              "color": "#D08C60"
+        }
 
-    tag_btn_lst.append(tag_btn)
-  tag_btn_group = [tag_btn_lst[2*i:(2*i)+2] for i in range(int((len(tag_btn_lst)/2)) +1)]
-  tag_btn_group = [sub for sub in tag_btn_group if len(sub) != 0]
+        tag_btn_lst.append(tag_btn)
+    tag_btn_group = [tag_btn_lst[2*i:(2*i)+2] for i in range(int((len(tag_btn_lst)/2)) +1)]
+    tag_btn_group = [sub for sub in tag_btn_group if len(sub) != 0]
 
-  for sub in tag_btn_group:
-    tag_btn_layout = {
-        "type": "box",
-        "layout": "vertical",
-        "margin": "sm",
-        "contents": []
-    }
-    tag_btn_layout["contents"] = sub
-    lst_to_append_tags.append(tag_btn_layout)
+    for sub in tag_btn_group:
+        tag_btn_layout = {
+            "type": "box",
+            "layout": "vertical",
+            "margin": "sm",
+            "contents": []
+        }
+        tag_btn_layout["contents"] = sub
+        lst_to_append_tags.append(tag_btn_layout)
 
-  return append_obj
+    return append_obj
 
 def store_query_tags(s):
-  store_query_tags = db.session.query(Store).filter(Store.store == s)
-  result = ''
-  for r in store_query_tags:
-    result += f"{r.soup}"
-  return result
+    store_query_tags = db.session.query(Store).filter(Store.store == s)
+    result = ''
+    for r in store_query_tags:
+        result += f"{r.soup}"
+    return result
 
 #----------------官方設定-----------------
 
