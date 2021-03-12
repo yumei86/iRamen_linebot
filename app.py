@@ -14,6 +14,9 @@ import csv
 import re
 import requests
 
+from vincenty import vincenty
+from itertools import islice
+
 #----------------呼叫我們的line bot(這邊直接取用heroku的環境變數)-----------------
 
 app = Flask(__name__)
