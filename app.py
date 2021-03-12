@@ -2049,6 +2049,9 @@ def handle_message(event):
             )
 
             line_bot_api.reply_message(event.reply_token,flex_message8)
+        else:
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2出錯啦靠邀，麻煩幫忙在使用者回報填寫出錯代碼「D1」和您的狀況，感激到五體投地！")
+        )       
         
 #----------------問題回報（未來可加donate資訊）----------------
     elif event.message.text == "問題回報":
@@ -2102,7 +2105,7 @@ def handle_location(event):
     # 算距離
     # '''
     if all_store_province == '':
-        text_message_foreign_location = TextSendMessage(text="\udbc0\udc7B目前不支援離島與國外拉麵店，請到台灣本島吃拉麵~",
+        text_message_foreign_location = TextSendMessage(text="\udbc0\udc7B目前不支援離島與國外拉麵店，請到台灣本島吃拉麵Yeah We only support ramen shops in Taiwan~",
                                                 quick_reply=QuickReply(items=[
                                                     QuickReplyButton(action=LocationAction(label="再定位一次My LOC"))
                                                 ]))
@@ -2112,7 +2115,7 @@ def handle_location(event):
         if  len(sorted_city_distance_dic) >= 10:
           choice_nearby_city_tup = take(10, sorted_city_distance_dic.items())
         else:
-          line_bot_api.reply_message(event.reply_token,TextSendMessage(text= "出錯惹靠腰，麻煩幫忙在使用者回報填寫出錯代碼「G2」和您的狀況" ))
+          line_bot_api.reply_message(event.reply_token,TextSendMessage(text= "\udbc0\udcb2出錯啦靠邀，麻煩幫忙在使用者回報填寫出錯代碼「G2」和您的狀況" ))
 
     
     flex_message_location = FlexSendMessage(
