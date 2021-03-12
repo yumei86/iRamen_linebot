@@ -206,18 +206,11 @@ def distance_template_generator(lst):
                                     {
                                         "type": "text",
                                         "text": t[0],
-                                        "align": "start",
+                                        "align": "center",
                                         "size": "md",
                                         "gravity": "center",
                                         "color": "#ffffff",
                                         "wrap": True
-                                    },
-                                    {
-                                        "type": "box",
-                                        "layout": "vertical",
-                                        "contents": [],
-                                        "width": "80px",
-                                        "height": "20px"
                                     }
                                     ],
                                     "paddingTop": "15px",
