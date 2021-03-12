@@ -1827,7 +1827,7 @@ def handle_message(event):
             lati = output_whole_lst[7][output_whole_lst[7].index(':')+1:]
             opent = output_whole_lst[8][output_whole_lst[8].index(':')+1:]
             flex_message8 = FlexSendMessage(
-                            alt_text='快回來看看你的最愛<3',
+                            alt_text='快回來看看店家細節~',
                             contents={
                                         "type": "carousel",
                                         "contents": [
@@ -1860,14 +1860,14 @@ def handle_message(event):
                                                 "contents": [
                                                     {
                                                     "type": "text",
-                                                    "text": "刪除最愛",
+                                                    "text": "加到最愛",
                                                     "size": "sm",
                                                     "align": "center",
                                                     "offsetTop": "3px",
                                                     "action": {
                                                         "type": "message",
-                                                        "label": "刪除最愛清單",
-                                                        "text": "刪除最愛清單♡"+r_store
+                                                        "label": "加到最愛清單",
+                                                        "text": "加到最愛清單♡"+r_store
                                                     }
                                                     }
                                                 ],
