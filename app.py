@@ -445,6 +445,7 @@ c_dict = dict.fromkeys(center, ("中","center"))
 s_dict = dict.fromkeys(south, ("南","south"))
 e_dict = dict.fromkeys(east, ("東","east"))
 city_name_dic = {**n_dict, **c_dict, **s_dict, **e_dict}
+city_region_dict = dict(zip(["north","center","south","east"], [north,center,south,east]))
 
 #----------------官方設定-----------------
 
@@ -480,16 +481,9 @@ def handle_message(event):
 
     if user_id == '':
         user_id = event.source.user_id
-        
-
-
     TWregion = ["北部","中部","南部","東部"]
     city_name = ["台北市","新北市","基隆市","桃園市","苗栗縣","新竹縣","新竹市","台中市","彰化縣","南投縣","雲林縣","嘉義市","台南市","高雄市","屏東縣","宜蘭縣","花蓮縣","台東縣"]
     
-
-#----------------湯頭推薦-----------------
-    city_region_dict = dict(zip(["north","center","south","east"], [north,center,south,east]))
-
 #----------------雞湯文-----------------
     store_example = ['「鷹流 公館」','「公 子」','「山下公 園」','「隱家 赤峰」','「七 面鳥」','「麵屋 壹」','「真 劍」','「秋 鳴」','「Mr 拉麵雲」','「辰 拉」','「京都 柚子」','「麵屋 ichi」','「麵屋 壹之穴」','「KIDO 拉麵」','「Ramen 初」','「暴 走」','「Hiro 新店」']
     random.shuffle(store_example)
