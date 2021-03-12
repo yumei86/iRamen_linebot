@@ -18,13 +18,17 @@ A [ramen](https://en.wikipedia.org/wiki/Ramen) recommendation LINE bot which can
 ### :ramen:App demo and features
 * General features:
 ![General features](readme_assets/product-intro.PNG )
+
 * NEW! GPS feature! 
 <img src = "readme_assets/distance.gif" width = "500">
+
 * Recommendation with Google Map/soup or shop style
 <img src = "readme_assets/new_recommend.gif" width = "500">
+
 * Offer detail information to users such as nearby weather of the store/review hyperlinks
 * Add your favorite Ramen stores to Pocket List
 <img src = "readme_assets/new_pocket_list.gif" width = "500">
+
 * The interface is in Mandarin.
 
 ### :ramen:Setup
