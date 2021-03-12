@@ -1865,10 +1865,11 @@ def handle_location(event):
     # 算距離
     # '''
     if all_store_province == '':
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text= "\udbc0\udc7B目前不支援離島與國外拉麵店，請到台灣本島吃拉麵~" ),
-                                                                     quick_reply=QuickReply(items=[
-                                                                        QuickReplyButton(action=LocationAction(label="再定位一次My LOC"))
-                                                                    ]))
+        text_message_foreign_location = TextSendMessage(text="\udbc0\udc7B目前不支援離島與國外拉麵店，請到台灣本島吃拉麵~",
+                                                quick_reply=QuickReply(items=[
+                                                    QuickReplyButton(action=LocationAction(label="再定位一次My LOC"))
+                                                ]))
+        line_bot_api.reply_message(event.reply_token,text_message_foreign_location) 
     else:
         sorted_city_distance_dic = caculate_distance(user_location,all_store_province)
         if  len(sorted_city_distance_dic) >= 10:
