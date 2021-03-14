@@ -2090,7 +2090,7 @@ def handle_location(event):
         region_value = v[0]
         all_store_province = query_region_by_store_table(region_value)
         break
-      elif k not in u_address and ("臺灣" in u_address or '台灣' in u_address or '台湾' in u_address or 'Taiwan' in u_address):
+      elif k not in u_address and ("臺灣" in u_address or '台灣' in u_address or '台湾' in u_address or 'Taiwan' in u_address or '鄉' in u_address or '鎮' in u_address or '市' in u_address or '區' in u_address):
         #search all
         all_store_province = province_soup_q = db.session.query(Main_store, Store)\
                           .outerjoin(Store, Store.store_id == Main_store.store_id)\
