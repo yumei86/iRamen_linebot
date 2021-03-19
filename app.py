@@ -1390,7 +1390,7 @@ def handle_message(event):
             lont = output_whole_lst[6][output_whole_lst[6].index(':')+1:]
             lati = output_whole_lst[7][output_whole_lst[7].index(':')+1:]
             opent = output_whole_lst[8][output_whole_lst[8].index(':')+1:]
-            
+
             flex_message7 = Single_template.single_flex('快來看看你的清單~', r_store, ad, lont, lati, dis, trans, opent, city_r, com_format)
             line_bot_api.reply_message(event.reply_token,flex_message7)
         else:
@@ -1527,7 +1527,7 @@ def handle_location(event):
     for k, v in city_name_dic.items():
       if k in u_address:
         region_value = v[0]
-        all_store_province = Gps.query_region_by_store_table(region_value)
+        all_store_province = query_region_by_store_table(region_value)
         break
       elif k not in u_address and ("臺灣" in u_address or '台灣' in u_address or '台湾' in u_address or 'Taiwan' in u_address or '鄉' in u_address or '鎮' in u_address or '市' in u_address or '區' in u_address):
         #search all
