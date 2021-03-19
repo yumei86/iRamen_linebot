@@ -1,4 +1,126 @@
 from linebot.models import FlexSendMessage
+def main_panel_flex():
+    flex_message = FlexSendMessage(
+                    alt_text='拉麵推薦',
+                    contents= {
+                                "type": "bubble",
+                                "hero": {
+                                  "type": "image",
+                                  "url": "https://github.com/yumei86/iRamen_linebot/blob/master/image/TWmap.png?raw=true",
+                                  "size": "full",
+                                  "aspectRatio": "20:13",
+                                  "aspectMode": "cover",
+                                  "position": "relative"
+                                },
+                                "body": {
+                                  "type": "box",
+                                  "layout": "vertical",
+                                  "contents": [
+                                    {
+                                      "type": "text",
+                                      "text": "你在哪裡？",
+                                      "weight": "bold",
+                                      "size": "xl",
+                                      "contents": [],
+                                      "color": "#876C5A"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "text": "請幫助我選擇你在台灣的哪個位置：）",
+                                      "size": "xs",
+                                      "margin": "sm"
+                                    },
+                                    {
+                                      "type": "separator",
+                                      "margin": "lg"
+                                    },
+                                    {
+                                      "type": "box",
+                                      "layout": "horizontal",
+                                      "contents": [
+                                        {
+                                          "type": "button",
+                                          "action": {
+                                            "type": "message",
+                                            "label": "北部",
+                                            "text": "北部"
+                                          },
+                                          "style": "primary",
+                                          "height": "sm",
+                                          "color": "#797D62"
+                                        },
+                                        {
+                                          "type": "button",
+                                          "action": {
+                                            "type": "message",
+                                            "label": "中部",
+                                            "text": "中部"
+                                          },
+                                          "style": "primary",
+                                          "margin": "xxl",
+                                          "height": "sm",
+                                          "color": "#797D62"
+                                        }
+                                      ],
+                                      "margin": "lg"
+                                    },
+                                    {
+                                      "type": "box",
+                                      "layout": "horizontal",
+                                      "contents": [
+                                        {
+                                          "type": "button",
+                                          "action": {
+                                            "type": "message",
+                                            "label": "南部",
+                                            "text": "南部"
+                                          },
+                                          "style": "primary",
+                                          "height": "sm",
+                                          "color": "#797D62"
+                                        },
+                                        {
+                                          "type": "button",
+                                          "action": {
+                                            "type": "message",
+                                            "label": "東部",
+                                            "text": "東部"
+                                          },
+                                          "style": "primary",
+                                          "margin": "xxl",
+                                          "height": "sm",
+                                          "color": "#797D62"
+                                        }
+                                      ],
+                                      "margin": "md"
+                                    },
+                                    {
+                                      "type": "separator",
+                                      "margin": "lg"
+                                    },
+                                    {
+                                      "type": "box",
+                                      "layout": "vertical",
+                                      "contents": [
+                                        {
+                                          "type": "button",
+                                          "action": {
+                                            "type": "message",
+                                            "label": "開定位探店GPS",
+                                            "text": "定位"
+                                          },
+                                          "style": "primary",
+                                          "margin": "xxl",
+                                          "height": "sm",
+                                          "color": "#797D62"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                    }
+    )
+    return flex_message
 
 def soup_direct_flex(whole_input):
     flex_message = FlexSendMessage(

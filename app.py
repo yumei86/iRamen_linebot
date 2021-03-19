@@ -8,7 +8,6 @@ from linebot.exceptions import LineBotApiError
 
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import IntegrityError
-import secrets
 import random
 import csv
 import re
@@ -365,20 +364,14 @@ def handle_message(event):
     city_name_dic = {**n_dict, **c_dict, **s_dict, **e_dict}
     city_region_dict = dict(zip(["north","center","south","east"], [north,center,south,east]))
 
-    #----------------拉麵推薦介面-----------------
+#----------------拉麵推薦介面-----------------
     if event.message.text == "拉麵推薦":
-    #讀需要的json資料
-        f = open('json_files_for_robot/json_for_app.json', encoding="utf8") 
-        data = json.load(f) 
-
-        flex_message = FlexSendMessage(alt_text='拉麵推薦',
-                                       contents= data[0])
-
-        line_bot_api.reply_message(event.reply_token,flex_message)
-        f.close()
+        flex_message0 = Flex_template.main_panel_flex()
+        line_bot_api.reply_message(event.reply_token,flex_message0)
 #----------------不同區域的介面設定-----------------
 
     elif event.message.text in TWregion:
+            #讀需要的json資料
         f_region = open('json_files_for_robot/json_for_app.json', encoding="utf8") 
         data_region = json.load(f_region) 
 
@@ -386,7 +379,7 @@ def handle_message(event):
             if event.message.text == v:
                 flex_message1 = FlexSendMessage(
                                alt_text= v + '的縣市',
-                               contents= data_region[i+1]
+                               contents= data_region[i]
                 )
 
                 line_bot_api.reply_message(event.reply_token,flex_message1) 
@@ -541,7 +534,7 @@ def handle_message(event):
                     #---------------------------------change data to a list of datas--------------------------
                     output_whole_lst = convert_string_to_lst(output_before_random_clear,'%')
                     output_whole_lst = [i for i in output_whole_lst if i]
-                    output_s = secrets.choice(output_whole_lst)
+                    output_s = random.choice(output_whole_lst)
                     output_lst = convert_string_to_lst(output_s, ',')
                     if len(output_lst) == 12 or len(output_lst) == 10:
                     
