@@ -13,7 +13,7 @@ import random
 import csv
 import re
 import requests
-from msg_template import Gps,Flex_template
+from msg_template import Gps,Flex_template,Text_template
 
 #----------------呼叫我們的line bot(這邊直接取用heroku的環境變數)-----------------
 
@@ -364,12 +364,7 @@ def handle_message(event):
     city_name = ["台北市","新北市","基隆市","桃園市","苗栗縣","新竹縣","新竹市","台中市","彰化縣","南投縣","雲林縣","嘉義市","台南市","高雄市","屏東縣","宜蘭縣","花蓮縣","台東縣"]
     city_name_dic = {**n_dict, **c_dict, **s_dict, **e_dict}
     city_region_dict = dict(zip(["north","center","south","east"], [north,center,south,east]))
-#----------------雞湯文-----------------
-    store_example = ['「鷹流 公館」','「公 子」','「山下公 園」','「隱家 赤峰」','「七 面鳥」','「麵屋 壹」','「真 劍」','「秋 鳴」','「Mr 拉麵雲」','「辰 拉」','「京都 柚子」','「麵屋 ichi」','「麵屋 壹之穴」','「KIDO 拉麵」','「Ramen 初」','「暴 走」','「Hiro 新店」']
-    random.shuffle(store_example)
-    store_example_choice_lst = store_example[:5]
-    store_example_choice = ''.join(store_example_choice_lst)
-    # store_example_choice = reduce(lambda a,x: a+str(x), store_example_choice_lst, "")
+
     #----------------拉麵推薦介面-----------------
     if event.message.text == "拉麵推薦":
     #讀需要的json資料
@@ -622,15 +617,11 @@ def handle_message(event):
             #   keyword_result = ''
        #       ---------------------------------put all data to a string--------------------------
             if keyword_result == '':
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n\n例:{store_example_choice}\
-                                                                                          \n\n\udbc0\udcb2請輸入有效店名關鍵字(中間幫我隨意留一個半形空,但不可在前後加入空白)\
-                                                                                          \n\udbc0\udcb2或請幫我直接點選拉麵推薦選單做選擇喔！"))
+                line_bot_api.reply_message(event.reply_token, TextSendMessage(text = Text_template.keyword_warning_text()))
             else:
                 output_before_random_clear = get_data_str(keyword_result)
                 if output_before_random_clear == None:
-                    line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n\n例:{store_example_choice}\
-                                                                                              \n\n\udbc0\udcb2請輸入有效店名關鍵字(中間幫我隨意留一個半形空,但不可在前後加入空白)\
-                                                                                              \n\udbc0\udcb2或請幫我直接點選拉麵推薦選單做選擇喔！"))
+                    line_bot_api.reply_message(event.reply_token, TextSendMessage(text = Text_template.keyword_warning_text()))
                 else:
                     output_before_random_clear = output_before_random_clear.replace(u'\xa0', u' ').replace('\n','')
                     #---------------------------------change data to a list of datas--------------------------
@@ -670,10 +661,7 @@ def handle_message(event):
         )       
 
     elif ' ' in event.message.text and (' ' in event.message.text[-1] or ' '  in event.message.text[0]):
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n\n例:{store_example_choice}\
-                                                                              \n\n\udbc0\udcb2請輸入有效店名關鍵字(中間幫我隨意留一個半形空,但不可在前後加入空白)\
-                                                                              \n\udbc0\udcb2或請幫我直接點選拉麵推薦選單做選擇喔！")
-    )
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = Text_template.keyword_warning_text()))
     elif "輸出評論超連結→" in event.message.text:
         text_list = event.message.text.split("→")
         store_name = str(text_list[1])
@@ -889,9 +877,8 @@ def handle_message(event):
                                         \nhttps://reurl.cc/14RmVW"))
 
     else:
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = f"\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n\n例:{store_example_choice}\
-                                                                                  \n\n\udbc0\udcb2請輸入有效店名關鍵字(中間幫我隨意留一個半形空,但不可在前後加入空白)\
-                                                                                  \n\udbc0\udcb2或請幫我直接點選拉麵推薦選單做選擇喔！"))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = Text_template.keyword_warning_text()))
+
 @handler.add(MessageEvent, message=LocationMessage)#定位細節
 def handle_location(event):
     city_name_dic = {**n_dict, **c_dict, **s_dict, **e_dict}

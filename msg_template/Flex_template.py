@@ -1,4 +1,5 @@
 from linebot.models import FlexSendMessage
+import random
 
 def single_flex(whole_alt,whole_store,whole_address,whole_longtitude,whole_latitude,whole_description,whole_transport,whole_open_time,whole_city,whole_comment,add_or_delete,add_or_delete_label):
     flex_message = FlexSendMessage(
@@ -546,3 +547,4 @@ def double_flex(whole_alt, whole_store, whole_address, whole_longtitude, whole_l
                                         }
                             )
     return flex_message
+
