@@ -1,3 +1,4 @@
+from linebot.models import *
 
 def single_flex(whole_alt,whole_store,whole_address,whole_longtitude,whole_latitude,whole_description,whole_transport,whole_open_time,whole_city,whole_comment):
     flex_message = FlexSendMessage(
