@@ -454,7 +454,7 @@ def handle_message(event):
                     lat = output_lst[6][output_lst[6].index(':')+1:] 
                     op  = output_lst[7][output_lst[7].index(':')+1:]  
                 else:
-                    line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2出錯啦靠邀，麻煩您把「錯誤代碼O1」和「您的店家搜尋指令（含空格）」填在填錯誤回報上，感激到五體投地\udbc0\udcb2") )
+                    line_bot_api.reply_message(event.reply_token, TextSendMessage(text = Text_template.error_warning_text(O1)) )
             
                 flex_message9 = Flex_template.double_flex("快回來看看我幫你找到的店家！", store_n, address, lon, lat, descrip, trans, op, "看同類推薦", user_choice, f_city, comment, "+到最愛", "加到最愛清單")
                 line_bot_api.reply_message(event.reply_token,flex_message9)
@@ -483,7 +483,7 @@ def handle_message(event):
             if weather_result != '':
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text = weather_result))
             else:
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2出錯啦靠邀，麻煩您把「錯誤代碼W1」和「您的店家搜尋指令（含空格）」填在填錯誤回報上，感激到五體投地\udbc0\udcb2")
+                line_bot_api.reply_message(event.reply_token, TextSendMessage(text = Text_template.error_warning_text(W1))
             )
         else:    #----------------輸入關鍵字找尋店家-----------------
             input_lst = user_select.split()
@@ -537,11 +537,11 @@ def handle_message(event):
                             lat = output_lst[6][output_lst[6].index(':')+1:]
                             op  = output_lst[7][output_lst[7].index(':')+1:]  
                         else:
-                            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2出錯啦靠邀，麻煩您把「錯誤代碼S1」和「您的店家搜尋指令（含空格）」填在填錯誤回報上，感激到五體投地\udbc0\udcb2") )
+                            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = Text_template.error_warning_text(S1)) )
                         flex_message3 = Flex_template.double_flex("快來看你搜索到的店！", store_n, address, lon, lat, descrip, trans, op, "再搜索一次", user_select, f_city, comment, "+到最愛", "加到最愛清單")
                         line_bot_api.reply_message(event.reply_token,flex_message3)
                     else:
-                        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2出錯啦靠邀，麻煩您把「錯誤代碼S3」和「您的店家搜尋指令（含空格）」填在填錯誤回報上，感激到五體投地\udbc0\udcb2")
+                        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = Text_template.error_warning_text(S3))
         )       
 
     elif ' ' in event.message.text and (' ' in event.message.text[-1] or ' '  in event.message.text[0]):
@@ -617,7 +617,7 @@ def handle_message(event):
             )
             line_bot_api.reply_message(event.reply_token,flex_message6) 
         else:
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2出錯啦靠邀，麻煩您把「錯誤代碼L2」和「您的店家搜尋指令（含空格）」填在填錯誤回報上，感激到五體投地\udbc0\udcb2")
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = Text_template.error_warning_text(L2))
         )       
      #----------------最愛清單加入資料庫設定與訊息回覆設定-----------------
     elif "搜尋你的清單♡" in event.message.text:
@@ -740,7 +740,7 @@ def handle_message(event):
             flex_message8 = Flex_template.single_flex('快來看看店家細節~', r_store, ad, lont, lati, dis, trans, opent, city_r, com_format,"+到最愛","加到最愛清單")
             line_bot_api.reply_message(event.reply_token,flex_message8)
         else:
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2出錯啦靠邀，麻煩幫忙在使用者回報填寫出錯代碼「D1」和您的狀況，感激到五體投地！")
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text = Text_template.error_warning_text(D1))
         )       
         
 #----------------問題回報（未來可加donate資訊）----------------
@@ -788,7 +788,7 @@ def handle_location(event):
       elif k not in u_address and "臺灣" not in u_address or '台灣' not in u_address or '台湾' not in u_address or 'Taiwan' not in u_address:
         all_store_province = ''
       else:
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text= "出錯惹靠腰，麻煩幫忙在使用者回報填寫出錯代碼「G1」和您的狀況" ))
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text= Text_template.error_warning_text(G1) ))
     
     # '''
     # 算距離
@@ -804,7 +804,7 @@ def handle_location(event):
         if  len(sorted_city_distance_dic) >= 10:
           choice_nearby_city_tup = Gps.take(10, sorted_city_distance_dic.items())
         else:
-          line_bot_api.reply_message(event.reply_token,TextSendMessage(text= "\udbc0\udcb2出錯啦靠邀，麻煩幫忙在使用者回報填寫出錯代碼「G2」和您的狀況" ))
+          line_bot_api.reply_message(event.reply_token,TextSendMessage(text= Text_template.error_warning_text(G2)))
 
     
     flex_message_location = FlexSendMessage(

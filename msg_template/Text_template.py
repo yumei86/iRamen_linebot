@@ -8,3 +8,7 @@ def keyword_warning_text():
     # store_example_choice = reduce(lambda a,x: a+str(x), store_example_choice_lst, "")
     warning_text = f"\udbc0\udcb2打字搜尋功能請輸入:\n關鍵字 關鍵字,\n\n例:{store_example_choice}\n\n\udbc0\udcb2請輸入有效店名關鍵字(中間幫我隨意留一個半形空,但不可在前後加入空白)\n\udbc0\udcb2或請幫我直接點選拉麵推薦選單做選擇喔！"
     return warning_text
+
+def error_warning_text(err_code):
+    err_msg = f"\udbc0\udcb2出錯啦靠邀，麻煩您把「錯誤代碼{err_code}」和「您的店家搜尋指令（含空格）」填在填錯誤回報上，感激到五體投地\udbc0\udcb2"
+    return err_msg
