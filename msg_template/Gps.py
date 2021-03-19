@@ -1,6 +1,6 @@
 from vincenty import vincenty
 from itertools import islice
-from linebot.models import *
+from linebot.models import FlexSendMessage
 
 def take(n, iterable):
     #"Return first n items of the iterable as a list"

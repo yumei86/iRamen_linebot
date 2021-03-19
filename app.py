@@ -1391,7 +1391,7 @@ def handle_message(event):
             lati = output_whole_lst[7][output_whole_lst[7].index(':')+1:]
             opent = output_whole_lst[8][output_whole_lst[8].index(':')+1:]
 
-            flex_message7 = Single_template.single_flex('快來看看你的清單~', r_store, ad, lont, lati, dis, trans, opent, city_r, com_format)
+            flex_message7 = Single_template.single_flex('快來看看你的清單~', r_store, ad, lont, lati, dis, trans, opent, city_r, com_format,'-刪除最愛','刪除最愛清單')
             line_bot_api.reply_message(event.reply_token,flex_message7)
         else:
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "你已將此店家從最愛清單中刪除")
@@ -1486,7 +1486,7 @@ def handle_message(event):
             lati = output_whole_lst[7][output_whole_lst[7].index(':')+1:]
             opent = output_whole_lst[8][output_whole_lst[8].index(':')+1:]
 
-            flex_message8 = Single_template.single_flex('快來看看店家細節~', r_store, ad, lont, lati, dis, trans, opent, city_r, com_format)
+            flex_message8 = Single_template.single_flex('快來看看店家細節~', r_store, ad, lont, lati, dis, trans, opent, city_r, com_format,"+到最愛","加到最愛清單")
             line_bot_api.reply_message(event.reply_token,flex_message8)
         else:
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2出錯啦靠邀，麻煩幫忙在使用者回報填寫出錯代碼「D1」和您的狀況，感激到五體投地！")

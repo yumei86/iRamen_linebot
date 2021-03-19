@@ -1,6 +1,6 @@
 from linebot.models import FlexSendMessage
 
-def single_flex(whole_alt,whole_store,whole_address,whole_longtitude,whole_latitude,whole_description,whole_transport,whole_open_time,whole_city,whole_comment):
+def single_flex(whole_alt,whole_store,whole_address,whole_longtitude,whole_latitude,whole_description,whole_transport,whole_open_time,whole_city,whole_comment,add_or_delete,add_or_delete_label,):
     flex_message = FlexSendMessage(
                             alt_text= whole_alt,
                             contents={
@@ -35,14 +35,14 @@ def single_flex(whole_alt,whole_store,whole_address,whole_longtitude,whole_latit
                                                 "contents": [
                                                     {
                                                     "type": "text",
-                                                    "text": "+到最愛",
+                                                    "text": add_or_delete,
                                                     "size": "sm",
                                                     "align": "center",
                                                     "offsetTop": "3px",
                                                     "action": {
                                                         "type": "message",
-                                                        "label": "加到最愛清單",
-                                                        "text": "加到最愛清單♡"+whole_store
+                                                        "label": add_or_delete_label,
+                                                        "text": add_or_delete_label+'♡'+whole_store
                                                     }
                                                     }
                                                 ],
