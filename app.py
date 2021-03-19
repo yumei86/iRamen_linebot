@@ -480,7 +480,7 @@ def handle_message(event):
             store_name = str(text_list[0]).replace('搜索中','').replace(' ','')
             WEATHER_API_KEY = os.environ.get('WEATHER_API_KEY')
             weather_result = Weather.query_local_weather(lonti,lati,WEATHER_API_KEY,store_name)
-            if weather_result:
+            if weather_result != '':
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text = weather_result))
             else:
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text = "\udbc0\udcb2出錯啦靠邀，麻煩您把「錯誤代碼W1」和「您的店家搜尋指令（含空格）」填在填錯誤回報上，感激到五體投地\udbc0\udcb2")

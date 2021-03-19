@@ -1,7 +1,7 @@
 import requests
 import json
 #--------------------天氣weather api--------------------------------
-def query_local_weather(lon,lat,APIkey):
+def query_local_weather(lon,lat,APIkey,whole_store):
     weather_url = f'https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude=minutely,hourly,daily&lang=zh_tw&appid={APIkey}&units=metric'
     get_weather_data = requests.get(weather_url)
     weather_data  = get_weather_data.json()
@@ -23,5 +23,5 @@ def query_local_weather(lon,lat,APIkey):
       uvi_index_description = '暴露於陽光中極其危險'
     else:
       uvi_index_description = '目前無相關資訊'
-    weather_result = f'目前{store_name}\n\n【{weather_description}】\n\n氣溫:{main_temp}℃\n體感溫度:{temp_feels_like}℃\n濕度:{humidity_procent}%\n紫外線指數:{uvi_index}，{uvi_index_description}'
+    weather_result = f'目前{whole_store}\n\n【{weather_description}】\n\n氣溫:{main_temp}℃\n體感溫度:{temp_feels_like}℃\n濕度:{humidity_procent}%\n紫外線指數:{uvi_index}，{uvi_index_description}'
     return weather_result
