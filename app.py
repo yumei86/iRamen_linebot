@@ -479,7 +479,7 @@ def handle_message(event):
             lati  = float(text_list[2])
             store_name = str(text_list[0]).replace('搜索中','').replace(' ','')
             WEATHER_API_KEY = os.environ.get('WEATHER_API_KEY')
-            weather_result = Weather.query_local_weather(lonti,lati,WEATHER_API_KEY)
+            weather_result = Weather.query_local_weather(lonti,lati,WEATHER_API_KEY,store_name)
             if weather_result:
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text = weather_result))
             else:
