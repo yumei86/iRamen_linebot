@@ -12,3 +12,16 @@ def keyword_warning_text():
 def error_warning_text(err_code):
     err_msg = f"\udbc0\udcb2出錯啦靠邀，麻煩您把「錯誤代碼{err_code}」和「您的店家搜尋指令（含空格）」填在填錯誤回報上，感激到五體投地\udbc0\udcb2"
     return err_msg
+
+def user_report():
+    report_text =f"\udbc0\udcb2常見問題\n\n• 選擇湯頭和評論品項不同:\n\n別擔心，該推薦店家是有賣你選的湯頭類型！\
+                    \n\
+                    \n• 希望有較小範圍的地區搜尋功能:\n\n已經上線了試營運中。\
+                    \n\
+                    \n\udbc0\udcb23月新增\n• 評論超連結\n• 店家附近天氣\n• 拉麵語錄\n• 分流看更多推薦\n• 看相似店鋪\n• 大幅提升回應速度\n\
+                    \n\
+                    \n\udbc0\udc84若你很喜歡我們的作品，也不吝嗇贊助，讓我們的iRamen變得更好，請匯款至以下戶頭:\n玉山銀行(808)0864979119334\
+                    \n\
+                    \n歡迎請填寫使用者回饋表單，非常感謝你！\udbc0\udc7a\
+                    \nhttps://reurl.cc/14RmVW"
+    return report_text 
