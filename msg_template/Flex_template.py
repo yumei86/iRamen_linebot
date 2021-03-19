@@ -1,5 +1,93 @@
 from linebot.models import FlexSendMessage
-import random
+
+def soup_direct_flex(whole_input):
+    flex_message = FlexSendMessage(
+                    alt_text='依據你的喜好選擇吧！',
+                    contents= 
+                                {
+                                    "type": "bubble",
+                                    "body": {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "contents": [
+                                        {
+                                        "type": "text",
+                                        "text": "推薦方式 ",
+                                        "weight": "bold",
+                                        "size": "xl",
+                                        "style": "normal",
+                                        "decoration": "none",
+                                        "align": "start",
+                                        "gravity": "top",
+                                        "color": "#876C5A",
+                                        "position": "relative"
+                                        },
+                                        {
+                                        "type": "box",
+                                        "layout": "vertical",
+                                        "margin": "lg",
+                                        "spacing": "sm",
+                                        "contents": [
+                                            {
+                                            "type": "text",
+                                            "text": "我有口味偏好 -> 請選湯頭推薦",
+                                            "size": "sm"
+                                            },
+                                            {
+                                            "type": "text",
+                                            "text": "我想來點驚喜 -> 請選直接推薦",
+                                            "size": "sm"
+                                            },
+                                            {
+                                            "type": "separator",
+                                            "margin": "lg"
+                                            }
+                                        ]
+                                        }
+                                    ]
+                                    },
+                                    "footer": {
+                                    "type": "box",
+                                    "layout": "horizontal",
+                                    "contents": [
+                                        {
+                                        "type": "button",
+                                        "style": "primary",
+                                        "height": "sm",
+                                        "action": {
+                                            "type": "message",
+                                            "label": "湯頭推薦",
+                                            "text": "湯頭推薦:"+whole_input
+                                        },
+                                        "color": "#797D62",
+                                        "margin": "md",
+                                        "offsetTop": "none",
+                                        "offsetBottom": "none",
+                                        "offsetStart": "none",
+                                        "offsetEnd": "none",
+                                        "gravity": "center"
+                                        },
+                                        {
+                                        "type": "button",
+                                        "style": "primary",
+                                        "height": "sm",
+                                        "action": {
+                                            "type": "message",
+                                            "label": "直接推薦",
+                                            "text": "直接推薦:"+whole_input
+                                        },
+                                        "color": "#797D62",
+                                        "margin": "md"
+                                        },
+                                        {
+                                        "type": "spacer",
+                                        "size": "sm"
+                                        }
+                                    ]
+                                    }
+                                }
+        )
+    return flex_message
 
 def single_flex(whole_alt,whole_store,whole_address,whole_longtitude,whole_latitude,whole_description,whole_transport,whole_open_time,whole_city,whole_comment,add_or_delete,add_or_delete_label):
     flex_message = FlexSendMessage(
