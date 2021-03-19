@@ -804,7 +804,7 @@ def handle_location(event):
         if  len(sorted_city_distance_dic) >= 10:
           choice_nearby_city_tup = Gps.take(10, sorted_city_distance_dic.items())
         else:
-          line_bot_api.reply_message(event.reply_token,TextSendMessage(text= Text_template.error_warning_text(G2)))
+          line_bot_api.reply_message(event.reply_token,TextSendMessage(text= "\udbc0\udcb2出錯啦靠邀，麻煩幫忙在使用者回報填寫出錯代碼「G2」和您的狀況" ))
 
     
     flex_message_location = FlexSendMessage(
