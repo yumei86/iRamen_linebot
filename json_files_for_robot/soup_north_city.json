@@ -74,8 +74,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "label": "魚介",
-                    "text": "台北市:魚介"
+                    "label": "豚骨魚介",
+                    "text": "台北市:豚骨魚介"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -125,8 +125,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "台北市:家系",
-                    "label": "家系"
+                    "text": "台北市:二郎風",
+                    "label": "二郎風"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -136,8 +136,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "label": "味噌",
-                    "text": "台北市:味噌"
+                    "label": "限定",
+                    "text": "台北市:限定"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -156,8 +156,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "台北市:淡麗系",
-                    "label": "淡麗系"
+                    "text": "台北市:變化",
+                    "label": "變化"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -818,8 +818,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "新竹市:二郎",
-                    "label": "二郎"
+                    "text": "新竹市:二郎風",
+                    "label": "二郎風"
                   },
                   "style": "primary",
                   "height": "sm",
