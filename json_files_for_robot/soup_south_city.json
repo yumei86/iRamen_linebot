@@ -374,8 +374,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "label": "豚骨魚介",
-                    "text": "高雄市:豚骨魚介"
+                    "label": "限定",
+                    "text": "高雄市:限定"
                   },
                   "style": "primary",
                   "height": "sm",
