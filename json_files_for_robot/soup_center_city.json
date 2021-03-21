@@ -224,8 +224,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "label": "雞白湯",
-                    "text": "彰化縣:雞白湯"
+                    "label": "雞白",
+                    "text": "彰化縣:雞白"
                   },
                   "style": "primary",
                   "height": "sm",

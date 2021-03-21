@@ -244,8 +244,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "新北市:雞白湯",
-                    "label": "雞白湯"
+                    "text": "新北市:雞白",
+                    "label": "雞白"
                   },
                   "style": "primary",
                   "height": "sm",

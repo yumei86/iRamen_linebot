@@ -162,8 +162,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "label": "雞白湯",
-                    "text": "台南市:雞白湯"
+                    "label": "雞白",
+                    "text": "台南市:雞白"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -363,8 +363,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "高雄市:雞白湯",
-                    "label": "雞白湯"
+                    "text": "高雄市:雞白",
+                    "label": "雞白"
                   },
                   "style": "primary",
                   "height": "sm",
