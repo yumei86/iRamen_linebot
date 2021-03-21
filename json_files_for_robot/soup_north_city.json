@@ -125,8 +125,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "台北市:二郎風",
-                    "label": "二郎風"
+                    "text": "台北市:煮干",
+                    "label": "煮干"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -537,8 +537,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "桃園市:沾麵",
-                    "label": "沾麵"
+                    "text": "桃園市:雞湯",
+                    "label": "雞湯"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -599,8 +599,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "桃園市:煮干",
-                    "label": "煮干"
+                    "text": "桃園市:限定",
+                    "label": "限定"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -849,8 +849,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "新竹市:雞清",
-                    "label": "雞清"
+                    "text": "新竹市:雞白",
+                    "label": "雞白"
                   },
                   "style": "primary",
                   "height": "sm",
