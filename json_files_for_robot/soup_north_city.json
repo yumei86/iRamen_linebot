@@ -255,8 +255,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "label": "雞骨魚介",
-                    "text": "新北市:雞骨魚介"
+                    "label": "豚骨魚介",
+                    "text": "新北市:豚骨魚介"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -317,8 +317,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "label": "煮干",
-                    "text": "新北市:煮干"
+                    "label": "泡系",
+                    "text": "新北市:泡系"
                   },
                   "style": "primary",
                   "height": "sm",
@@ -337,8 +337,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "新北市:素食",
-                    "label": "素食"
+                    "text": "新北市:限定",
+                    "label": "限定"
                   },
                   "style": "primary",
                   "height": "sm",
