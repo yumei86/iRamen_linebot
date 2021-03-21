@@ -456,8 +456,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "text": "高雄市:淡麗",
-                    "label": "淡麗"
+                    "text": "高雄市:淡麗系",
+                    "label": "淡麗系"
                   },
                   "style": "primary",
                   "height": "sm",

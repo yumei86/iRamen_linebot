@@ -579,8 +579,8 @@
                   "type": "button",
                   "action": {
                     "type": "message",
-                    "label": "淡麗",
-                    "text": "桃園市:淡麗"
+                    "label": "淡麗系",
+                    "text": "桃園市:淡麗系"
                   },
                   "style": "primary",
                   "height": "sm",
