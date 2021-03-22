@@ -234,8 +234,11 @@ def soup_direct_flex(whole_input):
                                               },
                                               "style": "primary",
                                               "margin": "md",
-                                              "height": "sm",
                                               "color": "#797D62"
+                                            },
+                                            {
+                                            "type": "spacer",
+                                            "size": "sm"
                                             }
                                           ]
                                         }
