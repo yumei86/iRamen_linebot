@@ -125,10 +125,9 @@ def main_panel_flex():
 def soup_direct_flex(whole_input):
     flex_message = FlexSendMessage(
                     alt_text='依據你的喜好選擇吧！',
-                    contents= 
-                                {
-                                    "type": "bubble",
-                                    "body": {
+                    contents= {
+                                "type": "bubble",
+                                "body": {
                                     "type": "box",
                                     "layout": "vertical",
                                     "contents": [
@@ -167,8 +166,8 @@ def soup_direct_flex(whole_input):
                                         ]
                                         }
                                     ]
-                                    },
-                                    "footer": {
+                                },
+                                "footer": {
                                     "type": "box",
                                     "layout": "horizontal",
                                     "contents": [
@@ -202,12 +201,30 @@ def soup_direct_flex(whole_input):
                                         "margin": "md"
                                         },
                                         {
-                                        "type": "spacer",
-                                        "size": "sm"
+                                        "type": "separator",
+                                        "margin": "lg"
+                                        },
+                                        {
+                                          "type": "box",
+                                          "layout": "vertical",
+                                          "contents": [
+                                            {
+                                              "type": "button",
+                                              "action": {
+                                                "type": "message",
+                                                "label": "突然想開定位GPS",
+                                                "text": "定位"
+                                              },
+                                              "style": "primary",
+                                              "margin": "xxl",
+                                              "height": "sm",
+                                              "color": "#797D62"
+                                            }
+                                          ]
                                         }
                                     ]
-                                    }
                                 }
+                    }
         )
     return flex_message
 
