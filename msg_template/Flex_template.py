@@ -218,6 +218,7 @@ def soup_direct_flex(whole_input):
                                         {
                                           "type": "box",
                                           "layout": "vertical",
+                                          "height": "30px",
                                           "contents": []
                                         },
                                         {
