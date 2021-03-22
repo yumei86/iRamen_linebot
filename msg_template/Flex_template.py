@@ -170,7 +170,7 @@ def soup_direct_flex(whole_input):
                                 "footer": {
                                     "type": "box",
                                     "layout": "vertical",
-                                    "margin": "md"
+                                    "margin": "md",
                                     "contents": [
                                         {"type": "box",
                                          "layout": "horizontal",
