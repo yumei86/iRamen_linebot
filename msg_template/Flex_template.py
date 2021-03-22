@@ -202,6 +202,10 @@ def soup_direct_flex(whole_input):
                                             },
                                             "color": "#797D62",
                                             "margin": "md"
+                                            },
+                                            {
+                                            "type": "spacer",
+                                            "size": "sm"
                                             }
                                            ]
                                         },
@@ -221,7 +225,6 @@ def soup_direct_flex(whole_input):
                                                 "text": "定位"
                                               },
                                               "style": "primary",
-                                              "margin": "xxl",
                                               "height": "sm",
                                               "color": "#797D62"
                                             }
