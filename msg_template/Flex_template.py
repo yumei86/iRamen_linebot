@@ -171,34 +171,39 @@ def soup_direct_flex(whole_input):
                                     "type": "box",
                                     "layout": "vertical",
                                     "contents": [
-                                        {
-                                        "type": "button",
-                                        "style": "primary",
-                                        "height": "sm",
-                                        "action": {
-                                            "type": "message",
-                                            "label": "湯頭推薦",
-                                            "text": "湯頭推薦:"+whole_input
-                                        },
-                                        "color": "#797D62",
-                                        "margin": "md",
-                                        "offsetTop": "none",
-                                        "offsetBottom": "none",
-                                        "offsetStart": "none",
-                                        "offsetEnd": "none",
-                                        "gravity": "center"
-                                        },
-                                        {
-                                        "type": "button",
-                                        "style": "primary",
-                                        "height": "sm",
-                                        "action": {
-                                            "type": "message",
-                                            "label": "直接推薦",
-                                            "text": "直接推薦:"+whole_input
-                                        },
-                                        "color": "#797D62",
-                                        "margin": "md"
+                                        {"type": "box",
+                                         "layout": "horizontal",
+                                         "contents": [
+                                            {
+                                            "type": "button",
+                                            "style": "primary",
+                                            "height": "sm",
+                                            "action": {
+                                                "type": "message",
+                                                "label": "湯頭推薦",
+                                                "text": "湯頭推薦:"+whole_input
+                                            },
+                                            "color": "#797D62",
+                                            "margin": "md",
+                                            "offsetTop": "none",
+                                            "offsetBottom": "none",
+                                            "offsetStart": "none",
+                                            "offsetEnd": "none",
+                                            "gravity": "center"
+                                            },
+                                            {
+                                            "type": "button",
+                                            "style": "primary",
+                                            "height": "sm",
+                                            "action": {
+                                                "type": "message",
+                                                "label": "直接推薦",
+                                                "text": "直接推薦:"+whole_input
+                                            },
+                                            "color": "#797D62",
+                                            "margin": "md"
+                                            }
+                                           ]
                                         },
                                         {
                                         "type": "separator",
