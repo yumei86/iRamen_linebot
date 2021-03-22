@@ -169,7 +169,7 @@ def soup_direct_flex(whole_input):
                                 },
                                 "footer": {
                                     "type": "box",
-                                    "layout": "horizontal",
+                                    "layout": "vertical",
                                     "contents": [
                                         {
                                         "type": "button",
@@ -206,7 +206,7 @@ def soup_direct_flex(whole_input):
                                         },
                                         {
                                           "type": "box",
-                                          "layout": "vertical",
+                                          "layout": "horizontal",
                                           "contents": [
                                             {
                                               "type": "button",
