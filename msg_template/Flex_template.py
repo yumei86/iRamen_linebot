@@ -217,6 +217,11 @@ def soup_direct_flex(whole_input):
                                         },
                                         {
                                           "type": "box",
+                                          "layout": "vertical",
+                                          "contents": []
+                                        },
+                                        {
+                                          "type": "box",
                                           "layout": "horizontal",
                                           "contents": [
                                             {
