@@ -207,7 +207,8 @@ def soup_direct_flex(whole_input):
                                             "type": "spacer",
                                             "size": "sm"
                                             }
-                                           ]
+                                           ],
+                                         "margin": "md"
                                         },
                                         {
                                         "type": "separator",
