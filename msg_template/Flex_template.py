@@ -170,6 +170,7 @@ def soup_direct_flex(whole_input):
                                 "footer": {
                                     "type": "box",
                                     "layout": "vertical",
+                                    "margin": "md"
                                     "contents": [
                                         {"type": "box",
                                          "layout": "horizontal",
@@ -217,7 +218,6 @@ def soup_direct_flex(whole_input):
                                         {
                                           "type": "box",
                                           "layout": "horizontal",
-                                          "margin": "md",
                                           "contents": [
                                             {
                                               "type": "button",
@@ -231,10 +231,6 @@ def soup_direct_flex(whole_input):
                                               "height": "sm",
                                               "color": "#797D62",
                                               "gravity": "center"
-                                            },
-                                            {
-                                            "type": "spacer",
-                                            "size": "sm"
                                             }
                                           ]
                                         }
