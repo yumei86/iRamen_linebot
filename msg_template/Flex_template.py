@@ -208,7 +208,7 @@ def soup_direct_flex(whole_input):
                                             "size": "sm"
                                             }
                                            ],
-                                         "margin": "md"
+                                         
                                         },
                                         {
                                         "type": "separator",
@@ -217,6 +217,7 @@ def soup_direct_flex(whole_input):
                                         {
                                           "type": "box",
                                           "layout": "horizontal",
+                                          "margin": "md"
                                           "contents": [
                                             {
                                               "type": "button",
