@@ -217,7 +217,7 @@ def soup_direct_flex(whole_input):
                                         {
                                           "type": "box",
                                           "layout": "horizontal",
-                                          "margin": "md"
+                                          "margin": "md",
                                           "contents": [
                                             {
                                               "type": "button",
