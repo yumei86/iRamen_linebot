@@ -218,7 +218,7 @@ def soup_direct_flex(whole_input):
                                         {
                                           "type": "box",
                                           "layout": "vertical",
-                                          "height": "15px",
+                                          "height": "13px",
                                           "contents": []
                                         },
                                         {
@@ -235,9 +235,7 @@ def soup_direct_flex(whole_input):
                                               "style": "primary",
                                               "margin": "md",
                                               "height": "sm",
-                                              "padding":"sm",
-                                              "color": "#797D62",
-                                              "gravity": "center"
+                                              "color": "#797D62"
                                             }
                                           ]
                                         }
