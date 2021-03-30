@@ -799,6 +799,7 @@ def handle_location(event):
                                                   quick_reply=QuickReply(items=[
                                                       QuickReplyButton(action=LocationAction(label="再定位一次My LOC"))
                                                   ]))
+                line_bot_api.reply_message(event.reply_token,text_message_foreign_location) 
             else:
                 choice_nearby_city_tup = choice_nearby_city
         
