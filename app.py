@@ -768,28 +768,18 @@ def handle_location(event):
         region_value = v[0]
         all_store_province = query_region_by_store_table(region_value)
         break
-      elif k not in u_address and ("臺灣" in u_address or '台灣' in u_address or '台湾' in u_address or 'Taiwan' in u_address or '鄉' in u_address or '鎮' in u_address or '市' in u_address or '區' in u_address):
+      else:
         #search all
         all_store_province = province_soup_q = db.session.query(Main_store, Store)\
                           .outerjoin(Store, Store.store_id == Main_store.store_id)\
                           .filter(Store.still_there == True)
         break
-      elif k not in u_address and "臺灣" not in u_address or '台灣' not in u_address or '台湾' not in u_address or 'Taiwan' not in u_address:
-        all_store_province = province_soup_q = db.session.query(Main_store, Store)\
-                          .outerjoin(Store, Store.store_id == Main_store.store_id)\
-                          .filter(Store.still_there == True)
-      else:
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text= Text_template.error_warning_text('G1') ))
     
     # '''
     # 算距離
     # '''
     if all_store_province == '':
-        text_message_foreign_location = TextSendMessage(text="\udbc0\udc7B目前不支援離島與國外拉麵店，請到台灣本島吃拉麵Yeah We only support ramen shops in Taiwan~",
-                                                quick_reply=QuickReply(items=[
-                                                    QuickReplyButton(action=LocationAction(label="再定位一次My LOC"))
-                                                ]))
-        line_bot_api.reply_message(event.reply_token,text_message_foreign_location) 
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=Text_template.error_warning_text('P1'))) 
     else:
         sorted_city_distance_dic = Gps.caculate_distance(user_location,all_store_province)
         if  len(sorted_city_distance_dic) >= 10:
