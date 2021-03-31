@@ -14,11 +14,11 @@ def error_warning_text(err_code):
     return err_msg
 
 def user_report():
-    report_text =f"\udbc0\udcb2常見問題\n\n• 選擇湯頭和評論品項不同:\n\n別擔心，該推薦店家是有賣你選的湯頭類型！\
+    report_text =f"\udbc0\udcb2常見問題\n\n• 選擇湯頭和評論品項不同:\n別擔心，該推薦店家是有賣你選的湯頭類型！\
                     \n\
-                    \n• 希望有較小範圍的地區搜尋功能:\n\n已經上線了試營運中。\
+                    \n• 希望有較小範圍的地區搜尋功能:\n已經上線了試營運中。\
                     \n\
-                    \n\udbc0\udcb24月新增\n• 機器人後台提升(特別感謝「拉麵機器人加油」網友協助)\
+                    \n\udbc0\udcb24月新增\n\n• 機器人後台提升（特別感謝「拉麵機器人加油」網友協助）\
                     \n\
                     \n\udbc0\udc84更多心得請至臉書社團「台灣拉麵愛好會」觀看\
                     \n\
