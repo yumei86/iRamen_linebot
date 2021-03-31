@@ -793,7 +793,7 @@ def handle_location(event):
                 choice_nearby_city_tup = choice_nearby_city
         
         else:
-          line_bot_api.reply_message(event.reply_token,TextSendMessage(text= "\udbc0\udcb2出錯啦靠邀，麻煩幫忙在使用者回報填寫出錯代碼「G2」和您的狀況" ))
+          line_bot_api.reply_message(event.reply_token,TextSendMessage(text=  Text_template.error_warning_text('G2') ))
 
     
     flex_message_location = FlexSendMessage(
